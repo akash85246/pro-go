@@ -1,7 +1,16 @@
 function LoginForm() {
   return (
     <div className="loginContainer right">
-      <div className="progress"></div>
+      <div className="progress-bar">
+        <div className="circle"></div>
+        <div className="line"></div>
+        <div className="circle"></div>
+        <div className="line"></div>
+        <div className="circle"></div>
+        <div className="line"></div>
+        <div className="circle"></div>
+      </div>
+
       <div>
         <h1>Account Login</h1>
         <p className="light">

@@ -14,21 +14,35 @@ body {
 .loginContainer {
   display: flex;
   flex-direction: column;
+  row-gap: 15px;
   width: 48vw;
   height: 100vh;
   padding: 2%;
   align-items: left;
   margin: 5% 10%;
 }
-
-.progress {
-  margin: 5% 0;
-  height: 5%;
-  background: linear-gradient(black 0 0) 0/0% no-repeat black;
+.progress-bar {
+  margin: 10% 0;
+  display: flex;
+  align-items: center;
 }
 
+.circle {
+  width: 20px;
+  height: 20px;
+  background-color: #2047ce;
+  border-radius: 50%;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background-color: #b5b1b1;
+}
 .left {
-  background-color: #000;
+  margin: 0;
+  height: 100vh;
+  background-color: #011c67;
 }
 
 .right {
@@ -48,7 +62,7 @@ body {
 }
 
 .button {
-  background-color: purple;
+  background-color: #011c67;
   color: #fff;
   border: none;
   padding: 15px 20px;
@@ -64,11 +78,15 @@ body {
 
 .light {
   font-size: 1.4vw;
-  color: rgba(92, 92, 92, 0.916);
+  color: #8692a6;
 }
 
 .signUp {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.loginImage {
+  padding: 5%;
 }
