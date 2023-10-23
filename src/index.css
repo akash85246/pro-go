@@ -2,23 +2,73 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  height: 100vh;
+  height: 85vh;
 }
+
+body {
+  overflow: hidden;
+  margin: 0;
+  font-size: 1.2vw;
+}
+
 .loginContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  width: 48vw;
+  height: 100vh;
+  padding: 2%;
   align-items: left;
-  height: 90%;
   margin: 5% 10%;
 }
-.progress {
-  align-items: center;
-  width: 60%;
-  height: 4%;
-  -webkit-mask: radial-gradient(circle closest-side, #ba1313 80%, #0000) 0 0/25%
-      95%,
-    linear-gradient(#000 0 0) center/calc(75% - 12px) calc(60% - 12px) no-repeat;
 
-  background: linear-gradient(#25b09b 0 0) 0/0% no-repeat #ddd;
+.progress {
+  margin: 5% 0;
+  height: 5%;
+  background: linear-gradient(black 0 0) 0/0% no-repeat black;
+}
+
+.left {
+  background-color: #000;
+}
+
+.right {
+  margin: 0 auto;
+  width: 30vw;
+}
+
+.input {
+  height: 40px;
+  width: 100%;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.button {
+  background-color: purple;
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.blue {
+  color: blue;
+}
+
+.light {
+  font-size: 1.4vw;
+  color: rgba(92, 92, 92, 0.916);
+}
+
+.signUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
