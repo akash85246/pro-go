@@ -63,6 +63,7 @@ body {
 }
 
 .button {
+  margin: 100px;
   background-color: #011c67;
   color: #fff;
   border: none;
@@ -90,4 +91,16 @@ body {
 
 .loginImage {
   padding: 5%;
+}
+
+.show {
+  background-color: #0077b6; /* Change the background color as needed */
+  color: #fff; /* Text color */
+  border: none;
+  padding: 5;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: -25px;
+  z-index: 1;
 }
