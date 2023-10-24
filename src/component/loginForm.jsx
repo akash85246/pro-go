@@ -14,8 +14,10 @@ function LoginForm() {
     const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
+      document.querySelector(".error").style.display = "block";
       setEmailError("**Email should have '@' and '.'");
     } else {
+      document.querySelector(".error").style.display = "none";
       setEmailError("");
       setEmail(inputEmail);
     }
@@ -29,10 +31,12 @@ function LoginForm() {
     const numberCheck = /^[789]\d{9}/;
 
     if (!numberCheck.test(inputPhoneNumber) && inputPhoneNumber !== "") {
+      document.querySelector(".error").style.display = "block";
       setPhoneError(
         "**Phone Number should start with 7/8/9 and should have 10 digits, no characters allowed"
       );
     } else {
+      document.querySelector(".error").style.display = "none";
       setPhoneError("");
       setPhoneNumber(inputPhoneNumber);
     }
@@ -64,10 +68,20 @@ function LoginForm() {
               alignItems: "center",
             }}
           >
-            <div>
-              <label className="light">
-                {loginWithPhone ? "Phone number" : "Email address"}
-              </label>
+            <div className="Input">
+              <div>
+                <label className="light">
+                  {loginWithPhone ? "Phone number" : "Email address"}
+                </label>
+                <a
+                  className="blue loginWith"
+                  onClick={() => setLoginWithPhone(!loginWithPhone)}
+                >
+                  {loginWithPhone
+                    ? "Login with Email"
+                    : "Login with Phone number"}
+                </a>
+              </div>
               <input
                 type="text"
                 className={loginWithPhone ? "phone input" : "email input"}
@@ -79,19 +93,10 @@ function LoginForm() {
                 maxLength={loginWithPhone ? 10 : 50}
                 required
               />
-              <span className="error">
-                {loginWithPhone ? phoneError : emailError}
-              </span>
             </div>
-            <a
-              className="blue loginWith"
-              onClick={() => setLoginWithPhone(!loginWithPhone)}
-            >
-              {loginWithPhone ? "Login with Email" : "Login with Phone number"}
-            </a>
           </div>
         </div>
-        <div className="entry">
+        <div className="entry Input">
           <label className="light">Password</label>
           <div style={{ display: "flex", alignItems: "center" }}>
             <input
@@ -110,6 +115,9 @@ function LoginForm() {
               onClick={() => setShowPassword(!showPassword)}
             />
           </div>
+          <span className="error">
+            {loginWithPhone ? phoneError : emailError}
+          </span>
         </div>
         <div>
           <input type="checkbox" />
@@ -129,7 +137,7 @@ function LoginForm() {
         </div>
       </form>
       <div className="signUp">
-        <span className="light">Don't have an account? </span>
+        <span className="blue light">Forgot Password ? </span>
         <a className="blue">Sign up here</a>
       </div>
     </div>

@@ -16,11 +16,10 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 15px;
-  width: 48vw;
+  width: 592px;
   height: 100vh;
   padding: 2%;
   align-items: left;
-  margin: 5% 10%;
 }
 .progress-bar {
   margin: 10% 0;
@@ -31,8 +30,11 @@ body {
 .circle {
   width: 20px;
   height: 20px;
-  background-color: #2047ce;
+  border: 1px solid #b5b1b1;
   border-radius: 50%;
+}
+.c1 {
+  background-color: #2047ce;
 }
 
 .line {
@@ -41,8 +43,10 @@ body {
   background-color: #b5b1b1;
 }
 .left {
-  margin: 0;
-  height: 100vh;
+  margin: -84px -54px;
+  height: 1026px;
+  width: 784px;
+
   background-color: #011c67;
 }
 
@@ -67,6 +71,10 @@ body {
   background-color: #011c67;
   color: #fff;
   border: none;
+  width: 431.51px;
+  height: 56.12px;
+  top: 480.38px;
+
   padding: 15px 20px;
   border-radius: 3px;
   cursor: pointer;
@@ -76,6 +84,7 @@ body {
 
 .blue {
   color: #2047ce;
+  cursor: pointer;
 }
 
 .light {
@@ -90,12 +99,24 @@ body {
 }
 
 .loginImage {
-  padding: 5%;
+  padding: 10%;
+}
+.Input {
+  width: 435.98px;
+  height: 86.3px;
+  top: 259.56px;
+  left: 854px;
+  border-radius: 6px;
+  border: 1px;
+}
+#root > div.loginContainer.right > form > div:nth-child(1) > div > div > div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .show {
-  background-color: #0077b6; /* Change the background color as needed */
-  color: #fff; /* Text color */
+  background-color: #0077b6;
+  color: #fff;
   border: none;
   padding: 5;
   border-radius: 4px;
@@ -104,16 +125,13 @@ body {
   margin-left: -25px;
   z-index: 1;
 }
-#root > div.loginContainer.right > form > div:nth-child(1) > div > a {
-  margin-left: -11vw;
-  margin-top: -6.5vh;
-  font-size: 1vw;
-  min-width: 20vw;
-}
-#root > div.loginContainer.right > form > div:nth-child(1) > div > div > input {
-  width: 30vw;
-}
+
 .error {
+  display: none;
   color: red;
-  font-size: 0.7vw;
+  font-size: 12px;
+  z-index: 7;
+  border-radius: 5px;
+  background-color: yellow;
+  padding: 10px;
 }
