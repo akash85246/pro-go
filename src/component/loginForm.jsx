@@ -5,36 +5,43 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loginWithPhone, setLoginWithPhone] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
-  function validateEmail(email) {
+  function validateEmail(inputEmail) {
     const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
-    return emailCheck.test(email) || email === "";
-  }
 
-  function validatePassword(password) {
-    return password.length >= 5 && password.length <= 15;
-  }
-
-  function handleEmailChange(event) {
-    const inputEmail = event.target.value;
-    setEmail(inputEmail);
-
-    if (!validateEmail(inputEmail)) {
-      document.getElementById("emailError").innerHTML =
-        '**Email should have "@" and "."';
+    if (!emailCheck.test(inputEmail) && inputEmail !== "") {
+      setEmailError("**Email should have '@' and '.'");
     } else {
-      document.getElementById("emailError").innerHTML = "";
+      setEmailError("");
+      setEmail(inputEmail);
     }
   }
 
-  function handlePasswordChange(event) {
-    const inputPassword = event.target.value;
-    setPassword(inputPassword);
+  function validatePassword(inputPassword) {
+    return inputPassword.length >= 5 && inputPassword.length <= 20;
+  }
+
+  function validatePhoneNumber(inputPhoneNumber) {
+    const numberCheck = /^[789]\d{9}/;
+
+    if (!numberCheck.test(inputPhoneNumber) && inputPhoneNumber !== "") {
+      setPhoneError(
+        "**Phone Number should start with 7/8/9 and should have 10 digits, no characters allowed"
+      );
+    } else {
+      setPhoneError("");
+      setPhoneNumber(inputPhoneNumber);
+    }
   }
 
   function handleSubmit(event) {
-    event.preventDefault(); // Prevents the form from submitting in the default way
+    event.preventDefault();
     console.log("Email:", email);
+    console.log("Phone Number:", phoneNumber);
     console.log("Password:", password);
   }
 
@@ -44,25 +51,45 @@ function LoginForm() {
       <div>
         <h1>Account Login</h1>
         <p className="light">
-          If you are already a member, you can log in with your email address
-          and password.
+          If you are already a member, you can log in with your{" "}
+          {loginWithPhone ? "phone number" : "email address"} and password.
         </p>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="entry">
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <label className="light">Email address</label>
-            <a className="blue">Login with Phone number?</a>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <label className="light">
+                {loginWithPhone ? "Phone number" : "Email address"}
+              </label>
+              <input
+                type="text"
+                className={loginWithPhone ? "phone input" : "email input"}
+                onChange={(event) => {
+                  loginWithPhone
+                    ? validatePhoneNumber(event.target.value)
+                    : validateEmail(event.target.value);
+                }}
+                maxLength={loginWithPhone ? 10 : 50}
+                required
+              />
+              <span className="error">
+                {loginWithPhone ? phoneError : emailError}
+              </span>
+            </div>
+            <a
+              className="blue loginWith"
+              onClick={() => setLoginWithPhone(!loginWithPhone)}
+            >
+              {loginWithPhone ? "Login with Email" : "Login with Phone number"}
+            </a>
           </div>
-          <input
-            type="text"
-            className="email input"
-            value={email}
-            onChange={handleEmailChange}
-            maxLength={50}
-            required
-          />
-          <span id="emailError" className="error" />
         </div>
         <div className="entry">
           <label className="light">Password</label>
@@ -71,7 +98,7 @@ function LoginForm() {
               type={showPassword ? "text" : "password"}
               className="password input"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(event) => setPassword(event.target.value)}
               maxLength={15}
               minLength={5}
               required
@@ -92,8 +119,12 @@ function LoginForm() {
           <input
             type="submit"
             className="button"
-            value="Login with"
-            disabled={!validateEmail(email) || !validatePassword(password)}
+            value={`LOG IN`}
+            disabled={
+              (!loginWithPhone && emailError) ||
+              (loginWithPhone && phoneError) ||
+              !validatePassword(password)
+            }
           />
         </div>
       </form>

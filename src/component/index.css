@@ -104,3 +104,16 @@ body {
   margin-left: -25px;
   z-index: 1;
 }
+#root > div.loginContainer.right > form > div:nth-child(1) > div > a {
+  margin-left: -11vw;
+  margin-top: -6.5vh;
+  font-size: 1vw;
+  min-width: 20vw;
+}
+#root > div.loginContainer.right > form > div:nth-child(1) > div > div > input {
+  width: 30vw;
+}
+.error {
+  color: red;
+  font-size: 0.7vw;
+}
