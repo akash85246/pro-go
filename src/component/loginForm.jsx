@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProgressBar from "./progress";
-
+import SignUpForm from "./signUp";
+import RememberMeCheckbox from "./rememberMe";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,7 +70,7 @@ function LoginForm() {
             }}
           >
             <div className="Input">
-              <div>
+              <div className="loginWith">
                 <label className="light">
                   {loginWithPhone ? "Phone number" : "Email address"}
                 </label>
@@ -119,10 +120,7 @@ function LoginForm() {
             {loginWithPhone ? phoneError : emailError}
           </span>
         </div>
-        <div>
-          <input type="checkbox" />
-          <label className="light">Remember me .</label>
-        </div>
+        <RememberMeCheckbox />
         <div style={{ display: "flex", justifyContent: "center" }}>
           <input
             type="submit"
@@ -136,10 +134,6 @@ function LoginForm() {
           />
         </div>
       </form>
-      <div className="signUp">
-        <span className="blue light">Forgot Password ? </span>
-        <a className="blue">Sign up here</a>
-      </div>
     </div>
   );
 }

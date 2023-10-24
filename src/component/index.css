@@ -1,4 +1,4 @@
-#root {
+.container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -15,24 +15,25 @@ body {
 .loginContainer {
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
-  width: 592px;
-  height: 100vh;
-  padding: 2%;
+  row-gap: 1vw;
+  padding: 1%;
+  min-height: 100vh;
   align-items: left;
 }
+
 .progress-bar {
-  margin: 10% 0;
+  margin-top: 10vh;
   display: flex;
   align-items: center;
 }
 
 .circle {
-  width: 20px;
-  height: 20px;
+  width: 5%; /* Adjust size using percentages */
+  height: 3vh;
   border: 1px solid #b5b1b1;
   border-radius: 50%;
 }
+
 .c1 {
   background-color: #2047ce;
 }
@@ -42,22 +43,23 @@ body {
   height: 2px;
   background-color: #b5b1b1;
 }
-.left {
-  margin: -84px -54px;
-  height: 1026px;
-  width: 784px;
 
+.left {
+  display: flex;
+  justify-content: center;
+  min-height: 110vh;
+  width: 50vw;
   background-color: #011c67;
 }
 
 .right {
   margin: 0 auto;
-  width: 30vw;
+  width: 60%;
 }
 
 .input {
-  height: 40px;
-  width: 100%;
+  height: 5.5vh;
+  width: 98%;
 }
 
 .entry {
@@ -67,19 +69,15 @@ body {
 }
 
 .button {
-  margin: 100px;
+  margin: 10% 0;
   background-color: #011c67;
   color: #fff;
   border: none;
-  width: 431.51px;
-  height: 56.12px;
-  top: 480.38px;
-
-  padding: 15px 20px;
+  width: 100%;
+  height: 8vh;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 16px;
-  margin: 15px 0;
+  font-size: 1.5vw;
 }
 
 .blue {
@@ -88,7 +86,7 @@ body {
 }
 
 .light {
-  font-size: 1.4vw;
+  /* font-size: 1.vw; */
   color: #8692a6;
 }
 
@@ -101,37 +99,177 @@ body {
 .loginImage {
   padding: 10%;
 }
+
 .Input {
-  width: 435.98px;
-  height: 86.3px;
-  top: 259.56px;
-  left: 854px;
+  width: 100%;
+  height: 12vh;
   border-radius: 6px;
   border: 1px;
 }
-#root > div.loginContainer.right > form > div:nth-child(1) > div > div > div {
-  display: flex;
-  justify-content: space-between;
-}
 
 .show {
-  background-color: #0077b6;
+  background-color: grey;
   color: #fff;
   border: none;
-  padding: 5;
-  border-radius: 4px;
+
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 14px;
-  margin-left: -25px;
+  font-size: 1vw; /* Adjust font size using vw */
+  margin-left: -2vw;
+  left: 4vw;
   z-index: 1;
 }
 
 .error {
   display: none;
   color: red;
-  font-size: 12px;
+  width: 99%; /* Adjust width using percentages */
+  height: 12vh;
+  font-size: 1vw; /* Adjust font size using vw */
   z-index: 7;
   border-radius: 5px;
   background-color: yellow;
-  padding: 10px;
+  padding: 1.5%;
+}
+
+.signUp {
+  position: fixed;
+  width: 30%; /* Adjust width using percentages */
+  height: 12vh;
+  top: 88%;
+  left: 60%;
+}
+
+.loginWith {
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 950px) {
+  body {
+    font-size: 1.8vw;
+  }
+  .loginContainer {
+    row-gap: 0.5vh;
+  }
+  .Input {
+    margin: 1vh 0vh;
+    row-gap: 2vw;
+  }
+  .light,
+  .blue {
+    font-size: 1.4vw;
+  }
+  .loginImage {
+    padding: 5%;
+  }
+  .error {
+    margin: -10px 0;
+    font-size: 2vw;
+  }
+}
+@media only screen and (max-width: 750px) {
+  body {
+    font-size: 2vw;
+  }
+  .loginContainer {
+    row-gap: 5vh;
+  }
+  .Input {
+    margin: 0vh 0vh;
+    row-gap: 1vw;
+  }
+  .error {
+    margin: 1px 0;
+    font-size: 2.2vw;
+  }
+  .light,
+  .blue {
+    font-size: 1.5vw;
+  }
+  .show {
+    margin-left: -3vw;
+  }
+  .loginImage {
+    padding: 0%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #root {
+    overflow: hidden;
+    font-size: 3vw;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .loginImage {
+    margin-top: 30vh;
+    height: 200%;
+    width: 80%;
+    margin: auto;
+    margin-top: 20vh;
+  }
+  .left {
+    min-height: 5%;
+    height: 30%;
+    width: 100%;
+    display: flex;
+  }
+  .right {
+    min-height: 30%;
+    max-height: 60%;
+    width: 90%;
+  }
+  .progress-bar {
+    margin-top: 14vh;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -1vh;
+  }
+
+  .signUp {
+    position: relative;
+    top: 5vh;
+    z-index: 70;
+  }
+  .light,
+  .blue {
+    font-size: 4vw;
+  }
+  .input {
+    height: 4vh;
+    margin: 0;
+  }
+  .entry {
+    row-gap: 1px;
+  }
+  .loginContainer {
+    row-gap: 0.1vh;
+  }
+  .Input {
+    height: 8vh;
+    margin: 0;
+  }
+  .container {
+    height: 100vh;
+  }
+  .button {
+    margin-top: 3vh;
+    font-size: 4vw;
+  }
+  .show {
+    margin-left: -7vw;
+    font-size: 3.5vw;
+  }
+  .error {
+    margin: 0.5vh 0;
+    font-size: 13px;
+    width: 88vw;
+  }
+  .signUp {
+    top: 1vh;
+    width: 100%;
+    left: 1vw;
+  }
 }
