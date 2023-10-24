@@ -86,7 +86,6 @@ body {
 }
 
 .light {
-  /* font-size: 1.vw; */
   color: #8692a6;
 }
 
@@ -98,6 +97,7 @@ body {
 
 .loginImage {
   padding: 10%;
+  margin: 2vw;
 }
 
 .Input {
@@ -114,7 +114,7 @@ body {
 
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1vw; /* Adjust font size using vw */
+  font-size: 1vw;
   margin-left: -2vw;
   left: 4vw;
   z-index: 1;
@@ -123,9 +123,9 @@ body {
 .error {
   display: none;
   color: red;
-  width: 99%; /* Adjust width using percentages */
+  width: 99%;
   height: 12vh;
-  font-size: 1vw; /* Adjust font size using vw */
+  font-size: 1vw;
   z-index: 7;
   border-radius: 5px;
   background-color: yellow;
@@ -134,7 +134,7 @@ body {
 
 .signUp {
   position: fixed;
-  width: 30%; /* Adjust width using percentages */
+  width: 30%;
   height: 12vh;
   top: 88%;
   left: 60%;
