@@ -58,11 +58,6 @@ function SignUpForm() {
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
-  };
-
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setFormData({
@@ -105,6 +100,17 @@ function SignUpForm() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const submittedData = {
+      name: name,
+      phoneNumber: phoneNumber,
+      email: email,
+      password: formData.password,
+    };
+    console.log("Registering Account:", submittedData);
+  };
+
   return (
     <div className="loginContainer right">
       <h1 style={{ textAlign: "left" }}>Create account</h1>
@@ -114,8 +120,10 @@ function SignUpForm() {
         <input
           type="text"
           name="name"
-          className="input sui"
+          className="input"
           id="name"
+          maxLength={15}
+          minLength={3}
           required
           onChange={validateForm}
         />
@@ -131,6 +139,7 @@ function SignUpForm() {
             type="text"
             name="email"
             id="email"
+            maxLength={50}
             className="input sui"
             required
             onChange={validateForm}
@@ -142,6 +151,7 @@ function SignUpForm() {
           <input
             type="text"
             name="number"
+            maxLength={10}
             id="phoneNumber"
             className="input sui"
             required
@@ -193,7 +203,7 @@ function SignUpForm() {
         type="submit"
         class="submit button register"
         label="Register Account"
-        onClick={handleSubmit}
+        onClick={(e) => handleSubmit(e, "register")}
       />
       <Button
         type="submit"

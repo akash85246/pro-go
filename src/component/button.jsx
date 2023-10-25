@@ -7,6 +7,7 @@ const Button = (props) => {
       type={props.type}
       value={props.label}
       disabled={props.disabled}
+      onClick={props.onClick}
     />
   );
 };

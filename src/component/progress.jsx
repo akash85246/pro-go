@@ -1,13 +1,22 @@
-export default function ProgressBar() {
-    return (
-      <div className="progress-bar">
-        <div className="circle c1"></div>
-        <div className="line"></div>
-        <div className="circle c2"></div>
-        <div className="line"></div>
-        <div className="circle c3"></div>
-        <div className="line"></div>
-        <div className="circle c4"></div>
-      </div>
-    );
+import React from "react";
+
+export default function ProgressBar({ circleCount, color }) {
+  const elements = [];
+
+  for (let i = 1; i <= color; i++) {
+    elements.push(<div key={`circle${i}`} className={`circle c1`}></div>);
+
+    if (i < circleCount) {
+      elements.push(<div key={`line${i}`} className="line"></div>);
+    }
+  }
+  for (let i = color + 1; i <= circleCount; i++) {
+    elements.push(<div key={`circle${i}`} className={`circle c${i}`}></div>);
+
+    if (i < circleCount) {
+      elements.push(<div key={`line${i}`} className="line"></div>);
+    }
+  }
+
+  return <div className="progress-bar">{elements}</div>;
 }

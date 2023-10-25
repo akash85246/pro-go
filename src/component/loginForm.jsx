@@ -53,7 +53,7 @@ function LoginForm() {
 
   return (
     <div className="loginContainer right">
-      <ProgressBar />
+      <ProgressBar circleCount={4} color={1} />
       <div>
         <h1>Account Login</h1>
         <p className="light">

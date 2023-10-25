@@ -126,12 +126,12 @@ body {
 #emailError,
 #nameError {
   display: none;
-  font-size: 0.8vw;
-  color: red;
+  font-size: 1vw;
+  color: #d61919;
 }
 .error {
   display: none;
-  color: red;
+  color: #d61919;
   width: 99%;
   height: 12vh;
   font-size: 1vw;
@@ -250,7 +250,7 @@ span {
     padding: 0%;
   }
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 750px) {
   #root {
     overflow: hidden;
     font-size: 3vw;
