@@ -14,6 +14,13 @@ const MainContainer = () => {
   return (
     <div className="container">
       <div className="loginContainer left">
+        {showSignUp ? (
+          <h1 className="signUpLine">Sign up for an account today</h1>
+        ) : (
+          <h1 className="signUpLine">
+            Login on cloud today, tomorrow, or from any location
+          </h1>
+        )}
         <img
           src={showSignUp ? signUpImage : loginImage}
           className="loginImage"
@@ -24,7 +31,7 @@ const MainContainer = () => {
       {showSignUp ? <SignUpForm /> : <LoginForm />}
 
       <div className="signUp">
-        <span className="blue light">Forgot Password ?</span>
+        <span className="blue light">Forgot Password?</span>
         <a className="blue" onClick={handleToggleForm}>
           {showSignUp ? "Log in" : "Sign up here"}
         </a>

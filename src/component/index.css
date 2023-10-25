@@ -144,6 +144,43 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.signUpLine {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+
+  color: white;
+  font-size: 2vw;
+  margin: 10vh 10vw -8vw 10vw;
+}
+.sic {
+  display: block;
+  position: relative;
+}
+span {
+  color: blue;
+}
+.register {
+  margin: 0;
+}
+.sui {
+  display: block;
+  width: 14vw;
+}
+.google {
+  margin: 0;
+  background-color: #2d3748;
+  font-size: 1vw;
+}
+.createPassword {
+  display: flex;
+  column-gap: 1vw;
+}
+.createPassword input {
+  width: 14vw;
+}
 @media only screen and (max-width: 950px) {
   body {
     font-size: 1.8vw;

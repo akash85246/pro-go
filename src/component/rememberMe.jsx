@@ -1,9 +1,9 @@
 import React from "react";
 
-function RememberMeCheckbox() {
+function RememberMeCheckbox(props) {
   return (
-    <div>
-      <input type="checkbox" />
+    <div className={props.divClass}>
+      <input type="checkbox" className={props.class} />
       <label className="light">Remember me .</label>
     </div>
   );

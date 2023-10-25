@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ProgressBar from "./progress";
-import SignUpForm from "./signUp";
 import RememberMeCheckbox from "./rememberMe";
+import Button from "./button";
+
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -120,12 +121,12 @@ function LoginForm() {
             {loginWithPhone ? phoneError : emailError}
           </span>
         </div>
-        <RememberMeCheckbox />
+        <RememberMeCheckbox class="signInCheckbox" divClass="remember" />
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <input
+          <Button
             type="submit"
-            className="button"
-            value={`LOG IN`}
+            class="submit button"
+            label="LOG IN"
             disabled={
               (!loginWithPhone && emailError) ||
               (loginWithPhone && phoneError) ||
