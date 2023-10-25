@@ -119,7 +119,16 @@ body {
   left: 4vw;
   z-index: 1;
 }
-
+.emailNumber {
+  display: flex;
+}
+#numberError,
+#emailError,
+#nameError {
+  display: none;
+  font-size: 0.8vw;
+  color: red;
+}
 .error {
   display: none;
   color: red;
@@ -128,10 +137,21 @@ body {
   font-size: 1vw;
   z-index: 7;
   border-radius: 5px;
-  background-color: yellow;
+  background-color: white;
   padding: 1.5%;
 }
-
+#pass {
+  color: #d61919;
+  display: none;
+  height: 0.5vh;
+  font-size: 1vw;
+  margin-top: -2vh;
+}
+#passwordStrength {
+  color: #d61919;
+  font-size: 1vw;
+  margin-top: -3vh;
+}
 .signUp {
   position: fixed;
   width: 30%;
