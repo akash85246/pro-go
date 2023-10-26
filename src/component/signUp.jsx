@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import RememberMeCheckbox from "./rememberMe";
 import Terms from "./terms";
 import Button from "./button";
+import axios from "axios";
 
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const signEndpoint = "https://pro-go.onrender.com/api/auth/sign-up/";
 
   const [formData, setFormData] = useState({
     password: "",
@@ -19,41 +22,40 @@ function SignUpForm() {
 
   function validateForm(event) {
     event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phoneNumber = document.getElementById("phoneNumber").value;
+    const nameValue = document.getElementById("name").value;
+    const emailValue = document.getElementById("email").value;
+    const phoneNumberValue = document.getElementById("phoneNumber").value;
 
     const mailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
     const nameCheck = /^[A-Za-z. ]{3,30}( [A-Za-z. ]{3,30})*$/;
     const numberCheck = /^[789]\d{9}$/;
 
-    if (!nameCheck.test(name) && name != "") {
+    if (!nameCheck.test(nameValue) && nameValue !== "") {
       console.log("h1");
       document.getElementById("nameError").style.display = "block";
       document.getElementById("nameError").innerHTML =
         "**Name cannot contain numbers and should be more than 2 characters";
     } else {
       console.log("h2");
-      setName(name);
+      setName(nameValue);
       document.getElementById("nameError").style.display = "none";
     }
 
-    if (!mailCheck.test(email) && email != "") {
+    if (!mailCheck.test(emailValue) && emailValue !== "") {
       document.getElementById("emailError").style.display = "block";
       document.getElementById("emailError").innerHTML =
         "**Email should have '@' and '.'";
     } else {
-      setEmail(email);
+      setEmail(emailValue);
       document.getElementById("emailError").style.display = "none";
     }
 
-    if (!numberCheck.test(phoneNumber) && phoneNumber != "") {
+    if (!numberCheck.test(phoneNumberValue) && phoneNumberValue !== "") {
       document.getElementById("numberError").style.display = "block";
       document.getElementById("numberError").innerHTML =
         "**Phone Number: Start with 7, 8, or 9, and use 10 digits only.";
     } else {
-      setPhoneNumber(phoneNumber);
+      setPhoneNumber(phoneNumberValue);
       document.getElementById("numberError").style.display = "none";
     }
   }
@@ -100,16 +102,32 @@ function SignUpForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     const submittedData = {
       name: name,
-      phoneNumber: phoneNumber,
       email: email,
       password: formData.password,
     };
     console.log("Registering Account:", submittedData);
-  };
+    try {
+      // console.log(userData);
+      const response = await axios.post(signEndpoint, submittedData);
+      const authToken = response.data.token;
+      console.log("Received auth token:", authToken);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        console.error("Server responded with an error:", error.response.data);
+        if (error.response.data.message === "No user exist with this email") {
+          setEmailError("No user exists with this email");
+        }
+      } else if (error.request) {
+        console.error("No response received. Network error:");
+      } else {
+        console.error("Error setting up the request:");
+      }
+    }
+  }
 
   return (
     <div className="loginContainer right">

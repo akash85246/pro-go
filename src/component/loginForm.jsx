@@ -3,6 +3,10 @@ import ProgressBar from "./progress";
 import RememberMeCheckbox from "./rememberMe";
 import Button from "./button";
 
+import axios from "axios";
+
+const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
+
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,10 +20,8 @@ function LoginForm() {
     const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
-      document.querySelector(".error").style.display = "block";
       setEmailError("**Email should have '@' and '.'");
     } else {
-      document.querySelector(".error").style.display = "none";
       setEmailError("");
       setEmail(inputEmail);
     }
@@ -33,22 +35,51 @@ function LoginForm() {
     const numberCheck = /^[789]\d{9}/;
 
     if (!numberCheck.test(inputPhoneNumber) && inputPhoneNumber !== "") {
-      document.querySelector(".error").style.display = "block";
       setPhoneError(
         "**Phone Number should start with 7/8/9 and should have 10 digits, no characters allowed"
       );
     } else {
-      document.querySelector(".error").style.display = "none";
       setPhoneError("");
       setPhoneNumber(inputPhoneNumber);
     }
   }
-
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Phone Number:", phoneNumber);
-    console.log("Password:", password);
+
+    if (
+      (loginWithPhone && phoneError) ||
+      (!loginWithPhone && emailError) ||
+      !validatePassword(password)
+    ) {
+      return;
+    }
+
+    try {
+      // console.log(userData);
+      const response = await axios.post(
+        loginEndpoint,
+        {
+          email: email,
+          password: password,
+        },
+        {
+          withCredentials: false,
+        }
+      );
+      const authToken = response.data.token;
+      console.log("Received auth token:", authToken);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        console.error("Server responded with an error:", error.response.data);
+        if (error.response.data.message === "No user exist with this email") {
+          setEmailError("No user exists with this email");
+        }
+      } else if (error.request) {
+        console.error("No response received. Network error:");
+      } else {
+        console.error("Error setting up the request:");
+      }
+    }
   }
 
   return (

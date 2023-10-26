@@ -29,7 +29,7 @@ body {
 
 .circle {
   width: 5%; /* Adjust size using percentages */
-  height: 3vh;
+  height: 20px;
   border: 1px solid #b5b1b1;
   border-radius: 50%;
 }
@@ -69,6 +69,7 @@ body {
 }
 
 .button {
+  padding: 10px;
   margin: 10% 0;
   background-color: #011c67;
   color: #fff;

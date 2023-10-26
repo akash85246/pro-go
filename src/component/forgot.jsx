@@ -91,7 +91,7 @@ export default function Forgotten(props) {
               <input
                 type="text"
                 className="input"
-                maxLength={10}
+                maxLength={loginWithPhone ? 10 : 20}
                 onChange={(event) => {
                   loginWithPhone
                     ? validatePhoneNumber(event.target.value)
