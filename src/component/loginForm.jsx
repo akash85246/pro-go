@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProgressBar from "./progress";
 import RememberMeCheckbox from "./rememberMe";
 import Button from "./button";
+import Verification from "./verify";
 
 import axios from "axios";
 
@@ -15,6 +16,7 @@ function LoginForm() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [authToken, setAuthToken] = useState("");
 
   function validateEmail(inputEmail) {
     const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
@@ -43,6 +45,7 @@ function LoginForm() {
       setPhoneNumber(inputPhoneNumber);
     }
   }
+
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -55,7 +58,6 @@ function LoginForm() {
     }
 
     try {
-      // console.log(userData);
       const response = await axios.post(
         loginEndpoint,
         {
@@ -68,10 +70,11 @@ function LoginForm() {
       );
       const authToken = response.data.token;
       console.log("Received auth token:", authToken);
+      setAuthToken(authToken);
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        if (error.response.data.message === "No user exist with this email") {
+        if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
       } else if (error.request) {
@@ -83,7 +86,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="loginContainer right">
+    <div className="loginContainer right log">
       <ProgressBar circleCount={4} color={1} />
       <div>
         <h1>Account Login</h1>

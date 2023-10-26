@@ -105,15 +105,15 @@ function SignUpForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     const submittedData = {
-      name: name,
+      username: name,
       email: email,
       password: formData.password,
     };
     console.log("Registering Account:", submittedData);
     try {
-      // console.log(userData);
       const response = await axios.post(signEndpoint, submittedData);
       const authToken = response.data.token;
+
       console.log("Received auth token:", authToken);
     } catch (error) {
       if (error.response && error.response.data) {
