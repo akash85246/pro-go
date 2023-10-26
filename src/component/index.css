@@ -122,6 +122,15 @@ body {
 .emailNumber {
   display: flex;
 }
+.resetLeft {
+  margin-left: -60vw;
+  
+}
+.resetLeft {
+  margin-top: -50vh;
+  width: 15%;
+}
+
 #numberError,
 #emailError,
 #nameError {
@@ -314,8 +323,8 @@ span {
   .button {
     margin-top: 3vh;
     font-size: 4vw;
-    
   }
+
   .show {
     margin-left: -7vw;
     font-size: 3.5vw;

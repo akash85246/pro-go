@@ -1,4 +1,4 @@
-export default function Terms(props) {
+export default function Terms() {
   return (
     <div className="condition light">
       <input type="checkBox" className="T&C" required/>

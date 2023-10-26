@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import LoginForm from "./loginForm";
 import SignUpForm from "./signUp";
-import loginImage from "../assets/login.png";
+import loginImage from "../assets/logIn.svg";
 import signUpImage from "../assets/sign-up.png";
-import forgotPasswordImage from "../assets/verification.png";
-import Forgotten from "./forgot";
+import forgotPasswordImage from "../assets/verification.svg";
 
+
+import Forgotten from "./forgot";
 const MainContainer = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
