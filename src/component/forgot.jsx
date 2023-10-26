@@ -5,11 +5,40 @@ import Reset from "./resetPassword";
 
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState(""); // State to store phone number error
   const [otpMode, setOtpMode] = useState(false);
-  const [otp, setOtp] = useState(""); // State to store OTP
+  const [otp, setOtp] = useState("");
   const [loginWithPhone, setLoginWithPhone] = useState(false);
-  const [otpResent, setOtpResent] = useState(false); // State to track OTP resend
+  const [otpResent, setOtpResent] = useState(false);
   const [otpSubmitted, setOtpSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(""); // State to store email error
+
+  function validateEmail(inputEmail) {
+    const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
+
+    if (!emailCheck.test(inputEmail) && inputEmail !== "") {
+      document.querySelector("#numberError").style.display = "block";
+      setEmailError("**Email should have '@' and '.'");
+    } else {
+      document.querySelector("#numberError").style.display = "none";
+      setEmail(inputEmail);
+    }
+  }
+  function validatePhoneNumber(inputPhoneNumber) {
+    const numberCheck = /^[789]\d{9}/;
+
+    if (!numberCheck.test(inputPhoneNumber) && inputPhoneNumber !== "") {
+      document.querySelector("#numberError").style.display = "block";
+      setPhoneNumberError(
+        "**Phone Number should start with 7/8/9 and should have 10 digits, no characters allowed"
+      );
+    } else {
+      document.querySelector("#numberError").style.display = "none";
+
+      setPhoneNumber(inputPhoneNumber);
+    }
+  }
 
   const handlePhoneSubmit = () => {
     document.querySelector(".num").style.display = "none";
@@ -23,8 +52,6 @@ export default function Forgotten(props) {
   };
 
   const handleResendOTP = () => {
-    // Implement the logic to resend OTP here (e.g., make an API call).
-    // Once the OTP is resent, you can set otpResent to true.
     setOtpResent(true);
   };
 
@@ -32,7 +59,6 @@ export default function Forgotten(props) {
     <div className="loginContainer right">
       {otpSubmitted ? (
         <Reset />
-
       ) : (
         <>
           <ProgressBar circleCount={4} color={2} />
@@ -65,11 +91,19 @@ export default function Forgotten(props) {
               <input
                 type="text"
                 className="input"
-                value={phoneNumber}
                 maxLength={10}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={(event) => {
+                  loginWithPhone
+                    ? validatePhoneNumber(event.target.value)
+                    : validateEmail(event.target.value);
+                }}
                 required
               />
+              <div>
+                <span id="numberError">
+                  {loginWithPhone ? phoneNumberError : emailError}
+                </span>
+              </div>
               <Button
                 type="submit"
                 class="submit button number"
@@ -77,6 +111,18 @@ export default function Forgotten(props) {
                 onClick={handlePhoneSubmit}
               />
             </div>
+
+            <div>
+              <span id="numberError">
+                {loginWithPhone ? phoneNumberError : emailError}
+              </span>
+            </div>
+            <Button
+              type="submit"
+              class="submit button number"
+              label="Submit"
+              onClick={handlePhoneSubmit}
+            />
           </div>
         </>
       )}

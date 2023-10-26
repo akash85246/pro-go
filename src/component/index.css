@@ -124,7 +124,6 @@ body {
 }
 .resetLeft {
   margin-left: -60vw;
-  
 }
 .resetLeft {
   margin-top: -50vh;
@@ -137,6 +136,7 @@ body {
   display: none;
   font-size: 1vw;
   color: #d61919;
+  height: 0.8vh;
 }
 .error {
   display: none;
