@@ -17,6 +17,7 @@ function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [authToken, setAuthToken] = useState("");
+  
     const navigate = useNavigate();
   function validateEmail(inputEmail) {
     const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;

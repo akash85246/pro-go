@@ -3,16 +3,22 @@ import Button from "./button";
 import ProgressBar from "./progress";
 import Reset from "./resetPassword";
 import LeftContainer from "./leftContainer";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [phoneNumberError, setPhoneNumberError] = useState(""); // State to store phone number error
+  const [phoneNumberError, setPhoneNumberError] = useState("");
   const [otpMode, setOtpMode] = useState(false);
   const [otp, setOtp] = useState("");
   const [loginWithPhone, setLoginWithPhone] = useState(false);
   const [otpResent, setOtpResent] = useState(false);
   const [otpSubmitted, setOtpSubmitted] = useState(false);
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState(""); // State to store email error
+  const [emailError, setEmailError] = useState("");
+
+  const navigate = useNavigate();
+  const emailEndpoint = "https://pro-go.onrender.com/api/auth/forget-password";
 
   function validateEmail(inputEmail) {
     const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
@@ -39,21 +45,34 @@ export default function Forgotten(props) {
       setPhoneNumber(inputPhoneNumber);
     }
   }
+  async function handlePhoneSubmit(e) {
+    e.preventDefault();
+    const submittedData = {
+      email: email,
+    };
+    // console.log("Registering Account:", submittedData);
+    try {
+      const response = await axios.post(emailEndpoint, submittedData);
+      const authToken = response.data.token;
 
-  const handlePhoneSubmit = () => {
-    document.querySelector(".num").style.display = "none";
-    console.log("Entered Phone Number:", phoneNumber);
-    setOtpMode(true);
-  };
-
-  const handleOtpSubmit = () => {
-    console.log("Entered OTP:", otp);
-    setOtpSubmitted(true);
-  };
-
-  const handleResendOTP = () => {
-    setOtpResent(true);
-  };
+      console.log("Received auth token:", authToken);
+      if (response.data.success) {
+        console.log(email);
+        navigate("/otp", { state: { email: email } });
+      }
+    } catch (error) {
+      if (error.response && error.response.data) {
+        console.error("Server responded with an error:", error.response.data);
+        if (error.response.data.message === "No user exist with this email") {
+          setEmailError("No user exists with this email");
+        }
+      } else if (error.request) {
+        console.error("No response received. Network error:");
+      } else {
+        console.error("Error setting up the request:");
+      }
+    }
+  }
 
   return (
     <div className="container">
@@ -63,112 +82,57 @@ export default function Forgotten(props) {
         h1="Sign up for an account today"
       />
       <div className="loginContainer right">
-        {otpSubmitted ? (
-          <Reset />
-        ) : (
-          <>
-            <ProgressBar circleCount={4} color={2} />
-            <div className="num">
-              <h1>Enter Registered Number</h1>
-              <p className="light">
-                A text with a 6-digit code has been sent to your{" "}
-                {loginWithPhone ? "entered number" : "email address"}.
-              </p>
-              {otpResent ? (
-                <Button
-                  type="button"
-                  class="blue"
-                  label="Resend OTP"
-                  onClick={handleResendOTP}
-                />
-              ) : null}
-              <div className="Input">
-                <div className="loginWith">
-                  <label className="light">
-                    {loginWithPhone ? "Phone number" : "Email address"}
-                  </label>
-                  <a
-                    className="blue loginWith"
-                    onClick={() => setLoginWithPhone(!loginWithPhone)}
-                  >
-                    {loginWithPhone ? "Use Email" : "Use Phone number"}
-                  </a>
-                </div>
-                <input
-                  type="text"
-                  className="input"
-                  maxLength={loginWithPhone ? 10 : 20}
-                  onChange={(event) => {
-                    loginWithPhone
-                      ? validatePhoneNumber(event.target.value)
-                      : validateEmail(event.target.value);
-                  }}
-                  required
-                />
-                <div>
-                  <span id="numberError">
-                    {loginWithPhone ? phoneNumberError : emailError}
-                  </span>
-                </div>
-                <Button
-                  type="submit"
-                  class="submit button number"
-                  label="Submit"
-                  onClick={handlePhoneSubmit}
-                />
-              </div>
+        <ProgressBar circleCount={4} color={2} />
+        <div className="num">
+          <h1>
+            {loginWithPhone ? "Enter Registered Number" : "Enter Email Address"}
+          </h1>
+          <p className="light">
+            A text with a 6-digit code will be sent to your{" "}
+            {loginWithPhone ? "entered number" : "email address"}.
+          </p>
+          <div className="Input">
+            <div className="loginWith">
+              <label className="light">
+                {loginWithPhone ? "Phone number" : "Email address"}
+              </label>
+              <a
+                className="blue loginWith"
+                onClick={() => setLoginWithPhone(!loginWithPhone)}
+              >
+                {loginWithPhone ? "Use Email" : "Use Phone number"}
+              </a>
+            </div>
+            <input
+              type="text"
+              className="input"
+              maxLength={loginWithPhone ? 10 : 50}
+              onChange={(event) => {
+                loginWithPhone
+                  ? validatePhoneNumber(event.target.value)
+                  : validateEmail(event.target.value);
+              }}
+              required
+            />
+            <div>
+              <span id="numberError">
+                {loginWithPhone ? phoneNumberError : emailError}
+              </span>
+            </div>
+          </div>
 
-              <div>
-                <span id="numberError">
-                  {loginWithPhone ? phoneNumberError : emailError}
-                </span>
-              </div>
-              <Button
-                type="submit"
-                class="submit button number"
-                label="Submit"
-                onClick={handlePhoneSubmit}
-              />
-            </div>
-          </>
-        )}
-        {otpMode && !otpSubmitted && (
-          <>
-            <h1>Enter verification code</h1>
-            <p className="light">
-              A text with digit code has been sent to{" "}
-              {loginWithPhone
-                ? `+XXXXXXX${phoneNumber.slice(7, 10)}`
-                : "your email address"}
-              .
-            </p>
-            {otpResent ? (
-              <Button
-                type="button"
-                class="blue"
-                label="Resend OTP"
-                onClick={handleResendOTP}
-              />
-            ) : null}
-            <div className="Input">
-              <label className="light">Enter OTP</label>
-              <input
-                type="text"
-                className="input"
-                value={otp}
-                maxLength={6}
-                onChange={(e) => setOtp(e.target.value)}
-                required
-              />
-              <Button
-                type="submit"
-                class="submit button otp"
-                label="Submit OTP"
-                onClick={handleOtpSubmit}
-              />
-            </div>
-          </>
-        )}
+          <div>
+            <span id="numberError">
+              {loginWithPhone ? phoneNumberError : emailError}
+            </span>
+          </div>
+          <Button
+            type="submit"
+            class="submit button number"
+            label="Submit"
+            onClick={handlePhoneSubmit}
+          />
+        </div>
       </div>
     </div>
   );

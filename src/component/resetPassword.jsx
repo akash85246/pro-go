@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import ProgressBar from "./progress";
-import resetPasswordImage from "../assets/reset.svg";
 import Button from "./button";
+import LeftContainer from "./leftContainer";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
+
 export default function Reset() {
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [authToken, setAuthToken] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { email } = location.state;
+
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
@@ -30,9 +44,7 @@ export default function Reset() {
 
     if (newPassword !== formData.confirmPassword) {
       setPasswordMatchError("Passwords do not match");
-      document.getElementById("pass").style.display = "block";
     } else {
-      document.getElementById("pass").style.display = "none";
       setPasswordMatchError("");
     }
   };
@@ -47,61 +59,95 @@ export default function Reset() {
     if (formData.password !== newConfirmPassword) {
       setPasswordMatchError("Passwords do not match");
     } else {
-      document.getElementById("pass").style.display = "none";
       setPasswordMatchError("");
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const submittedData = {
-      password: formData.password,
-    };
-    console.log("ResetPassword:", submittedData);
-  };
+  async function handleSubmit(event) {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        resetEndpoint,
+        {
+          email: email,
+          newpassword: formData.password,
+        },
+        {
+          withCredentials: false,
+        }
+      );
+      const authToken = response.data.token;
+      console.log("Received auth token:", authToken);
+      setAuthToken(authToken);
+      if (response.data.success) {
+        console.log("verified");
+        navigate("/login");
+      }
+    } catch (error) {
+      if (error.response && error.response.data) {
+        console.error("Server responded with an error:", error.response.data);
+        if (error.response.data.message === "No user exists with this email") {
+          setEmailError("No user exists with this email");
+        }
+      } else if (error.request) {
+        console.error("No response received. Network error:", error);
+      } else {
+        console.error("Error setting up the request:", error);
+      }
+    }
+  }
 
   return (
-    <>
-      <ProgressBar circleCount={4} color={3} />
-
-      <h1>Reset password</h1>
-      <div className="Input">
-        <label className="light">Password</label>
-        <input
-          type="password"
-          name="password"
-          className="input"
-          required
-          maxLength={15}
-          minLength={5}
-          onChange={handlePasswordChange}
-        />
-      </div>
-      <div>
-        {formData.password && (
-          <div id="passwordStrength">Password Strength: {passwordStrength}</div>
-        )}
-      </div>
-      <div className="Input">
-        <label className="light">Confirm password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          className="input"
-          required
-          value={formData.confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          maxLength={15}
-          minLength={5}
-        />
-      </div>
-      <div id="pass">Passwords do not match</div>
-      <Button
-        type="submit"
-        class="submit button register"
-        label="Reset Password"
-        onClick={(e) => handleSubmit(e, "register")}
+    <div className="container">
+      <LeftContainer
+        classDiv="loginContainer left"
+        src="./src/assets/reset.svg"
       />
-    </>
+
+      <div className="loginContainer right log">
+        <ProgressBar circleCount={4} color={3} />
+        <h1>Reset password</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="Input">
+            <label className="light">Password</label>
+            <input
+              type="password"
+              name="password"
+              className="input"
+              required
+              maxLength={15}
+              minLength={5}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <div>
+            {formData.password && (
+              <div id="passwordStrength">
+                Password Strength: {passwordStrength}
+              </div>
+            )}
+          </div>
+          <div className="Input">
+            <label className="light">Confirm password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              className="input"
+              required
+              value={formData.confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              maxLength={15}
+              minLength={5}
+            />
+          </div>
+          {passwordMatchError && <div id="pass">{passwordMatchError}</div>}
+          <Button
+            type="submit"
+            class="submit button register" // Use className instead of class
+            label="Reset Password"
+          />
+        </form>
+      </div>
+    </div>
   );
 }

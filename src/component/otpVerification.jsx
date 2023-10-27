@@ -1,50 +1,45 @@
 import React, { useState } from "react";
 import Button from "./button";
-import { useLocation } from "react-router-dom";
+import ProgressBar from "./progress";
+import Reset from "./resetPassword";
 import LeftContainer from "./leftContainer";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export default function Verification() {
-  const [verificationCode, setVerificationCode] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const navigate = useNavigate();
-  const verifyEndpoint =
-    "https://pro-go.onrender.com/api/auth/email-verification/";
-  const resentEndpoint = "https://pro-go.onrender.com/api/auth/resend-otp";
-
+export default function Otp() {
+  const [otp, setOtp] = useState("");
+  const [emailError, setEmailError] = useState(""); 
   const location = useLocation();
   const { email } = location.state;
-  {
-    console.log(email);
-  }
+  const navigate = useNavigate();
+  const emailEndpoint = "https://pro-go.onrender.com/api/auth/verify-otp";
+  const resentEndpoint = "https://pro-go.onrender.com/api/auth/resend-otp";
 
   async function handleSubmit(e) {
     e.preventDefault();
     const submittedData = {
       email: email,
-      otp: verificationCode,
+      otp: otp,
     };
-    console.log("Registering Account:", submittedData);
+    console.log(submittedData);
     try {
-      const response = await axios.post(verifyEndpoint, submittedData);
+      const response = await axios.post(emailEndpoint, submittedData);
       const authToken = response.data.token;
-
       console.log("Received auth token:", authToken);
       if (response.data.success) {
-        console.log("verified");
-        navigate("/home");
+        navigate("/reset", { state: { email } });
       }
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        if (error.response.data.message === "No user exist with this email") {
+        if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
       } else if (error.request) {
         console.error("No response received. Network error:");
       } else {
-        console.error("Error setting up the request:");
+        console.error("Error setting up the request:", error.message);
       }
     }
   }
@@ -71,39 +66,42 @@ export default function Verification() {
       }
     }
   }
-  return (
-    <>
-      <div className="container">
-        <LeftContainer
-          classDiv="loginContainer left"
-          src="../src/assets/verification.svg"
-        />
 
-        <div className="loginContainer right verify">
-          <h1>Enter verification code</h1>
-          <p className="light">
-            a text with 6-digit code has been sent to your email
-          </p>
-          <div className="Input">
-            <label className="light">Enter verification code</label>
-            <input
-              type="text"
-              className="input verifyInput"
-              value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value)}
-            />
-          </div>
+
+  return (
+    <div className="container">
+      <LeftContainer
+        classDiv="loginContainer left"
+        src="./src/assets/verification.svg"
+        h1="Sign up for an account today"
+      />
+      <div className="loginContainer right">
+        <ProgressBar circleCount={4} color={2} />
+        <h1>Enter verification code</h1>
+        <p className="light">
+          A text with a digit code has been sent to your email address.
+        </p>
+        <div className="Input">
+          <label className="light">Enter OTP</label>
+          <input
+            type="text"
+            className="input"
+            value={otp}
+            maxLength={6}
+            onChange={(e) => setOtp(e.target.value)}
+            required
+          />
           <Button
             type="submit"
-            class="submit button"
-            label="Submit"
-            onClick={(e) => handleSubmit(e, "register")}
+            class="submit button otp"
+            label="Submit OTP"
+            onClick={handleSubmit}
           />
           <div className="resend" id="resnd" onClick={Resent}>
             Resend otp
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

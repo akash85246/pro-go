@@ -13,6 +13,8 @@ import Forgotten from "./forgot";
 import SignUpForm from "./signUp";
 import LoginForm from "./loginForm";
 import Homepage from "./homepage";
+import Reset from "./resetPassword";
+import Otp from "./otpVerification";
 function App() {
   return (
     <Router>
@@ -22,7 +24,10 @@ function App() {
         <Route path="/signUp" element={<SignUpForm />} />
         <Route path="/logIn" element={<LoginForm />} />
         <Route path="/home" element={<Homepage />} />
+        <Route path="/otp" element={<Otp />} />
+        <Route path="/reset" element={<Reset />} />
         <Route path="/" element={<MainContainer />} />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
