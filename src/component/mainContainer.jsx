@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import LoginForm from "./loginForm";
 import SignUpForm from "./signUp";
-import loginImage from "../assets/logIn.svg";
-import signUpImage from "../assets/sign-up.png";
-import forgotPasswordImage from "../assets/verification.svg";
 
 
 import Forgotten from "./forgot";
@@ -21,35 +18,7 @@ const MainContainer = () => {
   }
 
   return (
-    <div className="container">
-      <div className="loginContainer left">
-        {showSignUp ? (
-          <h1 className="signUpLine">Sign up for an account today</h1>
-        ) : (
-          <h1 className="signUpLine">
-            {forgotPassword
-              ? "Forgot your password? We're here to help."
-              : "Login on cloud today, tomorrow, or from any location"}
-          </h1>
-        )}
-        <img
-          src={
-            forgotPassword
-              ? forgotPasswordImage
-              : showSignUp
-              ? signUpImage
-              : loginImage
-          }
-          className="loginImage"
-          alt={
-            forgotPassword
-              ? "Forgot Password"
-              : showSignUp
-              ? "Sign Up"
-              : "Login"
-          }
-        />
-      </div>
+    <div>
 
       {forgotPassword ? (
         <Forgotten />

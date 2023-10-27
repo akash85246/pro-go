@@ -4,7 +4,7 @@ import Terms from "./terms";
 import Button from "./button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import LeftContainer from "./leftContainer";
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -117,7 +117,7 @@ function SignUpForm() {
 
       console.log("Received auth token:", authToken);
       if (response.data.success) {
-        navigate("/verify");
+        navigate("/verify", { state: { email: email } });
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -134,105 +134,114 @@ function SignUpForm() {
   }
 
   return (
-    <div className="loginContainer right">
-      <h1 style={{ textAlign: "left" }}>Create account</h1>
+    <div className="container">
+      <LeftContainer
+        classDiv="loginContainer left"
+        src="./src/assets/sign-up.png"
+        h1="Sign up for an account today"
+      />
+      <div className="loginContainer right">
+        <h1 style={{ textAlign: "left" }}>Create account</h1>
 
-      <div className="Input">
-        <label className="light">Username</label>
-        <input
-          type="text"
-          name="name"
-          className="input"
-          id="name"
-          maxLength={15}
-          minLength={3}
-          required
-          onChange={validateForm}
-        />
-        <span id="nameError">
-          **Name cannot contain numbers and should be more than 2 characters
-        </span>
-      </div>
-
-      <div className="emailNumber">
         <div className="Input">
-          <label className="light">Email</label>
+          <label className="light">Username</label>
           <input
             type="text"
-            name="email"
-            id="email"
-            maxLength={50}
-            className="input sui"
+            name="name"
+            className="input"
+            id="name"
+            maxLength={15}
+            minLength={3}
             required
             onChange={validateForm}
           />
-          <span id="emailError">**Email should have '@' and '.'</span>
-        </div>
-        <div className="Input">
-          <label className="light">Phone Number</label>
-          <input
-            type="text"
-            name="number"
-            maxLength={10}
-            id="phoneNumber"
-            className="input sui"
-            required
-            onChange={validateForm}
-          />
-          <span id="numberError">
-            **Phone Number should start with 7/8/9 and should have 10 digits, no
-            characters allowed
+          <span id="nameError">
+            **Name cannot contain numbers and should be more than 2 characters
           </span>
         </div>
-      </div>
 
-      <div className="Input createPassword">
-        <div>
-          <label className="light">Password</label>
-          <input
-            type="password"
-            name="password"
-            className="input"
-            required
-            maxLength={15}
-            minLength={5}
-            onChange={handlePasswordChange}
-          />
+        <div className="emailNumber">
+          <div className="Input">
+            <label className="light">Email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              maxLength={50}
+              className="input sui"
+              required
+              onChange={validateForm}
+            />
+            <span id="emailError">**Email should have '@' and '.'</span>
+          </div>
+          <div className="Input">
+            <label className="light">Phone Number</label>
+            <input
+              type="text"
+              name="number"
+              maxLength={10}
+              id="phoneNumber"
+              className="input sui"
+              required
+              onChange={validateForm}
+            />
+            <span id="numberError">
+              **Phone Number should start with 7/8/9 and should have 10 digits,
+              no characters allowed
+            </span>
+          </div>
+        </div>
+
+        <div className="Input createPassword">
+          <div>
+            <label className="light">Password</label>
+            <input
+              type="password"
+              name="password"
+              className="input"
+              required
+              maxLength={15}
+              minLength={5}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <div>
+            <label className="light">Confirm password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              className="input"
+              required
+              value={formData.confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              maxLength={15}
+              minLength={5}
+            />
+          </div>
         </div>
         <div>
-          <label className="light">Confirm password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            className="input"
-            required
-            value={formData.confirmPassword}
-            onChange={handleConfirmPasswordChange}
-            maxLength={15}
-            minLength={5}
-          />
+          <span id="pass">Passwords do not match</span>
+          {formData.password && (
+            <div id="passwordStrength">
+              Password Strength: {passwordStrength}
+            </div>
+          )}
         </div>
+        <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
+        <Terms />
+        <Button
+          type="submit"
+          class="submit button register"
+          label="Register Account"
+          onClick={(e) => handleSubmit(e, "register")}
+        />
+        <Button
+          type="submit"
+          class="submit button google"
+          label="Sign-in with Google"
+          onClick={handleSubmit}
+        />
       </div>
-      <div>
-        <span id="pass">Passwords do not match</span>
-        {formData.password && (
-          <div id="passwordStrength">Password Strength: {passwordStrength}</div>
-        )}
-      </div>
-      <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
-      <Terms />
-      <Button
-        type="submit"
-        class="submit button register"
-        label="Register Account"
-        onClick={(e) => handleSubmit(e, "register")}
-      />
-      <Button
-        type="submit"
-        class="submit button google"
-        label="Sign-in with Google"
-        onClick={handleSubmit}
-      />
     </div>
   );
 }

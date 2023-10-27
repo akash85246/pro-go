@@ -9,12 +9,19 @@ import {
 } from "react-router-dom";
 import MainContainer from "./mainContainer";
 import Verification from "./verify";
-
+import Forgotten from "./forgot";
+import SignUpForm from "./signUp";
+import LoginForm from "./loginForm";
+import Homepage from "./homepage";
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/verify" element={<Verification />} />
+        <Route path="/forgot" element={<Forgotten />} />
+        <Route path="/signUp" element={<SignUpForm />} />
+        <Route path="/logIn" element={<LoginForm />} />
+        <Route path="/home" element={<Homepage />} />
         <Route path="/" element={<MainContainer />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

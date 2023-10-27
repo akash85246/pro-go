@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./button";
 import ProgressBar from "./progress";
 import Reset from "./resetPassword";
-
+import LeftContainer from "./leftContainer";
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberError, setPhoneNumberError] = useState(""); // State to store phone number error
@@ -56,49 +56,68 @@ export default function Forgotten(props) {
   };
 
   return (
-    <div className="loginContainer right">
-      {otpSubmitted ? (
-        <Reset />
-      ) : (
-        <>
-          <ProgressBar circleCount={4} color={2} />
-          <div className="num">
-            <h1>Enter Registered Number</h1>
-            <p className="light">
-              A text with a 6-digit code has been sent to your{" "}
-              {loginWithPhone ? "entered number" : "email address"}.
-            </p>
-            {otpResent ? (
-              <Button
-                type="button"
-                class="blue"
-                label="Resend OTP"
-                onClick={handleResendOTP}
-              />
-            ) : null}
-            <div className="Input">
-              <div className="loginWith">
-                <label className="light">
-                  {loginWithPhone ? "Phone number" : "Email address"}
-                </label>
-                <a
-                  className="blue loginWith"
-                  onClick={() => setLoginWithPhone(!loginWithPhone)}
-                >
-                  {loginWithPhone ? "Use Email" : "Use Phone number"}
-                </a>
+    <div className="container">
+      <LeftContainer
+        classDiv="loginContainer left"
+        src="./src/assets/verification.svg"
+        h1="Sign up for an account today"
+      />
+      <div className="loginContainer right">
+        {otpSubmitted ? (
+          <Reset />
+        ) : (
+          <>
+            <ProgressBar circleCount={4} color={2} />
+            <div className="num">
+              <h1>Enter Registered Number</h1>
+              <p className="light">
+                A text with a 6-digit code has been sent to your{" "}
+                {loginWithPhone ? "entered number" : "email address"}.
+              </p>
+              {otpResent ? (
+                <Button
+                  type="button"
+                  class="blue"
+                  label="Resend OTP"
+                  onClick={handleResendOTP}
+                />
+              ) : null}
+              <div className="Input">
+                <div className="loginWith">
+                  <label className="light">
+                    {loginWithPhone ? "Phone number" : "Email address"}
+                  </label>
+                  <a
+                    className="blue loginWith"
+                    onClick={() => setLoginWithPhone(!loginWithPhone)}
+                  >
+                    {loginWithPhone ? "Use Email" : "Use Phone number"}
+                  </a>
+                </div>
+                <input
+                  type="text"
+                  className="input"
+                  maxLength={loginWithPhone ? 10 : 20}
+                  onChange={(event) => {
+                    loginWithPhone
+                      ? validatePhoneNumber(event.target.value)
+                      : validateEmail(event.target.value);
+                  }}
+                  required
+                />
+                <div>
+                  <span id="numberError">
+                    {loginWithPhone ? phoneNumberError : emailError}
+                  </span>
+                </div>
+                <Button
+                  type="submit"
+                  class="submit button number"
+                  label="Submit"
+                  onClick={handlePhoneSubmit}
+                />
               </div>
-              <input
-                type="text"
-                className="input"
-                maxLength={loginWithPhone ? 10 : 20}
-                onChange={(event) => {
-                  loginWithPhone
-                    ? validatePhoneNumber(event.target.value)
-                    : validateEmail(event.target.value);
-                }}
-                required
-              />
+
               <div>
                 <span id="numberError">
                   {loginWithPhone ? phoneNumberError : emailError}
@@ -111,58 +130,46 @@ export default function Forgotten(props) {
                 onClick={handlePhoneSubmit}
               />
             </div>
-
-            <div>
-              <span id="numberError">
-                {loginWithPhone ? phoneNumberError : emailError}
-              </span>
+          </>
+        )}
+        {otpMode && !otpSubmitted && (
+          <>
+            <h1>Enter verification code</h1>
+            <p className="light">
+              A text with digit code has been sent to{" "}
+              {loginWithPhone
+                ? `+XXXXXXX${phoneNumber.slice(7, 10)}`
+                : "your email address"}
+              .
+            </p>
+            {otpResent ? (
+              <Button
+                type="button"
+                class="blue"
+                label="Resend OTP"
+                onClick={handleResendOTP}
+              />
+            ) : null}
+            <div className="Input">
+              <label className="light">Enter OTP</label>
+              <input
+                type="text"
+                className="input"
+                value={otp}
+                maxLength={6}
+                onChange={(e) => setOtp(e.target.value)}
+                required
+              />
+              <Button
+                type="submit"
+                class="submit button otp"
+                label="Submit OTP"
+                onClick={handleOtpSubmit}
+              />
             </div>
-            <Button
-              type="submit"
-              class="submit button number"
-              label="Submit"
-              onClick={handlePhoneSubmit}
-            />
-          </div>
-        </>
-      )}
-      {otpMode && !otpSubmitted && (
-        <>
-          <h1>Enter verification code</h1>
-          <p className="light">
-            A text with digit code has been sent to{" "}
-            {loginWithPhone
-              ? `+XXXXXXX${phoneNumber.slice(7, 10)}`
-              : "your email address"}
-            .
-          </p>
-          {otpResent ? (
-            <Button
-              type="button"
-              class="blue"
-              label="Resend OTP"
-              onClick={handleResendOTP}
-            />
-          ) : null}
-          <div className="Input">
-            <label className="light">Enter OTP</label>
-            <input
-              type="text"
-              className="input"
-              value={otp}
-              maxLength={6}
-              onChange={(e) => setOtp(e.target.value)}
-              required
-            />
-            <Button
-              type="submit"
-              class="submit button otp"
-              label="Submit OTP"
-              onClick={handleOtpSubmit}
-            />
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }
