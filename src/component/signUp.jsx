@@ -5,6 +5,7 @@ import Button from "./button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "./leftContainer";
+
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
