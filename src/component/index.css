@@ -211,6 +211,9 @@ span {
 .createPassword input {
   width: 14vw;
 }
+.verify {
+  margin: 10vh auto;
+}
 @media only screen and (max-width: 950px) {
   body {
     font-size: 1.8vw;

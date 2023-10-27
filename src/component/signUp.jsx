@@ -3,13 +3,14 @@ import RememberMeCheckbox from "./rememberMe";
 import Terms from "./terms";
 import Button from "./button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailError, setEmailError] = useState("");
-
+  const navigate = useNavigate();
   const signEndpoint = "https://pro-go.onrender.com/api/auth/sign-up/";
 
   const [formData, setFormData] = useState({
@@ -115,6 +116,9 @@ function SignUpForm() {
       const authToken = response.data.token;
 
       console.log("Received auth token:", authToken);
+      if (response.data.success) {
+        navigate("/verify");
+      }
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
