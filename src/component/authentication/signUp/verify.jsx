@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Button from "./button";
+import Button from "../button";
 import { useLocation } from "react-router-dom";
-import LeftContainer from "./leftContainer";
+import LeftContainer from "../leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";

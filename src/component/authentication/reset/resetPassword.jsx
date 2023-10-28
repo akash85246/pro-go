@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ProgressBar from "./progress";
-import Button from "./button";
-import LeftContainer from "./leftContainer";
+import ProgressBar from "../progress";
+import Button from "../button";
+import LeftContainer from "../leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -44,14 +44,19 @@ export default function Reset() {
     } else if (newPassword.length >= 6 && (hasLetter || hasNumber)) {
       document.getElementById("passwordStrength").style.display = "block";
       setPasswordStrength("Moderate");
-    } else if (newPassword.length != 0) {
+    } else if (newPassword.length !== 0) {
       document.getElementById("passwordStrength").style.display = "block";
       setPasswordStrength("Weak");
+    } else {
+      document.getElementById("passwordStrength").style.display = "none";
     }
 
+    // Check for password mismatch
     if (newPassword !== formData.confirmPassword) {
+      document.getElementById("resetPass").style.display = "block";
       setPasswordMatchError("Passwords do not match");
     } else {
+      document.getElementById("resetPass").style.display = "none";
       setPasswordMatchError("");
     }
   };
@@ -63,9 +68,12 @@ export default function Reset() {
       confirmPassword: newConfirmPassword,
     });
 
+    // Check for password mismatch
     if (formData.password !== newConfirmPassword) {
+      document.getElementById("resetPass").style.display = "block";
       setPasswordMatchError("Passwords do not match");
     } else {
+      document.getElementById("resetPass").style.display = "none";
       setPasswordMatchError("");
     }
   };
@@ -148,7 +156,7 @@ export default function Reset() {
             src="./src/assets/reset.svg"
           />
 
-          <div className="loginContainer right log">
+          <div className="loginContainer right log resetRight">
             <ProgressBar circleCount={4} color={3} />
             <h1>Reset password</h1>
             <form onSubmit={handleSubmit}>
@@ -164,9 +172,9 @@ export default function Reset() {
                   onChange={handlePasswordChange}
                 />
               </div>
-              <div className="password-strength-container">
+              <div className="password-strength-container resetPSC">
                 <div
-                  id="passwordStrength"
+                  id="passwordStrength resetPassword"
                   className={passwordStrength.toLowerCase()}
                 >
                   Password Strength: {passwordStrength}
@@ -185,10 +193,12 @@ export default function Reset() {
                   minLength={5}
                 />
               </div>
-              {passwordMatchError && <div id="pass">{passwordMatchError}</div>}
+              <div className="ressetPc">
+                <div id="resetPass">password do not match</div>
+              </div>
               <Button
                 type="submit"
-                class="submit button register "
+                class="submit button reset "
                 label="Reset Password"
               />
             </form>

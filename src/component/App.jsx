@@ -7,13 +7,13 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Verification from "./verify";
-import Forgotten from "./forgot";
-import SignUpForm from "./signUp";
-import LoginForm from "./loginForm";
+import Verification from "./authentication/signUp/verify";
+import Forgotten from "./authentication/forgot/forgot";
+import SignUpForm from "./authentication/signUp/signUp";
+import LoginForm from "./authentication/login/loginForm";
 import Homepage from "./homepage";
-import Reset from "./resetPassword";
-import Otp from "./otpVerification";
+import Reset from "./authentication/reset/resetPassword";
+import Otp from "./authentication/forgot/otpVerification";
 function App() {
   return (
     <>

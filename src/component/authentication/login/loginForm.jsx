@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ProgressBar from "./progress";
-import RememberMeCheckbox from "./rememberMe";
-import Button from "./button";
-import LeftContainer from "./leftContainer";
+import ProgressBar from "../progress";
+import RememberMeCheckbox from "../rememberMe";
+import Button from "../button";
+import LeftContainer from "../leftContainer";
 import axios from "axios";
 
 import { Vortex } from "react-loader-spinner";
@@ -92,8 +92,13 @@ function LoginForm() {
         }
       );
       const authToken = response.data.token;
-      console.log("Received auth token:", authToken);
+
+      localStorage.setItem("authToken", authToken);
+
       setAuthToken(authToken);
+
+      console.log("Received auth token:", authToken);
+
       if (response.data.success) {
         console.log("verified");
         navigate("/home");

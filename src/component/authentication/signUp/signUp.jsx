@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import RememberMeCheckbox from "./rememberMe";
-import Terms from "./terms";
-import Button from "./button";
+import RememberMeCheckbox from "../rememberMe";
+import Terms from "../terms";
+import Button from "../button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LeftContainer from "./leftContainer";
+import LeftContainer from "../leftContainer";
 import { Vortex } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -198,8 +198,7 @@ function SignUpForm() {
                 required
               />
               <span id="nameError" className="signUpNameError">
-                **Name cannot contain numbers and should be more than 2
-                characters
+                **Name cannot contain numbers or too small
               </span>
             </div>
 
@@ -241,8 +240,7 @@ function SignUpForm() {
                 <input
                   type="password"
                   name="password"
-                  className="input"
-                  id="signCp"
+                  className="input signCp"
                   required
                   maxLength={15}
                   minLength={5}
@@ -254,8 +252,7 @@ function SignUpForm() {
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="input "
-                  id="signCp"
+                  className="input signCp"
                   required
                   value={formData.confirmPassword}
                   onChange={handleConfirmPasswordChange}

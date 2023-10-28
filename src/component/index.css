@@ -23,7 +23,8 @@ body {
 }
 
 .progress-bar {
-  margin-top: 10vh;
+  width: 30vw;
+  /* margin-top: 10vh; */
   display: flex;
   align-items: center;
 }
@@ -54,6 +55,9 @@ body {
 }
 
 .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
   width: 60%;
 }
@@ -98,6 +102,14 @@ body {
   color: #8692a6;
 }
 
+#root > div.container > div.loginContainer.right > div:nth-child(5) {
+  display: flex;
+  justify-content: space-between;
+
+  column-gap: 5vw;
+  width: "30vw";
+}
+
 .signUp {
   display: flex;
   justify-content: center;
@@ -120,7 +132,9 @@ body {
   border-radius: 6px;
   border: 1px;
 }
-
+.signCp {
+  margin: 0;
+}
 .show {
   border: none;
   background-color: white;
@@ -156,13 +170,20 @@ body {
 
 #numberError,
 #emailError,
-#nameError {
+#nameError,
+#passwordStrength,
+#pass {
   display: none;
   font-size: 1vw;
   color: #d61919;
+  margin: 0;
   height: 0.8vh;
-  margin-top: 2vh;
-  font-size: 0.8vw;
+  margin-top: -0.05vh;
+  font-size: 1.2vw;
+  background-color: white;
+}
+.ressetPc {
+  height: 4vw;
 }
 .error {
   display: none;
@@ -175,17 +196,15 @@ body {
   background-color: white;
   padding: 1.5%;
 }
-#pass {
+/* #pass {
   color: #d61919;
   display: none;
-  height: 0.5vh;
-  font-size: 1vw;
-  margin-top: -2vh;
-}
+ 
+} */
 #passwordStrength {
   display: none;
-  font-size: 2vw;
-  margin-top: -3vh;
+  /* font-size: 2vw; */
+  /* margin-top: -3vh; */
 }
 .signUp {
   position: fixed;
@@ -208,7 +227,7 @@ body {
 
   color: white;
   font-size: 2vw;
-  margin: 10vh 10vw -8vw 10vw;
+  margin-top: 6vw;
 }
 .sic {
   display: block;
@@ -224,11 +243,7 @@ span {
   display: block;
   width: 14vw;
 }
-.google {
-  margin: 0;
-  background-color: #2d3748;
-  font-size: 1vw;
-}
+
 .createPassword {
   display: flex;
   column-gap: 1vw;
@@ -238,6 +253,23 @@ span {
 }
 .verify {
   margin: 10vh auto;
+}
+.remember {
+  margin-top: 2.5vw;
+}
+.signUpImage {
+  margin: -0.8vh auto;
+  margin-bottom: 15vh;
+  /* margin-top: ; */
+  height: 35vw;
+  width: 35vw;
+}
+#resetPass {
+  display: none;
+  color: #d61919;
+}
+.reset {
+  margin-top: 2vw;
 }
 @media only screen and (max-width: 950px) {
   body {
@@ -259,7 +291,16 @@ span {
   }
   .error {
     margin: -10px 0;
-    font-size: 2vw;
+    font-size: 1.4vw;
+  }
+
+  #numberError,
+  #emailError,
+  #nameError,
+  #passwordStrength,
+  #pass {
+    margin: 0;
+    font-size: 1.8vw;
   }
 }
 @media only screen and (max-width: 750px) {
@@ -288,7 +329,7 @@ span {
     padding: 0%;
   }
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 400px) {
   #root {
     overflow: hidden;
     font-size: 3vw;
@@ -319,11 +360,11 @@ span {
     width: 90%;
   }
   .progress-bar {
-    margin-top: 14vh;
+    /* margin-top: 14vh; */
     width: 80%;
-    margin-left: auto;
+    /* margin-left: auto;
     margin-right: auto;
-    margin-bottom: -1vh;
+    margin-bottom: -1vh; */
   }
   .circle {
     height: 4vw;
@@ -356,7 +397,7 @@ span {
     margin-top: 1vw;
   }
   .remember {
-    margin-top: 6px;
+    margin: 10vw 0;
   }
 
   .entry {
@@ -396,17 +437,17 @@ span {
   }
   .error {
     margin: 0.5vh 0;
-    font-size: 1vw;
+    font-size: 3vw;
     width: 88vw;
   }
   #numberError {
     font-size: 4vw;
     margin: 0;
   }
-  #passwordStrength {
+  /* #passwordStrength {
     margin: 4vw 0;
     font-size: 3.2vw;
-  }
+  } */
   .pass {
     font-size: 2vw;
   }
@@ -416,18 +457,20 @@ span {
     left: 1vw;
   }
   .signUpImage {
-    height: 55vw;
-    width: 55vw;
+    /* margin-top: -0.1vh; */
+    height: 40vw;
+    width: 40vw;
   }
 
   .signUpLine {
     display: none;
   }
   .signUpH1 {
-    margin: 5vh 0;
+    /* margin: 8vw 0; */
+    margin-top: 18vw;
   }
   .signUpInput {
-    margin: 1vh 0;
+    margin: 5vh 0;
   }
   .signUpinput {
     height: 9vw;
@@ -436,19 +479,28 @@ span {
   .signUpCP {
     display: flex;
   }
-  #signCp {
+  .signCp {
     width: 42vw;
     display: block;
   }
   #numberError,
   #emailError,
-  #nameError {
-    margin: 0;
-    font-size: 2.5vw;
-  }
+  #nameError,
+  #passwordStrength\ ,
   #pass {
-    color: #d61919;
-    margin: 0.8vh 0;
-    font-size: 2.5vw;
+    margin: 0;
+    font-size: 2.8vw;
+  }
+  .lowNavigate {
+    margin: 1px;
+  }
+  .progress-bar {
+    margin-top: 20vw;
+  }
+  #resetPass {
+    display: none;
+  }
+  .reset {
+    margin-top: 2vw;
   }
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Button from "./button";
-import ProgressBar from "./progress";
-import Reset from "./resetPassword";
-import LeftContainer from "./leftContainer";
+import Button from "../button";
+import ProgressBar from "../progress";
+import Reset from "../reset/resetPassword";
+import LeftContainer from "../leftContainer";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
