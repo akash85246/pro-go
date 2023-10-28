@@ -5,6 +5,9 @@ import Reset from "./resetPassword";
 import LeftContainer from "./leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Vortex } from "react-loader-spinner";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -16,12 +19,12 @@ export default function Forgotten(props) {
   const [otpSubmitted, setOtpSubmitted] = useState(false);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const emailEndpoint = "https://pro-go.onrender.com/api/auth/forget-password";
 
   function validateEmail(inputEmail) {
-    const emailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
+    const emailCheck = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
       document.querySelector("#numberError").style.display = "block";
@@ -45,12 +48,17 @@ export default function Forgotten(props) {
       setPhoneNumber(inputPhoneNumber);
     }
   }
+
+  function handleSignUp() {
+    navigate("/logIn");
+  }
+
   async function handlePhoneSubmit(e) {
     e.preventDefault();
     const submittedData = {
       email: email,
     };
-    // console.log("Registering Account:", submittedData);
+    setLoading(true);
     try {
       const response = await axios.post(emailEndpoint, submittedData);
       const authToken = response.data.token;
@@ -63,6 +71,9 @@ export default function Forgotten(props) {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -71,69 +82,104 @@ export default function Forgotten(props) {
       } else {
         console.error("Error setting up the request:");
       }
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <div className="container">
-      <LeftContainer
-        classDiv="loginContainer left"
-        src="./src/assets/verification.svg"
-        h1="Sign up for an account today"
-      />
-      <div className="loginContainer right">
-        <ProgressBar circleCount={4} color={2} />
-        <div className="num">
-          <h1>
-            {loginWithPhone ? "Enter Registered Number" : "Enter Email Address"}
-          </h1>
-          <p className="light">
-            A text with a 6-digit code will be sent to your{" "}
-            {loginWithPhone ? "entered number" : "email address"}.
-          </p>
-          <div className="Input">
-            <div className="loginWith">
-              <label className="light">
-                {loginWithPhone ? "Phone number" : "Email address"}
-              </label>
-              <a
-                className="blue loginWith"
-                onClick={() => setLoginWithPhone(!loginWithPhone)}
-              >
-                {loginWithPhone ? "Use Email" : "Use Phone number"}
-              </a>
-            </div>
-            <input
-              type="text"
-              className="input"
-              maxLength={loginWithPhone ? 10 : 50}
-              onChange={(event) => {
-                loginWithPhone
-                  ? validatePhoneNumber(event.target.value)
-                  : validateEmail(event.target.value);
-              }}
-              required
-            />
-            <div>
-              <span id="numberError">
-                {loginWithPhone ? phoneNumberError : emailError}
-              </span>
-            </div>
-          </div>
-
-          <div>
-            <span id="numberError">
-              {loginWithPhone ? phoneNumberError : emailError}
-            </span>
-          </div>
-          <Button
-            type="submit"
-            class="submit button number"
-            label="Submit"
-            onClick={handlePhoneSubmit}
+    <>
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: "800",
+            height: "100vh",
+            backgroundColor: "#011C67",
+          }}
+        >
+          <Vortex
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
           />
         </div>
-      </div>
-    </div>
+      )}
+      {!loading && (
+        <div className="container">
+          <LeftContainer
+            classDiv="loginContainer left"
+            src="./src/assets/verification.svg"
+            h1="Sign up for an account today"
+          />
+          <div className="loginContainer right">
+            <ProgressBar circleCount={4} color={2} />
+            <div className="num">
+              <h1>
+                {loginWithPhone
+                  ? "Enter Registered Number"
+                  : "Enter Email Address"}
+              </h1>
+              <p className="light">
+                A text with a 6-digit code will be sent to your{" "}
+                {loginWithPhone ? "entered number" : "email address"}.
+              </p>
+              <div className="Input">
+                <div className="loginWith">
+                  <label className="light">
+                    {loginWithPhone ? "Phone number" : "Email address"}
+                  </label>
+                  <a
+                    className="blue loginWith"
+                    onClick={() => setLoginWithPhone(!loginWithPhone)}
+                  >
+                    {loginWithPhone ? "Use Email" : "Use Phone number"}
+                  </a>
+                </div>
+                <input
+                  type="text"
+                  className="input"
+                  maxLength={loginWithPhone ? 10 : 50}
+                  onChange={(event) => {
+                    loginWithPhone
+                      ? validatePhoneNumber(event.target.value)
+                      : validateEmail(event.target.value);
+                  }}
+                  required
+                />
+                <div>
+                  <span id="numberError">
+                    {loginWithPhone ? phoneNumberError : emailError}
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <span id="numberError">
+                  {loginWithPhone ? phoneNumberError : emailError}
+                </span>
+              </div>
+              <Button
+                type="submit"
+                class="submit button number"
+                label="Submit"
+                onClick={handlePhoneSubmit}
+              />
+              <div>
+                <span className="blue " onClick={handleSignUp}>
+                  Log In
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

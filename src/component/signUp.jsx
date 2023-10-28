@@ -5,10 +5,14 @@ import Button from "./button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "./leftContainer";
+import { Vortex } from "react-loader-spinner";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
@@ -28,7 +32,7 @@ function SignUpForm() {
     const emailValue = document.getElementById("email").value;
     const phoneNumberValue = document.getElementById("phoneNumber").value;
 
-    const mailCheck = /^[\w\.-]+@[\w\.-]+\.\w+/;
+    const mailCheck = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     const nameCheck = /^[A-Za-z. ]{3,30}( [A-Za-z. ]{3,30})*$/;
     const numberCheck = /^[789]\d{9}$/;
 
@@ -103,7 +107,9 @@ function SignUpForm() {
       setPasswordMatchError("");
     }
   };
-
+  function handleSignUp() {
+    navigate("/logIn");
+  }
   async function handleSubmit(e) {
     e.preventDefault();
     const submittedData = {
@@ -112,6 +118,8 @@ function SignUpForm() {
       password: formData.password,
     };
     console.log("Registering Account:", submittedData);
+
+    setLoading(true);
     try {
       const response = await axios.post(signEndpoint, submittedData);
       const authToken = response.data.token;
@@ -123,6 +131,9 @@ function SignUpForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -131,119 +142,154 @@ function SignUpForm() {
       } else {
         console.error("Error setting up the request:");
       }
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <div className="container">
-      <LeftContainer
-        classDiv="loginContainer left"
-        src="./src/assets/sign-up.png"
-        h1="Sign up for an account today"
-      />
-      <div className="loginContainer right">
-        <h1 style={{ textAlign: "left" }}>Create account</h1>
-
-        <div className="Input">
-          <label className="light">Username</label>
-          <input
-            type="text"
-            name="name"
-            className="input"
-            id="name"
-            maxLength={15}
-            minLength={3}
-            required
-            onChange={validateForm}
+    <>
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: "800",
+            height: "100vh",
+            backgroundColor: "#011C67",
+          }}
+        >
+          <Vortex
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
           />
-          <span id="nameError">
-            **Name cannot contain numbers and should be more than 2 characters
-          </span>
         </div>
+      )}
+      {!loading && (
+        <div className="container">
+          <LeftContainer
+            classDiv="loginContainer left"
+            src="./src/assets/sign-up.png"
+            h1="Sign up for an account today"
+          />
+          <div className="loginContainer right">
+            <h1 style={{ textAlign: "left" }}>Create account</h1>
 
-        <div className="emailNumber">
-          <div className="Input">
-            <label className="light">Email</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              maxLength={50}
-              className="input sui"
-              required
-              onChange={validateForm}
-            />
-            <span id="emailError">**Email should have '@' and '.'</span>
-          </div>
-          <div className="Input">
-            <label className="light">Phone Number</label>
-            <input
-              type="text"
-              name="number"
-              maxLength={10}
-              id="phoneNumber"
-              className="input sui"
-              required
-              onChange={validateForm}
-            />
-            <span id="numberError">
-              **Phone Number should start with 7/8/9 and should have 10 digits,
-              no characters allowed
-            </span>
-          </div>
-        </div>
-
-        <div className="Input createPassword">
-          <div>
-            <label className="light">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="input"
-              required
-              maxLength={15}
-              minLength={5}
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <div>
-            <label className="light">Confirm password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              className="input"
-              required
-              value={formData.confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              maxLength={15}
-              minLength={5}
-            />
-          </div>
-        </div>
-        <div>
-          <span id="pass">Passwords do not match</span>
-          {formData.password && (
-            <div id="passwordStrength">
-              Password Strength: {passwordStrength}
+            <div className="Input">
+              <label className="light">Username</label>
+              <input
+                type="text"
+                name="name"
+                className="input"
+                id="name"
+                maxLength={15}
+                minLength={3}
+                required
+                onChange={validateForm}
+              />
+              <span id="nameError">
+                **Name cannot contain numbers and should be more than 2
+                characters
+              </span>
             </div>
-          )}
+
+            <div className="emailNumber">
+              <div className="Input">
+                <label className="light">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  maxLength={50}
+                  className="input sui"
+                  required
+                  onChange={validateForm}
+                />
+                <span id="emailError">**Email should have '@' and '.'</span>
+              </div>
+              <div className="Input">
+                <label className="light">Phone Number</label>
+                <input
+                  type="text"
+                  name="number"
+                  maxLength={10}
+                  id="phoneNumber"
+                  className="input sui"
+                  required
+                  onChange={validateForm}
+                />
+                <span id="numberError">
+                  **Phone Number should start with 7/8/9 and should have 10
+                  digits, no characters allowed
+                </span>
+              </div>
+            </div>
+
+            <div className="Input createPassword">
+              <div>
+                <label className="light">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="input"
+                  required
+                  maxLength={15}
+                  minLength={5}
+                  onChange={handlePasswordChange}
+                />
+              </div>
+              <div>
+                <label className="light">Confirm password</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  className="input"
+                  required
+                  value={formData.confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  maxLength={15}
+                  minLength={5}
+                />
+              </div>
+            </div>
+            <div>
+              <span id="pass">Passwords do not match</span>
+              {formData.password && (
+                <div id="passwordStrength">
+                  Password Strength: {passwordStrength}
+                </div>
+              )}
+            </div>
+            <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
+            <Terms />
+            <Button
+              type="submit"
+              class="submit button register"
+              label="Register Account"
+              onClick={(e) => handleSubmit(e, "register")}
+            />
+            <Button
+              type="submit"
+              class="submit button google"
+              label="Sign-in with Google"
+              onClick={handleSubmit}
+            />
+            <div>
+              <span className=" light">Already have an account?</span>
+              <span className="blue " onClick={handleSignUp}>
+                Log In
+              </span>
+            </div>
+          </div>
         </div>
-        <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
-        <Terms />
-        <Button
-          type="submit"
-          class="submit button register"
-          label="Register Account"
-          onClick={(e) => handleSubmit(e, "register")}
-        />
-        <Button
-          type="submit"
-          class="submit button google"
-          label="Sign-in with Google"
-          onClick={handleSubmit}
-        />
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

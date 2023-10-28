@@ -4,9 +4,13 @@ import RememberMeCheckbox from "./rememberMe";
 import Button from "./button";
 import LeftContainer from "./leftContainer";
 import axios from "axios";
+
 import { Vortex } from "react-loader-spinner";
 
 import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
 
@@ -20,7 +24,8 @@ function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [authToken, setAuthToken] = useState("");
-
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
   const navigate = useNavigate();
 
   function validateEmail(inputEmail) {
@@ -50,7 +55,15 @@ function LoginForm() {
       setPhoneNumber(inputPhoneNumber);
     }
   }
+  function handleForgotPassword() {
+    setForgotPassword(true);
+    navigate("/forgot"); // Redirect to the "Forgot Password" page
+  }
 
+  function handleSignUp() {
+    setShowSignUp(true);
+    navigate("/signUp");
+  }
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -84,6 +97,9 @@ function LoginForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -110,7 +126,6 @@ function LoginForm() {
             backgroundColor: "#011C67",
           }}
         >
-          loading
           <Vortex
             visible={true}
             height="80"
@@ -216,6 +231,14 @@ function LoginForm() {
                     !validatePassword(password)
                   }
                 />
+              </div>
+              <div>
+                <span className=" light" onClick={handleForgotPassword}>
+                  Forgot Password?
+                </span>
+                <span className="blue " onClick={handleSignUp}>
+                  Sign up here
+                </span>
               </div>
             </form>
           </div>

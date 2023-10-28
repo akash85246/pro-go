@@ -4,10 +4,14 @@ import { useLocation } from "react-router-dom";
 import LeftContainer from "./leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Vortex } from "react-loader-spinner";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Verification() {
   const [verificationCode, setVerificationCode] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const verifyEndpoint =
     "https://pro-go.onrender.com/api/auth/email-verification/";
@@ -26,6 +30,11 @@ export default function Verification() {
       otp: verificationCode,
     };
     console.log("Registering Account:", submittedData);
+
+    setLoading(true);
+    {
+      console.log(loading);
+    }
     try {
       const response = await axios.post(verifyEndpoint, submittedData);
       const authToken = response.data.token;
@@ -33,11 +42,16 @@ export default function Verification() {
       console.log("Received auth token:", authToken);
       if (response.data.success) {
         console.log("verified");
-        navigate("/home");
+        navigate("/logIn");
       }
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
+
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -46,14 +60,20 @@ export default function Verification() {
       } else {
         console.error("Error setting up the request:");
       }
+    } 
+    finally {
+      console.log(loading);
+      setLoading(false);
     }
   }
+
   async function Resent(e) {
     e.preventDefault();
     const submittedData = {
       email: email,
     };
     console.log(submittedData);
+
     try {
       const response = await axios.post(resentEndpoint, submittedData);
       const authToken = response.data.token;
@@ -61,6 +81,9 @@ export default function Verification() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -73,37 +96,70 @@ export default function Verification() {
   }
   return (
     <>
-      <div className="container">
-        <LeftContainer
-          classDiv="loginContainer left"
-          src="../src/assets/verification.svg"
-        />
-
-        <div className="loginContainer right verify">
-          <h1>Enter verification code</h1>
-          <p className="light">
-            a text with 6-digit code has been sent to your email
-          </p>
-          <div className="Input">
-            <label className="light">Enter verification code</label>
-            <input
-              type="text"
-              className="input verifyInput"
-              value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value)}
-            />
-          </div>
-          <Button
-            type="submit"
-            class="submit button"
-            label="Submit"
-            onClick={(e) => handleSubmit(e, "register")}
+      {console.log(loading)}
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: "800",
+            height: "100vh",
+            backgroundColor: "#011C67",
+          }}
+        >
+          <Vortex
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
           />
-          <div className="resend" id="resnd" onClick={Resent}>
-            Resend otp
+        </div>
+      )}
+
+      {!loading && (
+        <div className="container">
+          <LeftContainer
+            classDiv="loginContainer left"
+            src="../src/assets/verification.svg"
+          />
+
+          <div className="loginContainer right verify">
+            <h1>Enter verification code</h1>
+            <p className="light">
+              a text with 6-digit code has been sent to your email
+            </p>
+
+            <div className="Input">
+              <label className="light">Enter verification code</label>
+              <input
+                type="text"
+                className="input verifyInput"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              class="submit button"
+              label="Submit"
+              onClick={(e) => handleSubmit(e, "register")}
+            />
+
+            <div
+              className="resend"
+              id="resnd"
+              //  onClick={Resent}
+            >
+              Resend otp
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
