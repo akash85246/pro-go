@@ -30,11 +30,11 @@ function SignUpForm() {
     event.preventDefault();
     const nameValue = document.getElementById("name").value;
     const emailValue = document.getElementById("email").value;
-    const phoneNumberValue = document.getElementById("phoneNumber").value;
+    // const phoneNumberValue = document.getElementById("phoneNumber").value;
 
     const mailCheck = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     const nameCheck = /^[A-Za-z. ]{3,30}( [A-Za-z. ]{3,30})*$/;
-    const numberCheck = /^[789]\d{9}$/;
+    // const numberCheck = /^[789]\d{9}$/;
 
     if (!nameCheck.test(nameValue) && nameValue !== "") {
       console.log("h1");
@@ -56,14 +56,14 @@ function SignUpForm() {
       document.getElementById("emailError").style.display = "none";
     }
 
-    if (!numberCheck.test(phoneNumberValue) && phoneNumberValue !== "") {
-      document.getElementById("numberError").style.display = "block";
-      document.getElementById("numberError").innerHTML =
-        "**Phone Number: Start with 7, 8, or 9, and use 10 digits only.";
-    } else {
-      setPhoneNumber(phoneNumberValue);
-      document.getElementById("numberError").style.display = "none";
-    }
+    // if (!numberCheck.test(phoneNumberValue) && phoneNumberValue !== "") {
+    //   document.getElementById("numberError").style.display = "block";
+    //   document.getElementById("numberError").innerHTML =
+    //     "**Phone Number: Start with 7, 8, or 9, and use 10 digits only.";
+    // } else {
+    //   setPhoneNumber(phoneNumberValue);
+    //   document.getElementById("numberError").style.display = "none";
+    // }
   }
 
   const handlePasswordChange = (e) => {
@@ -101,6 +101,7 @@ function SignUpForm() {
     });
 
     if (formData.password !== newConfirmPassword) {
+      document.getElementById("pass").style.display = "block";
       setPasswordMatchError("Passwords do not match");
     } else {
       document.getElementById("pass").style.display = "none";
@@ -190,8 +191,8 @@ function SignUpForm() {
                 id="name"
                 maxLength={15}
                 minLength={3}
-                required
                 onChange={validateForm}
+                required
               />
               <span id="nameError">
                 **Name cannot contain numbers and should be more than 2
@@ -199,22 +200,22 @@ function SignUpForm() {
               </span>
             </div>
 
-            <div className="emailNumber">
-              <div className="Input">
-                <label className="light">Email</label>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  maxLength={50}
-                  className="input sui"
-                  required
-                  onChange={validateForm}
-                />
-                <span id="emailError">**Email should have '@' and '.'</span>
-              </div>
-              <div className="Input">
-                <label className="light">Phone Number</label>
+            {/* <div className="emailNumber"> */}
+            <div className="Input">
+              <label className="light">Email</label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                maxLength={50}
+                className="input"
+                required
+                onChange={validateForm}
+              />
+              <span id="emailError">**Email should have '@' and '.'</span>
+            </div>
+            {/* <div className="Input">
+              <label className="light">Phone Number</label>
                 <input
                   type="text"
                   name="number"
@@ -224,12 +225,12 @@ function SignUpForm() {
                   required
                   onChange={validateForm}
                 />
-                <span id="numberError">
+              <span id="numberError">
                   **Phone Number should start with 7/8/9 and should have 10
                   digits, no characters allowed
                 </span>
-              </div>
-            </div>
+            </div> */}
+            {/* </div> */}
 
             <div className="Input createPassword">
               <div>
@@ -261,7 +262,10 @@ function SignUpForm() {
             <div>
               <span id="pass">Passwords do not match</span>
               {formData.password && (
-                <div id="passwordStrength">
+                <div
+                  id="passwordStrength"
+                  className={passwordStrength.toLowerCase()}
+                >
                   Password Strength: {passwordStrength}
                 </div>
               )}
@@ -280,10 +284,10 @@ function SignUpForm() {
               label="Sign-in with Google"
               onClick={handleSubmit}
             />
-            <div>
+            <div className="lowNavigate">
               <span className=" light">Already have an account?</span>
               <span className="blue " onClick={handleSignUp}>
-                Log In
+                &nbsp;Log In
               </span>
             </div>
           </div>

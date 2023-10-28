@@ -14,11 +14,12 @@ const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 export default function Reset() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [authToken, setAuthToken] = useState("");
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { email } = location.state;
+  const [authToken, setAuthToken] = useState("");
+  const { email, tokenValue } = location.state;
 
   const [formData, setFormData] = useState({
     password: "",
@@ -70,14 +71,20 @@ export default function Reset() {
     event.preventDefault();
     setLoading(true);
     try {
+      console.log(tokenValue);
+      const headers = {
+        "verify-token": `${tokenValue}`,
+      };
+
       const response = await axios.post(
         resetEndpoint,
         {
           email: email,
-          newpassword: formData.password,
+          newPassword: formData.password,
         },
         {
           withCredentials: false,
+          headers: headers,
         }
       );
       const authToken = response.data.token;

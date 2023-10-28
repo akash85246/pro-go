@@ -28,8 +28,8 @@ body {
 }
 
 .circle {
-  width: 20px;
-  height: 20px;
+  width: 1.5vw;
+  height: 1.5vw;
   border: 1px solid #b5b1b1;
   border-radius: 50%;
 }
@@ -59,9 +59,10 @@ body {
 
 .input {
   height: 6vh;
-  width: 98%;
+  width: 28vw;
   font-size: 1.2vw;
   padding: 0 0.8vw;
+  /* margin: 0.2vw 0; */
 }
 
 .entry {
@@ -87,7 +88,11 @@ body {
   color: #2047ce;
   cursor: pointer;
 }
-
+.lowNavigate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .light {
   color: #8692a6;
 }
@@ -125,12 +130,25 @@ body {
   left: 4vw;
   z-index: 1;
 }
-.emailNumber {
+/* .emailNumber {
   display: flex;
-}
+} */
+
 .resetLeft {
   margin-left: -60vw;
 }
+.weak {
+  color: red;
+}
+
+.moderate {
+  color: orange;
+}
+
+.strong {
+  color: green;
+}
+
 .resetLeft {
   margin-top: -50vh;
   width: 15%;
@@ -163,7 +181,6 @@ body {
   margin-top: -2vh;
 }
 #passwordStrength {
-  color: #d61919;
   font-size: 1vw;
   margin-top: -3vh;
 }
@@ -302,8 +319,8 @@ span {
     margin-bottom: -1vh;
   }
   .circle {
-    height: 15px;
-    width: 15px;
+    height: 4vw;
+    width: 4vw;
   }
   .signUp {
     /* position: relative; */
@@ -312,14 +329,14 @@ span {
   }
   .light,
   .blue {
-    font-size: 4vw;
+    font-size: 3vw;
   }
 
   .input {
     height: 4.8vh;
     width: 88vw;
     font-size: 4vw;
-    margin: 10px 2px;
+    /* margin: 1vh 2px; */
   }
   .error {
     margin-top: 1vw;
@@ -329,7 +346,7 @@ span {
   }
 
   .entry {
-    row-gap: 1px;
+    margin-top: 1.5vh;
   }
   .loginContainer {
     row-gap: 0.1vh;

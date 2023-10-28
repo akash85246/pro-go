@@ -32,8 +32,10 @@ function LoginForm() {
     const emailCheck = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
+      document.querySelector(".error").style.display = "block";
       setEmailError("**Email should have '@' and '.'");
     } else {
+      document.querySelector(".error").style.display = "none";
       setEmailError("");
       setEmail(inputEmail);
     }
@@ -47,17 +49,19 @@ function LoginForm() {
     const numberCheck = /^[789]\d{9}/;
 
     if (!numberCheck.test(inputPhoneNumber) && inputPhoneNumber !== "") {
+      document.querySelector(".error").style.display = "block";
       setPhoneError(
         "**Phone Number should start with 7/8/9 and should have 10 digits, no characters allowed"
       );
     } else {
+      document.querySelector(".error").style.display = "none";
       setPhoneError("");
       setPhoneNumber(inputPhoneNumber);
     }
   }
   function handleForgotPassword() {
     setForgotPassword(true);
-    navigate("/forgot"); // Redirect to the "Forgot Password" page
+    navigate("/forgot");
   }
 
   function handleSignUp() {
@@ -111,6 +115,10 @@ function LoginForm() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function eye() {
+    setShowPassword(!showPassword);
   }
 
   return (
@@ -168,14 +176,14 @@ function LoginForm() {
                       <label className="light">
                         {loginWithPhone ? "Phone number" : "Email address"}
                       </label>
-                      <a
+                      {/* <a
                         className="blue loginWith"
                         onClick={() => setLoginWithPhone(!loginWithPhone)}
                       >
                         {loginWithPhone
                           ? "Login with Email"
                           : "Login with Phone number"}
-                      </a>
+                      </a> */}
                     </div>
                     <input
                       type="text"
@@ -203,17 +211,17 @@ function LoginForm() {
                     minLength={5}
                     required
                   />
-                  <button
-                    value="i"
-                    className="show"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
+                  <div value="i" className="show" onClick={eye}>
                     <img
-                      src="../src/assets/eye.svg"
+                      src={
+                        showPassword
+                          ? "../src/assets/eye-hide.svg"
+                          : "../src/assets/eye.svg"
+                      }
                       height={"25px"}
                       alt="show password"
                     />
-                  </button>
+                  </div>
                 </div>
                 <span className="error">
                   {loginWithPhone ? phoneError : emailError}
@@ -232,12 +240,12 @@ function LoginForm() {
                   }
                 />
               </div>
-              <div>
+              <div className="lowNavigate">
                 <span className=" light" onClick={handleForgotPassword}>
                   Forgot Password?
                 </span>
                 <span className="blue " onClick={handleSignUp}>
-                  Sign up here
+                  &nbsp;Sign up here
                 </span>
               </div>
             </form>

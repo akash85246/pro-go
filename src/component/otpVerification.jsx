@@ -14,11 +14,13 @@ export default function Otp() {
   const [otp, setOtp] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
   const location = useLocation();
   const { email } = location.state;
   const navigate = useNavigate();
   const emailEndpoint = "https://pro-go.onrender.com/api/auth/verify-otp";
   const resentEndpoint = "https://pro-go.onrender.com/api/auth/resend-otp";
+  const [authToken, setAuthToken] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,10 +32,15 @@ export default function Otp() {
     setLoading(true);
     try {
       const response = await axios.post(emailEndpoint, submittedData);
-      const authToken = response.data.token;
+      setAuthToken(response.data.token);
+
       console.log("Received auth token:", authToken);
       if (response.data.success) {
-        navigate("/reset", { state: { email } });
+        const responseData = response.data;
+        const tokenValue = responseData.data.token;
+        setToken(tokenValue);
+        console.log(responseData.data.token);
+        navigate("/reset", { state: { email, tokenValue } });
       }
     } catch (error) {
       if (error.response && error.response.data) {

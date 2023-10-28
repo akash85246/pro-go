@@ -116,7 +116,7 @@ export default function Forgotten(props) {
           <LeftContainer
             classDiv="loginContainer left"
             src="./src/assets/verification.svg"
-            h1="Sign up for an account today"
+            // h1="Sign up for an account today"
           />
           <div className="loginContainer right">
             <ProgressBar circleCount={4} color={2} />
@@ -171,7 +171,7 @@ export default function Forgotten(props) {
                 label="Submit"
                 onClick={handlePhoneSubmit}
               />
-              <div>
+              <div className="lowNavigate">
                 <span className="blue " onClick={handleSignUp}>
                   Log In
                 </span>

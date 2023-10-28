@@ -60,8 +60,7 @@ export default function Verification() {
       } else {
         console.error("Error setting up the request:");
       }
-    } 
-    finally {
+    } finally {
       console.log(loading);
       setLoading(false);
     }
@@ -150,11 +149,7 @@ export default function Verification() {
               onClick={(e) => handleSubmit(e, "register")}
             />
 
-            <div
-              className="resend"
-              id="resnd"
-              //  onClick={Resent}
-            >
+            <div className="resend" id="resnd" onClick={Resent}>
               Resend otp
             </div>
           </div>
