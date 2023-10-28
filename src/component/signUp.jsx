@@ -175,26 +175,29 @@ function SignUpForm() {
       {!loading && (
         <div className="container">
           <LeftContainer
-            classDiv="loginContainer left"
+            classDiv="loginContainer left signUpLeft"
             src="./src/assets/sign-up.png"
+            class="loginImage signUpImage"
             h1="Sign up for an account today"
           />
           <div className="loginContainer right">
-            <h1 style={{ textAlign: "left" }}>Create account</h1>
+            <h1 style={{ textAlign: "left" }} className="signUpH1">
+              Create account
+            </h1>
 
-            <div className="Input">
+            <div className="Input signUpInput">
               <label className="light">Username</label>
               <input
                 type="text"
                 name="name"
-                className="input"
+                className="input signUpinput"
                 id="name"
                 maxLength={15}
                 minLength={3}
                 onChange={validateForm}
                 required
               />
-              <span id="nameError">
+              <span id="nameError" className="signUpNameError">
                 **Name cannot contain numbers and should be more than 2
                 characters
               </span>
@@ -208,7 +211,7 @@ function SignUpForm() {
                 name="email"
                 id="email"
                 maxLength={50}
-                className="input"
+                className="input signUpinput"
                 required
                 onChange={validateForm}
               />
@@ -232,13 +235,14 @@ function SignUpForm() {
             </div> */}
             {/* </div> */}
 
-            <div className="Input createPassword">
+            <div className="Input createPassword signUpCP">
               <div>
                 <label className="light">Password</label>
                 <input
                   type="password"
                   name="password"
                   className="input"
+                  id="signCp"
                   required
                   maxLength={15}
                   minLength={5}
@@ -250,7 +254,8 @@ function SignUpForm() {
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="input"
+                  className="input "
+                  id="signCp"
                   required
                   value={formData.confirmPassword}
                   onChange={handleConfirmPasswordChange}
@@ -263,7 +268,7 @@ function SignUpForm() {
               <span id="pass">Passwords do not match</span>
               {formData.password && (
                 <div
-                  id="passwordStrength"
+                  id="passwordStrength "
                   className={passwordStrength.toLowerCase()}
                 >
                   Password Strength: {passwordStrength}
@@ -278,13 +283,13 @@ function SignUpForm() {
               label="Register Account"
               onClick={(e) => handleSubmit(e, "register")}
             />
-            <Button
+            {/* <Button
               type="submit"
               class="submit button google"
               label="Sign-in with Google"
               onClick={handleSubmit}
-            />
-            <div className="lowNavigate">
+            /> */}
+            <div className="lowNavigate forLog">
               <span className=" light">Already have an account?</span>
               <span className="blue " onClick={handleSignUp}>
                 &nbsp;Log In

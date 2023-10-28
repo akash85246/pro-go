@@ -114,7 +114,7 @@ export default function Otp() {
         </div>
       )}
       {!loading && (
-        <div className="container">
+        <div className="container forContainer">
           <LeftContainer
             classDiv="loginContainer left"
             src="./src/assets/verification.svg"
@@ -130,7 +130,7 @@ export default function Otp() {
               <label className="light">Enter OTP</label>
               <input
                 type="text"
-                className="input"
+                className="input otpInput"
                 value={otp}
                 maxLength={6}
                 onChange={(e) => setOtp(e.target.value)}
@@ -142,7 +142,7 @@ export default function Otp() {
                 label="Submit OTP"
                 onClick={handleSubmit}
               />
-              <div className="resend" id="resnd" onClick={Resent}>
+              <div className="resend forLog " id="resnd" onClick={Resent}>
                 Resend otp
               </div>
             </div>

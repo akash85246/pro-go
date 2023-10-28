@@ -39,10 +39,13 @@ export default function Reset() {
     const hasNumber = /\d/.test(newPassword);
 
     if (newPassword.length >= 8 && hasLetter && hasNumber) {
+      document.getElementById("passwordStrength").style.display = "block";
       setPasswordStrength("Strong");
     } else if (newPassword.length >= 6 && (hasLetter || hasNumber)) {
+      document.getElementById("passwordStrength").style.display = "block";
       setPasswordStrength("Moderate");
-    } else {
+    } else if (newPassword.length != 0) {
+      document.getElementById("passwordStrength").style.display = "block";
       setPasswordStrength("Weak");
     }
 
@@ -109,7 +112,6 @@ export default function Reset() {
         console.error("Error setting up the request:", error);
       }
     } finally {
-      // Set loading to false to hide the loader
       setLoading(false);
     }
   }
@@ -142,6 +144,7 @@ export default function Reset() {
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left"
+            class="loginImage"
             src="./src/assets/reset.svg"
           />
 
@@ -149,31 +152,32 @@ export default function Reset() {
             <ProgressBar circleCount={4} color={3} />
             <h1>Reset password</h1>
             <form onSubmit={handleSubmit}>
-              <div className="Input">
+              <div className="Input resetInput">
                 <label className="light">Password</label>
                 <input
                   type="password"
                   name="password"
-                  className="input"
+                  className="input resetP"
                   required
                   maxLength={15}
                   minLength={5}
                   onChange={handlePasswordChange}
                 />
               </div>
-              <div>
-                {formData.password && (
-                  <div id="passwordStrength">
-                    Password Strength: {passwordStrength}
-                  </div>
-                )}
+              <div className="password-strength-container">
+                <div
+                  id="passwordStrength"
+                  className={passwordStrength.toLowerCase()}
+                >
+                  Password Strength: {passwordStrength}
+                </div>
               </div>
-              <div className="Input">
+              <div className="Input resetInput">
                 <label className="light">Confirm password</label>
                 <input
                   type="password"
                   name="confirmPassword"
-                  className="input"
+                  className="input resetCP"
                   required
                   value={formData.confirmPassword}
                   onChange={handleConfirmPasswordChange}
@@ -184,7 +188,7 @@ export default function Reset() {
               {passwordMatchError && <div id="pass">{passwordMatchError}</div>}
               <Button
                 type="submit"
-                class="submit button register" // Use className instead of class
+                class="submit button register "
                 label="Reset Password"
               />
             </form>

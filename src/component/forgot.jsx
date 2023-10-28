@@ -112,10 +112,11 @@ export default function Forgotten(props) {
         </div>
       )}
       {!loading && (
-        <div className="container">
+        <div className="container forContainer">
           <LeftContainer
             classDiv="loginContainer left"
             src="./src/assets/verification.svg"
+            class="loginImage"
             // h1="Sign up for an account today"
           />
           <div className="loginContainer right">
@@ -135,12 +136,12 @@ export default function Forgotten(props) {
                   <label className="light">
                     {loginWithPhone ? "Phone number" : "Email address"}
                   </label>
-                  <a
+                  {/* <a
                     className="blue loginWith"
                     onClick={() => setLoginWithPhone(!loginWithPhone)}
                   >
                     {loginWithPhone ? "Use Email" : "Use Phone number"}
-                  </a>
+                  </a> */}
                 </div>
                 <input
                   type="text"
@@ -154,7 +155,7 @@ export default function Forgotten(props) {
                   required
                 />
                 <div>
-                  <span id="numberError">
+                  <span id="numberError" className="error">
                     {loginWithPhone ? phoneNumberError : emailError}
                   </span>
                 </div>
@@ -172,7 +173,7 @@ export default function Forgotten(props) {
                 onClick={handlePhoneSubmit}
               />
               <div className="lowNavigate">
-                <span className="blue " onClick={handleSignUp}>
+                <span className="blue  forLog" onClick={handleSignUp}>
                   Log In
                 </span>
               </div>

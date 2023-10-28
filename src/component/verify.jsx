@@ -123,6 +123,7 @@ export default function Verification() {
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left"
+            class="loginImage"
             src="../src/assets/verification.svg"
           />
 
