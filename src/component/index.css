@@ -4,7 +4,6 @@
   grid-template-rows: 1fr;
   height: 85vh;
 }
-
 body {
   overflow: hidden;
   margin: 0;
@@ -127,8 +126,7 @@ body {
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 0.5vw;
-  margin-left: -2.5vw;
+  margin-left: -3vw;
   left: 4vw;
   z-index: 1;
 }
@@ -164,7 +162,7 @@ body {
   color: #d61919;
   height: 0.8vh;
   margin-top: 2vh;
-  font-size: 1.5vw;
+  font-size: 0.8vw;
 }
 .error {
   display: none;

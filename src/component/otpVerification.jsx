@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./button";
 import ProgressBar from "./progress";
 import Reset from "./resetPassword";
@@ -21,6 +21,17 @@ export default function Otp() {
   const emailEndpoint = "https://pro-go.onrender.com/api/auth/verify-otp";
   const resentEndpoint = "https://pro-go.onrender.com/api/auth/resend-otp";
   const [authToken, setAuthToken] = useState("");
+  const [resendTimer, setResendTimer] = useState(60);
+
+  useEffect(() => {
+    if (resendTimer > 0) {
+      const timer = setInterval(() => {
+        setResendTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [resendTimer]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -62,6 +73,7 @@ export default function Otp() {
   }
   async function Resent(e) {
     e.preventDefault();
+    setResendTimer(60);
     const submittedData = {
       email: email,
     };
@@ -118,7 +130,7 @@ export default function Otp() {
           <LeftContainer
             classDiv="loginContainer left"
             src="./src/assets/verification.svg"
-            h1="Sign up for an account today"
+            // h1="Sign up for an account today"
           />
           <div className="loginContainer right">
             <ProgressBar circleCount={4} color={2} />
@@ -127,7 +139,7 @@ export default function Otp() {
               A text with a digit code has been sent to your email address.
             </p>
             <div className="Input">
-              <label className="light">Enter OTP</label>
+              <label className="light">Enter verification code</label>
               <input
                 type="text"
                 className="input otpInput"
@@ -139,12 +151,18 @@ export default function Otp() {
               <Button
                 type="submit"
                 class="submit button otp"
-                label="Submit OTP"
+                label="Submit"
                 onClick={handleSubmit}
               />
-              <div className="resend forLog " id="resnd" onClick={Resent}>
-                Resend otp
-              </div>
+              {resendTimer > 0 ? (
+                <div className="resend forLog disabled">
+                  Resend OTP in {resendTimer} seconds
+                </div>
+              ) : (
+                <div className="resend forLog" id="resnd" onClick={Resent}>
+                  Resend OTP
+                </div>
+              )}
             </div>
           </div>
         </div>

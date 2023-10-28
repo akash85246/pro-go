@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./button";
 import { useLocation } from "react-router-dom";
 import LeftContainer from "./leftContainer";
@@ -22,6 +22,17 @@ export default function Verification() {
   {
     console.log(email);
   }
+  const [resendTimer, setResendTimer] = useState(60);
+
+  useEffect(() => {
+    if (resendTimer > 0) {
+      const timer = setInterval(() => {
+        setResendTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [resendTimer]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -68,6 +79,7 @@ export default function Verification() {
 
   async function Resent(e) {
     e.preventDefault();
+    setResendTimer(60);
     const submittedData = {
       email: email,
     };
@@ -150,9 +162,19 @@ export default function Verification() {
               onClick={(e) => handleSubmit(e, "register")}
             />
 
-            <div className="resend" id="resnd" onClick={Resent}>
+            {/* <div className="resend" id="resnd" onClick={Resent}>
               Resend otp
-            </div>
+            </div> */}
+
+            {resendTimer > 0 ? (
+              <div className="resend" id="resnd">
+                Resend OTP in {resendTimer} seconds
+              </div>
+            ) : (
+              <div className="resend" id="resnd" onClick={Resent}>
+                Resend OTP
+              </div>
+            )}
           </div>
         </div>
       )}

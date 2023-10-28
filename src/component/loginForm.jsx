@@ -212,7 +212,7 @@ function LoginForm() {
                     minLength={5}
                     required
                   />
-                  <div value="i" className="show" onClick={eye}>
+                  <div className="show" onClick={eye}>
                     <img
                       src={
                         showPassword
