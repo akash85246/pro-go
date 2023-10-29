@@ -6,7 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "../../node_modules/react-toastify/dist/ReactToastify.css";
 
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
