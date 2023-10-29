@@ -221,8 +221,8 @@ function LoginForm() {
                     <img
                       src={
                         showPassword
-                          ? "../../../assets/eye-hide.svg"
-                          : "../../../assets/eye.svg"
+                          ? "./src/assets/eye-hide.svg"
+                          : "./src/assets/eye.svg"
                       }
                       height={"25px"}
                       alt="show password"
