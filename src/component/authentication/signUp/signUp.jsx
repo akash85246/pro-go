@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import LeftContainer from "../leftContainer";
 import { Vortex } from "react-loader-spinner";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+import signUpImg from "../../../assets/sign-up.png";
 
 function SignUpForm() {
   const [name, setName] = useState("");
@@ -176,7 +177,7 @@ function SignUpForm() {
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left signUpLeft"
-            src="./src/assets/sign-up.png"
+            src={signUpImg}
             class="loginImage signUpImage"
             h1="Sign up for an account today"
           />

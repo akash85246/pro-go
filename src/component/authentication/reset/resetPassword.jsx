@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+
 
 const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 

@@ -6,7 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+
 
 export default function Verification() {
   const [verificationCode, setVerificationCode] = useState("");

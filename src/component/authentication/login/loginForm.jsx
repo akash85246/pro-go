@@ -10,7 +10,8 @@ import { Vortex } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+
 
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
 
