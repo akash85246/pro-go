@@ -154,7 +154,7 @@ function LoginForm() {
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left"
-            src="../../../assets/logIn.svg"
+            src="./src/assets/logIn.svg"
             class="loginImage"
             h1="Login on cloud today, tomorrow, or from any location"
           />
