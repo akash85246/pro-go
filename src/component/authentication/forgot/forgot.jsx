@@ -115,7 +115,7 @@ export default function Forgotten(props) {
         <div className="container forContainer">
           <LeftContainer
             classDiv="loginContainer left"
-            src="./src/assets/verification.svg"
+            src="../src/assets/verification.svg"
             class="loginImage"
             // h1="Sign up for an account today"
           />
