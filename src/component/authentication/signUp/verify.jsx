@@ -60,9 +60,9 @@ export default function Verification() {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
 
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
 
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
