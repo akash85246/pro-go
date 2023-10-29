@@ -154,7 +154,7 @@ function LoginForm() {
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left"
-            src="../src/assets/logIn.svg"
+            src="../../../assets/logIn.svg"
             class="loginImage"
             h1="Login on cloud today, tomorrow, or from any location"
           />
@@ -221,8 +221,8 @@ function LoginForm() {
                     <img
                       src={
                         showPassword
-                          ? "../src/assets/eye-hide.svg"
-                          : "../src/assets/eye.svg"
+                          ? "../../../assets/eye-hide.svg"
+                          : "../../../assets/eye.svg"
                       }
                       height={"25px"}
                       alt="show password"

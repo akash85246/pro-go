@@ -5,4 +5,9 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/pro-go/",
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      external: ["react-toastify"], 
+    },
+  },
 });
