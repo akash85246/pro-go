@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "../leftContainer";
 import { Vortex } from "react-loader-spinner";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 // import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 import signUpImg from "../../../assets/sign-up.png";
 
