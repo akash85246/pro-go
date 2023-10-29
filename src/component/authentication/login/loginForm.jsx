@@ -4,7 +4,7 @@ import RememberMeCheckbox from "../rememberMe";
 import Button from "../button";
 import LeftContainer from "../leftContainer";
 import axios from "axios";
-
+import loginImg from "../../../assets/logIn.svg";
 import { Vortex } from "react-loader-spinner";
 
 import { useNavigate } from "react-router-dom";
@@ -154,7 +154,7 @@ function LoginForm() {
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left"
-            src="./src/assets/logIn.svg"
+            src={loginImg}
             class="loginImage"
             h1="Login on cloud today, tomorrow, or from any location"
           />
