@@ -9,7 +9,8 @@ import { Vortex } from "react-loader-spinner";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../../../assets/logo.svg";
+import ham from "../../../assets/hamburger.svg";
 // import { toast } from "react-toastify";
 // import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
@@ -153,6 +154,10 @@ function LoginForm() {
       )}
       {!loading && (
         <div className="container">
+          <div className="navbar">
+            <img src={logo}></img>
+            <img src={ham}></img>
+          </div>
           <LeftContainer
             classDiv="loginContainer left"
             src={loginImg}
@@ -250,7 +255,7 @@ function LoginForm() {
                 />
               </div>
               <div className="lowNavigate">
-                <span className=" light" onClick={handleForgotPassword} >
+                <span className=" light" onClick={handleForgotPassword}>
                   Forgot Password?
                 </span>
                 <span className="blue " onClick={handleSignUp}>

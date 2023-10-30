@@ -6,8 +6,8 @@ import {
   Navigate,
 } from "react-router-dom";
 // import { ToastContainer } from "../../node_modules/react-toastify";
-// import "../../node_modules/react-toastify/dist/ReactToastify.css";
-import "react-toastify/dist/ReactToastify.css";
+import "../../node_modules/react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
@@ -32,7 +32,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
-      
+
       <ToastContainer />
     </>
   );

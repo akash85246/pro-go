@@ -10,6 +10,10 @@ body {
   font-size: 1.2vw;
   font-family: "Inter", sans-serif;
 }
+.navbar {
+  display: none;
+  width: 100%;
+}
 .password-strength-container {
   height: 4vw;
 }
@@ -239,11 +243,25 @@ form {
   .button {
     font-size: 2vw;
   }
+  .navbar {
+    position: absolute;
+    display: flex;
+    height: 5vh;
+    justify-content: space-between;
+    margin: 1vw 1vw;
+  }
 }
 @media only screen and (max-width: 450px) {
   body {
     /* background-color: lightblue; */
     font-size: 3vw;
+  }
+  .navbar {
+    position: absolute;
+    display: flex;
+    height: 5vh;
+    justify-content: space-between;
+    margin: 1vw 1vw;
   }
   .right {
     width: 90vw;
