@@ -15,7 +15,8 @@ body {
   width: 100%;
 }
 .password-strength-container {
-  height: 4vw;
+  height: 3vw;
+  margin: 1vw;
 }
 .loginContainer {
   display: flex;
@@ -139,6 +140,8 @@ form {
 #passwordStrength,
 #resetPass {
   display: none;
+  font-size: 1vw;
+  margin: 12vh 0;
 }
 .weak {
   color: red;
@@ -181,10 +184,13 @@ form {
 .checkbox {
   width: 100%;
 }
+.signUpImage {
+  margin-top: 4vh;
+}
 @media only screen and (max-width: 900px) {
   body {
     /* background-color: lightblue; */
-    font-size: 1.8vw;
+    font-size: 1.5vw;
   }
 
   .Input {
@@ -202,6 +208,10 @@ form {
   }
   .checkbox {
     width: 100%;
+  }
+  #passwordStrength,
+  #resetPass {
+    font-size: 0.5vw;
   }
 }
 @media only screen and (max-width: 500px) {

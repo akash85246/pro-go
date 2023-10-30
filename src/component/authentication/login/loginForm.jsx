@@ -67,8 +67,10 @@ function LoginForm() {
   }
 
   function handleSignUp() {
+    
     setShowSignUp(true);
     navigate("/signUp");
+    
   }
   async function handleSubmit(event) {
     event.preventDefault();
@@ -111,6 +113,7 @@ function LoginForm() {
         // toast.error(error.response.data.message, {
         //   position: toast.POSITION.TOP_CENTER,
         // });
+        alert(error.response.data.message);
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }

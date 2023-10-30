@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
 import otpImg from "../../../assets/verification.svg";
+import logo from "../../../assets/logo.svg";
+import ham from "../../../assets/hamburger.svg";
 // import { toast } from "react-toastify";
 // import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
@@ -59,6 +61,7 @@ export default function Otp() {
         // toast.error(error.response.data.message, {
         //   position: toast.POSITION.TOP_CENTER,
         // });
+        alert(error.response.data.message);
         console.error("Server responded with an error:", error.response.data);
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
@@ -128,6 +131,10 @@ export default function Otp() {
       )}
       {!loading && (
         <div className="container forContainer">
+          <div className="navbar">
+            <img src={logo}></img>
+            <img src={ham}></img>
+          </div>
           <LeftContainer
             classDiv="loginContainer left"
             src={otpImg}

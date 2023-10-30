@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "../leftContainer";
 import { Vortex } from "react-loader-spinner";
+import logo from "../../../assets/logo.svg";
+import ham from "../../../assets/hamburger.svg";
 // import { toast } from "react-toastify";
 // import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 import signUpImg from "../../../assets/sign-up.png";
@@ -42,6 +44,7 @@ function SignUpForm() {
       document.getElementById("nameError").style.display = "block";
       // document.getElementById("nameError").innerHTML =
       //   "****Name cannot contain numbers or too small";
+      
     } else {
       console.log("h2");
       setName(nameValue);
@@ -136,6 +139,7 @@ function SignUpForm() {
         // toast.error(error.response.data.message, {
         //   position: toast.POSITION.TOP_CENTER,
         // });
+         alert(error.response.data.message);
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -175,6 +179,10 @@ function SignUpForm() {
       )}
       {!loading && (
         <div className="container">
+          <div className="navbar">
+            <img src={logo}></img>
+            <img src={ham}></img>
+          </div>
           <LeftContainer
             classDiv="loginContainer left signUpLeft"
             src={signUpImg}

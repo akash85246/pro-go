@@ -7,6 +7,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
 import forgetImg from "../../../assets/verification.svg";
+import logo from "../../../assets/logo.svg";
+import ham from "../../../assets/hamburger.svg";
 // import { toast } from "react-toastify";
 // import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
@@ -75,6 +77,7 @@ export default function Forgotten(props) {
         // toast.error(error.response.data.message, {
         //   position: toast.POSITION.TOP_CENTER,
         // });
+         alert(error.response.data.message);
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -114,6 +117,10 @@ export default function Forgotten(props) {
       )}
       {!loading && (
         <div className="container forContainer">
+          <div className="navbar">
+            <img src={logo}></img>
+            <img src={ham}></img>
+          </div>
           <LeftContainer
             classDiv="loginContainer left"
             src={forgetImg}

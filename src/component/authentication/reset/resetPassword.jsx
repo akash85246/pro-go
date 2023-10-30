@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
 import resetImg from "../../../assets/reset.svg";
+import logo from "../../../assets/logo.svg";
+import ham from "../../../assets/hamburger.svg";
 // import { toast } from "react-toastify";
 // import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
@@ -112,6 +114,7 @@ export default function Reset() {
         // toast.error(error.response.data.message, {
         //   position: toast.POSITION.TOP_CENTER,
         // });
+         alert(error.response.data.message);
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -151,6 +154,10 @@ export default function Reset() {
       )}
       {!loading && (
         <div className="container">
+          <div className="navbar">
+            <img src={logo}></img>
+            <img src={ham}></img>
+          </div>
           <LeftContainer
             classDiv="loginContainer left"
             class="loginImage"
