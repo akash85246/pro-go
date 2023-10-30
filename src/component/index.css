@@ -250,7 +250,8 @@ form {
     margin-top: 32vh;
   }
   .loginImage {
-    width: 60vw;
+    width: 55vw;
+    margin-top: -25vh;
   }
   .signUpImage {
     height: 40vw;
@@ -284,5 +285,8 @@ form {
   }
   .checkbox {
     width: 100%;
+  }
+  .button{
+    font-size: 3vw;
   }
 }
