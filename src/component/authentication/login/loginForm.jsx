@@ -250,7 +250,7 @@ function LoginForm() {
                 />
               </div>
               <div className="lowNavigate">
-                <span className=" light" onClick={handleForgotPassword}>
+                <span className=" light" onClick={handleForgotPassword} >
                   Forgot Password?
                 </span>
                 <span className="blue " onClick={handleSignUp}>

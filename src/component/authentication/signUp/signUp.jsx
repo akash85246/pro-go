@@ -219,9 +219,11 @@ function SignUpForm() {
                   required
                   onChange={validateForm}
                 />
-                <span id="emailError" className="error">
-                  **Email should have '@' and '.'
-                </span>
+                <div className="errorContainer">
+                  <span id="emailError" className="error">
+                    **Email should have '@' and '.'
+                  </span>
+                </div>
               </div>
             </div>
             {/* <div className="Input">
@@ -256,7 +258,7 @@ function SignUpForm() {
                     onChange={handlePasswordChange}
                   />
                 </div>
-                <div>
+                <div className="errorContainer">
                   {formData.password && (
                     <div
                       id="passwordStrength "
