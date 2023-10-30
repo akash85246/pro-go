@@ -7,9 +7,8 @@ import {
 } from "react-router-dom";
 // import { ToastContainer } from "../../node_modules/react-toastify";
 // import "../../node_modules/react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { ToastContainer, toast } from "react-toastify";
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
 import SignUpForm from "./authentication/signUp/signUp";
@@ -17,7 +16,6 @@ import LoginForm from "./authentication/login/loginForm";
 import Homepage from "./homepage";
 import Reset from "./authentication/reset/resetPassword";
 import Otp from "./authentication/forgot/otpVerification";
-
 function App() {
   return (
     <>
@@ -31,10 +29,10 @@ function App() {
           <Route path="/otp" element={<Otp />} />
           <Route path="/reset" element={<Reset />} />
           <Route path="/" element={<LoginForm />} />
-
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
+      
       <ToastContainer />
     </>
   );
