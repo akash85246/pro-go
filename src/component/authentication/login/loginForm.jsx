@@ -80,6 +80,7 @@ function LoginForm() {
       (!loginWithPhone && emailError) ||
       !validatePassword(password)
     ) {
+      alert("Please enter details")
       return;
     }
 
