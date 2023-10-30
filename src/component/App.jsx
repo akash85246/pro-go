@@ -19,7 +19,7 @@ import Otp from "./authentication/forgot/otpVerification";
 function App() {
   return (
     <>
-      <Router>
+      <Router basename="/pro-go/">
         <Routes>
           <Route path="/verify" element={<Verification />} />
           <Route path="/forgot" element={<Forgotten />} />
