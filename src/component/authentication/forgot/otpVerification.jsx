@@ -7,8 +7,9 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import otpImg from "../../../assets/verification.svg";
+// import { toast } from "react-toastify";
+// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
 export default function Otp() {
   const [otp, setOtp] = useState("");
@@ -55,9 +56,9 @@ export default function Otp() {
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         console.error("Server responded with an error:", error.response.data);
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
@@ -85,9 +86,9 @@ export default function Otp() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -129,28 +130,33 @@ export default function Otp() {
         <div className="container forContainer">
           <LeftContainer
             classDiv="loginContainer left"
-            src="./src/assets/verification.svg"
+            src={otpImg}
+            class="loginImage"
             // h1="Sign up for an account today"
           />
           <div className="loginContainer right">
             <ProgressBar circleCount={4} color={2} />
-            <h1>Enter verification code</h1>
-            <p className="light">
-              A text with a digit code has been sent to your email address.
-            </p>
-            <div className="Input">
-              <label className="light">Enter verification code</label>
-              <input
-                type="text"
-                className="input otpInput"
-                value={otp}
-                maxLength={6}
-                onChange={(e) => setOtp(e.target.value)}
-                required
-              />
+            <div>
+              <div className="space">
+                <h1>Enter verification code</h1>
+                <p className="light">
+                  A text with a digit code has been sent to your email address.
+                </p>
+              </div>
+              <div className="Input">
+                <label className="light">Enter verification code</label>
+                <input
+                  type="text"
+                  className="input"
+                  value={otp}
+                  maxLength={6}
+                  onChange={(e) => setOtp(e.target.value)}
+                  required
+                />
+              </div>
               <Button
                 type="submit"
-                class="submit button otp"
+                class="submit button"
                 label="Submit"
                 onClick={handleSubmit}
               />

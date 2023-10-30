@@ -6,8 +6,9 @@ import LeftContainer from "../leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import forgetImg from "../../../assets/verification.svg";
+// import { toast } from "react-toastify";
+// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -71,9 +72,9 @@ export default function Forgotten(props) {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -115,22 +116,24 @@ export default function Forgotten(props) {
         <div className="container forContainer">
           <LeftContainer
             classDiv="loginContainer left"
-            src="../src/assets/verification.svg"
+            src={forgetImg}
             class="loginImage"
             // h1="Sign up for an account today"
           />
           <div className="loginContainer right">
-            <ProgressBar circleCount={4} color={2} />
             <div className="num">
-              <h1>
-                {loginWithPhone
-                  ? "Enter Registered Number"
-                  : "Enter Email Address"}
-              </h1>
-              <p className="light">
-                A text with a 6-digit code will be sent to your{" "}
-                {loginWithPhone ? "entered number" : "email address"}.
-              </p>
+              <ProgressBar circleCount={4} color={2} />
+              <div className="space">
+                <h1>
+                  {loginWithPhone
+                    ? "Enter Registered Number"
+                    : "Enter Email Address"}
+                </h1>
+                <p className="light">
+                  A text with a 6-digit code will be sent to your{" "}
+                  {loginWithPhone ? "entered number" : "email address"}.
+                </p>
+              </div>
               <div className="Input">
                 <div className="loginWith">
                   <label className="light">
@@ -154,14 +157,14 @@ export default function Forgotten(props) {
                   }}
                   required
                 />
-                <div>
+                {/* <div>
                   <span id="numberError" className="error">
                     {loginWithPhone ? phoneNumberError : emailError}
                   </span>
-                </div>
+                </div> */}
               </div>
 
-              <div>
+              <div className="errorContainer">
                 <span id="numberError">
                   {loginWithPhone ? phoneNumberError : emailError}
                 </span>

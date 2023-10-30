@@ -5,8 +5,9 @@ import LeftContainer from "../leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import verifyImg from "../../../assets/verification.svg";
+// import { toast } from "react-toastify";
+// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
 export default function Verification() {
   const [verificationCode, setVerificationCode] = useState("");
@@ -59,9 +60,9 @@ export default function Verification() {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
 
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
 
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
@@ -92,9 +93,9 @@ export default function Verification() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -136,7 +137,7 @@ export default function Verification() {
           <LeftContainer
             classDiv="loginContainer left"
             class="loginImage"
-            src="../src/assets/verification.svg"
+            src={verifyImg}
           />
 
           <div className="loginContainer right verify">

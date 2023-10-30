@@ -6,8 +6,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import resetImg from "../../../assets/reset.svg";
+// import { toast } from "react-toastify";
+// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
 const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 
@@ -108,9 +109,9 @@ export default function Reset() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -153,7 +154,7 @@ export default function Reset() {
           <LeftContainer
             classDiv="loginContainer left"
             class="loginImage"
-            src="./src/assets/reset.svg"
+            src={resetImg}
           />
 
           <div className="loginContainer right log resetRight">
@@ -172,12 +173,14 @@ export default function Reset() {
                   onChange={handlePasswordChange}
                 />
               </div>
-              <div className="password-strength-container resetPSC">
-                <div
-                  id="passwordStrength resetPassword"
-                  className={passwordStrength.toLowerCase()}
-                >
-                  Password Strength: {passwordStrength}
+              <div className="errorContainer">
+                <div className="password-strength-container resetPSC">
+                  <div
+                    id="passwordStrength"
+                    className={passwordStrength.toLowerCase()}
+                  >
+                    Password Strength: {passwordStrength}
+                  </div>
                 </div>
               </div>
               <div className="Input resetInput">
@@ -193,7 +196,7 @@ export default function Reset() {
                   minLength={5}
                 />
               </div>
-              <div className="ressetPc">
+              <div className="errorContainer">
                 <div id="resetPass">password do not match</div>
               </div>
               <Button

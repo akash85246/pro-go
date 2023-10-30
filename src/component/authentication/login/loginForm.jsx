@@ -4,13 +4,14 @@ import RememberMeCheckbox from "../rememberMe";
 import Button from "../button";
 import LeftContainer from "../leftContainer";
 import axios from "axios";
-
+import loginImg from "../../../assets/logIn.svg";
 import { Vortex } from "react-loader-spinner";
-
+import eyeImg from "../../../assets/eye.svg";
+import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
 
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { toast } from "react-toastify";
+// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
 
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
 
@@ -106,9 +107,9 @@ function LoginForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -154,21 +155,23 @@ function LoginForm() {
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left"
-            src="./src/assets/logIn.svg"
+            src={loginImg}
             class="loginImage"
-            h1="Login on cloud today, tomorrow, or from any location"
+            // h1="Login on cloud today, tomorrow, or from any location"
           />
           <div className="loginContainer right log">
-            <ProgressBar circleCount={4} color={1} />
-            <div>
-              <h1>Account Login</h1>
-
-              <p className="light">
-                If you are already a member, you can log in with your{" "}
-                {loginWithPhone ? "phone number" : "email address"} and password
-              </p>
-            </div>
             <form onSubmit={handleSubmit}>
+              <ProgressBar circleCount={4} color={1} />
+              <div>
+                <h1>Account Login</h1>
+
+                <p className="light">
+                  If you are already a member, you can log in with your{" "}
+                  {loginWithPhone ? "phone number" : "email address"} and
+                  password
+                </p>
+              </div>
+
               <div className="entry">
                 <div
                   style={{
@@ -193,11 +196,12 @@ function LoginForm() {
                     </div>
                     <input
                       type="text"
-                      className={loginWithPhone ? "phone input" : "email input"}
+                      className="input"
                       onChange={(event) => {
-                        loginWithPhone
-                          ? validatePhoneNumber(event.target.value)
-                          : validateEmail(event.target.value);
+                        // loginWithPhone
+                        //   ? validatePhoneNumber(event.target.value)
+                        //   :
+                        validateEmail(event.target.value);
                       }}
                       maxLength={loginWithPhone ? 10 : 50}
                       required
@@ -205,7 +209,13 @@ function LoginForm() {
                   </div>
                 </div>
               </div>
-              <div className="entry Input">
+              <div className="errorContainer" style={{ display: "block" }}>
+                <span className="error">
+                  {/* {loginWithPhone ? phoneError : emailError} */}
+                  **Email should have '@' and '.'
+                </span>
+              </div>
+              <div className="Input">
                 <label className="light">Password</label>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <input
@@ -219,19 +229,12 @@ function LoginForm() {
                   />
                   <div className="show" onClick={eye}>
                     <img
-                      src={
-                        showPassword
-                          ? "./src/assets/eye-hide.svg"
-                          : "./src/assets/eye.svg"
-                      }
+                      src={showPassword ? eyeHidImg : eyeImg}
                       height={"25px"}
                       alt="show password"
                     />
                   </div>
                 </div>
-                <span className="error">
-                  {loginWithPhone ? phoneError : emailError}
-                </span>
               </div>
               <RememberMeCheckbox class="signInCheckbox" divClass="remember" />
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -247,7 +250,7 @@ function LoginForm() {
                 />
               </div>
               <div className="lowNavigate">
-                <span className=" light" onClick={handleForgotPassword}>
+                <span className=" light" onClick={handleForgotPassword} >
                   Forgot Password?
                 </span>
                 <span className="blue " onClick={handleSignUp}>
