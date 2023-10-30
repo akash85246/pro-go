@@ -8,7 +8,7 @@ import {
 // import { ToastContainer } from "../../node_modules/react-toastify";
 import "../../node_modules/react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "../../node_modules/react-toastify";
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
 import SignUpForm from "./authentication/signUp/signUp";
