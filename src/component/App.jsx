@@ -5,8 +5,10 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { ToastContainer } from "../../node_modules/react-toastify";
-import "../../node_modules/react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "../../node_modules/react-toastify";
+// import "../../node_modules/react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
