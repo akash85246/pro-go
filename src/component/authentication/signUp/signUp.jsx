@@ -40,8 +40,8 @@ function SignUpForm() {
     if (!nameCheck.test(nameValue) && nameValue !== "") {
       console.log("h1");
       document.getElementById("nameError").style.display = "block";
-      document.getElementById("nameError").innerHTML =
-        "**Name cannot contain numbers and should be more than 2 characters";
+      // document.getElementById("nameError").innerHTML =
+      //   "****Name cannot contain numbers or too small";
     } else {
       console.log("h2");
       setName(nameValue);
@@ -179,43 +179,50 @@ function SignUpForm() {
             classDiv="loginContainer left signUpLeft"
             src={signUpImg}
             class="loginImage signUpImage"
-            h1="Sign up for an account today"
+            h1="Login on cloud today ,tomorrow or by any location"
           />
-          <div className="loginContainer right">
-            <h1 style={{ textAlign: "left" }} className="signUpH1">
-              Create account
-            </h1>
-
+          <div className="loginContainer right signUpRight">
+            <div style={{ textAlign: "left", width: "100%" }}>
+              <h1 className="signUpH1">Create account</h1>
+            </div>
             <div className="Input signUpInput">
-              <label className="light">Username</label>
-              <input
-                type="text"
-                name="name"
-                className="input signUpinput"
-                id="name"
-                maxLength={15}
-                minLength={3}
-                onChange={validateForm}
-                required
-              />
-              <span id="nameError" className="signUpNameError">
-                **Name cannot contain numbers or too small
-              </span>
+              <div className="signIC">
+                <label className="light">Username</label>
+                <input
+                  type="text"
+                  name="name"
+                  className="input signCp"
+                  id="name"
+                  maxLength={15}
+                  minLength={3}
+                  onChange={validateForm}
+                  required
+                />
+                <div className="errorContainer">
+                  <span id="nameError" className="error">
+                    **Name cannot contain numbers or too small
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* <div className="emailNumber"> */}
-            <div className="Input">
-              <label className="light">Email</label>
-              <input
-                type="text"
-                name="email"
-                id="email"
-                maxLength={50}
-                className="input signUpinput"
-                required
-                onChange={validateForm}
-              />
-              <span id="emailError">**Email should have '@' and '.'</span>
+            <div className="Input signUpInput">
+              <div className="signIC">
+                <label className="light">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  maxLength={50}
+                  className="input signCp"
+                  required
+                  onChange={validateForm}
+                />
+                <span id="emailError" className="error">
+                  **Email should have '@' and '.'
+                </span>
+              </div>
             </div>
             {/* <div className="Input">
               <label className="light">Phone Number</label>
@@ -235,46 +242,56 @@ function SignUpForm() {
             </div> */}
             {/* </div> */}
 
-            <div className="Input createPassword signUpCP">
-              <div>
-                <label className="light">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="input signCp"
-                  required
-                  maxLength={15}
-                  minLength={5}
-                  onChange={handlePasswordChange}
-                />
-              </div>
-              <div>
-                <label className="light">Confirm password</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  className="input signCp"
-                  required
-                  value={formData.confirmPassword}
-                  onChange={handleConfirmPasswordChange}
-                  maxLength={15}
-                  minLength={5}
-                />
-              </div>
-            </div>
-            <div>
-              <span id="pass">Passwords do not match</span>
-              {formData.password && (
-                <div
-                  id="passwordStrength "
-                  className={passwordStrength.toLowerCase()}
-                >
-                  Password Strength: {passwordStrength}
+            <div className="createPassword">
+              <div className="Input signUpInput">
+                <div className="signIC">
+                  <label className="light">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    className="input signCp"
+                    required
+                    maxLength={15}
+                    minLength={5}
+                    onChange={handlePasswordChange}
+                  />
                 </div>
-              )}
+                <div>
+                  {formData.password && (
+                    <div
+                      id="passwordStrength "
+                      className={passwordStrength.toLowerCase()}
+                    >
+                      Password Strength: {passwordStrength}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="Input signUpInput">
+                <div className="signIC">
+                  <label className="light">Confirm password</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    className="input signCp"
+                    required
+                    value={formData.confirmPassword}
+                    onChange={handleConfirmPasswordChange}
+                    maxLength={15}
+                    minLength={5}
+                  />
+                </div>
+                <div className="errorContainer">
+                  <span id="pass" className="error">
+                    Passwords do not match
+                  </span>
+                </div>
+              </div>
             </div>
-            <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
-            <Terms />
+            <div className="checkbox">
+              <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
+              <Terms />
+            </div>
             <Button
               type="submit"
               class="submit button register"
