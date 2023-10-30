@@ -18,3 +18,6 @@ export default function ProgressBar({ circleCount, color }) {
 
   return <div className="progress-bar">{elements}</div>;
 }
+
+
+
