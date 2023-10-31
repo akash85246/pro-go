@@ -9,8 +9,8 @@ import { Vortex } from "react-loader-spinner";
 import forgetImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-// import { toast } from "react-toastify";
-// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+import { toast } from "../../../../public/react-toastify";
+import "../../../../public/react-toastify/dist/ReactToastify.css";
 
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -27,16 +27,27 @@ export default function Forgotten(props) {
   const emailEndpoint = "https://pro-go.onrender.com/api/auth/forget-password";
 
   function validateEmail(inputEmail) {
-    const emailCheck = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    const emailCheck = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
-      document.querySelector("#numberError").style.display = "block";
-      setEmailError("**Email should have '@' and '.'");
+      document.getElementById("emailError").style.display = "block";
+
+      if (!inputEmail.includes("@") && !inputEmail.includes(".")) {
+        setEmailError("Missing '@' and '.' in the email");
+      } else if (!inputEmail.includes("@")) {
+        setEmailError("Missing '@' in the email");
+      } else if (!inputEmail.includes(".")) {
+        setEmailError("Missing '.' in the email");
+      } else {
+        setEmailError("**Invalid Email");
+      }
     } else {
-      document.querySelector("#numberError").style.display = "none";
+      document.getElementById("emailError").style.display = "none";
+      setEmailError("");
       setEmail(inputEmail);
     }
   }
+
   function validatePhoneNumber(inputPhoneNumber) {
     const numberCheck = /^[789]\d{9}/;
 
@@ -56,7 +67,7 @@ export default function Forgotten(props) {
     navigate("/logIn");
   }
 
-  async function handlePhoneSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const submittedData = {
       email: email,
@@ -74,10 +85,9 @@ export default function Forgotten(props) {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
-         alert(error.response.data.message);
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -93,104 +103,83 @@ export default function Forgotten(props) {
 
   return (
     <>
-      {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "800",
-            height: "100vh",
-            backgroundColor: "#011C67",
-          }}
-        >
-          <Vortex
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="vortex-loading"
-            wrapperStyle={{}}
-            wrapperClass="vortex-wrapper"
-            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
-          />
-        </div>
-      )}
-      {!loading && (
-        <div className="container forContainer">
-          <div className="navbar">
-            <img src={logo}></img>
-            <img src={ham}></img>
-          </div>
-          <LeftContainer
-            classDiv="loginContainer left"
-            src={forgetImg}
-            class="loginImage"
-            // h1="Sign up for an account today"
-          />
-          <div className="loginContainer right">
-            <div className="num">
-              <ProgressBar circleCount={4} color={2} />
-              <div className="space">
-                <h1>
-                  {loginWithPhone
-                    ? "Enter Registered Number"
-                    : "Enter Email Address"}
-                </h1>
-                <p className="light">
-                  A text with a 6-digit code will be sent to your{" "}
-                  {loginWithPhone ? "entered number" : "email address"}.
-                </p>
-              </div>
-              <div className="Input">
-                <div className="loginWith">
-                  <label className="light">
-                    {loginWithPhone ? "Phone number" : "Email address"}
-                  </label>
-                  {/* <a
+      {
+        <form onSubmit={handleSubmit}>
+          <div className="container forContainer">
+            <div className="navbar">
+              <img src={logo}></img>
+            </div>
+            <LeftContainer
+              classDiv="loginContainer left"
+              src={forgetImg}
+              class="loginImage"
+              // h1="Sign up for an account today"
+            />
+            <div className="loginContainer right">
+              <div className="num">
+                <ProgressBar circleCount={4} color={2} />
+                <div className="space">
+                  <h1>
+                    {loginWithPhone
+                      ? "Enter Registered Number"
+                      : "Enter Email Address"}
+                  </h1>
+                  <p className="light">
+                    A text with a 6-digit code will be sent to your{" "}
+                    {loginWithPhone ? "entered number" : "email address"}.
+                  </p>
+                </div>
+                <div className="Input">
+                  <div className="loginWith">
+                    <label className="light">
+                      {loginWithPhone ? "Phone number" : "Email address"}
+                    </label>
+                    {/* <a
                     className="blue loginWith"
                     onClick={() => setLoginWithPhone(!loginWithPhone)}
                   >
                     {loginWithPhone ? "Use Email" : "Use Phone number"}
                   </a> */}
-                </div>
-                <input
-                  type="text"
-                  className="input"
-                  maxLength={loginWithPhone ? 10 : 50}
-                  onChange={(event) => {
-                    loginWithPhone
-                      ? validatePhoneNumber(event.target.value)
-                      : validateEmail(event.target.value);
-                  }}
-                  required
-                />
-                {/* <div>
+                  </div>
+                  <input
+                    type="text"
+                    className="input"
+                    maxLength={loginWithPhone ? 10 : 50}
+                    onChange={(event) => {
+                      loginWithPhone
+                        ? validatePhoneNumber(event.target.value)
+                        : validateEmail(event.target.value);
+                    }}
+                    required
+                  />
+                  {/* <div>
                   <span id="numberError" className="error">
                     {loginWithPhone ? phoneNumberError : emailError}
                   </span>
                 </div> */}
-              </div>
+                </div>
 
-              <div className="errorContainer">
-                <span id="numberError">
-                  {loginWithPhone ? phoneNumberError : emailError}
-                </span>
-              </div>
-              <Button
-                type="submit"
-                class="submit button number"
-                label="Submit"
-                onClick={handlePhoneSubmit}
-              />
-              <div className="lowNavigate">
-                <span className="blue  forLog" onClick={handleSignUp}>
-                  Log In
-                </span>
+                <div className="errorContainer">
+                  <span id="emailError">{emailError}</span>
+                </div>
+                <div className="buttonContainer">
+                  <Button
+                    type="submit"
+                    class="submit button register"
+                    label="Submit"
+                    loading={loading}
+                  />
+                </div>
+                <div className="lowNavigate">
+                  <span className="blue  forLog" onClick={handleSignUp}>
+                    Log In
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        </form>
+      }
     </>
   );
 }

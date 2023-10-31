@@ -10,8 +10,8 @@ import { Vortex } from "react-loader-spinner";
 import otpImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-// import { toast } from "react-toastify";
-// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+import { toast } from "../../../../public/react-toastify";
+import "../../../../public/react-toastify/dist/ReactToastify.css";
 
 export default function Otp() {
   const [otp, setOtp] = useState("");
@@ -58,9 +58,9 @@ export default function Otp() {
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         alert(error.response.data.message);
         console.error("Server responded with an error:", error.response.data);
         if (error.response.data.message === "No user exists with this email") {
@@ -89,9 +89,9 @@ export default function Otp() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -107,79 +107,64 @@ export default function Otp() {
 
   return (
     <>
-      {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "800",
-            height: "100vh",
-            backgroundColor: "#011C67",
-          }}
-        >
-          <Vortex
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="vortex-loading"
-            wrapperStyle={{}}
-            wrapperClass="vortex-wrapper"
-            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
-          />
-        </div>
-      )}
-      {!loading && (
-        <div className="container forContainer">
-          <div className="navbar">
-            <img src={logo}></img>
-            <img src={ham}></img>
-          </div>
-          <LeftContainer
-            classDiv="loginContainer left"
-            src={otpImg}
-            class="loginImage"
-            // h1="Sign up for an account today"
-          />
-          <div className="loginContainer right">
-            <ProgressBar circleCount={4} color={2} />
-            <div>
-              <div className="space">
-                <h1>Enter verification code</h1>
-                <p className="light">
-                  A text with a digit code has been sent to your email address.
-                </p>
-              </div>
-              <div className="Input">
-                <label className="light">Enter verification code</label>
-                <input
-                  type="text"
-                  className="input"
-                  value={otp}
-                  maxLength={6}
-                  onChange={(e) => setOtp(e.target.value)}
-                  required
-                />
-              </div>
-              <Button
-                type="submit"
-                class="submit button"
-                label="Submit"
-                onClick={handleSubmit}
-              />
-              {resendTimer > 0 ? (
-                <div className="resend forLog disabled">
-                  Resend OTP in {resendTimer} seconds
+      {
+        <form onSubmit={handleSubmit}>
+          (
+          <div className="container forContainer">
+            <div className="navbar">
+              <img src={logo}></img>
+            
+            </div>
+            <LeftContainer
+              classDiv="loginContainer left"
+              src={otpImg}
+              class="loginImage"
+              // h1="Sign up for an account today"
+            />
+            <div className="loginContainer right">
+              <ProgressBar circleCount={4} color={2} />
+              <div>
+                <div className="space">
+                  <h1>Enter verification code</h1>
+                  <p className="light">
+                    A text with a digit code has been sent to your email
+                    address.
+                  </p>
                 </div>
-              ) : (
-                <div className="resend forLog" id="resnd" onClick={Resent}>
-                  Resend OTP
+                <div className="Input">
+                  <label className="light">Enter verification code</label>
+                  <input
+                    type="text"
+                    className="input"
+                    value={otp}
+                    maxLength={6}
+                    onChange={(e) => setOtp(e.target.value)}
+                    required
+                  />
                 </div>
-              )}
+                <div className="buttonContainer">
+                  <Button
+                    type="submit"
+                    class="submit button register"
+                    label="Submit"
+                    loading={loading}
+                  />
+                </div>
+                {resendTimer > 0 ? (
+                  <div className="resend forLog disabled">
+                    Resend OTP in {resendTimer} seconds
+                  </div>
+                ) : (
+                  <div className="resend forLog" id="resnd" onClick={Resent}>
+                    Resend OTP
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+          )
+        </form>
+      }
     </>
   );
 }

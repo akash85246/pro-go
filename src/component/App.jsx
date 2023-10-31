@@ -5,10 +5,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-// import { ToastContainer } from "../../node_modules/react-toastify";
-// import "../../node_modules/react-toastify/dist/ReactToastify.css";
-// import "react-toastify/dist/ReactToastify.css";
-// import { ToastContainer, toast } from "../../node_modules/react-toastify";
+import { ToastContainer } from "../../public/react-toastify"; 
+import "../../public/react-toastify/dist/ReactToastify.css";
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
 import SignUpForm from "./authentication/signUp/signUp";
@@ -16,10 +14,11 @@ import LoginForm from "./authentication/login/loginForm";
 import Homepage from "./homepage";
 import Reset from "./authentication/reset/resetPassword";
 import Otp from "./authentication/forgot/otpVerification";
+
 function App() {
   return (
     <>
-      <Router basename="/pro-go/">
+      <Router>
         <Routes>
           <Route path="/verify" element={<Verification />} />
           <Route path="/forgot" element={<Forgotten />} />
@@ -33,7 +32,7 @@ function App() {
         </Routes>
       </Router>
 
-      {/* <ToastContainer /> */}
+      <ToastContainer />
     </>
   );
 }

@@ -8,8 +8,8 @@ import { Vortex } from "react-loader-spinner";
 import verifyImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-// import { toast } from "react-toastify";
-// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+import { toast } from "../../../../public/react-toastify";
+import "../../../../public/react-toastify/dist/ReactToastify.css";
 
 export default function Verification() {
   const [verificationCode, setVerificationCode] = useState("");
@@ -62,10 +62,10 @@ export default function Verification() {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
 
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
-        alert(error.response.data.message);
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -95,9 +95,9 @@ export default function Verification() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -110,81 +110,64 @@ export default function Verification() {
   }
   return (
     <>
-      {console.log(loading)}
-      {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "800",
-            height: "100vh",
-            backgroundColor: "#011C67",
-          }}
-        >
-          <Vortex
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="vortex-loading"
-            wrapperStyle={{}}
-            wrapperClass="vortex-wrapper"
-            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
-          />
-        </div>
-      )}
-
-      {!loading && (
-        <div className="container">
-          <div className="navbar">
-            <img src={logo}></img>
-            <img src={ham}></img>
-          </div>
-          <LeftContainer
-            classDiv="loginContainer left"
-            class="loginImage"
-            src={verifyImg}
-          />
-
-          <div className="loginContainer right verify">
-            <h1>Enter verification code</h1>
-            <p className="light">
-              a text with 6-digit code has been sent to your email
-            </p>
-
-            <div className="Input">
-              <label className="light">Enter verification code</label>
-              <input
-                type="text"
-                className="input verifyInput"
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-              />
+      {
+        <form onSubmit={handleSubmit}>
+          (
+          <div className="container">
+            <div className="navbar">
+              <img src={logo}></img>
             </div>
-
-            <Button
-              type="submit"
-              class="submit button"
-              label="Submit"
-              onClick={(e) => handleSubmit(e, "register")}
+            <LeftContainer
+              classDiv="loginContainer left"
+              class="loginImage"
+              src={verifyImg}
             />
 
-            {/* <div className="resend" id="resnd" onClick={Resent}>
+            <div className="loginContainer right verify">
+              <h1 style={{ width: "100%" }}>Enter verification code</h1>
+              <p className="light" style={{ width: "100%" }}>
+                a text with 6-digit code has been sent to your email
+              </p>
+
+              <div className="Input">
+                <label className="light">Enter verification code</label>
+                <input
+                  type="text"
+                  className="input verifyInput"
+                  value={verificationCode}
+                  minLength={6}
+                  maxLength={6}
+                  onChange={(e) => setVerificationCode(e.target.value)}
+                />
+              </div>
+
+              <div className="buttonContainer">
+                <Button
+                  type="submit"
+                  class="submit button register"
+                  label="Submit"
+                  loading={loading}
+                />
+              </div>
+
+              {/* <div className="resend" id="resnd" onClick={Resent}>
               Resend otp
             </div> */}
 
-            {resendTimer > 0 ? (
-              <div className="resend" id="resnd">
-                Resend OTP in {resendTimer} seconds
-              </div>
-            ) : (
-              <div className="resend" id="resnd" onClick={Resent}>
-                Resend OTP
-              </div>
-            )}
+              {resendTimer > 0 ? (
+                <div className="resend" id="resnd">
+                  Resend OTP in {resendTimer} seconds
+                </div>
+              ) : (
+                <div className="resend" id="resnd" onClick={Resent}>
+                  Resend OTP
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+          )
+        </form>
+      }
     </>
   );
 }
