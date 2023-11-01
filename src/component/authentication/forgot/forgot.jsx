@@ -30,7 +30,7 @@ export default function Forgotten(props) {
     const emailCheck = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
-      document.getElementById("emailError").style.display = "block";
+      document.getElementById("error").style.display = "block";
 
       if (!inputEmail.includes("@") && !inputEmail.includes(".")) {
         setEmailError("Missing '@' and '.' in the email");
@@ -42,7 +42,7 @@ export default function Forgotten(props) {
         setEmailError("**Invalid Email");
       }
     } else {
-      document.getElementById("emailError").style.display = "none";
+      document.getElementById("error").style.display = "none";
       setEmailError("");
       setEmail(inputEmail);
     }
@@ -150,6 +150,7 @@ export default function Forgotten(props) {
                         ? validatePhoneNumber(event.target.value)
                         : validateEmail(event.target.value);
                     }}
+                    style={{ marginTop: "1vh" }}
                     required
                   />
                   {/* <div>
@@ -159,10 +160,15 @@ export default function Forgotten(props) {
                 </div> */}
                 </div>
 
-                <div className="errorContainer">
-                  <span id="emailError">{emailError}</span>
+                <div className="errorContainer" style={{ display: "block",marginTop:"-1.5vh " ,marginLeft:"0", marginBottom:"5vh"}}>
+                  <span className="error" id="error">
+                    Invalid Email
+                  </span>
                 </div>
-                <div className="buttonContainer">
+                <div
+                  className="buttonContainer"
+                  style={{ marginBottom: "1vh", marginTop: "2vh" }}
+                >
                   <Button
                     type="submit"
                     class="submit button register"

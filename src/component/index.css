@@ -24,7 +24,7 @@ body {
 .loginContainer {
   display: flex;
   flex-direction: column;
-  row-gap: 1vw;
+  row-gap: 0.5vw;
   padding: 1%;
   align-items: left;
   height: auto;
@@ -66,17 +66,17 @@ body {
   justify-content: left;
   align-items: center;
   margin: auto auto;
-  width: 80%;
+  width: 65%;
 }
 .Input {
-  width: 40vw;
+  width: 32vw;
   margin: 1vw 0;
 }
 .buttonContainer {
   width: 100%;
 }
 .input {
-  height: 6vh;
+  height: 7vh;
   width: 95%;
   font-size: 2;
   padding: 0 0.8vw;
@@ -99,7 +99,7 @@ body {
   background-color: #011c67;
   color: #fff;
   border: none;
-  width: 40vw;
+  width: 32vw;
   height: 8vh;
   cursor: pointer;
   font-size: 1.5vw;
@@ -112,9 +112,12 @@ body {
 }
 .lowNavigate {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.5vw;
   cursor: pointer;
+font-size: 1.2vw;
 }
 .light {
   color: #8692a6;
@@ -125,8 +128,10 @@ body {
   color: #d61919;
   display: flex;
   width: 100%;
+  margin: 0;
   justify-content: center;
-  margin-top: -2vh;
+  margin-top: -3.5vh;
+  margin-left: 1vw;
 }
 
 .error {
@@ -208,6 +213,9 @@ form {
     font-size: 1.5vw;
   }
 
+  .errorContainer{
+    margin-top: -2.9vh;
+  }
   .Input {
     margin: 2vw 0;
   }

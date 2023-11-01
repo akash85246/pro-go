@@ -162,33 +162,33 @@ function LoginForm() {
                 {loginWithPhone ? "phone number" : "email address"} and password
               </p>
             </div>
-
-            <div className="entry">
-              <div
+            {/* <div className="entry">
+              {/* <div
                 style={{
                   display: "flex",
                   justifyContent: "space between",
                   alignItems: "center",
                 }}
-              >
-                <div className="Input">
-                  <label className="light">
-                    {loginWithPhone ? "Phone number" : "Email address"}
-                  </label>
-                  <input
-                    type="text"
-                    className="input"
-                    onChange={(event) => {
-                      validateEmail(event.target.value);
-                    }}
-                    maxLength={loginWithPhone ? 10 : 50}
-                    required
-                  />
-                </div>
-              </div>
+              > {" "}
+            */}
+            <div className="Input">
+              <label className="light">
+                {loginWithPhone ? "Phone number" : "Email address"}
+              </label>
+              <input
+                type="text"
+                className="input"
+                onChange={(event) => {
+                  validateEmail(event.target.value);
+                }}
+                maxLength={loginWithPhone ? 10 : 50}
+                required
+              />
             </div>
+            {/* </div> */}
+            {/* </div> */}
             <div className="errorContainer" style={{ display: "block" }}>
-              <span className="error">{emailError}</span>
+              <span className="error">Invalid Email</span>
             </div>
             <div className="Input">
               <label className="light">Password</label>
@@ -222,7 +222,7 @@ function LoginForm() {
             </div>
             <div className="lowNavigate">
               <span className=" light" onClick={handleForgotPassword}>
-                Forgot Password?
+                Forgot Password
               </span>
               <span className="blue " onClick={handleSignUp}>
                 {" "}
