@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Button from "../button";
+import Button from "../../utils/button";
 import { useLocation } from "react-router-dom";
-import LeftContainer from "../leftContainer";
+import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
 import verifyImg from "../../../assets/verification.svg";
+import eyeImg from "../../../assets/eye.svg";
+import eyeHidImg from "../../../assets/eye-hide.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
 import { toast } from "../../../../public/react-toastify";
@@ -112,7 +114,7 @@ export default function Verification() {
     <>
       {
         <form onSubmit={handleSubmit}>
-          (
+          
           <div className="container">
             <div className="navbar">
               <img src={logo}></img>
@@ -132,11 +134,11 @@ export default function Verification() {
               <div className="Input">
                 <label className="light">Enter verification code</label>
                 <input
-                  type="text"
+                  type="number"
                   className="input verifyInput"
                   value={verificationCode}
-                  minLength={6}
-                  maxLength={6}
+                  min={100000}
+                  max={999999}
                   onChange={(e) => setVerificationCode(e.target.value)}
                 />
               </div>

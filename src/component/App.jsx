@@ -5,13 +5,13 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { ToastContainer } from "../../public/react-toastify"; 
+import { ToastContainer } from "../../public/react-toastify";
 import "../../public/react-toastify/dist/ReactToastify.css";
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
 import SignUpForm from "./authentication/signUp/signUp";
 import LoginForm from "./authentication/login/loginForm";
-import Homepage from "./homepage";
+import Homepage from "./LandingPage/homepage";
 import Reset from "./authentication/reset/resetPassword";
 import Otp from "./authentication/forgot/otpVerification";
 

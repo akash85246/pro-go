@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ProgressBar from "../progress";
-import RememberMeCheckbox from "../rememberMe";
-import Button from "../button";
-import LeftContainer from "../leftContainer";
+import ProgressBar from "../../utils/progress";
+import RememberMeCheckbox from "../../utils/rememberMe";
+import Button from "../../utils/button";
+import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import loginImg from "../../../assets/logIn.svg";
 import { Vortex } from "react-loader-spinner";
