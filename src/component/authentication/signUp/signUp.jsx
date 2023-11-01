@@ -1,20 +1,24 @@
 import React, { useState } from "react";
-import RememberMeCheckbox from "../rememberMe";
-import Terms from "../terms";
-import Button from "../button";
+import RememberMeCheckbox from "../../utils/rememberMe";
+import Terms from "../../utils/terms";
+import Button from "../../utils/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LeftContainer from "../leftContainer";
-import { Vortex } from "react-loader-spinner";
-// import { toast } from "react-toastify";
-// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+import LeftContainer from "../../utils/leftContainer";
+import { toast } from "../../../../public/react-toastify";
+import "../../../../public/react-toastify/dist/ReactToastify.css";
+import eyeImg from "../../../assets/eye.svg";
+import eyeHidImg from "../../../assets/eye-hide.svg";
 import signUpImg from "../../../assets/sign-up.png";
-
+import logo from "../../../assets/logo.svg";
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [loading, setLoading] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
   const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
   const signEndpoint = "https://pro-go.onrender.com/api/auth/sign-up/";
@@ -24,47 +28,53 @@ function SignUpForm() {
     confirmPassword: "",
   });
 
+  function validateEmail(inputEmail) {
+    const emailCheck = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+    if (!emailCheck.test(inputEmail) && inputEmail !== "") {
+      document.querySelector(".errorEmail").style.display = "block";
+
+      if (!inputEmail.includes("@") && !inputEmail.includes(".")) {
+        setEmailError("Missing '@' and '.' in the email");
+      } else if (!inputEmail.includes("@")) {
+        setEmailError("Missing '@' in the email");
+      } else if (!inputEmail.includes(".")) {
+        setEmailError("Missing '.' in the email");
+      } else {
+        setEmailError("**Invalid Email");
+      }
+    } else {
+      document.querySelector(".errorEmail").style.display = "none";
+      setEmailError("");
+      setEmail(inputEmail);
+    }
+  }
+
   const [passwordStrength, setPasswordStrength] = useState("Weak");
   const [passwordMatchError, setPasswordMatchError] = useState("");
 
-  function validateForm(event) {
-    event.preventDefault();
-    const nameValue = document.getElementById("name").value;
-    const emailValue = document.getElementById("email").value;
-    // const phoneNumberValue = document.getElementById("phoneNumber").value;
+  function validateUsername(inputName) {
+    const trimmedName = inputName.trim();
 
-    const mailCheck = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    const nameCheck = /^[A-Za-z. ]{3,30}( [A-Za-z. ]{3,30})*$/;
-    // const numberCheck = /^[789]\d{9}$/;
-
-    if (!nameCheck.test(nameValue) && nameValue !== "") {
-      console.log("h1");
-      document.getElementById("nameError").style.display = "block";
-      // document.getElementById("nameError").innerHTML =
-      //   "****Name cannot contain numbers or too small";
+    if (trimmedName.length === 0) {
+      showError("Username should not be empty");
+    } else if (trimmedName.length < 3) {
+      showError("Username is too small");
+    } else if (!/^[a-zA-Z0-9@!#$%^&*_-]+$/.test(trimmedName)) {
+      showError("Invalid Username");
     } else {
-      console.log("h2");
-      setName(nameValue);
-      document.getElementById("nameError").style.display = "none";
+      hideError();
+      setName(trimmedName);
     }
+  }
 
-    if (!mailCheck.test(emailValue) && emailValue !== "") {
-      document.getElementById("emailError").style.display = "block";
-      document.getElementById("emailError").innerHTML =
-        "**Email should have '@' and '.'";
-    } else {
-      setEmail(emailValue);
-      document.getElementById("emailError").style.display = "none";
-    }
+  function showError(errorMessage) {
+    document.getElementById("nameError").style.display = "block";
+    document.getElementById("nameError").textContent = errorMessage;
+  }
 
-    // if (!numberCheck.test(phoneNumberValue) && phoneNumberValue !== "") {
-    //   document.getElementById("numberError").style.display = "block";
-    //   document.getElementById("numberError").innerHTML =
-    //     "**Phone Number: Start with 7, 8, or 9, and use 10 digits only.";
-    // } else {
-    //   setPhoneNumber(phoneNumberValue);
-    //   document.getElementById("numberError").style.display = "none";
-    // }
+  function hideError() {
+    document.getElementById("nameError").style.display = "none";
   }
 
   const handlePasswordChange = (e) => {
@@ -74,23 +84,36 @@ function SignUpForm() {
       password: newPassword,
     });
 
-    const hasLetter = /[A-Za-z]/.test(newPassword);
-    const hasNumber = /\d/.test(newPassword);
+    if (newPassword) {
+      // const hasLetter = /[A-Za-z]/.test(newPassword);
+      // const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
 
-    if (newPassword.length >= 8 && hasLetter && hasNumber) {
-      setPasswordStrength("Strong");
-    } else if (newPassword.length >= 6 && (hasLetter || hasNumber)) {
-      setPasswordStrength("Moderate");
-    } else {
-      setPasswordStrength("Weak");
-    }
+      const passwordRegex =
+        /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{6,}$/;
 
-    if (newPassword !== formData.confirmPassword) {
-      setPasswordMatchError("Passwords do not match");
-      document.getElementById("pass").style.display = "block";
-    } else {
-      document.getElementById("pass").style.display = "none";
-      setPasswordMatchError("");
+      if (formData.confirmPassword) {
+        if (newPassword === formData.confirmPassword) {
+          document.getElementById("confPass").style.display = "none";
+        } else {
+          document.getElementById("confPass").style.display = "block";
+        }
+      } else {
+        document.getElementById("confPass").style.display = "none";
+      }
+
+      if (newPassword.length >= 8 && passwordRegex.test(newPassword)) {
+        document.getElementById("passwordStrength").style.display = "block";
+        setPasswordStrength("Strong");
+      } else if (newPassword.length >= 6) {
+        document.getElementById("passwordStrength").style.display = "block";
+        setPasswordStrength("Moderate");
+      } else if (newPassword.length > 0) {
+        document.getElementById("passwordStrength").style.display = "block";
+        setPasswordStrength("Weak");
+      } else {
+        document.getElementById("passwordStrength").style.display = "none";
+        setPasswordStrength("");
+      }
     }
   };
 
@@ -102,18 +125,35 @@ function SignUpForm() {
     });
 
     if (formData.password !== newConfirmPassword) {
-      document.getElementById("pass").style.display = "block";
+      document.getElementById("confPass").style.display = "block";
       setPasswordMatchError("Passwords do not match");
     } else {
-      document.getElementById("pass").style.display = "none";
+      document.getElementById("confPass").style.display = "none";
       setPasswordMatchError("");
     }
+  };
+  const eye = () => {
+    setShowPassword(!showPassword);
+  };
+  const eyeConfirm = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
   function handleSignUp() {
     navigate("/logIn");
   }
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (
+      !name ||
+      !email ||
+      emailError ||
+      !(passwordStrength === "Strong") ||
+      passwordMatchError
+    ) {
+      return;
+    }
+
     const submittedData = {
       username: name,
       email: email,
@@ -133,9 +173,10 @@ function SignUpForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }
@@ -151,82 +192,68 @@ function SignUpForm() {
 
   return (
     <>
-      {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "800",
-            height: "100vh",
-            backgroundColor: "#011C67",
-          }}
-        >
-          <Vortex
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="vortex-loading"
-            wrapperStyle={{}}
-            wrapperClass="vortex-wrapper"
-            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
-          />
-        </div>
-      )}
-      {!loading && (
-        <div className="container">
-          <LeftContainer
-            classDiv="loginContainer left signUpLeft"
-            src={signUpImg}
-            class="loginImage signUpImage"
-            h1="Login on cloud today ,tomorrow or by any location"
-          />
-          <div className="loginContainer right signUpRight">
-            <div style={{ textAlign: "left", width: "100%" }}>
-              <h1 className="signUpH1">Create account</h1>
-            </div>
-            <div className="Input signUpInput">
-              <div className="signIC">
-                <label className="light">Username</label>
-                <input
-                  type="text"
-                  name="name"
-                  className="input signCp"
-                  id="name"
-                  maxLength={15}
-                  minLength={3}
-                  onChange={validateForm}
-                  required
-                />
-                <div className="errorContainer">
-                  <span id="nameError" className="error">
-                    **Name cannot contain numbers or too small
-                  </span>
+      {
+        <form onSubmit={handleSubmit}>
+          <div className="navbar">
+            <img src={logo}></img>
+          </div>
+          <div className="container">
+            <LeftContainer
+              classDiv="loginContainer left signUpLeft"
+              src={signUpImg}
+              class="loginImage signUpImage"
+              h1="Login on cloud today ,tomorrow or by any location"
+            />
+            <div className="loginContainer right signUpRight">
+              <div style={{ textAlign: "left", width: "100%" }}>
+                <h1 className="signUpH1">Create account</h1>
+              </div>
+              <div className="Input signUpInput">
+                <div className="signIC">
+                  <label className="light">Username</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="input signCp"
+                    id="name"
+                    maxLength={60}
+                    minLength={3}
+                    onChange={(event) => {
+                      validateUsername(event.target.value);
+                    }}
+                    required
+                  />
+                  <div className="errorContainer signUpErrorContainer">
+                    <span id="nameError" className="error">
+                      Invalid name
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* <div className="emailNumber"> */}
-            <div className="Input signUpInput">
-              <div className="signIC">
-                <label className="light">Email</label>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  maxLength={50}
-                  className="input signCp"
-                  required
-                  onChange={validateForm}
-                />
-                <div className="errorContainer">
-                  <span id="emailError" className="error">
-                    **Email should have '@' and '.'
-                  </span>
+              {/* <div className="emailNumber"> */}
+              <div className="Input signUpInput">
+                <div className="signIC">
+                  <label className="light">Email</label>
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    maxLength={50}
+                    className="input signCp"
+                    required
+                    onChange={(event) => {
+                      validateEmail(event.target.value);
+                    }}
+                  />
+                  <div className="errorContainer signUpErrorContainer">
+                    <span id="emailError" className="errorEmail error">
+                      Invalid email
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* <div className="Input">
+              {/* <div className="Input">
               <label className="light">Phone Number</label>
                 <input
                   type="text"
@@ -242,79 +269,102 @@ function SignUpForm() {
                   digits, no characters allowed
                 </span>
             </div> */}
-            {/* </div> */}
+              {/* </div> */}
 
-            <div className="createPassword">
-              <div className="Input signUpInput">
-                <div className="signIC">
-                  <label className="light">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    className="input signCp"
-                    required
-                    maxLength={15}
-                    minLength={5}
-                    onChange={handlePasswordChange}
-                  />
-                </div>
-                <div className="errorContainer">
-                  {formData.password && (
-                    <div
-                      id="passwordStrength "
-                      className={passwordStrength.toLowerCase()}
-                    >
-                      Password Strength: {passwordStrength}
+              <div className="createPassword">
+                <div className="Input signUpInput">
+                  <div className="signIC">
+                    <label className="light">Password</label>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        className="input signCp"
+                        required
+                        maxLength={30}
+                        minLength={6}
+                        onChange={handlePasswordChange}
+                      />
+                      <div className="show" onClick={eye}>
+                        <img
+                          src={showPassword ? eyeHidImg : eyeImg}
+                          height={"25px"}
+                          onClick={eye}
+                          alt="show password"
+                        />
+                      </div>
                     </div>
-                  )}
+                  </div>
+                  <div className="errorContainer signUpErrorContainer">
+                    {
+                      <div
+                        id="passwordStrength"
+                        className={`${passwordStrength.toLowerCase()} error`}
+                      >
+                        Password Strength: {passwordStrength}
+                      </div>
+                    }
+                  </div>
+                </div>
+                <div className="Input signUpInput">
+                  <div className="signIC">
+                    <label className="light">Confirm password</label>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        className="input signCp"
+                        required
+                        value={formData.confirmPassword}
+                        maxLength={30}
+                        minLength={6}
+                        onChange={handleConfirmPasswordChange}
+                      />
+                      <div className="show" onClick={eyeConfirm}>
+                        <img
+                          src={showConfirmPassword ? eyeHidImg : eyeImg}
+                          height={"25px"}
+                          onClick={eyeConfirm}
+                          alt="show password"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="errorContainer signUpErrorContainer">
+                    <span id="confPass" className="error">
+                      Passwords do not match
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="Input signUpInput">
-                <div className="signIC">
-                  <label className="light">Confirm password</label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    className="input signCp"
-                    required
-                    value={formData.confirmPassword}
-                    onChange={handleConfirmPasswordChange}
-                    maxLength={15}
-                    minLength={5}
-                  />
-                </div>
-                <div className="errorContainer">
-                  <span id="pass" className="error">
-                    Passwords do not match
-                  </span>
-                </div>
+              <div className="checkbox">
+                <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
+                <Terms />
               </div>
-            </div>
-            <div className="checkbox">
-              <RememberMeCheckbox class="signUpCheckbox" divClass="sic" />
-              <Terms />
-            </div>
-            <Button
-              type="submit"
-              class="submit button register"
-              label="Register Account"
-              onClick={(e) => handleSubmit(e, "register")}
-            />
-            {/* <Button
+              <div className="buttonContainer">
+                <Button
+                  type="submit"
+                  class="submit button register"
+                  label="Register account"
+                  loading={loading}
+                />
+              </div>
+              {/* <Button
               type="submit"
               class="submit button google"
               label="Sign-in with Google"
               onClick={handleSubmit}
             /> */}
-            <div className="lowNavigate forLog">
-              <span className=" light">Already have an account?</span>
-              <span className="blue " onClick={handleSignUp}>
-                &nbsp;Log In
-              </span>
+              <div className="lowNavigate forLog">
+                <span className=" light">Already have an account?</span>
+                <span className="blue " onClick={handleSignUp}>
+                  &nbsp;Log In
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        </form>
+      }
     </>
   );
 }

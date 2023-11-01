@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import ProgressBar from "../progress";
-import RememberMeCheckbox from "../rememberMe";
-import Button from "../button";
-import LeftContainer from "../leftContainer";
+import ProgressBar from "../../utils/progress";
+import RememberMeCheckbox from "../../utils/rememberMe";
+import Button from "../../utils/button";
+import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import loginImg from "../../../assets/logIn.svg";
 import { Vortex } from "react-loader-spinner";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
-
-// import { toast } from "react-toastify";
-// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
-
+import logo from "../../../assets/logo.svg";
+import { toast } from "../../../../public/react-toastify";
+import "../../../../public/react-toastify/dist/ReactToastify.css";
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
 
 function LoginForm() {
@@ -30,11 +29,20 @@ function LoginForm() {
   const navigate = useNavigate();
 
   function validateEmail(inputEmail) {
-    const emailCheck = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    const emailCheck = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
       document.querySelector(".error").style.display = "block";
-      setEmailError("**Email should have '@' and '.'");
+
+      if (!inputEmail.includes("@") && !inputEmail.includes(".")) {
+        setEmailError("Missing '@' and '.' in the email");
+      } else if (!inputEmail.includes("@")) {
+        setEmailError("Missing '@' in the email");
+      } else if (!inputEmail.includes(".")) {
+        setEmailError("Missing '.' in the email");
+      } else {
+        setEmailError("**Invalid Email");
+      }
     } else {
       document.querySelector(".error").style.display = "none";
       setEmailError("");
@@ -60,6 +68,7 @@ function LoginForm() {
       setPhoneNumber(inputPhoneNumber);
     }
   }
+
   function handleForgotPassword() {
     setForgotPassword(true);
     navigate("/forgot");
@@ -69,14 +78,17 @@ function LoginForm() {
     setShowSignUp(true);
     navigate("/signUp");
   }
+
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log("Submit button clicked");
 
     if (
       (loginWithPhone && phoneError) ||
       (!loginWithPhone && emailError) ||
       !validatePassword(password)
     ) {
+      alert("Please enter details");
       return;
     }
 
@@ -107,9 +119,9 @@ function LoginForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -129,29 +141,10 @@ function LoginForm() {
 
   return (
     <>
-      {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "800",
-            height: "100vh",
-            backgroundColor: "#011C67",
-          }}
-        >
-          <Vortex
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="vortex-loading"
-            wrapperStyle={{}}
-            wrapperClass="vortex-wrapper"
-            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
-          />
+      <form onSubmit={handleSubmit}>
+        <div className="navbar">
+          <img src={logo}></img>
         </div>
-      )}
-      {!loading && (
         <div className="container">
           <LeftContainer
             classDiv="loginContainer left"
@@ -160,107 +153,85 @@ function LoginForm() {
             // h1="Login on cloud today, tomorrow, or from any location"
           />
           <div className="loginContainer right log">
-            <form onSubmit={handleSubmit}>
-              <ProgressBar circleCount={4} color={1} />
-              <div>
-                <h1>Account Login</h1>
+            <ProgressBar circleCount={4} color={1} />
+            <div>
+              <h1>Account Login</h1>
 
-                <p className="light">
-                  If you are already a member, you can log in with your{" "}
-                  {loginWithPhone ? "phone number" : "email address"} and
-                  password
-                </p>
-              </div>
-
-              <div className="entry">
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space between",
-                    alignItems: "center",
-                  }}
-                >
-                  <div className="Input">
-                    <div className="loginWith">
-                      <label className="light">
-                        {loginWithPhone ? "Phone number" : "Email address"}
-                      </label>
-                      {/* <a
-                        className="blue loginWith"
-                        onClick={() => setLoginWithPhone(!loginWithPhone)}
-                      >
-                        {loginWithPhone
-                          ? "Login with Email"
-                          : "Login with Phone number"}
-                      </a> */}
-                    </div>
-                    <input
-                      type="text"
-                      className="input"
-                      onChange={(event) => {
-                        // loginWithPhone
-                        //   ? validatePhoneNumber(event.target.value)
-                        //   :
-                        validateEmail(event.target.value);
-                      }}
-                      maxLength={loginWithPhone ? 10 : 50}
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="errorContainer" style={{ display: "block" }}>
-                <span className="error">
-                  {/* {loginWithPhone ? phoneError : emailError} */}
-                  **Email should have '@' and '.'
-                </span>
-              </div>
-              <div className="Input">
-                <label className="light">Password</label>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="password input"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    maxLength={15}
-                    minLength={5}
-                    required
-                  />
-                  <div className="show" onClick={eye}>
-                    <img
-                      src={showPassword ? eyeHidImg : eyeImg}
-                      height={"25px"}
-                      alt="show password"
-                    />
-                  </div>
-                </div>
-              </div>
-              <RememberMeCheckbox class="signInCheckbox" divClass="remember" />
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Button
-                  type="submit"
-                  class="submit button"
-                  label="LOG IN"
-                  disabled={
-                    (!loginWithPhone && emailError) ||
-                    (loginWithPhone && phoneError) ||
-                    !validatePassword(password)
-                  }
+              <p className="light">
+                If you are already a member, you can log in with your{" "}
+                {loginWithPhone ? "phone number" : "email address"} and password
+              </p>
+            </div>
+            {/* <div className="entry">
+              {/* <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space between",
+                  alignItems: "center",
+                }}
+              > {" "}
+            */}
+            <div className="Input">
+              <label className="light">
+                {loginWithPhone ? "Phone number" : "Email address"}
+              </label>
+              <input
+                type="text"
+                className="input"
+                onChange={(event) => {
+                  validateEmail(event.target.value);
+                }}
+                maxLength={loginWithPhone ? 10 : 50}
+                required
+              />
+            </div>
+            {/* </div> */}
+            {/* </div> */}
+            <div className="errorContainer" style={{ display: "block" }}>
+              <span className="error">Invalid Email</span>
+            </div>
+            <div className="Input">
+              <label className="light">Password</label>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="password input"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  maxLength={15}
+                  minLength={6}
+                  required
                 />
+                <div className="show" onClick={eye}>
+                  <img
+                    src={showPassword ? eyeHidImg : eyeImg}
+                    height={"25px"}
+                    alt="show password"
+                  />
+                </div>
               </div>
-              <div className="lowNavigate">
-                <span className=" light" onClick={handleForgotPassword} >
-                  Forgot Password?
-                </span>
-                <span className="blue " onClick={handleSignUp}>
-                  &nbsp;Sign up here
-                </span>
-              </div>
-            </form>
+            </div>
+            <RememberMeCheckbox class="signInCheckbox" divClass="remember" />
+            <div>
+              <Button
+                type="submit"
+                class="submit button"
+                label="LOG IN"
+                loading={loading}
+              />
+            </div>
+            <div className="lowNavigate">
+              <span className=" light" onClick={handleForgotPassword}>
+                Forgot Password
+              </span>
+              <span className="blue " onClick={handleSignUp}>
+                {" "}
+                Sign up here
+              </span>
+            </div>
           </div>
         </div>
-      )}
+      </form>
     </>
   );
 }

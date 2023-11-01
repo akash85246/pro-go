@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import ProgressBar from "../progress";
-import Button from "../button";
-import LeftContainer from "../leftContainer";
+import ProgressBar from "../../utils/progress";
+import Button from "../../utils/button";
+import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
 import resetImg from "../../../assets/reset.svg";
-// import { toast } from "react-toastify";
-// import "../../../../node_modules/react-toastify/dist/ReactToastify.css";
+import logo from "../../../assets/logo.svg";
+import ham from "../../../assets/hamburger.svg";
+import { toast } from "../../../../public/react-toastify";
+import "../../../../public/react-toastify/dist/ReactToastify.css";
+import eyeImg from "../../../assets/eye.svg";
+import eyeHidImg from "../../../assets/eye-hide.svg";
 
 const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 
@@ -28,7 +32,14 @@ export default function Reset() {
   });
   const [passwordStrength, setPasswordStrength] = useState("Weak");
   const [passwordMatchError, setPasswordMatchError] = useState("");
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const eye = () => {
+    setShowPassword(!showPassword);
+  };
+  const eyeConfirm = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setFormData({
@@ -81,7 +92,11 @@ export default function Reset() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (!(passwordStrength === "Strong") || passwordMatchError) {
+      return;
+    }
     setLoading(true);
+
     try {
       console.log(tokenValue);
       const headers = {
@@ -109,9 +124,9 @@ export default function Reset() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -127,57 +142,50 @@ export default function Reset() {
 
   return (
     <>
-      {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "800",
-            height: "100vh",
-            backgroundColor: "#011C67",
-          }}
-        >
-          <Vortex
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="vortex-loading"
-            wrapperStyle={{}}
-            wrapperClass="vortex-wrapper"
-            colors={["red", "green", "blue", "yellow", "orange", "purple"]}
-          />
-        </div>
-      )}
-      {!loading && (
-        <div className="container">
-          <LeftContainer
-            classDiv="loginContainer left"
-            class="loginImage"
-            src={resetImg}
-          />
+      {
+        <form onSubmit={handleSubmit}>
+          <div className="navbar">
+            <img src={logo}></img>
+          </div>
+          <div className="container">
+            <LeftContainer
+              classDiv="loginContainer left"
+              class="loginImage"
+              src={resetImg}
+            />
 
-          <div className="loginContainer right log resetRight">
-            <ProgressBar circleCount={4} color={3} />
-            <h1>Reset password</h1>
-            <form onSubmit={handleSubmit}>
+            <div className="loginContainer right log resetRight">
+              <ProgressBar circleCount={4} color={3} />
+              <h1>Reset password</h1>
+
               <div className="Input resetInput">
                 <label className="light">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="input resetP"
-                  required
-                  maxLength={15}
-                  minLength={5}
-                  onChange={handlePasswordChange}
-                />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    className="input resetP"
+                    required
+                    maxLength={30}
+                    minLength={6}
+                    onChange={handlePasswordChange}
+                  />
+                  <div className="show" onClick={eye}>
+                    <img
+                      src={showPassword ? eyeHidImg : eyeImg}
+                      height={"25px"}
+                      onClick={eye}
+                      alt="show password"
+                    />
+                  </div>
+                </div>
               </div>
               <div className="errorContainer">
                 <div className="password-strength-container resetPSC">
                   <div
                     id="passwordStrength"
                     className={passwordStrength.toLowerCase()}
+                    style={{ width: "32.5vw", marginTop: "-2vh" }}
                   >
                     Password Strength: {passwordStrength}
                   </div>
@@ -185,29 +193,49 @@ export default function Reset() {
               </div>
               <div className="Input resetInput">
                 <label className="light">Confirm password</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  className="input resetCP"
-                  required
-                  value={formData.confirmPassword}
-                  onChange={handleConfirmPasswordChange}
-                  maxLength={15}
-                  minLength={5}
-                />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    className="input resetCP"
+                    required
+                    value={formData.confirmPassword}
+                    onChange={handleConfirmPasswordChange}
+                    maxLength={30}
+                    minLength={6}
+                  />
+
+                  <div className="show" onClick={eyeConfirm}>
+                    <img
+                      src={showConfirmPassword ? eyeHidImg : eyeImg}
+                      height={"25px"}
+                      onClick={eyeConfirm}
+                      alt="show password"
+                    />
+                  </div>
+                </div>
               </div>
               <div className="errorContainer">
-                <div id="resetPass">password do not match</div>
+                <div
+                  id="resetPass"
+                  className="error"
+                  style={{ width: "100%", marginTop: "0vh" }}
+                >
+                  password do not match
+                </div>
               </div>
-              <Button
-                type="submit"
-                class="submit button reset "
-                label="Reset Password"
-              />
-            </form>
+              <div className="buttonContainer">
+                <Button
+                  type="submit"
+                  class="submit button register"
+                  label="Submit"
+                  loading={loading}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        </form>
+      }
     </>
   );
 }
