@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import RememberMeCheckbox from "../rememberMe";
-import Terms from "../terms";
-import Button from "../button";
+import RememberMeCheckbox from "../../utils/rememberMe";
+import Terms from "../../utils/terms";
+import Button from "../../utils/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LeftContainer from "../leftContainer";
+import LeftContainer from "../../utils/leftContainer";
 import { toast } from "../../../../public/react-toastify";
 import "../../../../public/react-toastify/dist/ReactToastify.css";
+import eyeImg from "../../../assets/eye.svg";
+import eyeHidImg from "../../../assets/eye-hide.svg";
 import signUpImg from "../../../assets/sign-up.png";
 import logo from "../../../assets/logo.svg";
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [loading, setLoading] = useState(false);
   // const [phoneNumber, setPhoneNumber] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -23,44 +28,11 @@ function SignUpForm() {
     confirmPassword: "",
   });
 
-  const [passwordStrength, setPasswordStrength] = useState("Weak");
-  const [passwordMatchError, setPasswordMatchError] = useState("");
-
-  function validateUsername(inputName) {
-    const trimmedName = inputName.trim(); // Trim the received name
-
-    const containsAlphabet = /[a-zA-Z]/.test(trimmedName);
-    const containsSpecialCharacter = /[@#$%^&*!?._|\-]/.test(trimmedName);
-
-    if (trimmedName.length === 0) {
-      document.getElementById("nameError").style.display = "block";
-      document.getElementById("nameError").textContent =
-        "Username should not be empty";
-    } else if (trimmedName.length < 3) {
-      // Username is too small
-      document.getElementById("nameError").style.display = "block";
-      document.getElementById("nameError").textContent =
-        "Username is too small";
-    } else if (!containsAlphabet) {
-      // Username doesn't contain at least one alphabet character or doesn't contain special characters
-      document.getElementById("nameError").style.display = "block";
-      document.getElementById("nameError").textContent =
-        "Username should contain at least one character";
-    } else if (!containsSpecialCharacter) {
-      document.getElementById("nameError").style.display = "block";
-      document.getElementById("nameError").textContent =
-        "Username should contain at least one special characters";
-    } else {
-      document.getElementById("nameError").style.display = "none";
-      setName(trimmedName);
-    }
-  }
-
   function validateEmail(inputEmail) {
     const emailCheck = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
     if (!emailCheck.test(inputEmail) && inputEmail !== "") {
-      document.getElementById("emailError").style.display = "block";
+      document.querySelector(".errorEmail").style.display = "block";
 
       if (!inputEmail.includes("@") && !inputEmail.includes(".")) {
         setEmailError("Missing '@' and '.' in the email");
@@ -72,11 +44,39 @@ function SignUpForm() {
         setEmailError("**Invalid Email");
       }
     } else {
-      document.getElementById("emailError").style.display = "none";
+      document.querySelector(".errorEmail").style.display = "none";
       setEmailError("");
       setEmail(inputEmail);
     }
   }
+
+  const [passwordStrength, setPasswordStrength] = useState("Weak");
+  const [passwordMatchError, setPasswordMatchError] = useState("");
+
+  function validateUsername(inputName) {
+    const trimmedName = inputName.trim();
+
+    if (trimmedName.length === 0) {
+      showError("Username should not be empty");
+    } else if (trimmedName.length < 3) {
+      showError("Username is too small");
+    } else if (!/^[a-zA-Z0-9@!#$%^&*_-]+$/.test(trimmedName)) {
+      showError("Invalid Username");
+    } else {
+      hideError();
+      setName(trimmedName);
+    }
+  }
+
+  function showError(errorMessage) {
+    document.getElementById("nameError").style.display = "block";
+    document.getElementById("nameError").textContent = errorMessage;
+  }
+
+  function hideError() {
+    document.getElementById("nameError").style.display = "none";
+  }
+
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setFormData({
@@ -84,23 +84,36 @@ function SignUpForm() {
       password: newPassword,
     });
 
-    const hasLetter = /[A-Za-z]/.test(newPassword);
-    const hasNumber = /\d/.test(newPassword);
+    if (newPassword) {
+      // const hasLetter = /[A-Za-z]/.test(newPassword);
+      // const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
 
-    if (newPassword.length >= 8 && hasLetter && hasNumber) {
-      setPasswordStrength("Strong");
-    } else if (newPassword.length >= 6 && (hasLetter || hasNumber)) {
-      setPasswordStrength("Moderate");
-    } else {
-      setPasswordStrength("Weak");
-    }
+      const passwordRegex =
+        /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{6,}$/;
 
-    if (newPassword !== formData.confirmPassword) {
-      setPasswordMatchError("Passwords do not match");
-      document.getElementById("pass").style.display = "block";
-    } else {
-      document.getElementById("pass").style.display = "none";
-      setPasswordMatchError("");
+      if (formData.confirmPassword) {
+        if (newPassword === formData.confirmPassword) {
+          document.getElementById("confPass").style.display = "none";
+        } else {
+          document.getElementById("confPass").style.display = "block";
+        }
+      } else {
+        document.getElementById("confPass").style.display = "none";
+      }
+
+      if (newPassword.length >= 8 && passwordRegex.test(newPassword)) {
+        document.getElementById("passwordStrength").style.display = "block";
+        setPasswordStrength("Strong");
+      } else if (newPassword.length >= 6) {
+        document.getElementById("passwordStrength").style.display = "block";
+        setPasswordStrength("Moderate");
+      } else if (newPassword.length > 0) {
+        document.getElementById("passwordStrength").style.display = "block";
+        setPasswordStrength("Weak");
+      } else {
+        document.getElementById("passwordStrength").style.display = "none";
+        setPasswordStrength("");
+      }
     }
   };
 
@@ -112,24 +125,30 @@ function SignUpForm() {
     });
 
     if (formData.password !== newConfirmPassword) {
-      document.getElementById("pass").style.display = "block";
+      document.getElementById("confPass").style.display = "block";
       setPasswordMatchError("Passwords do not match");
     } else {
-      document.getElementById("pass").style.display = "none";
+      document.getElementById("confPass").style.display = "none";
       setPasswordMatchError("");
     }
+  };
+  const eye = () => {
+    setShowPassword(!showPassword);
+  };
+  const eyeConfirm = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
   function handleSignUp() {
     navigate("/logIn");
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    // Add additional checks to ensure data is valid
+
     if (
       !name ||
       !email ||
       emailError ||
-      passwordStrength === "Weak" ||
+      !(passwordStrength === "Strong") ||
       passwordMatchError
     ) {
       return;
@@ -206,7 +225,7 @@ function SignUpForm() {
                   />
                   <div className="errorContainer signUpErrorContainer">
                     <span id="nameError" className="error">
-                      **Name cannot contain numbers or too small
+                      Invalid name
                     </span>
                   </div>
                 </div>
@@ -228,8 +247,8 @@ function SignUpForm() {
                     }}
                   />
                   <div className="errorContainer signUpErrorContainer">
-                    <span id="emailError" className="error">
-                      {emailError}
+                    <span id="emailError" className="errorEmail error">
+                      Invalid email
                     </span>
                   </div>
                 </div>
@@ -256,21 +275,31 @@ function SignUpForm() {
                 <div className="Input signUpInput">
                   <div className="signIC">
                     <label className="light">Password</label>
-                    <input
-                      type="password"
-                      name="password"
-                      className="input signCp"
-                      required
-                      maxLength={15}
-                      minLength={5}
-                      onChange={handlePasswordChange}
-                    />
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        className="input signCp"
+                        required
+                        maxLength={30}
+                        minLength={6}
+                        onChange={handlePasswordChange}
+                      />
+                      <div className="show" onClick={eye}>
+                        <img
+                          src={showPassword ? eyeHidImg : eyeImg}
+                          height={"25px"}
+                          onClick={eye}
+                          alt="show password"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div className="errorContainer signUpErrorContainer">
                     {
                       <div
-                        id="passwordStrength "
-                        className={passwordStrength.toLowerCase()}
+                        id="passwordStrength"
+                        className={`${passwordStrength.toLowerCase()} error`}
                       >
                         Password Strength: {passwordStrength}
                       </div>
@@ -280,19 +309,29 @@ function SignUpForm() {
                 <div className="Input signUpInput">
                   <div className="signIC">
                     <label className="light">Confirm password</label>
-                    <input
-                      type="password"
-                      name="confirmPassword"
-                      className="input signCp"
-                      required
-                      value={formData.confirmPassword}
-                      onChange={handleConfirmPasswordChange}
-                      maxLength={15}
-                      minLength={6}
-                    />
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        className="input signCp"
+                        required
+                        value={formData.confirmPassword}
+                        maxLength={30}
+                        minLength={6}
+                        onChange={handleConfirmPasswordChange}
+                      />
+                      <div className="show" onClick={eyeConfirm}>
+                        <img
+                          src={showConfirmPassword ? eyeHidImg : eyeImg}
+                          height={"25px"}
+                          onClick={eyeConfirm}
+                          alt="show password"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div className="errorContainer signUpErrorContainer">
-                    <span id="pass" className="error">
+                    <span id="confPass" className="error">
                       Passwords do not match
                     </span>
                   </div>

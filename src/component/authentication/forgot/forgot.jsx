@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Button from "../button";
-import ProgressBar from "../progress";
+import Button from "../../utils/button";
+import ProgressBar from "../../utils/progress";
 import Reset from "../reset/resetPassword";
-import LeftContainer from "../leftContainer";
+import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Vortex } from "react-loader-spinner";
@@ -160,7 +160,15 @@ export default function Forgotten(props) {
                 </div> */}
                 </div>
 
-                <div className="errorContainer" style={{ display: "block",marginTop:"-1.5vh " ,marginLeft:"0", marginBottom:"5vh"}}>
+                <div
+                  className="errorContainer"
+                  style={{
+                    display: "block",
+                    marginTop: "-1.5vh ",
+                    marginLeft: "0",
+                    marginBottom: "5vh",
+                  }}
+                >
                   <span className="error" id="error">
                     Invalid Email
                   </span>

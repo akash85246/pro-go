@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Button from "../button";
-import ProgressBar from "../progress";
+import Button from "../../utils/button";
+import ProgressBar from "../../utils/progress";
 import Reset from "../reset/resetPassword";
-import LeftContainer from "../leftContainer";
+import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -113,7 +113,6 @@ export default function Otp() {
           <div className="container forContainer">
             <div className="navbar">
               <img src={logo}></img>
-            
             </div>
             <LeftContainer
               classDiv="loginContainer left"
@@ -134,9 +133,10 @@ export default function Otp() {
                 <div className="Input">
                   <label className="light">Enter verification code</label>
                   <input
-                    type="text"
+                    type="number"
                     className="input"
                     value={otp}
+                    minLength={6}
                     maxLength={6}
                     onChange={(e) => setOtp(e.target.value)}
                     required

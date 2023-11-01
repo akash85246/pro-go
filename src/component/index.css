@@ -117,7 +117,7 @@ body {
   align-items: center;
   gap: 0.5vw;
   cursor: pointer;
-font-size: 1.2vw;
+  font-size: 1.2vw;
 }
 .light {
   color: #8692a6;
@@ -136,6 +136,7 @@ font-size: 1.2vw;
 
 .error {
   display: none;
+  font-size: 1vw;
 }
 
 .loginImage {
@@ -186,13 +187,13 @@ form {
   flex-direction: column;
 }
 .signCp {
-  width: 17.5vw;
-  height: 5vh;
+  width: 13vw;
+  height: 4vh;
 }
 .createPassword {
   display: flex;
   gap: 1vw;
-  width: 40vw;
+  width: 32vw;
 }
 .signUpInput {
   margin: 0;
@@ -204,8 +205,19 @@ form {
   margin-top: 4vh;
 }
 .signUpErrorContainer {
-  margin: 1vh 0;
+  margin-top: -0.1vh;
+  margin-left: 0;
+  margin-bottom: 1vh;
+  height: 2vh;
   justify-content: left;
+}
+.forLog {
+  flex-direction: row;
+}
+#passwordStrength {
+  display: none;
+  margin-top: -0.2vh;
+  font-size: 1vw;
 }
 @media only screen and (max-width: 900px) {
   body {
@@ -213,7 +225,7 @@ form {
     font-size: 1.5vw;
   }
 
-  .errorContainer{
+  .errorContainer {
     margin-top: -2.9vh;
   }
   .Input {
