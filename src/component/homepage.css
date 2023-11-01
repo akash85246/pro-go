@@ -1,0 +1,133 @@
+.homeNavbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  color: #001b66;
+  padding: 1vh;
+  width: 100%;
+}
+
+.homeNavbarIcon {
+  display: flex;
+  align-items: center;
+}
+
+.homeNavbarIcon img {
+  width: 0.5;
+  height: 0.5vw;
+  margin-right: 10px;
+}
+.homePageIcon {
+  width: 20vw;
+  height: 10vh;
+}
+.homeNavbarIcon h1 {
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 1.5vw;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(125, 125, 234, 0.9);
+  min-width: 200px;
+  color: white;
+  box-shadow: 0 8px 16px 0 blue;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content ul {
+  font-size: 1vw;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  padding: 1vw;
+}
+
+.dropdown-content li:hover {
+  background-color: white;
+  color: #001b66;
+}
+
+/* Pricing and button styles */
+a {
+  width: 7.375vw;
+
+  margin-right: 1.5vw;
+  color: #001b66;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.signInButton,
+.signUpButton {
+  border-radius: 25px;
+  background-color: #2047ce;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 2vw;
+  cursor: pointer;
+  font-size: 1vw;
+  font-weight: 600;
+  border: 1px solid #001b66;
+}
+.signInButton {
+  background-color: white;
+  color: #001b66;
+}
+.signInButton:hover {
+  background-color: #001b66;
+  color: white;
+}
+.signUpButton:hover {
+  background-color: white;
+  color: #2047ce;
+}
+
+.containerHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centeredContent {
+  text-align: center;
+  width: 85%;
+  height: 14vh;
+}
+
+.homePageIcon {
+  display: flex;
+  gap: 1vw;
+}
+.dropdown-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #001b66;
+  /* display: flex; */
+  width: 7.375rem;
+  padding: 1rem 0;
+  align-items: center;
+  color: #001b66;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+}

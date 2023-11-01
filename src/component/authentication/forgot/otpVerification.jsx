@@ -109,7 +109,6 @@ export default function Otp() {
     <>
       {
         <form onSubmit={handleSubmit}>
-          (
           <div className="container forContainer">
             <div className="navbar">
               <img src={logo}></img>
