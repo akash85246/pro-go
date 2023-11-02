@@ -63,12 +63,12 @@ export default function Reset() {
       document.getElementById("passwordStrength").style.display = "none";
     }
 
-    // Check for password mismatch
     if (newPassword !== formData.confirmPassword) {
       document.getElementById("resetPass").style.display = "block";
       setPasswordMatchError("Passwords do not match");
     } else {
       document.getElementById("resetPass").style.display = "none";
+
       setPasswordMatchError("");
     }
   };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "../../utils/progress";
 import RememberMeCheckbox from "../../utils/rememberMe";
 import Button from "../../utils/button";
@@ -13,7 +13,7 @@ import logo from "../../../assets/logo.svg";
 import { toast } from "../../../../public/react-toastify";
 import "../../../../public/react-toastify/dist/ReactToastify.css";
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
-
+import { useAuth } from "../../authContext";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -78,7 +78,12 @@ function LoginForm() {
     setShowSignUp(true);
     navigate("/signUp");
   }
-
+  // useEffect(() => {
+  //   let login = localStorage.getItem("login");
+  //   if (login) {
+  //     navigate("/home");
+  //   }
+  // });
   async function handleSubmit(event) {
     event.preventDefault();
     console.log("Submit button clicked");
@@ -104,7 +109,7 @@ function LoginForm() {
           withCredentials: false,
         }
       );
-      const authToken = response.data.token;
+      const authToken = response.data.data.token;
 
       localStorage.setItem("authToken", authToken);
 

@@ -2,13 +2,15 @@
   display: grid;
   grid-template-columns: 50vw 50vw;
   text-align: left;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: auto;
 }
 body {
-  overflow: hidden;
   margin: 0;
   font-size: 1.2vw;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
 }
 .resend {
   cursor: pointer;

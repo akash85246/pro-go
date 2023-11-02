@@ -1,7 +1,11 @@
-import logo from "../../assets/logo.svg";
+import React from "react"; // Don't forget to import React if you're using JSX
+import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
+import logo from "../../assets/logo.svg";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <nav className="homeNavbar">
       <div className="homePageIcon">
@@ -16,7 +20,7 @@ export default function Navbar() {
             <li>Item 3</li>
           </ul>
         </Dropdown>
-
+        {/* <button onClick={() => navigate("/home")}>Home</button> */}
         <Dropdown title="Plans">
           <ul>
             <li>Item A</li>
@@ -24,7 +28,7 @@ export default function Navbar() {
             <li>Item C</li>
           </ul>
         </Dropdown>
-        <a> Pricing</a>
+        <Link to="/pricing">Pricing</Link>
         <Dropdown title="Resources">
           <ul>
             <li>Item A</li>
@@ -32,8 +36,24 @@ export default function Navbar() {
             <li>Item C</li>
           </ul>
         </Dropdown>
-        <button className="signInButton">Sign in</button>
-        <button className="signUpButton">Sign up</button>
+
+        {localStorage.getItem("user-info") ? (
+          <>
+            <button className="signInButton">Profile</button>
+          </>
+        ) : (
+          <>
+            <button className="signInButton" onClick={() => navigate("/logIn")}>
+              Sign in
+            </button>
+            <button
+              className="signUpButton"
+              onClick={() => navigate("/signUp")}
+            >
+              Sign up for free
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );

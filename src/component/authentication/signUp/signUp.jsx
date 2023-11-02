@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RememberMeCheckbox from "../../utils/rememberMe";
 import Terms from "../../utils/terms";
 import Button from "../../utils/button";
@@ -11,6 +11,8 @@ import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import signUpImg from "../../../assets/sign-up.png";
 import logo from "../../../assets/logo.svg";
+import { useAuth } from "../../authContext";
+
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -84,39 +86,31 @@ function SignUpForm() {
       password: newPassword,
     });
 
-    if (newPassword) {
-      // const hasLetter = /[A-Za-z]/.test(newPassword);
-      // const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
+    const hasLetter = /[A-Za-z]/.test(newPassword);
+    const hasNumber = /\d/.test(newPassword);
 
-      const passwordRegex =
-        /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{6,}$/;
+    if (newPassword.length >= 8 && hasLetter && hasNumber) {
+      document.getElementById("passwordStrength").style.display = "block";
+      setPasswordStrength("Strong");
+    } else if (newPassword.length >= 6 && (hasLetter || hasNumber)) {
+      document.getElementById("passwordStrength").style.display = "block";
+      setPasswordStrength("Moderate");
+    } else if (newPassword.length !== 0) {
+      document.getElementById("passwordStrength").style.display = "block";
+      setPasswordStrength("Weak");
+    } else {
+      document.getElementById("passwordStrength").style.display = "none";
+    }
 
-      if (formData.confirmPassword) {
-        if (newPassword === formData.confirmPassword) {
-          document.getElementById("confPass").style.display = "none";
-        } else {
-          document.getElementById("confPass").style.display = "block";
-        }
-      } else {
-        document.getElementById("confPass").style.display = "none";
-      }
-
-      if (newPassword.length >= 8 && passwordRegex.test(newPassword)) {
-        document.getElementById("passwordStrength").style.display = "block";
-        setPasswordStrength("Strong");
-      } else if (newPassword.length >= 6) {
-        document.getElementById("passwordStrength").style.display = "block";
-        setPasswordStrength("Moderate");
-      } else if (newPassword.length > 0) {
-        document.getElementById("passwordStrength").style.display = "block";
-        setPasswordStrength("Weak");
-      } else {
-        document.getElementById("passwordStrength").style.display = "none";
-        setPasswordStrength("");
-      }
+    // Check for password mismatch
+    if (newPassword !== formData.confirmPassword) {
+      document.getElementById("resetPass").style.display = "block";
+      setPasswordMatchError("Passwords do not match");
+    } else {
+      document.getElementById("resetPass").style.display = "none";
+      setPasswordMatchError("");
     }
   };
-
   const handleConfirmPasswordChange = (e) => {
     const newConfirmPassword = e.target.value;
     setFormData({
