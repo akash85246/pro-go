@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import downImg from "../../assets/V.svg";
 export default function Dropdown({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -12,9 +12,11 @@ export default function Dropdown({ title, children }) {
       <button className="dropdown-button" onClick={toggleDropdown}>
         <span dangerouslySetInnerHTML={{ __html: title }} />
         {isOpen ? (
-          <span dangerouslySetInnerHTML={{ __html: "&#11161;" }} />
+          <span>
+            <img src={downImg}></img>
+          </span>
         ) : (
-          <span dangerouslySetInnerHTML={{ __html: "&#11163;" }} />
+          <span>{/* <img src={upImg}></img> */}^</span>
         )}
       </button>
       {isOpen && <div className="dropdown-content">{children}</div>}
