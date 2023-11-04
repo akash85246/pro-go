@@ -10,7 +10,14 @@
   width: 100%;
   margin: auto;
 }
+sup {
+  color: red;
+  font-size: 2vw;
+  font-weight: 700;
+  text-decoration-line: line-through;
+}
 .priceplanHeader h1 {
+  margin: 10vh auto;
   color: #407bff;
   text-align: center;
   font-family: Inter;
@@ -26,22 +33,23 @@
 .priceplanHeader h2 {
   color: #000;
   width: 80vw;
-  margin: auto;
+  margin: 10vh auto;
   font-family: Poppins;
   font-size: 1.75rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 2.1875rem;
+  text-align: center;
 }
 /* pricePlan.css */
 .monthly {
-  background-color: #011c67;
-  color: #fff;
+  background-color: white;
+  color: black;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   width: 15vw;
-
+  border: 1px solid #696f79;
   font-family: Inter;
   font-size: 1.5rem;
   font-style: normal;
@@ -71,21 +79,19 @@
 /* CardContainer.css */
 .costChoice {
   display: flex;
-  justify-content: center; /* Center along the x-axis */
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-  border: 1px solid #ccc;
+  width: 90%;
 }
-
 .pCard {
   background-color: #fff;
   border: 1px solid #e0e0e0;
   padding: 20px;
-  width: 200px;
+  width: 25vw;
   text-align: center;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  margin: 10px;
   display: inline-block;
+  margin: 1vw;
 }
 
 .pTitle {
@@ -93,8 +99,9 @@
 }
 
 .cost {
-  font-size: 1.2rem;
-  color: #007bff;
+  font-size: 5.5vw;
+  font-weight: 700;
+  line-height: 2.625rem;
 }
 
 ul {
@@ -103,13 +110,118 @@ ul {
   text-align: left;
 }
 
-li {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
+#root > div.costChoice > div > div > p {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.625rem;
 }
 
-img {
+.trialButton {
+  background-color: #001b66;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: blue;
+  color: white;
+}
+
+.pCard h3 {
+  text-align: left;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+li {
+  display: flex;
+  align-items: left;
+  overflow: hidden;
+  color: #263238;
+  text-align: left;
+  height: 60px;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+li img {
   width: 20px;
   margin-right: 10px;
+}
+
+li p {
+  margin: 0;
+  white-space: wrap;
+}
+.clicked {
+  background-color: lightblue;
+  color: white;
+  background: #0e286f;
+}
+.clickedB {
+  color: #0e286f;
+  background: white;
+}
+.suggestion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 20vh;
+  margin: 5vh auto;
+}
+.suggestion h1 {
+  color: #011c67;
+
+  font-size: 2.25rem;
+
+  font-weight: 600;
+  line-height: 2.625rem;
+}
+.suggestion button {
+  background-color: white;
+  color: #007bff;
+  border: none;
+  border-radius: 0.75rem;
+  border: 1px solid #696f79;
+  cursor: pointer;
+  width: 26rem;
+  padding: 2rem 1.5rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+
+.frquently {
+  margin-top: 20vh;
+}
+.frquently h1 {
+  text-align: center;
+  color: #011c67;
+
+  font-size: 2.25rem;
+
+  font-weight: 600;
+}
+.frquently li {
+  color: #407bff;
+  text-align: center;
+
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.frquently span {
+  color: black;
+}
+.quest{
+  display: grid;
+  grid-template-columns:1.5fr 1fr ;
+  padding: 0 5rem
 }

@@ -8,7 +8,7 @@ import team from "../../assets/team.svg";
 import image1 from "../../assets/landing1.svg";
 import image2 from "../../assets/landing2.svg";
 import image3 from "../../assets/landing3.svg";
-
+import Footer from "../utils/footer";
 import Cards from "./card";
 import box1Img from "../../assets/box1.svg";
 import box2Img from "../../assets/box2.svg";
@@ -185,6 +185,7 @@ members in minutes."
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

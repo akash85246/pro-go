@@ -1,0 +1,84 @@
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2vw;
+  padding: 2vw 4vw;
+  background: #001b66;
+  color: white;
+}
+
+.logoContainer {
+  text-align: center;
+  padding: 2vw;
+}
+.logo {
+  display: flex;
+  gap: 2vw;
+}
+.logo img {
+  width: 6vw;
+}
+.logo h1 {
+  font-weight: 900;
+  margin: auto;
+  font-size: 3vw;
+  margin-left: 2vw;
+}
+.social {
+  display: flex;
+  gap: 4vw;
+}
+.container1 h2 {
+  margin: 5vw 0;
+}
+.container2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.container2 li {
+  color: white;
+}
+.container3 {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.container3 label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 2vw;
+}
+
+.container3 div {
+  display: flex;
+  flex-direction: row;
+}
+
+.container3 input[type="text"] {
+  padding: 10px;
+  width: 200px;
+}
+
+.container3 input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #0074d9;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.subscript {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.subscript span {
+  margin-left: 10px;
+  font-size: 0.9em;
+}
