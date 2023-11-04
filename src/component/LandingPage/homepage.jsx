@@ -1,4 +1,4 @@
-import Navbar from "./navbar";
+import Navbar from "../utils/navbar";
 import Features from "./specification";
 import heartImg from "../../assets/heart.svg";
 import folderImg from "../../assets/Folder.svg";
@@ -21,7 +21,6 @@ export default function Homepage() {
   return (
     <>
       <Navbar />
-
       <div className="containerHome">
         <div className="centeredContent">
           <div className="part part1">
@@ -34,14 +33,8 @@ export default function Homepage() {
                 alignItems: "center",
               }}
             >
-              <h1
-                style={{
-                  width: "80vw",
-                }}
-              >
-                Pro-Go brings all your tasks,teamates,and tools together
-              </h1>
-              <p style={{ marginTop: "-5vh" }}>
+              <h1>Pro-Go brings all your tasks,teamates,and tools together</h1>
+              <p>
                 &quot;Keep everything in the same place -even if your team
                 isn&apos;t.&quot;
               </p>

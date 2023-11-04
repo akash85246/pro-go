@@ -1,19 +1,36 @@
-// import React from "react"; // Don't forget to import React if you're using JSX
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Dropdown from "./Dropdown";
+import Dropdown from "../landingPage/Dropdown";
 import logo from "../../assets/logo.svg";
+import hamImg from "../../assets/hamburgerOpen.svg";
+// import "./Navbar.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="navContainer">
-      <nav className="homeNavbar">
+      <nav className={`homeNavbar ${isMenuOpen ? "open" : ""}`}>
         <div className="homePageIcon">
           <img src={logo} alt="Logo" />
           <h1>Pro-Go</h1>
         </div>
-        <div>
+        <div
+          className={`menuToggle ${isMenuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+        >
+          {isMenuOpen ? (
+            <img src={hamImg} alt="Close Menu" />
+          ) : (
+            <img src={hamImg} alt="Open Menu" />
+          )}
+        </div>
+        <div className={`navItems ${isMenuOpen ? "open" : ""}`}>
           <Dropdown title="Solutions">
             <ul>
               <li>Item 1</li>
@@ -21,7 +38,6 @@ export default function Navbar() {
               <li>Item 3</li>
             </ul>
           </Dropdown>
-          {/* <button onClick={() => navigate("/home")}>Home</button> */}
           <Dropdown title="Plans">
             <ul>
               <li>Item A</li>

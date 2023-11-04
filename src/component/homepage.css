@@ -5,6 +5,9 @@
   align-items: center;
   width: 86vw;
 }
+#root {
+  width: 110vw;
+}
 .navContainer {
   width: 100vw;
   height: 5vh;
@@ -97,7 +100,7 @@ a {
 
   border: 1px solid #001b66;
   background-color: white;
-  padding: 0.75vw 1.75vw;
+  padding: 0.75rem 1.75rem;
   color: #001b66;
   border-radius: 2.1875rem;
   border: 2px solid #001b66;
@@ -124,9 +127,8 @@ a {
 .centeredContent {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200vh 0.5fr 1fr;
+  grid-template-rows: 2fr 0.5fr 1fr;
   text-align: center;
-  /* row-gap: 10vw; */
   width: 100vw;
   height: auto;
 }
@@ -199,6 +201,7 @@ a {
 .get {
   color: black;
   margin-top: -15vh;
+  height: 15vh;
 }
 
 .featureMainContainer {
@@ -225,7 +228,7 @@ a {
   grid-template-rows: 1fr;
   font-size: 1vw;
   column-gap: 1rem;
-  margin: 9rem 1vw 0 1vw;
+  margin: 15vw 1vw 0 1vw;
 }
 .img2 {
   width: 45vw;
@@ -352,7 +355,6 @@ a {
   color: black;
   width: 12rem;
   padding: 0.625rem;
-
   border-radius: 0.25rem;
   background: #fff;
 }
@@ -366,7 +368,6 @@ a {
   > span:nth-child(1) {
   width: 9.375rem;
   padding: 0.625rem;
-
   border-radius: 0.25rem;
   width: 15vw;
   min-width: 10vw;
@@ -377,8 +378,8 @@ a {
   grid-template-rows: 1fr 1fr 1fr;
   column-gap: 5vw;
   row-gap: 5vw;
-  justify-content: center; /* Center along the x-axis */
-  align-items: center; /* Center along the y-axis */
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -407,7 +408,6 @@ a {
 .part5 {
   display: flex;
   justify-content: center;
-
   align-items: center;
   gap: 4rem;
 }
@@ -431,7 +431,9 @@ a {
   color: white;
   border: none;
   border-radius: 5px;
+  height: 5vw;
   font-size: 16px;
+  margin: auto;
   cursor: pointer;
   border-radius: 2.1875rem;
   background: #001b66;
@@ -442,8 +444,6 @@ a {
 }
 .LetDoThis:hover {
   background-color: blue;
-}
-.part6 {
 }
 .part6 h1 {
   color: #011c67;
@@ -461,7 +461,7 @@ a {
   font-weight: 500;
 }
 .part6 button {
- color: white;
+  color: white;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -473,5 +473,189 @@ a {
 }
 
 .part6 button:hover {
-  background-color:  #022484;
+  background-color: #022484;
+}
+.part1 p {
+  margin-top: -5vh;
+}
+.part1 h1 {
+  width: 80vw;
+}
+@media only screen and (max-width: 1000px) {
+  body {
+    /* background-color: rgb(2, 13, 17); */
+  }
+  a {
+    font-size: 1.1vw;
+  }
+
+  .signUpButton {
+    font-size: 1.1vw;
+    width: 18vw;
+  }
+  .signInButton {
+    font-size: 1.1vw;
+  }
+  .dropdown-button {
+    font-size: 1.1vw;
+  }
+  .part1 {
+    margin-top: 5vw;
+  }
+  .homePageIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .homePageIcon h1 {
+    font-size: 1.4vw;
+  }
+  .part1 h1 {
+    margin-top: 10vh;
+  }
+  .part1 p {
+    margin-top: -3vh;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
+    margin-top: -60vw;
+    width: 40vw;
+  }
+  /* .img1 {
+    height: 110vw;
+    width: 80vw;
+    margin-top: -5rem;
+  } */
+  .part1 {
+    height: 40rem;
+  }
+  .part2 {
+    margin-top: 40vh;
+    height: 40vh;
+  }
+  .part3 {
+    margin-top: -30vh;
+    height: 65vh;
+  }
+  .part3 img {
+    width: 30vw;
+    /* height: 10vh; */
+  }
+
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(2) {
+    font-size: 1.2vw;
+    width: 40vw;
+    height: 1vh;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(1) {
+    font-size: 1.2vw;
+    width: 40vw;
+  }
+  .member3 li {
+    width: 38vw;
+  }
+  .member2 {
+    font-size: 1.2vw;
+  }
+  .member2 button {
+    width: 15vw;
+    padding: 0;
+    font-size: 1.5vw;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .navContainer {
+    background-color: #011c67;
+  }
+  .menuToggle {
+    display: block;
+  }
+  .homeNavbar {
+    color: white;
+  }
+  .navItems {
+    display: none;
+    flex-direction: column;
+    background-color: #011c67;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+  .navItems.open {
+    display: flex;
+  }
+  .homeNavbar.open {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    color: white;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
+    margin-top: -60vw;
+    font-size: 2vw;
+  }
+  .part {
+    height: 85vh;
+  }
+  .img1 {
+    margin-top: -10vh;
+    width: 70vw;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > h2 {
+    margin-top: -20vh;
+    font-size: 5vw;
+  }
+  .featureMainContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .featureContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vw;
+  }
+  .featureImage {
+    height: 10vw;
+  }
+  .featureContainer p {
+    margin: auto;
+  }
+  .part2 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
+    font-size: 4vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
+    font-size: 3vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div:nth-child(2) > img {
+    width: 100vw;
+  }
 }

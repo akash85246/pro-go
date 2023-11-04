@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthProvider } from "./authContext";
+import { AuthProvider } from "./utils/authContext";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,6 +15,7 @@ import LoginForm from "./authentication/login/loginForm";
 import Homepage from "./LandingPage/homepage";
 import Reset from "./authentication/reset/resetPassword";
 import Otp from "./authentication/forgot/otpVerification";
+import Pricing from "./pricingPlan/price";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/home" element={<Homepage />} />
             <Route path="/otp" element={<Otp />} />
             <Route path="/reset" element={<Reset />} />
+            <Route path="/price" element={<Pricing />} />
             <Route path="/" element={<LoginForm />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

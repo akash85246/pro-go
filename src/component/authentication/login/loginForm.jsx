@@ -13,7 +13,7 @@ import logo from "../../../assets/logo.svg";
 import { toast } from "../../../../public/react-toastify";
 import "../../../../public/react-toastify/dist/ReactToastify.css";
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
-import { useAuth } from "../../authContext";
+import { useAuth } from "../../utils/authContext";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
