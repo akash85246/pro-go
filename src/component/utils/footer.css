@@ -1,6 +1,7 @@
 footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 70vh;
   column-gap: 2vw;
   padding: 2vw 4vw;
   background: #001b66;
@@ -31,20 +32,28 @@ footer {
 .container1 h2 {
   margin: 5vw 0;
 }
+.container1 {
+  font-size: 1.1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .container2 {
   display: flex;
   flex-direction: row;
+
   justify-content: space-between;
+  margin: 5vh 0;
 }
 .container2 li {
   color: white;
+  font-size: 1.5vw;
 }
 .container3 {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin: auto;
 }
 
@@ -57,28 +66,85 @@ footer {
 .container3 div {
   display: flex;
   flex-direction: row;
+  gap: 0.5vw;
 }
 
 .container3 input[type="text"] {
   padding: 10px;
-  width: 200px;
+  width: 20vw;
 }
 
 .container3 input[type="submit"] {
-  padding: 10px 20px;
+  padding: 1vw 2vh;
   background-color: #0074d9;
   color: white;
   border: none;
   cursor: pointer;
+  width: 10vw;
+  font-size: 1vw;
 }
 
 .subscript {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 20vh;
+  margin-left: 15vw;
 }
 
 .subscript span {
   margin-left: 10px;
   font-size: 0.9em;
+}
+@media only screen and (max-width: 650px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo img {
+    width: 15vw;
+  }
+  .logo h1 {
+    font-size: 8vw;
+  }
+  .container1 h2 {
+    font-size: 4vw;
+    font-weight: 200;
+  }
+  .container2 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container2 ul {
+    margin-bottom: 8vh;
+  }
+  .container2 li {
+    font-size: 4vw;
+    font-weight: 100;
+  }
+  .container3 input[type="text"] {
+    padding: 10px;
+    width: 80%;
+  }
+
+  .container3 input[type="submit"] {
+    width: 30%;
+    font-size: 2vw;
+  }
+  .subscript {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    margin-left: 0vw;
+  }
+  .container3 label {
+    font-size: 3vw;
+    text-align: left;
+    width: 100%;
+    font-weight: 100;
+  }
+  .subscript span {
+    font-size: 3vw;
+    font-weight: 200;
+  }
 }

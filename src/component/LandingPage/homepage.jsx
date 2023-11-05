@@ -83,7 +83,7 @@ export default function Homepage() {
               <img src={image2} className="img2"></img>
             </div>
           </div>
-          <h1 className="get">What will you get in Free trails?</h1>
+          <h1>What will you get in Free trails?</h1>
           <div className="part part3">
             <div className="member1">
               <img src={image3} className="img3"></img>

@@ -5,9 +5,7 @@
   align-items: center;
   width: 86vw;
 }
-#root {
-  width: 110vw;
-}
+
 .navContainer {
   width: 100vw;
   height: 5vh;
@@ -62,7 +60,12 @@
   background-color: white;
   color: #001b66;
 }
-
+#root > div.navContainer > nav > div.homePageIcon > h1 {
+  min-width: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 a {
   text-decoration: none;
   margin-right: 2rem;
@@ -169,7 +172,7 @@ a {
 }
 .part1 {
   background-color: #092a84;
-  height: 120vh;
+  height: 88vh;
 }
 
 #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
@@ -184,7 +187,7 @@ a {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: -80vh;
+  margin-top: -70vh;
   z-index: 0;
   font-weight: 600;
 }
@@ -193,14 +196,14 @@ a {
   text-align: center;
 }
 .img1 {
-  margin-top: 10vh;
+  margin-top: -10vh;
   height: 120vh;
-  width: 120vh;
+  width: 85vw;
 }
 /* functions */
 .get {
   color: black;
-  margin-top: -15vh;
+  margin-top: 10vh;
   height: 15vh;
 }
 
@@ -208,10 +211,11 @@ a {
   color: black;
   display: grid;
   grid-template-columns: 35vw 35vw;
-  grid-row: 35vw 35vw;
+  grid-row: 35vh 35vh;
   row-gap: 2vw;
   column-gap: 10vw;
   word-wrap: break-word;
+  margin-top: 10vh;
   margin-left: 10%;
   font-size: 1.2vw;
   color: #407bff;
@@ -229,6 +233,7 @@ a {
   font-size: 1vw;
   column-gap: 1rem;
   margin: 15vw 1vw 0 1vw;
+  margin-top: 40vh;
 }
 .img2 {
   width: 45vw;
@@ -251,6 +256,8 @@ a {
   font-style: normal;
   font-weight: 700;
   line-height: 2.66rem;
+  margin-bottom: 4vh;
+  margin-top: -30vh;
 }
 #root
   > div.containerHome
@@ -284,7 +291,8 @@ a {
 }
 
 #root > div.containerHome > div > h1 {
-  margin-top: 1vh;
+  margin-top: 5vh;
+  margin-bottom: -15vw;
   color: #011c67;
 
   font-family: Inter;
@@ -295,11 +303,11 @@ a {
 }
 
 .part3 {
-  margin-top: -35rem;
+
   background-color: #092a84;
   display: grid;
   grid-template-columns: 1.5fr 1fr 1.5fr;
-  height: 33rem;
+  margin-top: -50vh;
 }
 .member1 {
   display: flex;
@@ -317,7 +325,7 @@ a {
   align-items: center;
   text-align: center;
   font-family: Inter;
-  font-size: 1.2rem;
+  font-size: 2vw;
   row-gap: 2rem;
   font-style: normal;
   font-weight: 600;
@@ -341,6 +349,7 @@ a {
   display: flex;
   font-size: 1.2rem;
   font-weight: bold;
+  color: white;
   justify-content: space-between;
 }
 
@@ -374,11 +383,9 @@ a {
 }
 .part4 {
   display: grid;
-  grid-template-columns: 45vh 45vh;
+  grid-template-columns: 45vw 45vw;
   grid-template-rows: 1fr 1fr 1fr;
-  column-gap: 5vw;
-  row-gap: 5vw;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
@@ -386,24 +393,32 @@ a {
 #root > div.containerHome > div > div.part.part4 > div > h1 {
   color: #232426;
   font-family: Inter;
-  font-size: 1rem;
+  font-size: 2vw;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6875rem;
   letter-spacing: 0.05625rem;
   text-transform: uppercase;
+  width: 80%;
+  margin: auto;
 }
 #root > div.containerHome > div > div.part.part4 > div > p {
   color: #232426;
   font-family: Work Sans;
-  font-size: 1rem;
+  font-size: 1.5vw;
   font-style: normal;
   font-weight: 400;
+  width: 80%;
+  margin: auto;
   line-height: 1.5rem; /* 150% */
 }
 .card {
   border: 2px solid #8692a6;
-  padding: 10px;
+  /* padding: 10px; */
+  width: 80%;
+}
+.card img{
+  height: 21vh;
 }
 .part5 {
   display: flex;
@@ -476,15 +491,30 @@ a {
   background-color: #022484;
 }
 .part1 p {
-  margin-top: -5vh;
+  margin-top: 2vh;
 }
 .part1 h1 {
   width: 80vw;
 }
+.part6 {
+  margin-bottom: 10vh;
+}
+#root > footer > div.container2 > ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 2.5vh;
+  font-size: 3vw;
+}
+#root > footer > div.container2 > ul>li{
+  font-size: 2vw;
+
+}
+#root > footer > div.container2 > ul > li:nth-child(1){
+  font-size: 2.5vw;
+
+}
 @media only screen and (max-width: 1000px) {
-  body {
-    /* background-color: rgb(2, 13, 17); */
-  }
   a {
     font-size: 1.1vw;
   }
@@ -514,31 +544,43 @@ a {
     margin-top: 10vh;
   }
   .part1 p {
-    margin-top: -3vh;
+    margin-top: 2.5vh;
   }
   #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
-    margin-top: -60vw;
+    margin-top: -80vw;
     width: 40vw;
+    height: 8vh;
+    font-size: 2vw;
   }
-  /* .img1 {
-    height: 110vw;
-    width: 80vw;
-    margin-top: -5rem;
-  } */
+  .img1 {
+    /* height: 110vw; */
+    width: 90vw;
+    margin-top: -20vh;
+  }
   .part1 {
-    height: 40rem;
+    height: 80vh;
+  }
+  .get {
+    margin-top: -30vh;
   }
   .part2 {
-    margin-top: 40vh;
+    margin-top: 25vh;
     height: 40vh;
   }
+  #root > div.containerHome > div > h1 {
+    margin-top: 0;
+  }
   .part3 {
-    margin-top: -30vh;
-    height: 65vh;
+    margin-top: -60vh;
+    height: 50vh;
+  }
+  #root > div.containerHome > div > h1.get {
+    margin: 10vh auto;
+    font-size: 4vw;
+    font-weight: bolder;
   }
   .part3 img {
-    width: 30vw;
-    /* height: 10vh; */
+    width: 40vw;
   }
 
   #root
@@ -549,9 +591,10 @@ a {
     > ul
     > li
     > span:nth-child(2) {
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     width: 40vw;
-    height: 1vh;
+    text-align: center;
+    height: 2vh;
   }
   #root
     > div.containerHome
@@ -561,7 +604,7 @@ a {
     > ul
     > li
     > span:nth-child(1) {
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     width: 40vw;
   }
   .member3 li {
@@ -575,11 +618,21 @@ a {
     padding: 0;
     font-size: 1.5vw;
   }
+  .part4 {
+    margin-top: -10vh;
+  }
+  .card {
+    width: 90%;
+    text-align: left;
+  }
 }
 
 @media only screen and (max-width: 650px) {
   .navContainer {
     background-color: #011c67;
+  }
+  .part {
+    height: 85vh;
   }
   .menuToggle {
     display: block;
@@ -607,15 +660,26 @@ a {
     padding: 20px;
     color: white;
   }
+  .part1 {
+    height: 40vh;
+  }
   #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
-    margin-top: -60vw;
-    font-size: 2vw;
+    margin-top: -55vh;
+    font-size: 2.5vw;
+    height: 5vh;
+    width: 50%;
   }
-  .part {
-    height: 85vh;
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > p {
+    margin-top: 2vh;
+    font-size: 3vw;
   }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > h1 {
+    font-size: 2.8vw;
+    font-weight: bold;
+  }
+
   .img1 {
-    margin-top: -10vh;
+    margin-top: -40vh;
     width: 70vw;
   }
   #root
@@ -625,21 +689,38 @@ a {
     > div:nth-child(2)
     > div.get
     > h2 {
-    margin-top: -20vh;
+    margin-top: -45vh;
     font-size: 5vw;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > p {
+    font-size: 5vw;
+    color: #011c67;
+    font-weight: 600;
+    margin: auto;
   }
   .featureMainContainer {
     display: flex;
     flex-direction: column;
+    gap: 4vh;
   }
   .featureContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5vw;
+    font-size: 3.5vw;
+    text-align: left;
+    width: 90%;
+    color: #011c67;
+    font-weight: bold;
   }
   .featureImage {
-    height: 10vw;
+    height: 15vw;
   }
   .featureContainer p {
     margin: auto;
@@ -647,15 +728,186 @@ a {
   .part2 {
     display: flex;
     flex-direction: column;
-    margin-top: 2vh;
+    margin-top: 35vh;
+    height: 10vh;
+    width: 100%;
+    text-align: left;
+    gap: 10vw;
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
-    font-size: 4vw;
+    font-size: 5vw;
+    width: 95vw;
+    word-wrap: break-word;
+  }
+  #root > footer > div.container3 > div:nth-child(2) {
+    width: 80vw;
+    gap: 2vw;
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
     font-size: 3vw;
+    width: 92vw;
   }
-  #root > div.containerHome > div > div.part.part2 > div:nth-child(2) > img {
+  #root > div.containerHome > div > div.part.part2 > div:nth-child(2) > div {
+    margin-top: -100vh;
+  }
+  #root > div.containerHome > div > h1:nth-child(3) {
+    margin-top: 30vh;
+    text-align: centre;
+    width: 100%;
+    height: auto;
+    font-size: 3vw;
+  }
+  .part3 {
+    margin-top: -5vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .img2 {
     width: 100vw;
+    height: 25vh;
+  }
+  .img3 {
+    width: 30vw;
+    margin: auto;
+  }
+  .part3 {
+    height: 120vh;
+  }
+  .part3 img {
+    width: 85vw;
+    margin-top: 1vh;
+  }
+  .member2 {
+    font-size: 2.2vw;
+  }
+  .member2 button {
+    font-size: 3.5vw;
+    width: 40vw;
+    margin-bottom: 2vh;
+  }
+  .member3 ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .member3 li {
+    width: 90vw;
+    height: 2.5vh;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(1) {
+    font-size: 3.5vw;
+    text-align: center;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(2) {
+    font-size: 3.5vw;
+    text-align: center;
+    height: 4vh;
+    width: 30vw;
+  }
+  #root > div.containerHome > div > h1:nth-child(5) {
+    font-size: 4vw;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 5vh;
+  }
+  .part4 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100vh;
+    gap: 5vw;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    gap: 3vh;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > h1 {
+    text-align: left;
+    font-size: 4vw;
+    width: 75%;
+    margin: auto;
+    font-weight: bold;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > p {
+    text-align: left;
+    font-size: 4vw;
+    width: 75%;
+    margin: auto;
+    font-weight: bold;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > img {
+    width: 60vw;
+  }
+  .part5 {
+    margin-top: 90vh;
+  }
+  .workContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    padding: 5vw;
+    width: 84vw;
+  }
+  .workContainer div {
+    padding: 5vw;
+    height: 100%;
+  }
+  .workContainer div {
+    font-size: 4vw;
+  }
+  .workContainer button {
+    height: 5vh;
+    width: 70vw;
+    font-size: 5vw;
+    margin-top: -5vh;
+  }
+  .part6 {
+    margin-top: -20vh;
+  }
+  .seeWork {
+    padding: 5vw;
+    font-size: 2vw;
+  }
+  .seeWork h1 {
+    padding: 5vw;
+    font-size: 4.5vw;
+  }
+  .seeWork p {
+    padding: 5vw;
+    font-size: 4vw;
+  }
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .social {
+    justify-content: center;
+  }
+  .seeWork button {
+    margin: 5vh 0;
+    width: 80vw;
+    margin-top: 1vh;
+  }
+  footer {
+    margin-top: -50vh;
   }
 }

@@ -3,7 +3,7 @@ import Navbar from "../utils/navbar";
 import PCard from "./priceCards";
 import Footer from "../utils/footer";
 
-import img from "../../assets/priceImg.svg"
+import img from "../../assets/priceImg.svg";
 import "../pricingPlan/pricePlan.css";
 
 export default function Pricing(props) {
@@ -177,12 +177,12 @@ export default function Pricing(props) {
                 <span>+ </span>What payment methods do you accept?
               </div>
             </li>
-            <li>
+            {/* <li>
               <div>
                 <span>+ </span> How do i can my Pro-Go standard and permium free
                 trail?
               </div>
-            </li>
+            </li> */}
             <li>
               <div>
                 <span>+ </span> How user counted towards billings?
@@ -197,7 +197,7 @@ export default function Pricing(props) {
           <img src={img}></img>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

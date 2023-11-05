@@ -81,7 +81,7 @@ sup {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
 }
 .pCard {
   background-color: #fff;
@@ -220,8 +220,8 @@ li p {
 .frquently span {
   color: black;
 }
-.quest{
+.quest {
   display: grid;
-  grid-template-columns:1.5fr 1fr ;
-  padding: 0 5rem
+  grid-template-columns: 1.5fr 1fr;
+  padding: 0 5rem;
 }
