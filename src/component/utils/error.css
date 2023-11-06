@@ -1,0 +1,66 @@
+.errorMain {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  height: 100%;
+  margin: auto;
+}
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+}
+.errorContainer h1 {
+  color: #455a64;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5rem; /* 150% */
+  text-align: left;
+  font-size: 2vw;
+}
+.errorContainer h2 {
+  color: #230e0e;
+  font-family: Inter;
+  font-size: 3.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 4.5rem; 
+  letter-spacing: -0.075rem;
+  font-size: 4vw;
+}
+.errorContainer p {
+  color: #475467;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.875rem; /* 150% */
+}
+.errorImgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vw;
+}
+.errorImg {
+  width: 40vw;
+}
+.primary-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.success-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}

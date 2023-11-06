@@ -15,6 +15,7 @@ import LoginForm from "./authentication/login/loginForm";
 import Homepage from "./LandingPage/homepage";
 import Reset from "./authentication/reset/resetPassword";
 import Otp from "./authentication/forgot/otpVerification";
+import Error from "./utils/error";
 import Pricing from "./pricingPlan/price";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/otp" element={<Otp />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/price" element={<Pricing />} />
+            <Route path="/error" element={<Error />} />
             <Route path="/" element={<LoginForm />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

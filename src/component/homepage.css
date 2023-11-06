@@ -172,7 +172,7 @@ a {
 }
 .part1 {
   background-color: #092a84;
-  height: 88vh;
+  height: 110vh;
 }
 
 #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
@@ -196,7 +196,7 @@ a {
   text-align: center;
 }
 .img1 {
-  margin-top: -10vh;
+  margin-top: 0vh;
   height: 120vh;
   width: 85vw;
 }
@@ -252,12 +252,12 @@ a {
   color: #011c67;
   text-align: center;
   font-family: Inter;
-  font-size: 1.5rem;
+  font-size: 2vw;
   font-style: normal;
   font-weight: 700;
   line-height: 2.66rem;
   margin-bottom: 4vh;
-  margin-top: -30vh;
+  margin-top: -10vh;
 }
 #root
   > div.containerHome
@@ -269,7 +269,7 @@ a {
   color: #407bff;
   text-align: center;
   font-family: Work Sans;
-  font-size: 1.25rem;
+  font-size: 1.5vw;
   font-style: normal;
   font-weight: 400;
   line-height: 1.75rem;
@@ -303,7 +303,6 @@ a {
 }
 
 .part3 {
-
   background-color: #092a84;
   display: grid;
   grid-template-columns: 1.5fr 1fr 1.5fr;
@@ -414,10 +413,11 @@ a {
 }
 .card {
   border: 2px solid #8692a6;
-  /* padding: 10px; */
+  margin-bottom: 5vh;
+  padding: 2vw;
   width: 80%;
 }
-.card img{
+.card img {
   height: 21vh;
 }
 .part5 {
@@ -425,6 +425,8 @@ a {
   justify-content: center;
   align-items: center;
   gap: 4rem;
+  margin: auto;
+  margin-left: -2vw;
 }
 .workContainer {
   display: grid;
@@ -499,20 +501,18 @@ a {
 .part6 {
   margin-bottom: 10vh;
 }
-#root > footer > div.container2 > ul{
+#root > footer > div.container2 > ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
   row-gap: 2.5vh;
   font-size: 3vw;
 }
-#root > footer > div.container2 > ul>li{
+#root > footer > div.container2 > ul > li {
   font-size: 2vw;
-
 }
-#root > footer > div.container2 > ul > li:nth-child(1){
+#root > footer > div.container2 > ul > li:nth-child(1) {
   font-size: 2.5vw;
-
 }
 @media only screen and (max-width: 1000px) {
   a {
