@@ -180,7 +180,7 @@ export default function Reset() {
                   </div>
                 </div>
               </div>
-              <div className="errorContainer">
+              <div className="errorContainer1">
                 <div className="password-strength-container resetPSC">
                   <div
                     id="passwordStrength"
@@ -215,7 +215,7 @@ export default function Reset() {
                   </div>
                 </div>
               </div>
-              <div className="errorContainer">
+              <div className="errorContainer1">
                 <div
                   id="resetPass"
                   className="error"

@@ -161,7 +161,7 @@ export default function Forgotten(props) {
                 </div>
 
                 <div
-                  className="errorContainer"
+                  className="errorContainer1"
                   style={{
                     display: "block",
                     marginTop: "-1.5vh ",

@@ -5,6 +5,7 @@ import folderImg from "../../assets/Folder.svg";
 import plantImg from "../../assets/plant.svg";
 import team from "../../assets/team.svg";
 // import { useAuth } from "../authContext";
+import "./homepage.css"
 import image1 from "../../assets/landing1.svg";
 import image2 from "../../assets/landing2.svg";
 import image3 from "../../assets/landing3.svg";

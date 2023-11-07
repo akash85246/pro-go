@@ -217,7 +217,7 @@ function SignUpForm() {
                     }}
                     required
                   />
-                  <div className="errorContainer signUpErrorContainer">
+                  <div className="errorContainer1 signUpErrorContainer">
                     <span id="nameError" className="error">
                       Invalid name
                     </span>
@@ -240,7 +240,7 @@ function SignUpForm() {
                       validateEmail(event.target.value);
                     }}
                   />
-                  <div className="errorContainer signUpErrorContainer">
+                  <div className="errorContainer1 signUpErrorContainer">
                     <span id="emailError" className="errorEmail error">
                       Invalid email
                     </span>
@@ -289,7 +289,7 @@ function SignUpForm() {
                       </div>
                     </div>
                   </div>
-                  <div className="errorContainer signUpErrorContainer">
+                  <div className="errorContainer1 signUpErrorContainer">
                     {
                       <div
                         id="passwordStrength"
@@ -324,7 +324,7 @@ function SignUpForm() {
                       </div>
                     </div>
                   </div>
-                  <div className="errorContainer signUpErrorContainer">
+                  <div className="errorContainer1 signUpErrorContainer">
                     <span id="confPass" className="error">
                       Passwords do not match
                     </span>

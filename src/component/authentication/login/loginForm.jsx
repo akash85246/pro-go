@@ -192,7 +192,7 @@ function LoginForm() {
             </div>
             {/* </div> */}
             {/* </div> */}
-            <div className="errorContainer" style={{ display: "block" }}>
+            <div className="errorContainer1" style={{ display: "block" }}>
               <span className="error">Invalid Email</span>
             </div>
             <div className="Input">

@@ -1,0 +1,68 @@
+.mainContainerProfile {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+}
+.mainContainerProfile > div:nth-child(2) {
+  margin-top: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.mainContainerProfile > div:nth-child(1) {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #011c67;
+  font-family: Sofia Sans;
+  font-weight: 500;
+  line-height: 29px;
+  color: white;
+  text-align: left;
+}
+.mainContainerProfile div div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 2vh;
+}
+
+.profileImgContainer {
+  margin-top: 5vh;
+}
+
+.profileButton {
+  background-color: #0074d9;
+  color: #fff;
+  padding: 5px;
+  border: none;
+  width: 50%;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 2vw;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+}
+#root > div.mainContainerProfile > div:nth-child(1) > h1 {
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+#root > div.mainContainerProfile > div:nth-child(1) > h2 {
+  color: #fff;
+  font-family: Sofia Sans;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0.8vh;
+}

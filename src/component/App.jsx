@@ -17,6 +17,7 @@ import Reset from "./authentication/reset/resetPassword";
 import Otp from "./authentication/forgot/otpVerification";
 import Error from "./utils/error";
 import Pricing from "./pricingPlan/price";
+import Profile from "./profile/profile";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/reset" element={<Reset />} />
             <Route path="/price" element={<Pricing />} />
             <Route path="/error" element={<Error />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/" element={<LoginForm />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
