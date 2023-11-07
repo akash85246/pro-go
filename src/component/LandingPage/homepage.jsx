@@ -5,7 +5,7 @@ import folderImg from "../../assets/Folder.svg";
 import plantImg from "../../assets/plant.svg";
 import team from "../../assets/team.svg";
 // import { useAuth } from "../authContext";
-import "./homepage.css"
+import "./homepage.css";
 import image1 from "../../assets/landing1.svg";
 import image2 from "../../assets/landing2.svg";
 import image3 from "../../assets/landing3.svg";
@@ -34,7 +34,9 @@ export default function Homepage() {
                 alignItems: "center",
               }}
             >
-              <h1>Pro-Go brings all your tasks,teamates,and tools together</h1>
+              <h1>
+                Pro-Go brings all your tasks , teamates , and tools together
+              </h1>
               <p>
                 &quot;Keep everything in the same place -even if your team
                 isn&apos;t.&quot;

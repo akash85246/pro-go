@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import editIcon from "../../assets/edit-solid.svg";
 import "./profileImg.css";
-import axios from "axios"; // Import Axios
+import axios from "axios";
 
 export default function ProfileImg(props) {
   const [isHovered, setIsHovered] = useState(false);

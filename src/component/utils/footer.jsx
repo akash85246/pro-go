@@ -28,7 +28,6 @@ export default function Footer() {
             Design amazing digital experiences that create more happy in the
             world.
           </h2>
-          <h2>©2023 Pro-Go. All rights reserved.</h2>
         </div>
         <div className="container2">
           <ul className="list1">
@@ -56,13 +55,20 @@ export default function Footer() {
             <input type="text"></input>
             <input type="submit" value="Subscribe"></input>
           </div>
+        </div>
+      </footer>
+      <div className="knowing">
+        <div>
+          <h2>©2023 Pro-Go. All rights reserved.</h2>
+        </div>
+        <div>
           <div className="subscript">
             <span>Terms</span>
             <span>Privacy</span>
             <span>Cookies</span>
           </div>
         </div>
-      </footer>
+      </div>
     </>
   );
 }
