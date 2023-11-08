@@ -12,7 +12,9 @@ export default function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  function pricePage() {
+    navigate("/price");
+  }
   return (
     <div className="navContainer">
       <nav className={`homeNavbar ${isMenuOpen ? "open" : ""}`}>
@@ -45,7 +47,9 @@ export default function Navbar() {
               <li>Item C</li>
             </ul>
           </Dropdown>
-          <Link to="/pricing">Pricing</Link>
+          <Link to="/price" onClick={pricePage}>
+            Pricing
+          </Link>
           <Dropdown title="Resources">
             <ul>
               <li>Item A</li>
