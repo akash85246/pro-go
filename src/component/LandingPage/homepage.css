@@ -1,0 +1,1647 @@
+.homeNavbar {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  align-items: center;
+  width: 86vw;
+}
+
+.navContainer {
+  width: 100vw;
+  height: 2rem;
+  background-color: white;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vw 0;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+}
+.homePageIcon {
+  width: 15vw;
+  height: 10vh;
+}
+.arrow-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 1.3vw;
+  font-family: "Poppins", sans-serif;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(125, 125, 234, 0.9);
+  min-width: 200px;
+  color: white;
+  box-shadow: 0 8px 16px 0 blue;
+  z-index: 1;
+  font-size: 1.2vw;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  padding: 1vw;
+}
+
+.dropdown-content li:hover {
+  background-color: white;
+  color: #001b66;
+}
+#root > div.navContainer > nav > div.homePageIcon > h1 {
+  min-width: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 1.8rem */
+  letter-spacing: -0.03rem;
+}
+#root > div.navContainer > nav > div.homePageIcon > img {
+  width: 3.5rem;
+}
+a {
+  text-decoration: none;
+  margin-right: 2rem;
+  cursor: pointer;
+
+  color: #001b66;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5rem; /* 150% */
+}
+
+.signUpButton {
+  border-radius: 25px;
+  background-color: #2047ce;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid #001b66;
+
+  font-family: Poppins;
+
+  width: 12.5rem;
+  padding: 0.75rem 1.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+.signInButton {
+  font-family: Poppins;
+  margin-right: 1rem;
+  cursor: pointer;
+  background-color: white;
+  padding: 0.75rem 1.75rem;
+  color: #001b66;
+  border-radius: 2.1875rem;
+  border: 2px solid #001b66;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.signInButton:hover {
+  background-color: #001b66;
+  color: white;
+}
+.signUpButton:hover {
+  background-color: white;
+  color: #2047ce;
+}
+
+.containerHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
+}
+
+.centeredContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 0.5fr 1fr;
+  text-align: center;
+  width: 100vw;
+  height: auto;
+}
+
+.homePageIcon {
+  display: flex;
+  justify-content: center;
+  gap: 0vw;
+  align-items: center;
+}
+.homePageIcon img {
+  width: 10rem;
+}
+.dropdown-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #001b66;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+#root > div.containerHome > div > nav > div.homePageIcon > h1 {
+  font-size: 1.5vw;
+  font-weight: 900;
+  margin: auto 1vw;
+  font-family: Poppins;
+  font-weight: 700;
+}
+#root > div.containerHome > div > nav > div.homePageIcon > img {
+  margin: auto;
+  width: 4.3vw;
+  height: 4.3vw;
+}
+
+.part {
+  display: block;
+  color: white;
+  font-size: 2vw;
+  width: 100vw;
+  margin-top: 6rem;
+}
+.part1 {
+  background-color: #092a84;
+  height: 50rem;
+}
+
+#root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
+  width: 30vw;
+  height: 4.5rem;
+  background-color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2.5rem 0;
+
+  font-weight: 600;
+
+  text-align: center;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  line-height: normal;
+}
+#root
+  > div.containerHome
+  > div
+  > div.part.part1
+  > div:nth-child(1)
+  > button:hover {
+  background-color: #2047ce;
+  color: #e0e0e0;
+}
+
+#root > div.containerHome > div > div.part.part1 > div:nth-child(1) {
+  padding-top: 2vh;
+  text-align: center;
+}
+.img1 {
+  margin-top: -3rem;
+  width: 50rem;
+}
+/* functions */
+.get {
+  color: black;
+  margin-top: 2rem;
+  /* margin-top: 10vh; */
+  /* height: 15vh; */
+}
+#root
+  > div.containerHome
+  > div
+  > div.part.part1
+  > div:nth-child(2)
+  > div.featureMainContainer
+  > div
+  > p {
+  color: #407bff;
+  font-family: Work Sans;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  height: 70%;
+}
+.featureMainContainer {
+  color: black;
+  display: grid;
+  grid-template-columns: 35vw 35vw;
+  grid-row: 35vh 35vh;
+  row-gap: 2vw;
+  column-gap: 5rem;
+  word-wrap: break-word;
+  margin-top: 3rem;
+  padding: 0 15%;
+  font-size: 1.2vw;
+  color: #407bff;
+}
+.featureImage {
+  /* margin-top: 1vh; */
+  float: left;
+  height: 4rem;
+}
+.part2 {
+  margin-left: auto;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  /* padding: 0 2rem; */
+  margin-top: 17.5rem;
+}
+.img2 {
+  width: 40rem;
+}
+.img2Text {
+  margin: auto;
+  padding: 1rem;
+}
+.img2Text h1 {
+  color: #011c67;
+  font-family: Poppins;
+  font-size: 2.375rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.img2Text h2 {
+  color: #407bff;
+  font-family: Poppins;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#root
+  > div.containerHome
+  > div
+  > div.part.part1
+  > div:nth-child(2)
+  > div.get
+  > h2 {
+  color: #011c67;
+  text-align: center;
+  font-family: Inter;
+  font-size: 2vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.66rem;
+  margin-bottom: 4vh;
+  margin-top: -10vh;
+}
+#root
+  > div.containerHome
+  > div
+  > div.part.part1
+  > div:nth-child(2)
+  > div.get
+  > p {
+  color: #407bff;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 1.5vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.75rem;
+}
+#root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
+  color: #011c67;
+  font-family: Poppins;
+  font-size: 3vw;
+  font-style: normal;
+  font-weight: 600;
+}
+#root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
+  color: #407bff;
+  font-family: Poppins;
+  font-size: 2.2vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#root > div.containerHome > div > h1 {
+  margin-top: 8rem;
+  margin-bottom: -15vw;
+  color: #011c67;
+
+  font-family: Inter;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 2.66rem; /* 177.333% */
+}
+
+.part3 {
+  background-color: #092a84;
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 1fr;
+  height: 32rem;
+  margin-top: -30rem;
+}
+.member1 {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+}
+.member1 img {
+  width: 30rem;
+  margin: auto;
+  margin-left: 15%;
+}
+.member2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: Inter;
+  font-size: 2vw;
+  row-gap: 2rem;
+  font-style: normal;
+  font-weight: 600;
+}
+#root > div.containerHome > div > div.part.part3 > div.member2 > h1 {
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.88281rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.66rem; /* 141.278% */
+}
+.member2 button {
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 14.6875rem;
+  height: 3.5rem;
+  padding: 1rem 4.3125rem;
+  border-radius: 2.5rem;
+  background: #e0e0e0;
+  color: #001b66;
+
+  font-family: Inter;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.member2 button:hover {
+  background-color: #001b66;
+  color: #e0e0e0;
+}
+
+.member3 {
+  display: flex;
+}
+.member3 li {
+  padding: 1rem;
+  display: flex;
+  font-weight: bold;
+  color: white;
+  justify-content: space-between;
+  height: 2.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid blue;
+}
+#root > div.containerHome > div > h1.get {
+  margin: 5rem 0;
+}
+#root
+  > div.containerHome
+  > div
+  > div.part.part3
+  > div.member3
+  > ul
+  > li
+  > span:nth-child(2) {
+  color: black;
+  width: 12vw;
+  text-align: left;
+  font-size: 1.1rem;
+  padding: 0.625rem;
+  font-weight: 900;
+  border-radius: 0.25rem;
+  background: #fff;
+}
+#root
+  > div.containerHome
+  > div
+  > div.part.part3
+  > div.member3
+  > ul
+  > li
+  > span:nth-child(1) {
+  width: 9.375vw;
+  padding: 0.625rem;
+  border-radius: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 900;
+  width: 15vw;
+}
+.part4 {
+  display: grid;
+  grid-template-columns: 30rem 30rem;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-content: space-between;
+  margin: auto;
+  width: 60%;
+}
+
+#root > div.containerHome > div > div.part.part4 > div > h1 {
+  color: #232426;
+  font-family: Inter;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6875rem;
+  letter-spacing: 0.05625rem;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+}
+#root > div.containerHome > div > div.part.part4 > div > p {
+  color: #232426;
+  font-family: Work Sans;
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+  margin: auto;
+  line-height: 1.5rem;
+}
+.card {
+  border: 2.5px solid #8692a6;
+  margin-bottom: 5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  height: 28rem;
+  margin-left: 0;
+  margin-bottom: 4rem;
+  width: 80%;
+}
+.card img {
+  height: 22rem;
+}
+#root
+  > div.containerHome
+  > div
+  > div.part.part4
+  > div:nth-child(5)
+  > img
+  .part5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin: auto;
+  margin-left: -2vw;
+}
+.workContainer {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 1fr;
+  width: 60%;
+  padding: 2rem;
+  border: 3px solid #011c67;
+}
+.workContainer div {
+  color: #407bff;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.625rem;
+}
+.part5 {
+  display: flex;
+  justify-content: center;
+}
+.LetDoThis {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 3rem;
+  font-size: 16px;
+  margin: auto;
+  cursor: pointer;
+  width: 15rem;
+  border-radius: 2.1875rem;
+  background: #001b66;
+}
+#root > div.containerHome > div > div.part.part5 > div > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
+.LetDoThis:hover {
+  background-color: #2047ce;
+}
+.part6 h1 {
+  color: #011c67;
+  font-family: Poppins;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 600;
+}
+.part6 p {
+  color: #407bff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+}
+.part6 button {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 26.625rem;
+  height: 4rem;
+  flex-shrink: 0;
+  border-radius: 0.375rem;
+  background: #011c67;
+}
+
+.part6 button:hover {
+  background-color: #022484;
+}
+.part1 p {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 1rem 0;
+}
+.part1 h1 {
+  width: 70vw;
+  margin-bottom: 0;
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 3.5rem;
+  font-style: normal;
+  font-weight: bolder;
+  line-height: 4.6875rem;
+}
+.part6 {
+  margin-bottom: 10vh;
+}
+#root > footer > div.container2 > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 2.5vh;
+  font-size: 3vw;
+}
+#root > footer > div.container2 > ul > li {
+  font-size: 2vw;
+}
+#root > footer > div.container2 > ul > li:nth-child(1) {
+  font-size: 2.5vw;
+}
+@media only screen and (max-width: 1000px) {
+  a {
+    font-size: 0.5rem;
+  }
+
+  .signUpButton {
+    font-size: 0.5rem;
+    width: 18vw;
+  }
+  .signInButton {
+    font-size: 0.5rem;
+  }
+  .dropdown-button {
+    font-size: 0.5rem;
+  }
+  .part1 {
+    margin-top: 0;
+    height: 58rem;
+  }
+  .homePageIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #root > div.navContainer > nav > div.homePageIcon > h1 {
+    font-size: 1rem;
+  }
+  .part1 h1 {
+    margin-top: 10vh;
+    font-size: 2rem;
+  }
+  .part1 p {
+    margin-top: 1.8rem;
+  }
+  .img1 {
+    width: 45rem;
+    margin-top: -5rem;
+  }
+  .get {
+    margin-top: 5rem;
+  }
+  .part2 {
+    margin-top: -5rem;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+  }
+  .part2 img {
+    width: 30rem;
+    margin-top: -2rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > p {
+    margin: -4rem 0;
+    padding: 0;
+  }
+  #root > div.containerHome > div > h1 {
+    margin-top: 0;
+  }
+  .part3 {
+    margin-top: -50rem;
+    /* height: 50vh; */
+  }
+  #root > div.containerHome > div > h1.get {
+    margin: 10vh auto;
+    font-size: 4vw;
+    font-weight: bolder;
+  }
+  .part3 img {
+    width: 40vw;
+  }
+
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(2) {
+    font-size: 1.5vw;
+    width: 40vw;
+    text-align: center;
+    height: 2vh;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(1) {
+    font-size: 1.5vw;
+    width: 40vw;
+  }
+  .member3 li {
+    width: 38vw;
+  }
+  .member2 {
+    font-size: 1.2vw;
+  }
+  .member2 button {
+    width: 15vw;
+    padding: 0;
+    font-size: 1.5vw;
+  }
+  #root > div.containerHome > div > h1.get {
+    margin: -10rem 0;
+    font-size: 1.8rem;
+    width: 100%;
+  }
+
+  .part4 {
+    width: 90vw;
+    margin-top: 0rem;
+    grid-template-columns: 25rem 25rem;
+    margin: auto;
+  }
+  .card {
+    width: 80%;
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .navContainer {
+    background-color: #011c67;
+  }
+  .part {
+    height: 85vh;
+  }
+  .menuToggle {
+    display: block;
+  }
+  .homeNavbar {
+    color: white;
+  }
+  #root > div.navContainer > nav > div.homePageIcon > h1 {
+    color: white;
+  }
+
+  .navItems {
+    display: none;
+    flex-direction: column;
+    background-color: #011c67;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+  .navItems.open {
+    display: flex;
+  }
+  .homeNavbar.open {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    color: white;
+  }
+  .part1 {
+    height: 35rem;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
+    /* margin-top: -55vh; */
+    font-size: 2.5vw;
+    height: 4rem;
+    width: 60%;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > h1 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 3%;
+  }
+  .img1 {
+    /* margin-top: -40vh; */
+    margin-top: -3rem;
+    width: 25rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > h2 {
+    margin-top: -5rem;
+    font-size: 1.8rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > p {
+    font-size: 1.8rem;
+    width: 90%;
+    color: #011c67;
+    font-weight: 600;
+    margin: auto;
+    margin-top: -3rem;
+  }
+  .featureMainContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 0vh;
+    padding: 0 10px;
+    /* padding:1rem 2.5rem; */
+  }
+  .featureContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5vw;
+    text-align: left;
+    width: 100%;
+    gap: 1.5rem;
+    color: #011c67;
+    font-weight: bolder;
+  }
+  .featureImage {
+    height: 8rem;
+  }
+  .featureContainer p {
+    margin: auto;
+    font-size: 2rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.featureMainContainer
+    > div
+    > p {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .part2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-top: 30rem;
+    height: 10vh;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    gap: 10vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
+    font-size: 2rem;
+    width: 95vw;
+    word-wrap: break-word;
+  }
+  #root > footer > div.container3 > div:nth-child(2) {
+    width: 80vw;
+    gap: 2vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    width: 92vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div:nth-child(2) > div {
+    margin-top: -100vh;
+  }
+  #root > div.containerHome > div > h1:nth-child(3) {
+    margin-top: 20rem;
+    width: 100%;
+    height: auto;
+    font-size: 1.5rem;
+  }
+  .part3 {
+    margin-top: -16rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .img2 {
+    height: 30rem;
+  }
+  .member1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .img3 {
+    width: 30rem;
+    margin-left: 15%;
+  }
+  .part3 {
+    height: 75rem;
+  }
+  .part3 img {
+    width: 30rem;
+    margin: 0;
+    margin-top: 1vh;
+  }
+  .member2 {
+    font-size: 2.2vw;
+  }
+  .member2 button {
+    font-size: 3.5vw;
+    width: 40vw;
+    margin-bottom: 2vh;
+  }
+  #root > div.containerHome > div > div.part.part3 > div.member2 > h1 {
+    font-size: 1.5rem;
+  }
+
+  .member3 ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .member3 li {
+    width: 90vw;
+    height: 2.5rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(1) {
+    font-size: 3.5vw;
+    text-align: center;
+    border-radius: 25px;
+    font-weight: 500;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(2) {
+    font-size: 3.5vw;
+    text-align: center;
+    height: 2rem;
+    width: 10rem;
+    border-radius: 5%;
+    font-weight: 500;
+  }
+  #root > div.containerHome > div > h1:nth-child(5) {
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 90%;
+
+    margin: auto;
+    margin-top: 5vh;
+  }
+  .part4 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    gap: 5vw;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40rem;
+    align-items: center;
+    width: 90%;
+    gap: 3vh;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > h1 {
+    text-align: left;
+    font-size: 2rem;
+    width: 100%;
+    margin: auto;
+    font-weight: bold;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > p {
+    text-align: left;
+    font-size: 1.5rem;
+    width: 100%;
+    margin: auto;
+    font-weight: bold;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > img {
+    height: 20rem;
+  }
+  .part5 {
+    margin-top: 115rem;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5%;
+  }
+  #root > div.containerHome > div > div.part.part4 > div:nth-child(5) > img {
+    height: 40rem;
+  }
+  .workContainer {
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    padding: 5vw;
+    width: 80%;
+  }
+  .workContainer div {
+    padding: 5vw;
+    height: 100%;
+  }
+  .workContainer div {
+    font-size: 2rem;
+  }
+  .workContainer button {
+    height: 5vh;
+    width: 70vw;
+    font-size: 5vw;
+  }
+  .part6 {
+    margin-top: -30rem;
+    margin-bottom: -120rem;
+  }
+  .seeWork {
+    padding: 5vw;
+    font-size: 2vw;
+  }
+  .seeWork h1 {
+    padding: 5vw;
+    font-size: 4.5vw;
+  }
+  .seeWork p {
+    padding: 5vw;
+    font-size: 4vw;
+  }
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .social {
+    justify-content: center;
+  }
+  .seeWork button {
+    margin: 5vh 0;
+    width: 80vw;
+    margin-top: 1vh;
+  }
+  footer {
+    margin-top: 5rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .navContainer {
+    background-color: #011c67;
+  }
+  .part {
+    height: 85vh;
+  }
+  .menuToggle {
+    display: block;
+  }
+  .homeNavbar {
+    color: white;
+  }
+  .navItems {
+    display: none;
+    flex-direction: column;
+    background-color: #011c67;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+  .navItems.open {
+    display: flex;
+  }
+  .homeNavbar.open {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    color: white;
+  }
+  .part1 {
+    height: 35rem;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
+    /* margin-top: -55vh; */
+    font-size: 2.5vw;
+    height: 4rem;
+    width: 60%;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > h1 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 3%;
+    line-height: 2;
+  }
+  .img1 {
+    /* margin-top: -40vh; */
+    margin-top: -3rem;
+    width: 25rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > h2 {
+    margin-top: -5rem;
+    font-size: 1.8rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > p {
+    font-size: 1.8rem;
+    width: 90%;
+    color: #011c67;
+    font-weight: 600;
+    margin: auto;
+    margin-top: -3rem;
+  }
+  .featureMainContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 0vh;
+    padding: 0 10px;
+    /* padding:1rem 2.5rem; */
+  }
+  .featureContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5vw;
+    text-align: left;
+    width: 100%;
+    gap: 1.5rem;
+    color: #011c67;
+    font-weight: bolder;
+  }
+  .featureImage {
+    height: 8rem;
+  }
+  .featureContainer p {
+    margin: auto;
+    font-size: 2rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.featureMainContainer
+    > div
+    > p {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .part2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-top: 28rem;
+    height: 10vh;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    gap: 10vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text {
+    margin: 0rem;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
+    font-size: 2rem;
+    width: 95vw;
+    word-wrap: break-word;
+  }
+  #root > footer > div.container3 > div:nth-child(2) {
+    width: 80vw;
+    gap: 2vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    width: 92vw;
+  }
+  #root > div.containerHome > div > div.part.part2 > div:nth-child(2) > div {
+    margin-top: -100vh;
+  }
+  #root > div.containerHome > div > h1:nth-child(3) {
+    margin-top: 20rem;
+    width: 100%;
+    height: auto;
+    font-size: 1.5rem;
+  }
+  .part3 {
+    margin-top: -16rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .img2 {
+    height: 30rem;
+  }
+  .member1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .img3 {
+    width: 30rem;
+    margin-left: 15%;
+  }
+  .part3 {
+    height: 75rem;
+  }
+  .part3 img {
+    width: 30rem;
+    margin: 0;
+    margin-top: 1vh;
+  }
+  .member2 {
+    font-size: 2.2vw;
+  }
+  .member2 button {
+    font-size: 3.5vw;
+    width: 40vw;
+    margin-bottom: 2vh;
+  }
+  #root > div.containerHome > div > div.part.part3 > div.member2 > h1 {
+    font-size: 1.5rem;
+  }
+
+  .member3 ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .member3 li {
+    width: 90vw;
+    height: 2.5rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(1) {
+    font-size: 3.5vw;
+    text-align: center;
+    border-radius: 25px;
+    font-weight: 500;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part3
+    > div.member3
+    > ul
+    > li
+    > span:nth-child(2) {
+    font-size: 3.5vw;
+    text-align: center;
+    height: 2rem;
+    width: 10rem;
+    border-radius: 5%;
+    font-weight: 500;
+  }
+  #root > div.containerHome > div > h1:nth-child(5) {
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 90%;
+
+    margin: auto;
+    margin-top: 5vh;
+  }
+  .part4 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    gap: 5vw;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40rem;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    gap: 3vh;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > h1 {
+    text-align: left;
+    font-size: 2rem;
+    width: 100%;
+    margin: auto;
+    font-weight: bold;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > p {
+    text-align: left;
+    font-size: 1.5rem;
+    width: 100%;
+    margin: auto;
+    font-weight: bold;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > img {
+    height: 18rem;
+  }
+  .part5 {
+    margin-top: 85rem;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5%;
+  }
+  .workContainer {
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    padding: 5vw;
+    width: 80%;
+  }
+  .workContainer div {
+    padding: 5vw;
+    height: 100%;
+  }
+  .workContainer div {
+    font-size: 2rem;
+  }
+  .workContainer button {
+    height: 5vh;
+    width: 70vw;
+    font-size: 5vw;
+  }
+  .part6 {
+    margin-top: -30rem;
+    margin-bottom: -180rem;
+  }
+  .seeWork {
+    padding: 5vw;
+    font-size: 2vw;
+  }
+  .seeWork h1 {
+    padding: 5vw;
+    font-size: 4.5vw;
+  }
+  .seeWork p {
+    padding: 5vw;
+    font-size: 4vw;
+  }
+  .logoContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .social {
+    justify-content: center;
+  }
+  .seeWork button {
+    margin: 5vh 0;
+    width: 80vw;
+    margin-top: 1vh;
+  }
+  footer {
+    margin-top: 5rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #root > div.containerHome > div > div.part.part4 > div > img {
+    width: 15rem;
+  }
+  .part4 {
+    width: 100vw;
+    margin: 0;
+  }
+  #root > div.containerHome > div > h1.get {
+    width: 100vw;
+    margin: 0;
+  }
+  .card {
+    margin: 0;
+  }
+  .part2 {
+    margin-top: 30rem;
+    margin-left: 0;
+  }
+  #root > div.containerHome > div > div.part.part2 > div:nth-child(2) > img {
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: -5rem;
+  }
+  #root > div.containerHome > div > div.part.part3 > div.member1 > img {
+    width: 20rem;
+  }
+  #root > div.containerHome > div > div.part.part6 > div > p {
+    font-size: 1.5rem;
+  }
+  #root > div.containerHome > div > div.part.part6 > div > h1 {
+    font-size: 1.6rem;
+  }
+  #root > div.containerHome > div > div.part.part4 > div:nth-child(5) > img {
+    height: 20rem;
+  }
+  .part1 {
+    margin-top: 3rem;
+    height: 20rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > h2 {
+    margin-bottom: 3rem;
+  }
+  .get {
+    margin-top: 10rem;
+  }
+  .part2 {
+    margin-top: 60rem;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > h1 {
+    width: 100%;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > p {
+    width: 100%;
+    font-size: 0.5rem;
+    font-weight: 600;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
+    height: 2.5rem;
+    font-size: 0.7rem;
+    width: 50%;
+  }
+  #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > img {
+    margin-top: -4rem;
+    width: 20rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get {
+    margin-top: 3rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > h2 {
+    font-size: 1.2rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.get
+    > p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.featureMainContainer
+    > div
+    > img {
+    width: 5rem;
+  }
+  #root
+    > div.containerHome
+    > div
+    > div.part.part1
+    > div:nth-child(2)
+    > div.featureMainContainer
+    > div
+    > p {
+    font-size: 1.1rem;
+  }
+  .featureMainContainer {
+    gap: 0rem;
+  }
+  .featureContainer {
+    height: 6rem;
+  }
+  .part2 {
+    margin-top: 10rem;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
+    font-size: 1.5rem;
+  }
+  #root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
+    font-size: 1rem;
+  }
+
+  #root > div.containerHome > div > div.part.part2 > div:nth-child(2) {
+    margin-top: -4.5rem;
+  }
+  .part3 {
+    margin-top: -13rem;
+  }
+  #root > div.containerHome > div > h1:nth-child(3) {
+    margin: 13.5rem 0;
+    font-size: 1.2rem;
+    margin-top: 13rem;
+  }
+  #root > div.containerHome > div > div.part.part3 > div.member2 > button {
+    height: 2.8rem;
+    width: 40%;
+  }
+  #root > div.containerHome > div > div.part.part3 > div.member2 > h1 {
+    font-size: 1rem;
+  }
+  .part3 {
+    height: 60rem;
+  }
+  #root > div.containerHome > div > h1.get {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+  #root > div.containerHome > div > h1.get {
+    font-size: 1.2rem;
+    width: 80%;
+
+    margin: auto;
+    margin-top: 1.2rem;
+  }
+  .card {
+    width: 80%;
+    margin: auto;
+    border: none;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > h1 {
+    font-size: 1.2rem;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > p {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  #root > div.containerHome > div > div.part.part4 > div > img {
+    width: 20rem;
+  }
+  .part5 {
+    margin-top: 130rem;
+  }
+  .workContainer{
+    font-size: 1rem;
+    margin-top: 10rem;
+    height: 30rem;
+  }
+  #root > div.containerHome > div > div.part.part5 > div > div:nth-child(2) > button{
+    height: 3rem;
+  }
+  .part6{
+    margin-top: 1rem;
+  }
+footer{
+  margin-top: 35rem;
+}
+#root > div.navContainer > nav > div.homePageIcon > h1{
+  min-width: 4rem;
+  font-size: 1rem;
+}
+}

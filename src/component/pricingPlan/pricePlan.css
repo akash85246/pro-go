@@ -1,0 +1,250 @@
+/* .nav {
+  position: fixed;
+  margin-top: -1vh;
+} */
+.homePageIcon img {
+    width: 4rem;
+    margin-right: 1rem;
+}
+.priceplanHeader {
+  padding: 10vh;
+  margin: auto;
+}
+#root > div.priceplanHeader > div {
+  width: 100%;
+  margin: auto;
+}
+sup {
+  color: red;
+  font-size: 2vw;
+  font-weight: 700;
+  text-decoration-line: line-through;
+}
+.priceplanHeader h1 {
+  margin: 5rem auto;
+  color: #407bff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.625rem;
+}
+.priceplanHeader span {
+  color: #011c67;
+}
+
+.priceplanHeader h2 {
+  width: 80vw;
+  margin: 10vh auto;
+  font-family: Poppins;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 550;
+  line-height: 2.1875rem;
+  text-align: center;
+}
+
+
+
+
+.monthly {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 15vw;
+  height: 5rem;
+  border: 1px solid #696f79;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.625rem; /* 175% */
+}
+
+.annually {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 15vw;
+  border: 1px solid #696f79;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.625rem;
+}
+.switch {
+  display: flex;
+  justify-content: center;
+}
+
+.costChoice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.pCard {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  width: 25vw;
+  text-align: center;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin: 1vw;
+}
+
+.pTitle {
+  font-size: 1.5rem;
+}
+
+.cost {
+  font-size: 4.1rem;
+  font-weight: 700;
+  line-height: 2.625rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+#root > div.costChoice > div > div > p {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.625rem;
+}
+
+.trialButton {
+  background-color: #001b66;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 1.2rem 0;
+}
+
+.selected {
+  background: #011C67;
+  color: white;
+}
+.trialButton:hover{
+  background-color: #696f79;
+}
+.pCard h3 {
+  text-align: left;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+li {
+  display: flex;
+  align-items: left;
+  overflow: hidden;
+  color: #263238;
+  text-align: left;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-style: normal;
+  
+}
+
+li img {
+  width: 1.5rem;
+  margin-right: 10px;
+}
+
+li p {
+  margin: 0;
+  white-space: wrap;
+  font-weight: 900;
+}
+.clicked {
+  background-color: lightblue;
+  color: white;
+  background: #0e286f;
+}
+.clickedB {
+  color: #0e286f;
+  background: white;
+}
+.suggestion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 20vh;
+  margin: 4rem auto;
+}
+.suggestion h1 {
+  color: #011c67;
+
+  font-size: 2.25rem;
+
+  font-weight: 600;
+  line-height: 2.625rem;
+}
+.suggestion button {
+  background-color: white;
+  color: #007bff;
+  border: none;
+  border-radius: 0.75rem;
+  border: 1px solid #696f79;
+  cursor: pointer;
+  width: 26rem;
+  padding: 2rem 1.5rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin: 2rem 0;
+}
+.suggestion button:hover{
+  color: white;
+  background-color:#007bff;
+}
+
+.frquently {
+  margin-top: 8rem;
+}
+.frquently h1 {
+  text-align: center;
+  color: #011c67;
+
+  font-size: 2.5rem;
+
+  font-weight: 600;
+}
+.frquently li {
+  color: #407bff;
+  text-align: center;
+
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.frquently span {
+  color: black;
+}
+.frquently img{
+  margin-top: -5rem;
+}
+.quest {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  padding: 0 5rem;
+}
+@media only screen and (max-width: 600px) {
+
+  
+}

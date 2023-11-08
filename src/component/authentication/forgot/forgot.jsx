@@ -5,12 +5,12 @@ import Reset from "../reset/resetPassword";
 import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Vortex } from "react-loader-spinner";
 import forgetImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-import { toast } from "../../../../public/react-toastify";
-import "../../../../public/react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -161,7 +161,7 @@ export default function Forgotten(props) {
                 </div>
 
                 <div
-                  className="errorContainer"
+                  className="errorContainer1"
                   style={{
                     display: "block",
                     marginTop: "-1.5vh ",
