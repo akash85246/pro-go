@@ -10,7 +10,8 @@ import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-import { toast } from "react-toastify";
+import { toast } from "../../../../node_modules/react-toastify";
+
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
   // import "react-toastify/dist/ReactToastify.css";
 

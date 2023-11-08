@@ -9,7 +9,8 @@ import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import { toast } from "react-toastify";
+import { toast } from "../../../../node_modules/react-toastify";
+
 // import "react-toastify/dist/ReactToastify.css";
 
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
