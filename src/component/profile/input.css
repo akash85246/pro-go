@@ -1,0 +1,22 @@
+.inputContainerProfile{
+ 
+    display: flex;
+    flex-direction: column;
+
+}
+.inputContainerProfile label{
+    color: #696F79;
+font-family: Inter;
+font-size: 1vw;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+width:90%;
+}
+.inputContainerProfile input{
+border-radius: 0.375rem;
+border: 1px solid #8692A6;
+width: 90%;
+height: 5vh;
+margin-top: 0.5vh;
+}

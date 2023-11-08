@@ -1,0 +1,482 @@
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 12rem;
+  column-gap: 1rem;
+  padding: 5rem;
+  background: #001b66;
+  color: white;
+}
+
+.logoContainer {
+  text-align: center;
+  padding: 1vw;
+  margin-top: 4rem;
+  margin-left: -5rem;
+}
+.logo {
+  display: flex;
+  gap: 2vw;
+  margin-top: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+.logo img {
+  height: 90px;
+  display: flex;
+}
+.logo h1 {
+  margin-left: -1rem;
+  font-family: Poppins;
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 800;
+}
+.social {
+  display: flex;
+  justify-content: left;
+  gap: 1.5rem;
+  margin-top: -1rem;
+  margin-left: 20%;
+  margin-bottom: 2rem;
+}
+.container1 h2 {
+  color: #eaecf0;
+  margin-bottom: 8rem;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-left: 5rem;
+  width: 70%;
+}
+.container1 {
+  font-size: 1.1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-left: -2rem;
+  color: #eaecf0;
+}
+.container2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 8rem;
+  margin-top: -1rem;
+}
+#root > footer > div.container2 > ul {
+  row-gap: 0.8rem;
+  justify-content: space-between;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+}
+.container2 li {
+  color: white;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  line-height: 1.5rem;
+}
+.container3 {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5rem;
+}
+
+.container3 label {
+  margin-bottom: 1rem;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  text-align: left;
+}
+
+.container3 div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5vw;
+}
+
+.container3 input[type="text"] {
+  padding: 10px;
+  width: 15vw;
+
+  overflow: hidden;
+  color: #667085;
+
+  text-overflow: ellipsis;
+  border-radius: 10px;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  border-radius: 0.5rem;
+  border: 1px solid #263238;
+}
+
+.container3 input[type="submit"] {
+  /* padding: 1vw 2vh; */
+  background-color: #0074d9;
+  color: #eaecf0;
+  border: none;
+  cursor: pointer;
+  width: 8vw;
+  font-size: 1rem;
+  border-radius: 10px;
+  border-radius: 0.5rem;
+  border: 1px solid #263238;
+
+  background: #8794b9;
+}
+.container3 input[type="submit"]:hover {
+  background-color: #eaecf0;
+  color: #0074d9;
+}
+.subscript {
+  display: flex;
+  justify-content: center;
+  margin-left: -30rem;
+}
+
+.subscript span {
+  margin-left: 1rem;
+}
+.knowing {
+  display: flex;
+  flex-direction: row;
+  height: 6.2rem;
+  align-items: center;
+  justify-content: space-between;
+  background: #001b66;
+  color: #eaecf0;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  border-top: 1px solid #182230;
+  width: 100vw;
+}
+#root > div.knowing > div:nth-child(1) {
+  margin-left: 8rem;
+}
+#root > div.knowing > div:nth-child(1) > h2 {
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.list1 li,
+.list2 li {
+  color: #eaecf0;
+  font-family: Inter;
+  font-size: 0.5rem;
+  font-style: normal;
+  font-weight: 100;
+}
+
+#root > footer > div.container2 > ul > li {
+  font-size: 1rem;
+  overflow: visible;
+}
+#root > footer > div.container2 > ul > li:nth-child(1) {
+  color: #d0d5dd;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25rem;
+}
+#root > footer > div.container2 > ul > li:hover {
+  color: grey;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1500px) {
+  .container2 {
+    padding-left: 2rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo {
+    margin-top: -8rem;
+    text-align: left;
+    width: 80%;
+    justify-content: left;
+  }
+
+  .logo h1 {
+    font-size: 3.5rem;
+    margin-left: 1rem;
+  }
+  #root > footer > div.container1 > div.logoContainer > div > img {
+    height: 8rem;
+  }
+  .container1 h2 {
+    font-size: 1.3rem;
+    font-weight: 200;
+    width: 90vw;
+    margin: 3.2rem 0;
+  }
+  .social {
+    justify-content: left;
+    width: 80%;
+    margin: 0;
+  }
+  .social img {
+    height: 2.2rem;
+  }
+  .container2 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #root > footer > div.container2 > ul > li {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    height: 0;
+    justify-content: center;
+    color: #ffffff;
+    width: 60vw;
+  }
+  #root > footer > div.container2 > ul {
+    margin-top: 2rem;
+  }
+
+  #root > footer > div.container2 > ul > li:nth-child(1) {
+    font-size: 1.8rem;
+    height: 0;
+    color: white;
+    margin-bottom: 2.5rem;
+    font-weight: 100;
+  }
+  .container3 input[type="text"] {
+    padding: 10px;
+    width: 40%;
+    height: 3rem;
+  }
+  .container3 {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container3 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container3 input[type="submit"] {
+    width: 30%;
+    height: 4rem;
+
+    font-size: 1.5rem;
+  }
+  .subscript {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    margin-left: 0vw;
+  }
+  .container3 label {
+    font-size: 1.2rem;
+    text-align: left;
+    width: 80%;
+    font-weight: 100;
+  }
+  .subscript span {
+    font-size: 3vw;
+    font-weight: 200;
+  }
+  .knowing {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  #root > div.knowing > div:nth-child(1) {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .subscript span {
+    margin: 0.5rem;
+    padding: 2rem 0;
+  }
+
+  .subscript {
+    margin-top: -2rem;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 0;
+  }
+  #root > div.knowing > div:nth-child(1) > h2 {
+    font-size: 1.5rem;
+    margin: 1rem;
+    height: 1rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo {
+    margin-top: -8rem;
+    text-align: left;
+    width: 80%;
+    justify-content: left;
+  }
+  #root > footer > div.container1 > h2 {
+    width: 100%;
+    margin: 1rem 0;
+    font-weight: 100;
+    font-size: 1rem;
+    margin-left: -1.5rem;
+  }
+  .logo h1 {
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+  #root > footer > div.container1 > div.logoContainer > div > img {
+    height: 6rem;
+    margin-left: 1rem;
+  }
+  .container1 h2 {
+    font-size: 1.3rem;
+    font-weight: 200;
+    width: 90vw;
+    margin: 3.2rem 0;
+  }
+  .social {
+    justify-content: left;
+    width: 80%;
+    margin: 0;
+    margin-left: -1rem;
+  }
+  .social img {
+    height: 2rem;
+  }
+  .container2 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #root > footer > div.container2 > ul > li {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    height: 0;
+    justify-content: center;
+    color: #ffffff;
+    width: 60vw;
+  }
+  #root > footer > div.container2 > ul {
+    margin-top: 2rem;
+  }
+
+  #root > footer > div.container2 > ul > li:nth-child(1) {
+    font-size: 1.8rem;
+    height: 0;
+    color: white;
+    margin-bottom: 2.5rem;
+    font-weight: 100;
+  }
+  .container3 input[type="text"] {
+    padding: 10px;
+    width: 40%;
+    height: 3rem;
+  }
+  .container3 {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container3 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container3 input[type="submit"] {
+    width: 30%;
+    height: 4rem;
+
+    font-size: 1.5rem;
+  }
+  .subscript {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    margin-left: 0vw;
+  }
+  .container3 label {
+    font-size: 1.2rem;
+    text-align: left;
+    width: 80%;
+    font-weight: 100;
+  }
+  .subscript span {
+    font-size: 3vw;
+    font-weight: 200;
+  }
+  .knowing {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  #root > div.knowing > div:nth-child(1) {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .subscript span {
+    margin: 0.5rem;
+    padding: 2rem 0;
+  }
+
+  .subscript {
+    margin-top: -2rem;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 0;
+  }
+  #root > div.knowing > div:nth-child(1) > h2 {
+    font-size: 1.5rem;
+    margin: 1rem;
+    height: 1rem;
+  }
+#root > footer > div.container2 > ul > li{
+  font-size: 1rem;
+}
+
+  #root > footer > div.container2 > ul > li:nth-child(1){
+    font-size: 1.2rem;
+  }
+  #root > div.knowing > div:nth-child(1) > h2{
+    font-size: 1rem;
+  }
+  #root > footer > div.container3 > div > input[type=text]:nth-child(1){
+    height: 2em;
+  }
+  #root > footer > div.container3 > div > input[type=submit]:nth-child(2){
+    height: 2em;
+    font-size: 1.5rem;
+    padding: 2.5px;
+    width: 8rem;
+  }
+}

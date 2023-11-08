@@ -2,13 +2,15 @@
   display: grid;
   grid-template-columns: 50vw 50vw;
   text-align: left;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: auto;
 }
 body {
-  overflow: hidden;
   margin: 0;
   font-size: 1.2vw;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
 }
 .resend {
   cursor: pointer;
@@ -123,7 +125,7 @@ body {
   color: #8692a6;
 }
 
-.errorContainer {
+.errorContainer1 {
   height: 1vh;
   color: #d61919;
   display: flex;
@@ -281,7 +283,7 @@ form {
   .right {
     position: absolute;
     margin-top: 35vh;
-    left: 50%; /* Adjusted left to 50% */
+    left: 50%;
     transform: translateX(-50%);
   }
   .light {
@@ -364,3 +366,5 @@ form {
     margin: 1vh 0;
   }
 }
+
+

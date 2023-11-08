@@ -9,10 +9,11 @@ import { Vortex } from "react-loader-spinner";
 import resetImg from "../../../assets/reset.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-import { toast } from "../../../../public/react-toastify";
-import "../../../../public/react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+// import "../../../../public/react-toastify/dist/ReactToastify.css";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
+  import "react-toastify/dist/ReactToastify.css";
 
 const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 
@@ -63,12 +64,12 @@ export default function Reset() {
       document.getElementById("passwordStrength").style.display = "none";
     }
 
-    // Check for password mismatch
     if (newPassword !== formData.confirmPassword) {
       document.getElementById("resetPass").style.display = "block";
       setPasswordMatchError("Passwords do not match");
     } else {
       document.getElementById("resetPass").style.display = "none";
+
       setPasswordMatchError("");
     }
   };
@@ -180,7 +181,7 @@ export default function Reset() {
                   </div>
                 </div>
               </div>
-              <div className="errorContainer">
+              <div className="errorContainer1">
                 <div className="password-strength-container resetPSC">
                   <div
                     id="passwordStrength"
@@ -215,7 +216,7 @@ export default function Reset() {
                   </div>
                 </div>
               </div>
-              <div className="errorContainer">
+              <div className="errorContainer1">
                 <div
                   id="resetPass"
                   className="error"

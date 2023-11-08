@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "../../utils/progress";
 import RememberMeCheckbox from "../../utils/rememberMe";
 import Button from "../../utils/button";
 import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import loginImg from "../../../assets/logIn.svg";
-import { Vortex } from "react-loader-spinner";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import { toast } from "../../../../public/react-toastify";
-import "../../../../public/react-toastify/dist/ReactToastify.css";
-const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
+// import { useAuth } from "../../utils/authContext";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -78,7 +78,12 @@ function LoginForm() {
     setShowSignUp(true);
     navigate("/signUp");
   }
-
+  // useEffect(() => {
+  //   let login = localStorage.getItem("login");
+  //   if (login) {
+  //     navigate("/home");
+  //   }
+  // });
   async function handleSubmit(event) {
     event.preventDefault();
     console.log("Submit button clicked");
@@ -104,7 +109,7 @@ function LoginForm() {
           withCredentials: false,
         }
       );
-      const authToken = response.data.token;
+      const authToken = response.data.data.token;
 
       localStorage.setItem("authToken", authToken);
 
@@ -119,9 +124,9 @@ function LoginForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        console.log(error.response.data);
+        toast.error(error.response.data.message);
+
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
@@ -187,7 +192,7 @@ function LoginForm() {
             </div>
             {/* </div> */}
             {/* </div> */}
-            <div className="errorContainer" style={{ display: "block" }}>
+            <div className="errorContainer1" style={{ display: "block" }}>
               <span className="error">Invalid Email</span>
             </div>
             <div className="Input">
