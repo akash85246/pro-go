@@ -5,15 +5,15 @@ import Button from "../../utils/button";
 import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import loginImg from "../../../assets/logIn.svg";
-import { Vortex } from "react-loader-spinner";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import { toast } from "../../../../public/react-toastify";
-import "../../../../public/react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
-import { useAuth } from "../../utils/authContext";
+// import { useAuth } from "../../utils/authContext";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -124,9 +124,9 @@ function LoginForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        console.log(error.response.data);
+        toast.error(error.response.data.message);
+
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }

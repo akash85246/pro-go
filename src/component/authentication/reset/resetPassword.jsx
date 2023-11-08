@@ -9,10 +9,11 @@ import { Vortex } from "react-loader-spinner";
 import resetImg from "../../../assets/reset.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-import { toast } from "../../../../public/react-toastify";
-import "../../../../public/react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+// import "../../../../public/react-toastify/dist/ReactToastify.css";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
+  import "react-toastify/dist/ReactToastify.css";
 
 const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 

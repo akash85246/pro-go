@@ -5,12 +5,14 @@ import Button from "../../utils/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "../../utils/leftContainer";
-import { toast } from "../../../../public/react-toastify";
-import "../../../../public/react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+// import "../../../../public/react-toastify/dist/ReactToastify.css";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import signUpImg from "../../../assets/sign-up.png";
 import logo from "../../../assets/logo.svg";
+  import "react-toastify/dist/ReactToastify.css";
+
 import { useAuth } from "../../utils/authContext";
 
 function SignUpForm() {

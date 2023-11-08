@@ -89,7 +89,7 @@ export default function Pricing(props) {
               cost="$399"
               selected={selectedCard === "Premium"}
               onSelect={handleCardSelect}
-              item1="Views: Calendar, Timeline, Table, Dashboard, and Map"
+              item1="Views: Calendar, Timeline and Map"
               item2="Organization-visible boards"
               item3="Public board management"
               item4="Unlimited storage"
@@ -141,7 +141,7 @@ export default function Pricing(props) {
               oldCost="$399/Month"
               selected={selectedCard === "Premium"}
               onSelect={handleCardSelect}
-              item1="Views: Calendar, Timeline, Table, Dashboard, and Map"
+              item1="Views: Calendar, Timeline and Map"
               item2="Organization-visible boards"
               item3="Public board management"
               item4="Unlimited storage"

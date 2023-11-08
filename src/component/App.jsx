@@ -6,8 +6,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { ToastContainer } from "../../public/react-toastify";
-import "../../public/react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+// import "../../public/react-toastify/dist/ReactToastify.css";
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
 import SignUpForm from "./authentication/signUp/signUp";
@@ -18,6 +18,8 @@ import Otp from "./authentication/forgot/otpVerification";
 import Error from "./utils/error";
 import Pricing from "./pricingPlan/price";
 import Profile from "./profile/profile";
+  import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   return (
@@ -39,7 +41,8 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
-        <ToastContainer />
+        <ToastContainer
+         />
       </AuthProvider>
     </>
   );

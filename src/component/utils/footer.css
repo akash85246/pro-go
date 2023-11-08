@@ -251,9 +251,9 @@ footer {
     color: #ffffff;
     width: 60vw;
   }
-#root > footer > div.container2 > ul{
-  margin-top: 2rem;
-}
+  #root > footer > div.container2 > ul {
+    margin-top: 2rem;
+  }
 
   #root > footer > div.container2 > ul > li:nth-child(1) {
     font-size: 1.8rem;
@@ -266,20 +266,19 @@ footer {
     padding: 10px;
     width: 40%;
     height: 3rem;
-
   }
-.container3{
-width: 100%;
-margin: 0;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.container3 div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .container3 {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container3 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .container3 input[type="submit"] {
     width: 30%;
     height: 4rem;
@@ -301,24 +300,23 @@ align-items: center;
   .subscript span {
     font-size: 3vw;
     font-weight: 200;
-    
   }
-  .knowing{
+  .knowing {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
   }
-#root > div.knowing > div:nth-child(1){
-  margin: 0;
-  font-size: 1rem;
-}
-.subscript span{
- margin: 0.5rem;
- padding: 2rem 0;
-}
+  #root > div.knowing > div:nth-child(1) {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .subscript span {
+    margin: 0.5rem;
+    padding: 2rem 0;
+  }
 
-  .subscript{
+  .subscript {
     margin-top: -2rem;
     justify-content: center;
     width: 100%;
@@ -342,13 +340,20 @@ align-items: center;
     width: 80%;
     justify-content: left;
   }
-
+  #root > footer > div.container1 > h2 {
+    width: 100%;
+    margin: 1rem 0;
+    font-weight: 100;
+    font-size: 1rem;
+    margin-left: -1.5rem;
+  }
   .logo h1 {
-    font-size: 3.5rem;
+    font-size: 2rem;
     margin-left: 1rem;
   }
   #root > footer > div.container1 > div.logoContainer > div > img {
-    height: 8rem;
+    height: 6rem;
+    margin-left: 1rem;
   }
   .container1 h2 {
     font-size: 1.3rem;
@@ -360,9 +365,10 @@ align-items: center;
     justify-content: left;
     width: 80%;
     margin: 0;
+    margin-left: -1rem;
   }
   .social img {
-    height: 2.2rem;
+    height: 2rem;
   }
   .container2 {
     flex-direction: column;
@@ -377,9 +383,9 @@ align-items: center;
     color: #ffffff;
     width: 60vw;
   }
-#root > footer > div.container2 > ul{
-  margin-top: 2rem;
-}
+  #root > footer > div.container2 > ul {
+    margin-top: 2rem;
+  }
 
   #root > footer > div.container2 > ul > li:nth-child(1) {
     font-size: 1.8rem;
@@ -392,20 +398,19 @@ align-items: center;
     padding: 10px;
     width: 40%;
     height: 3rem;
-
   }
-.container3{
-width: 100%;
-margin: 0;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.container3 div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .container3 {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container3 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .container3 input[type="submit"] {
     width: 30%;
     height: 4rem;
@@ -427,24 +432,23 @@ align-items: center;
   .subscript span {
     font-size: 3vw;
     font-weight: 200;
-    
   }
-  .knowing{
+  .knowing {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
   }
-#root > div.knowing > div:nth-child(1){
-  margin: 0;
-  font-size: 1rem;
-}
-.subscript span{
- margin: 0.5rem;
- padding: 2rem 0;
-}
+  #root > div.knowing > div:nth-child(1) {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .subscript span {
+    margin: 0.5rem;
+    padding: 2rem 0;
+  }
 
-  .subscript{
+  .subscript {
     margin-top: -2rem;
     justify-content: center;
     width: 100%;
@@ -455,5 +459,24 @@ align-items: center;
     font-size: 1.5rem;
     margin: 1rem;
     height: 1rem;
+  }
+#root > footer > div.container2 > ul > li{
+  font-size: 1rem;
+}
+
+  #root > footer > div.container2 > ul > li:nth-child(1){
+    font-size: 1.2rem;
+  }
+  #root > div.knowing > div:nth-child(1) > h2{
+    font-size: 1rem;
+  }
+  #root > footer > div.container3 > div > input[type=text]:nth-child(1){
+    height: 2em;
+  }
+  #root > footer > div.container3 > div > input[type=submit]:nth-child(2){
+    height: 2em;
+    font-size: 1.5rem;
+    padding: 2.5px;
+    width: 8rem;
   }
 }

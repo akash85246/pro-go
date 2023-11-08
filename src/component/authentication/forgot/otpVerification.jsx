@@ -10,8 +10,9 @@ import { Vortex } from "react-loader-spinner";
 import otpImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-import { toast } from "../../../../public/react-toastify";
-import "../../../../public/react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+// import "../../../../public/react-toastify/dist/ReactToastify.css";
+  import "react-toastify/dist/ReactToastify.css";
 
 export default function Otp() {
   const [otp, setOtp] = useState("");
