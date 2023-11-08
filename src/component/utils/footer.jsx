@@ -1,5 +1,5 @@
 import "./footer.css";
-import logo from "../../assets/logo.svg";
+import footerlogo from "../../assets/footer_logo.svg";
 import img1 from "../../assets/xicon.svg";
 import img2 from "../../assets/linkedInIcon.svg";
 import img3 from "../../assets/facebookIcon.svg";
@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="container1">
           <div className="logoContainer">
             <div className="logo">
-              <img src={logo}></img>
+              <img src={footerlogo}></img>
               <h1>Pro-Go</h1>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function Footer() {
         <div className="container3">
           <label>Stay up to date</label>
           <div>
-            <input type="text"></input>
+            <input type="text" maxLength={50}></input>
             <input type="submit" value="Subscribe"></input>
           </div>
         </div>

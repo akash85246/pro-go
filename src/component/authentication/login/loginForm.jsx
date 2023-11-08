@@ -9,7 +9,7 @@ import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-// import { toast } from "../../../../node_modules/react-toastify";
+import { toast } from "../../../../node_modules/react-toastify";
 
 // import "react-toastify/dist/ReactToastify.css";
 
@@ -79,12 +79,12 @@ function LoginForm() {
     setShowSignUp(true);
     navigate("/signUp");
   }
-  // useEffect(() => {
-  //   let login = localStorage.getItem("login");
-  //   if (login) {
-  //     navigate("/home");
-  //   }
-  // });
+  useEffect(() => {
+    let login = localStorage.getItem("login");
+    if (login) {
+      navigate("/home");
+    }
+  });
   async function handleSubmit(event) {
     event.preventDefault();
     console.log("Submit button clicked");

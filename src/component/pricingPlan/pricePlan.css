@@ -3,8 +3,8 @@
   margin-top: -1vh;
 } */
 .homePageIcon img {
-    width: 4rem;
-    margin-right: 1rem;
+  width: 4rem;
+  margin-right: 1rem;
 }
 .priceplanHeader {
   padding: 10vh;
@@ -15,10 +15,16 @@
   margin: auto;
 }
 sup {
-  color: red;
-  font-size: 2vw;
-  font-weight: 700;
   text-decoration-line: line-through;
+
+  color: #d61919;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.625rem;
+  margin-top: 0rem;
 }
 .priceplanHeader h1 {
   margin: 5rem auto;
@@ -44,9 +50,6 @@ sup {
   line-height: 2.1875rem;
   text-align: center;
 }
-
-
-
 
 .monthly {
   background-color: white;
@@ -92,12 +95,13 @@ sup {
 .pCard {
   background-color: #fff;
   border: 1px solid #e0e0e0;
-  padding: 20px;
-  width: 25vw;
+  padding: 0.8rem;
+  width: 26vw;
   text-align: center;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #000;
+  background: #fff;
   display: inline-block;
-  margin: 1vw;
+  margin: 0.5rem;
 }
 
 .pTitle {
@@ -105,9 +109,10 @@ sup {
 }
 
 .cost {
-  font-size: 4.1rem;
+  font-size: 4.5rem;
   font-weight: 700;
   line-height: 2.625rem;
+  margin-bottom: 5rem;
 }
 
 ul {
@@ -119,7 +124,7 @@ ul {
 #root > div.costChoice > div > div > p {
   font-size: 0.875rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 2.625rem;
 }
 
@@ -128,22 +133,24 @@ ul {
   color: #fff;
   border: none;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 0.6rem;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: 600;
   margin: 1.2rem 0;
+  width: 50%;
 }
 
 .selected {
-  background: #011C67;
+  background: #011c67;
   color: white;
 }
-.trialButton:hover{
+.trialButton:hover {
   background-color: #696f79;
 }
 .pCard h3 {
   text-align: left;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 700;
   margin-top: 2rem;
@@ -152,24 +159,26 @@ ul {
 li {
   display: flex;
   align-items: left;
+  align-items: center;
   overflow: hidden;
   color: #263238;
   text-align: left;
   height: 2.5rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-style: normal;
-  
+  margin: 0.5rem 0;
 }
 
 li img {
-  width: 1.5rem;
+  width: 1.6rem;
   margin-right: 10px;
 }
 
 li p {
-  margin: 0;
+  margin:auto 0;
   white-space: wrap;
   font-weight: 900;
+
 }
 .clicked {
   background-color: lightblue;
@@ -209,9 +218,9 @@ li p {
   font-weight: 600;
   margin: 2rem 0;
 }
-.suggestion button:hover{
+.suggestion button:hover {
   color: white;
-  background-color:#007bff;
+  background-color: #007bff;
 }
 
 .frquently {
@@ -236,7 +245,7 @@ li p {
 .frquently span {
   color: black;
 }
-.frquently img{
+.frquently img {
   margin-top: -5rem;
 }
 .quest {
@@ -245,6 +254,4 @@ li p {
   padding: 0 5rem;
 }
 @media only screen and (max-width: 600px) {
-
-  
 }

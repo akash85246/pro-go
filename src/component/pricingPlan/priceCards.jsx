@@ -20,6 +20,7 @@ export default function PCard(props) {
           {props.cost}
           <sup>{props.oldCost}</sup>
         </h2>
+
         <p>Get key community building features, all in one place </p>
         <button
           className={buttonClassName}
