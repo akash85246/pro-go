@@ -9,8 +9,7 @@ import forgetImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
 import { toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
-
+// import "react-toastify/dist/ReactToastify.css";
 
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");

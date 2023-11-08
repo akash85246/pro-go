@@ -12,7 +12,7 @@ import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
 import { toast } from "react-toastify";
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
-  import "react-toastify/dist/ReactToastify.css";
+  // import "react-toastify/dist/ReactToastify.css";
 
 export default function Otp() {
   const [otp, setOtp] = useState("");

@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
-  import "react-toastify/dist/ReactToastify.css";
+  // import "react-toastify/dist/ReactToastify.css";
 
 const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 
