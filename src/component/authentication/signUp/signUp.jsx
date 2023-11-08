@@ -5,13 +5,14 @@ import Button from "../../utils/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "../../utils/leftContainer";
-import { toast } from "react-toastify";
+// import { toast } from "../../../../node_modules/react-toastify";
+
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import signUpImg from "../../../assets/sign-up.png";
 import logo from "../../../assets/logo.svg";
-  import "react-toastify/dist/ReactToastify.css";
+  // import "react-toastify/dist/ReactToastify.css";
 
 import { useAuth } from "../../utils/authContext";
 
@@ -169,9 +170,9 @@ function SignUpForm() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
 
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");

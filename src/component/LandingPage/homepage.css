@@ -4,6 +4,7 @@
   color: black;
   align-items: center;
   width: 86vw;
+ 
 }
 
 .navContainer {
@@ -17,6 +18,7 @@
   padding: 2vw 0;
   margin: auto;
   font-family: "Poppins", sans-serif;
+   z-index: 100;
 }
 .homePageIcon {
   width: 15vw;
@@ -1626,22 +1628,28 @@ a {
   .part5 {
     margin-top: 130rem;
   }
-  .workContainer{
+  .workContainer {
     font-size: 1rem;
     margin-top: 10rem;
     height: 30rem;
   }
-  #root > div.containerHome > div > div.part.part5 > div > div:nth-child(2) > button{
+  #root
+    > div.containerHome
+    > div
+    > div.part.part5
+    > div
+    > div:nth-child(2)
+    > button {
     height: 3rem;
   }
-  .part6{
+  .part6 {
     margin-top: 1rem;
   }
-footer{
-  margin-top: 35rem;
-}
-#root > div.navContainer > nav > div.homePageIcon > h1{
-  min-width: 4rem;
-  font-size: 1rem;
-}
+  footer {
+    margin-top: 35rem;
+  }
+  #root > div.navContainer > nav > div.homePageIcon > h1 {
+    min-width: 4rem;
+    font-size: 1rem;
+  }
 }

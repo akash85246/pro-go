@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 import forgetImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-import { toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
-
+// import { toast } from "../../../../node_modules/react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 export default function Forgotten(props) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -85,9 +84,9 @@ export default function Forgotten(props) {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");
         }

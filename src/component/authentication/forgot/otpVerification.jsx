@@ -10,9 +10,9 @@ import { Vortex } from "react-loader-spinner";
 import otpImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
-import { toast } from "react-toastify";
+// import { toast } from "../../../../node_modules/react-toastify";
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
-  import "react-toastify/dist/ReactToastify.css";
+  // import "react-toastify/dist/ReactToastify.css";
 
 export default function Otp() {
   const [otp, setOtp] = useState("");
@@ -59,9 +59,9 @@ export default function Otp() {
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.message, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         alert(error.response.data.message);
         console.error("Server responded with an error:", error.response.data);
         if (error.response.data.message === "No user exists with this email") {
