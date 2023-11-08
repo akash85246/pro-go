@@ -11,7 +11,7 @@ import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import signUpImg from "../../../assets/sign-up.png";
 import logo from "../../../assets/logo.svg";
-  import "react-toastify/dist/ReactToastify.css";
+  // import "react-toastify/dist/ReactToastify.css";
 
 import { useAuth } from "../../utils/authContext";
 
