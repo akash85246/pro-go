@@ -55,6 +55,7 @@ export default function ProfileImg(props) {
         accept="image/*"
         ref={inputRef}
         style={{ display: "none" }}
+        className="changePhotoButton"
         onChange={handleFileChange}
       />
       {isHovered && <button onClick={uploadNewPhoto}>Change Photo</button>}
