@@ -18,8 +18,7 @@ import Otp from "./authentication/forgot/otpVerification";
 import Error from "./utils/error";
 import Pricing from "./pricingPlan/price";
 import Profile from "./profile/profile";
-  // import "react-toastify/dist/ReactToastify.css";
-
+// import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -38,7 +37,7 @@ function App() {
             <Route path="/error" element={<Error />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/" element={<LoginForm />} />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </Router>
         {/* <ToastContainer

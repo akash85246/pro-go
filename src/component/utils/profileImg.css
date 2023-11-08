@@ -4,23 +4,22 @@
 }
 
 .profileImg {
-  
   margin-top: 2vw;
   border-radius: 50%;
 }
 
 .profileImg img {
   width: 50%;
-
   object-fit: cover;
   border-radius: 50%;
+  margin-top: -2rem;
   /* transition: transform 0.3s, filter 0.3s; */
 }
 
-.profileImg.hovered {
+/* .profileImg.hovered {
   transform: scale(1.1);
-  /* filter: blur(3px); */
-}
+   filter: blur(3px); 
+} */
 
 .editButton {
   position: absolute;
@@ -28,10 +27,35 @@
   padding: 5%;
   cursor: pointer;
   margin-top: 2vh;
+
   margin-left: 1vw;
   filter: none;
 }
 
 .editButton img {
   width: 4vw;
+  border: none;
 }
+#root
+  > div.mainContainerProfile
+  > div:nth-child(1)
+  > div.profileImgContainer
+  > input {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 50;
+  height: 50rem;
+}
+
+#root
+  > div.mainContainerProfile
+  > div:nth-child(1)
+  > div.profileImgContainer
+  > input:hover {
+  background-color: #0056b3;
+}
+

@@ -13,17 +13,20 @@ export default function Profile() {
           {/* <div className="profileImgContainer"> */}
           <ProfileImg img={profilephoto} />
           {/* </div> */}
-          <h1>@user12345</h1>
-          <button className="profileButton">Profile</button>
-          <h2>Switch accounts</h2>
-          <h2>Manage account</h2>
-          <h2>Activity</h2>
-          <h2>Cards</h2>
-          <h2>Theme</h2>
-          <h2>Settings</h2>
-          <h2>Help</h2>
-          <h2>Shortcuts</h2>
-          <h2>Log out</h2>
+          <div className="infoContainer">
+            <h1>@user12345</h1>
+            <button className="profileButton">Profile</button>
+            <h2>Switch accounts</h2>
+            <h2>Manage account</h2>
+            <h2>Activity</h2>
+            <h2>Cards</h2>
+            <h2>Theme</h2>
+            <h2>Settings</h2>
+            <h2>Help</h2>
+            <h2>Shortcuts</h2>
+            <h2>Log out</h2>
+          </div>
+
         </div>
         <div>
           <div className="aboutContainer">
@@ -36,6 +39,10 @@ export default function Profile() {
             <Input label="Email address" type="text" />
             <Input label="Based in" type="text" />
             <Input label="Region" type="text" />
+          </div>
+          <div className="changeEdit">
+            <button>save</button>
+            <button> edit</button>
           </div>
         </div>
       </div>
