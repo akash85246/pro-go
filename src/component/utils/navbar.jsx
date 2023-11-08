@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Dropdown from "../landingPage/Dropdown";
+import Dropdown from "../utils/dropdown";
 import logo from "../../assets/logo.svg";
 import hamImg from "../../assets/hamburgerOpen.svg";
 // import "./Navbar.css";
