@@ -60,7 +60,7 @@ export default function Navbar() {
           <Dropdown title="Resources">
             <ul>
               <li onClick={() => navigate("/dash")}>Dash Board</li>
-              <li>Item B</li>
+              <li onClick={() => navigate("/profile")}>Profile</li>
               <li>Item C</li>
             </ul>
           </Dropdown>
