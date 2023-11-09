@@ -267,5 +267,6 @@
   border-left: 1rem solid #696c6c;
   border-bottom: 1rem solid #696c6c;
   border-right: 2rem solid #696c6c;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
