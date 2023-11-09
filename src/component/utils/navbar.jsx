@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "../utils/dropdown";
 import logo from "../../assets/logo.svg";
 import hamImg from "../../assets/hamburgerOpen.svg";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./authContext";
 import ProfileImg from "./profileImg";
 import userImg from "../../assets/profilePhoto.png";
 
