@@ -89,7 +89,7 @@ export default function DashBoard() {
           </div>
         </div>
         <div className="dashMainContainer">
-          <div className="navbar">
+          <div className="navbarDash">
             <Dropdown title="Recent">
               <ul>
                 <li>Item 1</li>
@@ -130,7 +130,7 @@ export default function DashBoard() {
             <ProfileImg img={userImg} isNavbar="true" />
           </div>
           <div className="dashMain">
-            
+
           </div>
         </div>
       </div>

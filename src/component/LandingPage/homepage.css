@@ -88,13 +88,12 @@ a {
   margin-right: 2rem;
   cursor: pointer;
 
-  color: #001b66;
-  text-align: center;
+  color: #455a64;
   font-family: Poppins;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 600;
-  line-height: 1.5rem; /* 150% */
+  font-weight: 550;
+  line-height: 1.5rem;
 }
 
 .signUpButton {
