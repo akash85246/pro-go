@@ -9,8 +9,8 @@ import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import { toast } from "../../../../node_modules/react-toastify";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css";
 
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
@@ -79,22 +79,21 @@ function LoginForm() {
     setShowSignUp(true);
     navigate("/signUp");
   }
-  useEffect(() => {
-    let login = localStorage.getItem("login");
-    if (login) {
-      navigate("/home");
-    }
-  });
+  // useEffect(() => {
+  //   let login = localStorage.getItem("login");
+  //   if (login) {
+  //     navigate("/home");
+  //   }
+  // });
   async function handleSubmit(event) {
     event.preventDefault();
     console.log("Submit button clicked");
-
     if (
       (loginWithPhone && phoneError) ||
       (!loginWithPhone && emailError) ||
       !validatePassword(password)
     ) {
-      alert("Please enter details");
+      alert("Please enter correct details");
       return;
     }
 
@@ -126,7 +125,7 @@ function LoginForm() {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
         console.log(error.response.data);
-        // toast.error(error.response.data.message);
+        toast.error(error.response.data.message);
 
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
@@ -238,6 +237,7 @@ function LoginForm() {
           </div>
         </div>
       </form>
+      <ToastContainer />
     </>
   );
 }

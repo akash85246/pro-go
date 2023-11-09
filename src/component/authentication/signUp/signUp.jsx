@@ -5,7 +5,7 @@ import Button from "../../utils/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "../../utils/leftContainer";
-import { toast } from "../../../../node_modules/react-toastify";
+import { toast } from "react-toastify";
 
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
 import eyeImg from "../../../assets/eye.svg";

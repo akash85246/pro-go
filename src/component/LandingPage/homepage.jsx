@@ -41,7 +41,7 @@ export default function Homepage() {
                 &quot;Keep everything in the same place -even if your team
                 isn&apos;t.&quot;
               </p>
-              <button>Start your 14 Day's Trails</button>
+              <button>Start your 14 Day&apos;s Trails</button>
               <img src={image1} className="img1"></img>
             </div>
             <div>

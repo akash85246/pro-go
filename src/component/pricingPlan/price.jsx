@@ -24,9 +24,8 @@ export default function Pricing(props) {
 
   return (
     <>
-      <div className="nav">
-        <Navbar />
-      </div>
+      <Navbar />
+
       <div className="priceplanHeader">
         <h1>
           <span className="darkBlue">Pro-Go </span>

@@ -36,6 +36,8 @@ function App() {
             <Route path="/price" element={<Pricing />} />
             <Route path="/error" element={<Error />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
+            
             <Route path="/" element={<LoginForm />} />
             <Route path="*" element={<Error />} />
           </Routes>

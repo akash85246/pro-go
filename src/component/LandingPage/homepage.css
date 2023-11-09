@@ -4,7 +4,6 @@
   color: black;
   align-items: center;
   width: 86vw;
- 
 }
 
 .navContainer {
@@ -18,7 +17,7 @@
   padding: 2vw 0;
   margin: auto;
   font-family: "Poppins", sans-serif;
-   z-index: 100;
+  z-index: 100;
 }
 .homePageIcon {
   width: 15vw;
@@ -646,6 +645,53 @@ a {
 }
 #root > footer > div.container2 > ul > li:nth-child(1) {
   font-size: 2.5vw;
+}
+#root > div.navContainer > nav > div.navItems > div.profileImgContainer {
+  margin: 0%;
+  position: absolute;
+  height: 100%;
+}
+/* #root > div.navContainer{
+  background: #F9F4F1;
+} */
+.profileNavButton {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 12.5rem;
+  padding: 0.75rem 1.75rem;
+  margin-right: 5rem;
+  border-radius: 0.9375rem;
+  background: #2047ce;
+  cursor: pointer;
+  font-family: Poppins;
+  font-size: 0.96875rem;
+  font-style: normal;
+  font-weight: 900;
+}
+.profileNavButton:hover {
+  color: #2047ce;
+  border: 1px solid #2047ce;
+  background-color: white;
+}
+#root
+  > div.navContainer
+  > nav
+  > div.navItems
+  > div.profileImgContainer
+  > div
+  > img {
+  padding: 0;
+  /* margin-top: 1rem; */
+  /* height: 6rem; */
+  border-radius: 3.5rem;
+  border: 1px solid #3962f2;
+  height: 4rem;
+  width: 4rem;
+  margin-top: -400%;
+  margin-left: -3.5rem;
 }
 @media only screen and (max-width: 1000px) {
   a {

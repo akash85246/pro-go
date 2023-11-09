@@ -21,7 +21,7 @@
    filter: blur(3px); 
 } */
 
-.editButton {
+/* .editButton {
   position: absolute;
   margin: auto;
   padding: 5%;
@@ -30,7 +30,7 @@
 
   margin-left: 1vw;
   filter: none;
-}
+} */
 
 .editButton img {
   width: 4vw;
@@ -59,3 +59,21 @@
   background-color: #0056b3;
 }
 
+.button {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.editButton,
+.saveButton {
+  background-color: #4285f4; 
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  display: block;
+}
+
+.saveButton {
+  background-color: #34a853; /* Change to your preferred color */
+}

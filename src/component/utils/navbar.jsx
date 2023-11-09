@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "../utils/dropdown";
 import logo from "../../assets/logo.svg";
 import hamImg from "../../assets/hamburgerOpen.svg";
-// import "./Navbar.css";
+import { useAuth } from "./AuthContext";
+import ProfileImg from "./profileImg";
+import userImg from "../../assets/profilePhoto.png";
 
 export default function Navbar() {
+  const { authToken, setAuthToken } = useAuth();
+
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   function pricePage() {
     navigate("/price");
+    console.log(authToken);
   }
+
   return (
     <div className="navContainer">
       <nav className={`homeNavbar ${isMenuOpen ? "open" : ""}`}>
@@ -58,9 +64,15 @@ export default function Navbar() {
             </ul>
           </Dropdown>
 
-          {localStorage.getItem("user-info") ? (
+          {authToken != null ? (
             <>
-              <button className="signInButton">Profile</button>
+              <button
+                className="profileNavButton"
+                onClick={() => navigate("/profile")}
+              >
+                Hello User!
+              </button>
+              <ProfileImg img={userImg} isNavbar="true" />
             </>
           ) : (
             <>
@@ -70,6 +82,7 @@ export default function Navbar() {
               >
                 Sign in
               </button>
+
               <button
                 className="signUpButton"
                 onClick={() => navigate("/signUp")}

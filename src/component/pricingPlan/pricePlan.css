@@ -103,7 +103,53 @@ sup {
   display: inline-block;
   margin: 0.5rem;
 }
-
+#root > div.navContainer > nav > div.navItems > div.profileImgContainer {
+  margin: 0%;
+  position: absolute;
+  height: 100%;
+}
+/* #root > div.navContainer{
+  background: #F9F4F1;
+} */
+.profileNavButton {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 12.5rem;
+  padding: 0.75rem 1.75rem;
+  margin-right: 5rem;
+  border-radius: 0.9375rem;
+  background: #2047ce;
+  cursor: pointer;
+  font-family: Poppins;
+  font-size: 0.96875rem;
+  font-style: normal;
+  font-weight: 900;
+}
+.profileNavButton:hover {
+  color: #2047ce;
+  border: 1px solid #2047ce;
+  background-color: white;
+}
+#root
+  > div.navContainer
+  > nav
+  > div.navItems
+  > div.profileImgContainer
+  > div
+  > img {
+  padding: 0;
+  /* margin-top: 1rem; */
+  /* height: 6rem; */
+  border-radius: 3.5rem;
+  border: 1px solid #3962f2;
+  height: 4rem;
+  width: 4rem;
+  margin-top: -2.5rem;
+  margin-left: -3.5rem;
+}
 .pTitle {
   font-size: 1.5rem;
 }
@@ -175,10 +221,9 @@ li img {
 }
 
 li p {
-  margin:auto 0;
+  margin: auto 0;
   white-space: wrap;
   font-weight: 900;
-
 }
 .clicked {
   background-color: lightblue;

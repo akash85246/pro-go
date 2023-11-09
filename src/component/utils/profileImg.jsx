@@ -2,16 +2,13 @@ import React, { useState, useRef } from "react";
 import editIcon from "../../assets/edit-solid.svg";
 import "./profileImg.css";
 import axios from "axios";
+import userImg from "../../assets/profilePhoto.png";
 
 export default function ProfileImg(props) {
   const [isHovered, setIsHovered] = useState(false);
   const [newPhoto, setNewPhoto] = useState(null);
 
   const inputRef = useRef();
-
-  const handleFileChange = (e) => {
-    setNewPhoto(e.target.files[0]);
-  };
 
   const uploadNewPhoto = async () => {
     if (newPhoto) {
@@ -43,12 +40,12 @@ export default function ProfileImg(props) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`profileImg ${isHovered ? "hovered" : ""}`}>
-        <img src={props.img} alt="Profile Image" />
-        {isHovered && (
-          <div className="editButton" onClick={() => inputRef.current.click()}>
+        <img src={newPhoto || userImg} alt="Profile Image" />
+        {/* {isHovered && !props.isNavbar && (
+          <div>
             <img src={editIcon} alt="Edit" />
           </div>
-        )}
+        )} */}
       </div>
       <input
         type="file"
@@ -56,9 +53,21 @@ export default function ProfileImg(props) {
         ref={inputRef}
         style={{ display: "none" }}
         className="changePhotoButton"
-        onChange={handleFileChange}
+        onChange={(e) => setNewPhoto(URL.createObjectURL(e.target.files[0]))}
       />
-      {isHovered && <button onClick={uploadNewPhoto}>Change Photo</button>}
+      {/* {isHovered && !props.isNavbar && (
+        <div className="button">
+          <button
+            className="editButton"
+            onClick={() => inputRef.current.click()}
+          >
+            edit
+          </button>
+          <button className="saveButton" onClick={uploadNewPhoto}>
+            Save Photo
+          </button>
+        </div>
+      )} */}
     </div>
   );
 }
