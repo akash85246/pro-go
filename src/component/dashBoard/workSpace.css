@@ -1,5 +1,4 @@
 #root {
-  color: white;
   height: 100vh;
 }
 #root > div > div.sidebar > div.sidebarContain > ul > li {
@@ -11,6 +10,7 @@
   background-color: #161717;
   display: grid;
   grid-template-columns: 1.4fr 4fr;
+  color: white;
 }
 .navbarDash {
   display: flex;
