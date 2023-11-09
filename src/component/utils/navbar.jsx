@@ -8,7 +8,7 @@ import ProfileImg from "./profileImg";
 import userImg from "../../assets/profilePhoto.png";
 
 export default function Navbar() {
-  const { authToken, setAuthToken } = useAuth();
+  const { authToken } = useAuth();
 
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

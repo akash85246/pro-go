@@ -1,0 +1,275 @@
+#root {
+  background-color: #161717;
+  color: white;
+  height: 100vh;
+}
+li {
+  height: 2.8rem;
+  color: white;
+  margin: 0;
+}
+.workSpaceContainer {
+  display: grid;
+  grid-template-columns: 1.4fr 4fr;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  gap: 0.1rem;
+  position: fixed;
+  width: 75%;
+  height: 4.2rem;
+  padding-left: 2rem;
+}
+.profileImg img {
+  width: 35%;
+  margin-top: -15%;
+  border: 1px solid black;
+}
+.dropdown {
+  margin: 0;
+}
+.searchButton {
+  height: 2.625rem;
+  padding: 0rem 0.55388rem 0rem 0.46156rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 1.25rem;
+  border: 2px solid #696f79;
+  background: #fff;
+  color: #696f79;
+  width: 20%;
+
+  text-align: center;
+  font-family: Poppins;
+  font-size: 0.96875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.searchButton:hover {
+  border: 2px solid white;
+  background: #696f79;
+  color: white;
+}
+.createButton {
+  width: 4.98463rem;
+  height: 2.625rem;
+
+  cursor: pointer;
+
+  text-align: center;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+
+  width: 6rem;
+  height: 2.625rem;
+  padding: 0rem 0.55388rem 0rem 0.46156rem;
+
+  border-radius: 1.5rem;
+  border: 1px solid #000;
+  background: #414547;
+  color: #fff;
+}
+.createButton:hover {
+  border: 2px solid #000;
+  background: white;
+  color: #414547;
+}
+
+.dropdown-button {
+  color: #455a64;
+
+  color: #455a64;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 550;
+  line-height: 1.5rem;
+}
+
+.sidebarLogo {
+  display: flex;
+  padding: 0 25%;
+  gap: 1rem;
+  margin: auto;
+}
+.sidebarLogo img {
+  width: 30%;
+}
+.sidebarLogo h2 {
+  font-family: Poppins;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: -0.0375rem;
+}
+.sidebarContain {
+  margin: auto;
+  width: 90%;
+  margin-top: -1rem;
+}
+.sidebarContain h3 {
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+.sidebarContain > ul > li > div {
+  display: flex;
+}
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > ul:nth-child(2)
+  > li:nth-child(3)
+  > div
+  > button {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > ul:nth-child(2)
+  > li:nth-child(3)
+  > div {
+  width: 100%;
+}
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > ul:nth-child(2)
+  > li:nth-child(3)
+  > div
+  > button
+  > span.arrow-icon {
+  /* background-color: white; */
+  border-radius: 10px;
+  height: 15px;
+  padding-left: 4%;
+  margin-right: -1.5rem;
+}
+
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > ul:nth-child(2)
+  > li:nth-child(3)
+  > div
+  > button
+  > span:nth-child(1) {
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  /* background-color: red; */
+  margin: 0;
+}
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > ul:nth-child(2)
+  > li:nth-child(2),
+#root > div > div.sidebar > div.sidebarContain > h3:nth-child(5) {
+  display: flex;
+  justify-content: space-between;
+}
+.sidebarContain > ul h4 {
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  /* background-color: red; */
+}
+
+#root > div > div.sidebar > div.sidebarContain > ul:nth-child(6) > li {
+  height: 1.8rem;
+}
+
+.sidebarButtonContainer {
+  display: 100%;
+  flex-direction: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebarButtonContainer > div {
+  width: 90%;
+  margin-left: 5%;
+  padding-top: 10%;
+  height: 5rem;
+  border-top: 1px solid #696f79;
+}
+.premiumButton {
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  height: 2.625rem;
+  background: #fff;
+
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > ul:nth-child(2)
+  > li:nth-child(2)
+  > span {
+  font-size: 2.5rem;
+  font-weight: 100;
+}
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > h3:nth-child(5)
+  > span:nth-child(2) {
+  font-size: 2.5rem;
+  font-weight: 100;
+}
+
+#root
+  > div
+  > div.sidebar
+  > div.sidebarContain
+  > ul:nth-child(2)
+  > li:nth-child(3)
+  > div
+  > button
+  > span.arrow-icon
+  > img {
+  width: 2rem;
+}
+
+.dashMain{
+
+  height: 98vh;
+  border-radius: 10px;
+  border-left: 1rem solid #696C6C;
+  border-bottom: 1rem solid #696C6C;
+  border-right: 2rem solid #696C6C;
+  overflow: scroll;
+}

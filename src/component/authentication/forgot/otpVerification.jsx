@@ -6,7 +6,6 @@ import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Vortex } from "react-loader-spinner";
 import otpImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";

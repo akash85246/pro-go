@@ -59,7 +59,7 @@
   background-color: #0056b3;
 }
 
-.button {
+.buttonContainerProfile {
   display: flex;
   justify-content: center;
   flex-direction: column;
