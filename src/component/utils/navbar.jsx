@@ -19,6 +19,7 @@ export default function Navbar() {
   function pricePage() {
     navigate("/price");
     console.log(authToken);
+    console.log(authToken != null);
   }
 
   return (
@@ -63,7 +64,6 @@ export default function Navbar() {
               <li>Item C</li>
             </ul>
           </Dropdown>
-
           {authToken != null ? (
             <>
               <button
