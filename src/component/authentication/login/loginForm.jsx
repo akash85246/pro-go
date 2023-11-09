@@ -9,8 +9,8 @@ import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css";
 
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
@@ -125,7 +125,7 @@ function LoginForm() {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
         console.log(error.response.data);
-        toast.error(error.response.data.message);
+        // toast.error(error.response.data.message);
 
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
@@ -237,7 +237,7 @@ function LoginForm() {
           </div>
         </div>
       </form>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </>
   );
 }
