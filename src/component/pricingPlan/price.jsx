@@ -35,20 +35,20 @@ export default function Pricing(props) {
           Trusted by millions, Pro-Go powers teams all around the world. Explore
           which option is right for you.
         </h2>
-        <div className="switch">
-          <button
-            className={`monthly ${getButtonClassName("monthly")}`}
-            onClick={() => handleOptionChange("monthly")}
-          >
-            Monthly
-          </button>
-          <button
-            className={`annually ${getButtonClassName("annually")}`}
-            onClick={() => handleOptionChange("annually")}
-          >
-            Annually
-          </button>
-        </div>
+      </div>
+      <div className="switch">
+        <button
+          className={`monthly ${getButtonClassName("monthly")}`}
+          onClick={() => handleOptionChange("monthly")}
+        >
+          Monthly
+        </button>
+        <button
+          className={`annually ${getButtonClassName("annually")}`}
+          onClick={() => handleOptionChange("annually")}
+        >
+          Annually
+        </button>
       </div>
       <div className="costChoice">
         {selectedOption === "monthly" && (

@@ -28,14 +28,14 @@
   align-items: center;
   margin-left: 0.5rem;
 }
-.dropdown {
+.slider {
   position: relative;
   display: inline-block;
   margin-right: 1.3vw;
   font-family: "Poppins", sans-serif;
 }
 
-.dropdown-content {
+.slider-content {
   display: none;
   position: absolute;
   background-color: rgba(125, 125, 234, 0.9);
@@ -48,21 +48,21 @@
   font-family: "Poppins", sans-serif;
 }
 
-.dropdown:hover .dropdown-content {
+.slider:hover .slider-content {
   display: block;
 }
 
-.dropdown-content ul {
+.slider-content ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.dropdown-content li {
+.slider-content li {
   padding: 1vw;
 }
 
-.dropdown-content li:hover {
+.slider-content li:hover {
   background-color: white;
   color: #001b66;
 }
@@ -160,7 +160,7 @@ a {
 .homePageIcon img {
   width: 10rem;
 }
-.dropdown-button {
+.slider-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -170,7 +170,7 @@ a {
   font-family: Poppins;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.5rem;
 }
 #root > div.containerHome > div > nav > div.homePageIcon > h1 {
@@ -617,6 +617,7 @@ a {
   font-weight: 600;
   line-height: normal;
   margin: 1rem 0;
+  padding: 20px;
 }
 .part1 h1 {
   width: 70vw;
@@ -631,7 +632,7 @@ a {
 }
 .part6 {
   margin-bottom: 10vh;
-}
+  padding: 5x;}
 #root > footer > div.container2 > ul {
   display: flex;
   flex-direction: column;
@@ -683,8 +684,6 @@ a {
   > div
   > img {
   padding: 0;
-  /* margin-top: 1rem; */
-  /* height: 6rem; */
   border-radius: 3.5rem;
   border: 1px solid #3962f2;
   height: 4rem;
@@ -692,21 +691,39 @@ a {
   margin-top: -400%;
   margin-left: -3.5rem;
 }
-@media only screen and (max-width: 1000px) {
+
+@media only screen and (max-width: 1300px) {
   a {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  #root
+    > div.navContainer
+    > nav
+    > div.navItems
+    > div.profileImgContainer
+    > div
+    > img {
+    height: 3rem;
+    width: 3rem;
+    margin-top: -1.5rem;
   }
 
   .signUpButton {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     width: 18vw;
   }
   .signInButton {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
   }
-  .dropdown-button {
-    font-size: 0.5rem;
+  .slider-button {
+    font-size: 0.7rem;
   }
+  #root > div.navContainer > nav > div.navItems > button {
+    width: 10rem;
+    font-size: 0.7rem;
+  }
+
   .part1 {
     margin-top: 0;
     height: 58rem;
@@ -734,7 +751,7 @@ a {
     margin-top: 5rem;
   }
   .part2 {
-    margin-top: -5rem;
+    margin-top: 6rem;
     height: 40vh;
     display: flex;
     justify-content: center;
@@ -759,7 +776,7 @@ a {
     margin-top: 0;
   }
   .part3 {
-    margin-top: -50rem;
+    margin-top: -30rem;
     /* height: 50vh; */
   }
   #root > div.containerHome > div > h1.get {
@@ -814,13 +831,24 @@ a {
 
   .part4 {
     width: 90vw;
-    margin-top: 0rem;
     grid-template-columns: 25rem 25rem;
     margin: auto;
   }
   .card {
     width: 80%;
     text-align: left;
+  }
+  .part4{
+    margin-top: 10rem;
+  }
+  #root > div.containerHome > div > h1.get{
+    margin-top: 3rem;
+  }
+  .part6 p{
+    padding: 1rem;
+  }
+  .part6 button{
+    font-size:1.2rem;
   }
 }
 
@@ -982,6 +1010,7 @@ a {
   .part3 {
     margin-top: -16rem;
     display: flex;
+    height: 78rem;
     flex-direction: column;
   }
   .img2 {
@@ -997,9 +1026,7 @@ a {
     width: 30rem;
     margin-left: 15%;
   }
-  .part3 {
-    height: 75rem;
-  }
+
   .part3 img {
     width: 30rem;
     margin: 0;
@@ -1065,7 +1092,7 @@ a {
   .part4 {
     display: flex;
     flex-direction: column;
-    margin-top: 10rem;
+    margin-top: 5rem;
     gap: 5vw;
   }
   .card {
@@ -1095,12 +1122,13 @@ a {
     height: 20rem;
   }
   .part5 {
-    margin-top: 115rem;
+    margin-top: 150rem;
     display: flex;
 
     justify-content: center;
     align-items: center;
     margin-left: 0.5%;
+  
   }
   #root > div.containerHome > div > div.part.part4 > div:nth-child(5) > img {
     height: 40rem;
@@ -1125,7 +1153,7 @@ a {
     font-size: 5vw;
   }
   .part6 {
-    margin-top: -30rem;
+    margin-top: -20rem;
     margin-bottom: -120rem;
   }
   .seeWork {
@@ -1153,7 +1181,7 @@ a {
     margin-top: 1vh;
   }
   footer {
-    margin-top: 5rem;
+    margin-top: 15rem;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -1287,6 +1315,10 @@ a {
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text {
     margin: 0rem;
+  }
+  .img2Text {
+    margin: auto;
+    padding: 1px;
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
     font-size: 2rem;
@@ -1485,10 +1517,16 @@ a {
   footer {
     margin-top: 5rem;
   }
+  /* .part1 {
+    margin-top: 5rem;
+  } */
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 540px) {
   #root > div.containerHome > div > div.part.part4 > div > img {
     width: 15rem;
+  }
+  .logoContainer {
+    margin-left: 1rem;
   }
   .part4 {
     width: 100vw;
@@ -1502,7 +1540,7 @@ a {
     margin: 0;
   }
   .part2 {
-    margin-top: 30rem;
+    margin-top: 30srem;
     margin-left: 0;
   }
   #root > div.containerHome > div > div.part.part2 > div:nth-child(2) > img {
@@ -1521,11 +1559,13 @@ a {
   }
   #root > div.containerHome > div > div.part.part4 > div:nth-child(5) > img {
     height: 20rem;
+  
   }
   .part1 {
     margin-top: 3rem;
-    height: 20rem;
+    height: 21rem;
   }
+ 
   #root
     > div.containerHome
     > div
@@ -1555,6 +1595,7 @@ a {
     height: 2.5rem;
     font-size: 0.7rem;
     width: 50%;
+    margin-top: 0rem;
   }
   #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > img {
     margin-top: -4rem;
@@ -1614,25 +1655,27 @@ a {
     height: 6rem;
   }
   .part2 {
-    margin-top: 10rem;
+    margin-top: 14rem;
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
     font-size: 1.5rem;
+    padding: 10px;
+    width: 100%;
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
     font-size: 1rem;
+    font-weight: 400;
   }
 
   #root > div.containerHome > div > div.part.part2 > div:nth-child(2) {
-    margin-top: -4.5rem;
+    margin-top: -5rem;
   }
   .part3 {
-    margin-top: -13rem;
+    margin-top: -12rem;
   }
   #root > div.containerHome > div > h1:nth-child(3) {
     margin: 13.5rem 0;
     font-size: 1.2rem;
-    margin-top: 13rem;
   }
   #root > div.containerHome > div > div.part.part3 > div.member2 > button {
     height: 2.8rem;
@@ -1642,7 +1685,8 @@ a {
     font-size: 1rem;
   }
   .part3 {
-    height: 60rem;
+    height: 65rem;
+    margin-top: -11rem;
   }
   #root > div.containerHome > div > h1.get {
     font-size: 1.2rem;
@@ -1651,9 +1695,7 @@ a {
   #root > div.containerHome > div > h1.get {
     font-size: 1.2rem;
     width: 80%;
-
-    margin: auto;
-    margin-top: 1.2rem;
+    margin: 3rem auto;
   }
   .card {
     width: 80%;
@@ -1690,11 +1732,33 @@ a {
   .part6 {
     margin-top: 1rem;
   }
+  .part6 button {
+    font-size: 1.2rem;
+  }
   footer {
     margin-top: 35rem;
   }
   #root > div.navContainer > nav > div.homePageIcon > h1 {
     min-width: 4rem;
     font-size: 1rem;
+  }
+  .part5 {
+    margin-top: 118rem;
+  }
+  #root > div.navContainer > nav > div.homePageIcon > img {
+    margin-right: 1px;
+  }
+  #root > div.containerHome > div > div.part.part5 > div > div:nth-child(1) {
+    font-size: 1.2rem;
+  }
+  .workContainer {
+    height: 20rem;
+  }
+  .part6 {
+    margin: -2rem auto;
+    margin-bottom: -80rem;
+  }
+  #root > div.containerHome > div > div.part.part6 > div > p {
+    font-size: 1.2rem;
   }
 }

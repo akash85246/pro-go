@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import downImg from "../../assets/V.svg";
 import upImg from "../../assets/A.svg";
 
-export default function Dropdown({ title, children }) {
+export default function Slider({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
+  const toggleSlider = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className={`dropdown ${isOpen ? "open" : ""}`}>
-      <button className="dropdown-button" onClick={toggleDropdown}>
+    <div className={`slider ${isOpen ? "open" : ""}`}>
+      <button className="slider-button" onClick={toggleSlider}>
         <span dangerouslySetInnerHTML={{ __html: title }} />
         <span className="arrow-icon">
           {isOpen ? (
@@ -21,7 +21,7 @@ export default function Dropdown({ title, children }) {
           )}
         </span>
       </button>
-      {isOpen && <div className="dropdown-content">{children}</div>}
+      {isOpen && <div className="slider-content">{children}</div>}
     </div>
   );
 }

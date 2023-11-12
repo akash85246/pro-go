@@ -9,6 +9,7 @@
 .priceplanHeader {
   padding: 10vh;
   margin: auto;
+  padding-bottom: 0;
 }
 #root > div.priceplanHeader > div {
   width: 100%;
@@ -49,6 +50,7 @@ sup {
   font-weight: 550;
   line-height: 2.1875rem;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .monthly {
@@ -103,53 +105,7 @@ sup {
   display: inline-block;
   margin: 0.5rem;
 }
-#root > div.navContainer > nav > div.navItems > div.profileImgContainer {
-  margin: 0%;
-  position: absolute;
-  height: 100%;
-}
-/* #root > div.navContainer{
-  background: #F9F4F1;
-} */
-.profileNavButton {
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  width: 12.5rem;
-  padding: 0.75rem 1.75rem;
-  margin-right: 5rem;
-  border-radius: 0.9375rem;
-  background: #2047ce;
-  cursor: pointer;
-  font-family: Poppins;
-  font-size: 0.96875rem;
-  font-style: normal;
-  font-weight: 900;
-}
-.profileNavButton:hover {
-  color: #2047ce;
-  border: 1px solid #2047ce;
-  background-color: white;
-}
-#root
-  > div.navContainer
-  > nav
-  > div.navItems
-  > div.profileImgContainer
-  > div
-  > img {
-  padding: 0;
-  /* margin-top: 1rem; */
-  /* height: 6rem; */
-  border-radius: 3.5rem;
-  border: 1px solid #3962f2;
-  height: 4rem;
-  width: 4rem;
-  margin-top: -2.5rem;
-  margin-left: -3.5rem;
-}
+
 .pTitle {
   font-size: 1.5rem;
 }
@@ -282,21 +238,97 @@ li p {
 .frquently li {
   color: #407bff;
   text-align: center;
-
   font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
+  overflow: visible;
+  text-align: left;
+  word-wrap: break-word;
+  height: 3.5rem;
+  margin: 2rem;
 }
 .frquently span {
   color: black;
 }
 .frquently img {
-  margin-top: -5rem;
+  margin: auto;
+  width: 25rem;
 }
 .quest {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  padding: 0 5rem;
+  padding: 0 10vw;
 }
-@media only screen and (max-width: 600px) {
+.switch{
+  padding: 5rem;
+}
+@media only screen and (max-width: 1000px) {
+  #root > div.priceplanHeader > div > button {
+    width: 12rem;
+  }
+  .cost {
+    font-size: 3.5rem;
+    margin: 2.5rem auto;
+  }
+  .pTitle {
+    font-size: 1rem;
+  }
+  .trialButton {
+    font-size: 0.6rem;
+    font-weight: 100;
+    width: 70%;
+  }
+  .priceplanHeader{
+    padding: 5rem;
+    padding-bottom: 2rem;
+    background-color: #001b66;
+    color: white;
+  }
+   .priceplanHeader h1>span{
+    color: white;
+  }
+  sup {
+    font-size: 0.8rem;
+  }
+  #root > div.costChoice > div > div > p {
+    margin: 0;
+    line-height: 1.2rem;
+  }
+  .frquently {
+    margin-top: 0;
+  }
+
+  .frquently li {
+    margin: 0.5rem;
+  }
+  #root > div.costChoice > div > div > ul > li {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    font-size: 0.8rem;
+  }
+  #root > div.frquently > div > ul > li > div {
+    font-size: 1rem;
+    height: 0rem;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .costChoice div{
+    display: grid;
+  }
+  .switch{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #root > div.switch > button{
+    width: 20rem;
+
+  }
+  .pCard{
+    width: 80%;
+  }
 }

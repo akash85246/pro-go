@@ -149,6 +149,7 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
         <div className="navbar">
           <img src={logo}></img>
+          <h3>Pro-Go</h3>
         </div>
         <div className="container">
           <LeftContainer

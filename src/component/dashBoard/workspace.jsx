@@ -10,7 +10,7 @@ import wFlag from "../../assets/wFlag.svg";
 import userImg from "../../assets/profilePhoto.png";
 import { useState } from "react";
 import "./workSpace.css";
-import Dropdown from "../utils/dropdown";
+import Dropdown from "../utils/slider";
 import ProfileImg from "../utils/profileImg";
 export default function DashBoard() {
   return (
@@ -129,9 +129,7 @@ export default function DashBoard() {
             <button className="createButton">ceate</button>
             <ProfileImg img={userImg} isNavbar="true" />
           </div>
-          <div className="dashMain">
-
-          </div>
+          <div className="dashMain"></div>
         </div>
       </div>
     </>

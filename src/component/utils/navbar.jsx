@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Dropdown from "../utils/dropdown";
+import Slider from "./slider";
 import logo from "../../assets/logo.svg";
 import hamImg from "../../assets/hamburgerOpen.svg";
 import { useAuth } from "./authContext";
@@ -40,30 +40,30 @@ export default function Navbar() {
           )}
         </div>
         <div className={`navItems ${isMenuOpen ? "open" : ""}`}>
-          <Dropdown title="Solutions">
+          <Slider title="Solutions">
             <ul>
               <li>Item 1</li>
               <li>Item 2</li>
               <li>Item 3</li>
             </ul>
-          </Dropdown>
-          <Dropdown title="Plans">
+          </Slider>
+          <Slider title="Plans">
             <ul>
               <li>Item A</li>
               <li>Item B</li>
               <li>Item C</li>
             </ul>
-          </Dropdown>
+          </Slider>
           <Link to="/price" onClick={pricePage}>
             Pricing
           </Link>
-          <Dropdown title="Resources">
+          <Slider title="Resources">
             <ul>
               <li onClick={() => navigate("/dash")}>Dash Board</li>
               <li onClick={() => navigate("/profile")}>Profile</li>
               <li>Item C</li>
             </ul>
-          </Dropdown>
+          </Slider>
           {authToken != null ? (
             <>
               <button
