@@ -4,7 +4,7 @@ import heartImg from "../../assets/heart.svg";
 import folderImg from "../../assets/Folder.svg";
 import plantImg from "../../assets/plant.svg";
 import team from "../../assets/team.svg";
-// import { useAuth } from "../authContext";
+import { useAuth } from "../utils/authContext";
 import "./homepage.css";
 import image1 from "../../assets/landing1.svg";
 import image2 from "../../assets/landing2.svg";
@@ -17,8 +17,23 @@ import box3Img from "../../assets/box3.svg";
 import box4Img from "../../assets/box4.svg";
 import box5Img from "../../assets/box5.svg";
 import box6Img from "../../assets/box6.svg";
+import { useEffect } from "react";
+
 export default function Homepage() {
-  // const { authToken, setAuthToken } = useAuth();
+  const { authToken, setAuthToken } = useAuth();
+  console.log(authToken);
+  // useEffect(() => {
+  //   const handleBeforeUnload = () => {
+
+  //     localStorage.clear();
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener("afterunload", handleBeforeUnload);
+  //   };
+  // }, []);
   return (
     <>
       <Navbar />

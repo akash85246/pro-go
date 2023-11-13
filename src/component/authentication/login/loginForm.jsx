@@ -14,7 +14,7 @@ import logo from "../../../assets/logo.svg";
 // import "react-toastify/dist/ReactToastify.css";
 
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
-// import { useAuth } from "../../utils/authContext";
+import { useAuth } from "../../utils/authContext";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ function LoginForm() {
   const [showSignUp, setShowSignUp] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
   const navigate = useNavigate();
-
+  const { updateAuthToken } = useAuth();
   function validateEmail(inputEmail) {
     const emailCheck = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
@@ -110,8 +110,7 @@ function LoginForm() {
         }
       );
       const authToken = response.data.data.token;
-
-      localStorage.setItem("authToken", authToken);
+      updateAuthToken(authToken);
 
       setAuthToken(authToken);
 

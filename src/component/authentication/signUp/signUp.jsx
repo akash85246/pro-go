@@ -9,9 +9,9 @@ import LeftContainer from "../../utils/leftContainer";
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
-import signUpImg from "../../../assets/sign-up.png";
+import signUpImg from "../../../assets/sign-up.svg";
 import logo from "../../../assets/logo.svg";
-  // import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 
 import { useAuth } from "../../utils/authContext";
 
@@ -191,6 +191,7 @@ function SignUpForm() {
         <form onSubmit={handleSubmit}>
           <div className="navbar">
             <img src={logo}></img>
+            <h3>Pro-Go</h3>
           </div>
           <div className="container">
             <LeftContainer

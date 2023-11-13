@@ -119,6 +119,7 @@ export default function Verification() {
           <div className="container">
             <div className="navbar">
               <img src={logo}></img>
+              <h3>Pro-Go</h3>
             </div>
             <LeftContainer
               classDiv="loginContainer left"

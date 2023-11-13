@@ -5,11 +5,12 @@
 
 .profileImg {
   margin-top: 2vw;
-  border-radius: 50%;
 }
 
 .profileImg img {
   width: 50%;
+  height: 6rem;
+  width: 6rem;
   object-fit: cover;
   border-radius: 50%;
   margin-top: -2rem;
@@ -32,11 +33,32 @@
   filter: none;
 } */
 
-.editButton img {
-  width: 4vw;
-  border: none;
+#fileInput {
+  display: none;
 }
-#root
+
+.changePhotoButton {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-family: Poppins;
+height: 1.8rem;
+width: 6rem;
+padding: 0.2rem;
+  cursor: pointer;
+  background-color:#2047ce;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.changePhotoButton:hover {
+  
+  background-color: white;
+  color: #2047ce;
+  border: 1px solid #2047ce;
+}
+
+/* #root
   > div.mainContainerProfile
   > div:nth-child(1)
   > div.profileImgContainer
@@ -57,7 +79,7 @@
   > div.profileImgContainer
   > input:hover {
   background-color: #0056b3;
-}
+} */
 
 .buttonContainerProfile {
   display: flex;
@@ -66,14 +88,3 @@
   width: 100%;
 }
 
-.editButton,
-.saveButton {
-  background-color: #4285f4; 
-  padding: 10px 15px; 
-  border-radius: 5px; 
-  display: block;
-}
-
-.saveButton {
-  background-color: #34a853; /* Change to your preferred color */
-}

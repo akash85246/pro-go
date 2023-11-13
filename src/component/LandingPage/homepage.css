@@ -977,7 +977,7 @@ a {
     display: flex;
     flex-direction: column;
     margin: 0;
-    margin-top: 30rem;
+    margin-top: 33rem;
     height: 10vh;
     width: 100%;
     padding: 0;
@@ -1008,7 +1008,7 @@ a {
     font-size: 1.5rem;
   }
   .part3 {
-    margin-top: -16rem;
+    margin-top: -13rem;
     display: flex;
     height: 78rem;
     flex-direction: column;
@@ -1562,7 +1562,7 @@ a {
   
   }
   .part1 {
-    margin-top: 3rem;
+    margin-top: 2.8rem;
     height: 21rem;
   }
  
@@ -1578,17 +1578,13 @@ a {
   .get {
     margin-top: 10rem;
   }
-  .part2 {
-    margin-top: 60rem;
-  }
   #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > h1 {
-    width: 100%;
-    font-size: 0.7rem;
+    width: 90%;
+    font-size: 1rem;
     font-weight: 600;
   }
   #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > p {
-    width: 100%;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     font-weight: 600;
   }
   #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {
@@ -1655,16 +1651,16 @@ a {
     height: 6rem;
   }
   .part2 {
-    margin-top: 14rem;
+    margin-top: 19rem;
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text > h1 {
     font-size: 1.5rem;
     padding: 10px;
-    width: 100%;
   }
   #root > div.containerHome > div > div.part.part2 > div.img2Text > h2 {
     font-size: 1rem;
     font-weight: 400;
+    padding: 5vw;
   }
 
   #root > div.containerHome > div > div.part.part2 > div:nth-child(2) {
@@ -1712,9 +1708,6 @@ a {
   #root > div.containerHome > div > div.part.part4 > div > img {
     width: 20rem;
   }
-  .part5 {
-    margin-top: 130rem;
-  }
   .workContainer {
     font-size: 1rem;
     margin-top: 10rem;
@@ -1743,7 +1736,7 @@ a {
     font-size: 1rem;
   }
   .part5 {
-    margin-top: 118rem;
+    margin-top: 130rem;
   }
   #root > div.navContainer > nav > div.homePageIcon > img {
     margin-right: 1px;
@@ -1752,10 +1745,10 @@ a {
     font-size: 1.2rem;
   }
   .workContainer {
-    height: 20rem;
+    height: 25rem;
   }
   .part6 {
-    margin: -2rem auto;
+    margin: 2rem auto;
     margin-bottom: -80rem;
   }
   #root > div.containerHome > div > div.part.part6 > div > p {

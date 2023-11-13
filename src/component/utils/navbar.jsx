@@ -5,11 +5,14 @@ import logo from "../../assets/logo.svg";
 import hamImg from "../../assets/hamburgerOpen.svg";
 import { useAuth } from "./authContext";
 import ProfileImg from "./profileImg";
-import userImg from "../../assets/profilePhoto.png";
 
-export default function Navbar() {
+export default function Navbar(props) {
   const { authToken } = useAuth();
 
+  function profilePage() {
+    console.log(authToken);
+    navigate("/profile");
+  }
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -21,6 +24,10 @@ export default function Navbar() {
     console.log(authToken);
     console.log(authToken != null);
   }
+
+  const handlePhotoChange = (newPhoto) => {
+    props.onPhotoChange(newPhoto);
+  };
 
   return (
     <div className="navContainer">
@@ -64,15 +71,16 @@ export default function Navbar() {
               <li>Item C</li>
             </ul>
           </Slider>
-          {authToken != null ? (
+          {authToken !== null ? (
             <>
-              <button
-                className="profileNavButton"
-                onClick={() => navigate("/profile")}
-              >
+              <button className="profileNavButton" onClick={profilePage}>
                 Hello User!
               </button>
-              <ProfileImg img={userImg} isNavbar="true" />
+              <ProfileImg
+                onPhotoChange={handlePhotoChange}
+                isNavbar="true"
+                img={props.newPhoto}
+              />
             </>
           ) : (
             <>

@@ -17,6 +17,8 @@
   width: 90%;
   height: 5vh;
   margin-top: 0.5vh;
+  padding-left:1rem;
+  font-size: 1rem;
 }
 
 #root > div.mainContainerProfile > div:nth-child(2) > div.changeEdit {

@@ -11,7 +11,7 @@ import logo from "../../../assets/logo.svg";
 import ham from "../../../assets/hamburger.svg";
 // import { toast } from "../../../../node_modules/react-toastify";
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
-  // import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 
 export default function Otp() {
   const [otp, setOtp] = useState("");
@@ -112,6 +112,7 @@ export default function Otp() {
           <div className="container forContainer">
             <div className="navbar">
               <img src={logo}></img>
+              <h3>Pro-Go</h3>
             </div>
             <LeftContainer
               classDiv="loginContainer left"

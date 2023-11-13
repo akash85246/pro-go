@@ -37,9 +37,9 @@ function App() {
             <Route path="/price" element={<Pricing />} />
             <Route path="/error" element={<Error />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/dash" element={<DashBoard />} />
+            <Route path="/dashboard" element={<DashBoard />} />
 
-            <Route path="/" element={<LoginForm />} />
+            <Route path="/" element={<Homepage />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Router>

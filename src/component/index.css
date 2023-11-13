@@ -102,7 +102,7 @@ body {
   color: #fff;
   border: none;
   width: 32vw;
-  height: 8vh;
+  height: 4REM;
   cursor: pointer;
   font-size: 1.5vw;
   border-radius: 0.375rem;
@@ -222,6 +222,10 @@ form {
   margin-top: -0.2vh;
   font-size: 1vw;
 }
+
+#root > form > div.container > div.loginContainer.left.signUpLeft > div > h1{
+  margin-top: 5rem;
+}
 @media only screen and (max-width: 1400px) {
   .error {
     margin-top: 1.5rem;
@@ -234,8 +238,20 @@ form {
   .Input {
     margin: 1.5rem 0;
   }
+  #root > form > div.container > div.loginContainer.right.signUpRight > div,#root > form > div.container > div.loginContainer.right.signUpRight > div.createPassword > div{
+    margin: 0;
+  }
 }
 
+@media only screen and (max-width: 1000px) {
+
+#root > form > div.container > div.loginContainer.right.signUpRight > div,#root > form > div.container > div.loginContainer.right.signUpRight > div.createPassword > div{
+  margin: auto;
+}
+#root > form > div.container > div.loginContainer.right.signUpRight > div.buttonContainer > div > button{
+  height: 3rem;
+}
+}
 @media only screen and (max-width: 900px) {
   body {
     /* background-color: lightblue; */
@@ -248,13 +264,16 @@ form {
   .Input {
     margin: 2vw 0;
   }
+  #root > form > div.container > div.loginContainer.right.signUpRight > div > div > label{
+    font-size: 0.8rem;
+  }
   .light,
   .blue {
     font-size: 2vw;
   }
   .signCp {
     /* width: 88vw; */
-    height: 5vh;
+    height: 3vh;
   }
   .signUpInput {
     margin: 0;
@@ -265,6 +284,9 @@ form {
   #passwordStrength,
   #resetPass {
     font-size: 0.5vw;
+  }
+  #root > form > div.container > div.loginContainer.right.signUpRight > div.createPassword > div> div.signIC > label{
+    font-size: 0.8rem;
   }
 }
 @media only screen and (max-width: 750px) {
@@ -286,8 +308,10 @@ form {
     width: 20rem;
     /* height: 20rem; */
   }
+ 
 }
-@media only screen and (max-width: 500px) {
+
+@media only screen and (max-width: 700px) {
   body {
     font-size: 3vw;
     overflow-y: scroll;
@@ -318,7 +342,7 @@ form {
   .loginImage {
    
     /* width: 30rem; */
-    height: 15rem;
+    height: 20rem;
     margin: 0;
     flex-shrink: 0;
      margin-top: 8.2rem;
@@ -344,28 +368,34 @@ form {
   }
 
   .navbar {
-    position: absolute;
+    position: fixed;
     display: flex;
+    background-color: #011c67;
     height: 5vh;
 
     margin: 1vw;
+    margin-top: 0;
+    height: 4rem;
+    z-index: 100;
   }
   .navbar h3 {
     color: white;
     margin: auto 1rem;
   }
   .signUpImage {
-    height: 45vw;
-    width: 45vw;
-    margin-top: -1vh;
+    /* height: 45vw; */
+    width: 12rem;
+    margin-top:-2rem;
   }
 
-  .signUpLine {
+ #root > form > div.container > div.loginContainer.left.signUpLeft > div > h1 {
     text-align: center;
     color: white;
-    font-size: 2.5vw;
-    width: 40vw;
-    margin-top: 3rem;
+    font-size: 1rem;
+    font-weight: 100;
+    width: 80vw;
+    margin-left: 1rem;
+    margin-top: 15rem;
   }
 
   .signIC {
@@ -386,7 +416,7 @@ form {
 
   .signCp {
     width: 88vw;
-    height: 4vh;
+    height: 3rem;
   }
 
   .signUpInput {
@@ -415,7 +445,7 @@ form {
     margin-left: 1rem;
   }
   .left {
-  height: 10rem;
+  height: 15rem;
   background: linear-gradient(to bottom,  50%, white 50%);
   overflow:visible;
 }
@@ -426,4 +456,27 @@ form {
   /* .signUpLine{
   display: none;
 } */
+.container{
+  height: 25rem;
+}
+}
+@media only screen and (max-width: 700px) {
+  .signUpImage{
+    width: 11rem;
+  }
+  .signIC{
+    margin-bottom: 1rem;
+  }
+  #name,#email,#root > form > div.container > div.loginContainer.right.signUpRight > div.createPassword > div > div.signIC > div > input{
+    font-size: 0.8rem;
+    padding-left: 0.5rem ;
+  }
+ #nameError,#emailError{
+    font-size: 0.8rem;
+    margin-top: -0.1rem;
+  }
+ #passwordStrength,#confPass{
+    font-size: 0.8rem;
+    margin-top: -0.9rem;
+  }
 }

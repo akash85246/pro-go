@@ -3,16 +3,18 @@ import React, { createContext, useContext, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const initialAuthToken = localStorage.getItem("authToken") || null;
-  const [authToken, setAuthToken] = useState(initialAuthToken);
+  const [authToken, setAuthToken] = useState(() => {
+    const storedToken = sessionStorage.getItem("authToken");
+    return storedToken || null;
+  });
 
   const updateAuthToken = (newAuthToken) => {
     setAuthToken(newAuthToken);
-    localStorage.setItem("authToken", newAuthToken);
+    sessionStorage.setItem("authToken", newAuthToken);
   };
 
   return (
-    <AuthContext.Provider value={{ authToken, setAuthToken }}>
+    <AuthContext.Provider value={{ authToken, updateAuthToken }}>
       {children}
     </AuthContext.Provider>
   );

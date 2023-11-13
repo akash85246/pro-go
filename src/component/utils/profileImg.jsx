@@ -1,73 +1,70 @@
-import React, { useState, useRef } from "react";
-import editIcon from "../../assets/edit-solid.svg";
-import "./profileImg.css";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import userImg from "../../assets/profilePhoto.png";
+import "./profileImg.css";
+import userImg from "../../assets/profilePhoto.jpg";
+import { useAuth } from "./authContext";
 
 export default function ProfileImg(props) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [newPhoto, setNewPhoto] = useState(null);
+  const photoUploadApi = "https://pro-go.onrender.com/api/upload-photo";
+  const storedPhoto = localStorage.getItem("userPhoto");
+  const [newPhoto, setNewPhoto] = useState(
+    storedPhoto ? JSON.parse(storedPhoto) : userImg
+  );
+  const { authToken } = useAuth();
 
-  const inputRef = useRef();
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
 
-  const uploadNewPhoto = async () => {
-    if (newPhoto) {
-      const formData = new FormData();
-      formData.append("photo", newPhoto);
-      formData.append("email", "akash22164033@akgec.ac.in");
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        setNewPhoto(reader.result);
+        props.onPhotoChange(reader.result);
+      };
+
+      reader.readAsDataURL(file);
 
       try {
-        const response = await axios.post(
-          "https://pro-go.onrender.com/api/upload-photo",
-          formData
-        );
+        const formData = new FormData();
+        formData.append("photo", file);
+        formData.append("email", "akash22164033@akgec.ac.in");
+        const response = await axios.post(photoUploadApi, formData, {
+          headers: {
+            "auth-token": authToken,
+          },
+        });
 
-        if (response.status === 200) {
-          console.log("Photo uploaded successfully");
-        } else {
-          console.error("Failed to upload photo");
-        }
+        console.log(response.data);
       } catch (error) {
         console.error("Error uploading photo:", error);
       }
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem("userPhoto", JSON.stringify(newPhoto));
+  }, [newPhoto]);
+
   return (
-    <div
-      className="profileImgContainer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className={`profileImg ${isHovered ? "hovered" : ""}`}>
-        <img src={newPhoto || userImg} alt="Profile Image" />
-        {/* {isHovered && !props.isNavbar && (
-          <div>
-            <img src={editIcon} alt="Edit" />
-          </div>
-        )} */}
+    <div className="profileImgContainer">
+      <div className="profileImg">
+        <img src={newPhoto} alt="Profile Image" />
       </div>
-      <input
-        type="file"
-        accept="image/*"
-        ref={inputRef}
-        style={{ display: "none" }}
-        className="changePhotoButton"
-        onChange={(e) => setNewPhoto(URL.createObjectURL(e.target.files[0]))}
-      />
-      {/* {isHovered && !props.isNavbar && (
-        <div className="button">
-          <button
-            className="editButton"
-            onClick={() => inputRef.current.click()}
-          >
-            edit
-          </button>
-          <button className="saveButton" onClick={uploadNewPhoto}>
-            Save Photo
-          </button>
-        </div>
-      )} */}
+      {props.isEditing && (
+        <>
+          <label htmlFor="fileInput" className="changePhotoButton">
+            Choose File
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            className="changePhotoButton"
+            onChange={handleFileChange}
+          />
+        </>
+      )}
     </div>
   );
 }
