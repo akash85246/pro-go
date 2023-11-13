@@ -41,18 +41,17 @@
   margin-top: 1rem;
   font-size: 1rem;
   font-family: Poppins;
-height: 1.8rem;
-width: 6rem;
-padding: 0.2rem;
+  height: 1.8rem;
+  width: 6rem;
+  padding: 0.2rem;
   cursor: pointer;
-  background-color:#2047ce;
+  background-color: #2047ce;
   color: #fff;
   border: 1px solid white;
   border-radius: 5px;
 }
 
 .changePhotoButton:hover {
-  
   background-color: white;
   color: #2047ce;
   border: 1px solid #2047ce;
@@ -87,4 +86,6 @@ padding: 0.2rem;
   flex-direction: column;
   width: 100%;
 }
-
+#root > div.mainContainerProfile > div:nth-child(1) > div.infoContainer {
+  margin-top: 1rem;
+}

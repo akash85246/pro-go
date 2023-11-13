@@ -66,7 +66,7 @@ export default function Navbar(props) {
           </Link>
           <Slider title="Resources">
             <ul>
-              <li onClick={() => navigate("/dash")}>Dash Board</li>
+              <li onClick={() => navigate("/dashboard")}>Dash Board</li>
               <li onClick={() => navigate("/profile")}>Profile</li>
               <li>Item C</li>
             </ul>

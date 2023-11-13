@@ -6,7 +6,7 @@ import Footer from "../utils/footer";
 import Input from "./input";
 import profilephoto from "../../assets/profilePhoto.jpg";
 import ProfileImg from "../utils/profileImg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const { authToken } = useAuth();
@@ -16,11 +16,46 @@ export default function Profile() {
     publicName: "",
     jobTitle: "",
     department: "",
-    organization: "",
+    organisation: "",
     emailAddress: "",
     basedIn: "",
-    region: "",
   });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(
+          "https://pro-go.onrender.com/api/get-user-details",
+          {
+            method: "GET",
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setProfileData({
+            fullName: data.user.username,
+            publicName: "",
+            jobTitle: data.user.jobTitle,
+            department: data.user.department,
+            organisation: data.user.organisation,
+            emailAddress: data.user.email,
+            basedIn: data.user.basedIn,
+          });
+        } else {
+          console.error("Error fetching user details");
+        }
+      } catch (error) {
+        console.error("Error fetching user details", error);
+      }
+    };
+
+    fetchUserData();
+  }, [authToken]);
+
   const [newPhoto, setNewPhoto] = useState(null);
   const handleInputChange = (label, value) => {
     setProfileData((prevData) => ({
@@ -33,7 +68,40 @@ export default function Profile() {
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
+    try {
+      const response = await fetch(
+        "https://pro-go.onrender.com/api/add-user-details",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+          body: JSON.stringify({
+            organisation: profileData.organisation,
+            basedIn: profileData.basedIn,
+            department: profileData.department,
+            fullName: profileData.fullName,
+            jobTitle: profileData.jobTitle,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          console.log("User details saved successfully");
+          window.location.reload();
+        } else {
+          console.error("Error saving user details:", data.message);
+        }
+      } else {
+        console.error("Error saving user details");
+      }
+    } catch (error) {
+      console.error("Error saving user details", error);
+    }
     setIsEditing(false);
     window.location.reload();
   };
@@ -52,6 +120,7 @@ export default function Profile() {
             img={newPhoto || profilephoto}
             isEditing={isEditing}
             onPhotoChange={handlePhotoChange}
+            email={profileData.emailAddress}
           />
           {/* </div> */}
           <div className="infoContainer">
@@ -102,9 +171,9 @@ export default function Profile() {
             <Input
               label="Organization"
               type="text"
-              value={profileData.organization}
+              value={profileData.organisation}
               onChange={(e) =>
-                handleInputChange("organization", e.target.value)
+                handleInputChange("organisation", e.target.value)
               }
               disabled={!isEditing}
             />

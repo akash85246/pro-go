@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   background: #011c67;
-  font-family: 'Sofia Sans Semi Condensed', sans-serif;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
   font-weight: 500;
   line-height: 29px;
   color: white;
@@ -41,7 +41,7 @@
 }
 #root > div.mainContainerProfile > div:nth-child(1) > div.infoContainer > h2 {
   color: #fff;
- font-family: 'Sofia Sans Semi Condensed', sans-serif;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
@@ -62,13 +62,13 @@
   background: #2047ce;
   color: #fff;
 }
-#root > div.mainContainerProfile > div:nth-child(1) > div.infoContainer > h1{
+#root > div.mainContainerProfile > div:nth-child(1) > div.infoContainer > h1 {
   margin: 1rem auto;
 }
-.profileButton:hover{
-color:#2047ce;
-background-color: white;
-border: 1px solid #2047ce;
+.profileButton:hover {
+  color: #2047ce;
+  background-color: white;
+  border: 1px solid #2047ce;
 }
 
 #root > div.mainContainerProfile > div:nth-child(1) > h1 {
@@ -82,12 +82,20 @@ border: 1px solid #2047ce;
 }
 #root > div.mainContainerProfile > div:nth-child(1) > h2 {
   color: #fff;
-  font-family: 'Sofia Sans Semi Condensed', sans-serif;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin: 0.8vh;
+}
+#root
+  > div.mainContainerProfile
+  > div:nth-child(1)
+  > div.infoContainer
+  > h2:hover {
+  color: #8692a6;
+  cursor: pointer;
 }
 #root > div.mainContainerProfile > div:nth-child(2) > div > div {
   width: 35rem;
@@ -96,28 +104,28 @@ border: 1px solid #2047ce;
 #root > div.mainContainerProfile > div:nth-child(2) > div > div > input {
   height: 3.5rem;
   border-radius: 0.375rem;
-border: 1.5px solid #8692A6;
-outline-style: none;
+  border: 1.5px solid #8692a6;
+  outline-style: none;
 }
-#root > div.mainContainerProfile > div:nth-child(2) > div > h1{
-  color: #455A64;
-font-family: Poppins;
-font-size: 1.5rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-
-#root > div.mainContainerProfile > div:nth-child(2) > div > div > label{
-  color: #696F79;
-font-family: Inter;
-font-size: 1rem;
-font-style: normal;
-font-weight: 550;
-line-height: normal;
+#root > div.mainContainerProfile > div:nth-child(2) > div > h1 {
+  color: #455a64;
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-#root > div.mainContainerProfile > div:nth-child(2) > div > div{
+#root > div.mainContainerProfile > div:nth-child(2) > div > div > label {
+  color: #696f79;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 550;
+  line-height: normal;
+}
+
+#root > div.mainContainerProfile > div:nth-child(2) > div > div {
   margin-top: 0.01rem;
 }
 .aboutContainer {
@@ -132,6 +140,10 @@ line-height: normal;
   font-weight: 700;
   line-height: normal;
 }
-#root > div.mainContainerProfile > div:nth-child(2) > div.changeEdit{
+#root > div.mainContainerProfile > div:nth-child(2) > div.changeEdit {
   margin: 2rem 0;
+}
+
+#root > div.mainContainerProfile > div:nth-child(1) > div.profileImgContainer {
+  margin-top: 5rem;
 }

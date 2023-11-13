@@ -9,7 +9,7 @@ export default function Input(props) {
         <input
           type={props.type}
           className="inputProfile"
-          value={props.value}
+          value={props.value || ""}
           onChange={props.onChange}
           disabled={props.disabled}
         />
