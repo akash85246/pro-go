@@ -4,15 +4,21 @@ import "./profileImg.css";
 import userImg from "../../assets/profilePhoto.jpg";
 import { useAuth } from "./authContext";
 
+const photoUploadApi = "https://pro-go.onrender.com/api/upload-photo";
+const getPhotoApi = "https://pro-go.onrender.com/api/get-photo";
+
 export default function ProfileImg(props) {
-  const photoUploadApi = "https://pro-go.onrender.com/api/upload-photo";
-  const getPhotoApi = "https://pro-go.onrender.com/api/get-photo";
+  const { authToken } = useAuth();
+
+  // Check if there is a stored photo in local storage
   const storedPhoto = localStorage.getItem("userPhoto");
+
+  // Initialize the state with the stored photo or use the default userImg
   const [newPhoto, setNewPhoto] = useState(
     storedPhoto ? JSON.parse(storedPhoto) : userImg
   );
-  const { authToken } = useAuth();
 
+  // Function to handle file change (when user selects a new photo)
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
 
@@ -31,6 +37,7 @@ export default function ProfileImg(props) {
         formData.append("photo", file);
         formData.append("email", props.email);
 
+        // Upload the photo to the server
         const response = await axios.post(photoUploadApi, formData, {
           headers: {
             "auth-token": authToken,
@@ -44,6 +51,7 @@ export default function ProfileImg(props) {
     }
   };
 
+  // Function to fetch the user's photo from the server
   const getPhoto = async () => {
     try {
       const response = await axios.get(getPhotoApi, {
@@ -51,27 +59,42 @@ export default function ProfileImg(props) {
           "auth-token": authToken,
         },
       });
-      const photo = response.data.photoUrl.replace(
-        /public/g,
-        "https://pro-go.onrender.com"
-      );
-      setNewPhoto(photo);
-      console.log(photo);
-      console.log(newPhoto);
+
+      if (response.data && response.data.photoUrl) {
+        // Process the photo URL from the server response
+        const photo = response.data.photoUrl.replace(
+          /public/g,
+          "https://pro-go.onrender.com"
+        );
+
+        // Update the state directly with the new photo URL
+        setNewPhoto(photo);
+
+        console.log(photo);
+      } else {
+        // Set default photo if the response is not as expected
+        console.error("Invalid response format for photo");
+        setNewPhoto(userImg); // Set the default photo here
+      }
     } catch (error) {
       console.error("Error fetching photo:", error);
+
+      // Set default photo in case of an error
+      setNewPhoto(userImg);
     }
   };
-  console.log(newPhoto);
+
+  // Effect to update local storage when newPhoto changes
   useEffect(() => {
     localStorage.setItem("userPhoto", JSON.stringify(newPhoto));
   }, [newPhoto]);
 
+  // Effect to fetch the user's photo when authToken changes
   useEffect(() => {
-    if (props.email && authToken) {
+    if (authToken) {
       getPhoto();
     }
-  }, [props.email, authToken]);
+  }, [authToken]);
 
   return (
     <div className="profileImgContainer">

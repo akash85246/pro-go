@@ -24,9 +24,9 @@ export default function Pricing(props) {
 
   return (
     <>
-      <Navbar />
+      <Navbar showProfilePhoto={true} />
 
-      <div className="priceplanHeader">
+      <div className="priceplanHeader" showProfilePhoto={true}>
         <h1>
           <span className="darkBlue">Pro-Go </span>
           your way.

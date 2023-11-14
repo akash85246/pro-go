@@ -3,21 +3,52 @@ import { Link, useNavigate } from "react-router-dom";
 import Slider from "./slider";
 import logo from "../../assets/logo.svg";
 import hamImg from "../../assets/hamburgerOpen.svg";
+import axios from "axios"; // Import Axios
 import { useAuth } from "./authContext";
 import ProfileImg from "./profileImg";
 
 export default function Navbar(props) {
   const { authToken } = useAuth();
+  const [photoUrl, setPhotoUrl] = useState(null); // Add photoUrl state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authToken) {
+      fetchPhoto();
+    }
+  }, [authToken]);
+
+  const fetchPhoto = async () => {
+    try {
+      const response = await axios.get(
+        "https://pro-go.onrender.com/api/get-photo",
+        {
+          headers: {
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      const data = response.data;
+      if (data.success) {
+        setPhotoUrl(data.photoUrl);
+      } else {
+        console.error("Failed to fetch user photo");
+      }
+    } catch (error) {
+      console.error("Error fetching user photo:", error);
+    }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   function profilePage() {
     console.log(authToken);
     navigate("/profile");
   }
-  const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   function pricePage() {
     navigate("/price");
@@ -76,11 +107,13 @@ export default function Navbar(props) {
               <button className="profileNavButton" onClick={profilePage}>
                 Hello User!
               </button>
-              <ProfileImg
-                onPhotoChange={handlePhotoChange}
-                isNavbar="true"
-                img={props.newPhoto}
-              />
+              {props.showProfilePhoto && (
+                <ProfileImg
+                  onPhotoChange={handlePhotoChange}
+                  isNavbar="true"
+                  img={photoUrl}
+                />
+              )}
             </>
           ) : (
             <>

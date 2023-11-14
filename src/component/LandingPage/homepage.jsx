@@ -36,7 +36,7 @@ export default function Homepage() {
   // }, []);
   return (
     <>
-      <Navbar />
+      <Navbar showProfilePhoto={true} />
       <div className="containerHome">
         <div className="centeredContent">
           <div className="part part1">

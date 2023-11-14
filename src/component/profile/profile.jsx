@@ -92,7 +92,7 @@ export default function Profile() {
         const data = await response.json();
         if (data.success) {
           console.log("User details saved successfully");
-          window.location.reload();
+          // window.location.reload();
         } else {
           console.error("Error saving user details:", data.message);
         }
@@ -103,7 +103,7 @@ export default function Profile() {
       console.error("Error saving user details", error);
     }
     setIsEditing(false);
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handlePhotoChange = (photoData) => {
@@ -112,7 +112,11 @@ export default function Profile() {
 
   return (
     <>
-      <Navbar newPhoto={newPhoto} onPhotoChange={handlePhotoChange} />
+      <Navbar
+        newPhoto={newPhoto}
+        onPhotoChange={handlePhotoChange}
+        showProfilePhoto={false}
+      />
       <div className="mainContainerProfile">
         <div>
           {/* <div className="profileImgContainer"> */}
@@ -184,7 +188,7 @@ export default function Profile() {
               onChange={(e) =>
                 handleInputChange("emailAddress", e.target.value)
               }
-              disabled={!isEditing}
+              disabled={true}
             />
             <Input
               label="Based in"
