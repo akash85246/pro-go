@@ -22,18 +22,6 @@ import { useEffect } from "react";
 export default function Homepage() {
   const { authToken, setAuthToken } = useAuth();
   console.log(authToken);
-  // useEffect(() => {
-  //   const handleBeforeUnload = () => {
-
-  //     localStorage.clear();
-  //   };
-
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-
-  //   return () => {
-  //     window.removeEventListener("afterunload", handleBeforeUnload);
-  //   };
-  // }, []);
   return (
     <>
       <Navbar showProfilePhoto={true} />

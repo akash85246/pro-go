@@ -1,5 +1,6 @@
 import Navbar from "../utils/navbar";
 import { useAuth } from "../utils/authContext";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./profile.css";
 import Footer from "../utils/footer";
@@ -9,7 +10,14 @@ import ProfileImg from "../utils/profileImg";
 import { useEffect, useState } from "react";
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
-  const { authToken } = useAuth();
+  const { authToken, updateAuthToken } = useAuth();
+  const navigate = useNavigate();
+
+  function logOut() {
+    console.log("logged Out");
+    updateAuthToken(null);
+    navigate("/home");
+  }
 
   const [profileData, setProfileData] = useState({
     fullName: "",
@@ -19,6 +27,7 @@ export default function Profile() {
     organisation: "",
     emailAddress: "",
     basedIn: "",
+    region: "",
   });
 
   useEffect(() => {
@@ -84,6 +93,7 @@ export default function Profile() {
             department: profileData.department,
             fullName: profileData.fullName,
             jobTitle: profileData.jobTitle,
+            region: profileData.region,
           }),
         }
       );
@@ -92,7 +102,6 @@ export default function Profile() {
         const data = await response.json();
         if (data.success) {
           console.log("User details saved successfully");
-          // window.location.reload();
         } else {
           console.error("Error saving user details:", data.message);
         }
@@ -103,7 +112,6 @@ export default function Profile() {
       console.error("Error saving user details", error);
     }
     setIsEditing(false);
-    // window.location.reload();
   };
 
   const handlePhotoChange = (photoData) => {
@@ -138,7 +146,7 @@ export default function Profile() {
             <h2>Settings</h2>
             <h2>Help</h2>
             <h2>Shortcuts</h2>
-            <h2>Log out</h2>
+            <h2 onClick={logOut}>Log out</h2>
           </div>
         </div>
         <div>
