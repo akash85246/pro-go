@@ -5,11 +5,9 @@ import "./input.css";
 
 export default function Input(props) {
   const validateInput = (value) => {
-    // Example regex patterns, modify as needed for your validation rules
-    const nameRegex = /^[a-zA-Z\s]+$/; // Allows only letters and spaces
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
-
-    // Check the input label and apply the appropriate regex pattern
+   
+    const nameRegex = /^[a-zA-Z\s]+$/; 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     switch (props.label) {
       case "Full Name":
       case "Job Title":

@@ -6,11 +6,7 @@ import ProfileImg from "../utils/profileImg";
 export default function DashNav(props) {
   return (
     <>
-      <nav className="navbarDash">
-        {/* <div className="logoDash">
-          <img src="your-logo.png" alt="Logo" />
-          <span>Your Company</span>
-        </div> */}
+      <nav className="navbarDashboard">
         <ul className="navLinks">
           <li>
             <button className="blueButton">Create team</button>

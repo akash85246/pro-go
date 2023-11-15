@@ -1,0 +1,66 @@
+.editTaskBar {
+  position: sticky;
+  top: 0;
+  background-color: #f1f1f1;
+  padding: 15px;
+  overflow: hidden;
+}
+.editTaskBar input {
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #2b47ff;
+}
+.editTaskBar button {
+  border: none;
+  background: #001b66;
+  color: white;
+  border: 1px solid #001b66;
+  height: 2rem;
+  width: 5rem;
+  margin: auto;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.editTaskBar button:hover {
+  background: white;
+  color: #001b66;
+  border: 1px solid #001b66;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > div.toDoList
+  > ul
+  > li
+  > p{
+
+  border-bottom: 1px solid #2b47ff;
+  margin: 0;
+  height: 0.8rem;
+  color: #2b47ff;
+  font-weight: 200;
+  overflow-y: scroll;
+  font-size: 0.7rem;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  width: 60%;
+}
+.toDoList
+  > ul
+  > li
+  > button{
+    border: none;
+  background: #001b66;
+  color: white;
+  border: 1px solid #001b66;
+  height: 2rem;
+  width: 3rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  }

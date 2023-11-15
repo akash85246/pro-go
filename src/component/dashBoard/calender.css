@@ -1,0 +1,327 @@
+.calMain {
+  /* margin-top: 0rem;
+  display: flex; */
+  display: grid;
+
+  height: 80vh;
+  overflow: hidden;
+  grid-template-columns: 1fr 4fr;
+  margin: 2rem;
+  margin-top: 7rem;
+  color: black;
+  background-color: white;
+}
+
+#root
+  > div
+  > div.calMainContainer
+  > nav
+  > ul
+  > li:nth-child(9)
+  > div
+  > div
+  > img {
+  width: 4rem;
+  height: 4rem;
+  margin: auto;
+  margin-top: 1.2rem;
+}
+#root > div > div.calMainContainer > nav > ul > li.searchBar {
+  height: 2.5rem;
+  margin: auto 0;
+}
+
+.calendarButtons {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+}
+/* calender.css */
+.calendarButton {
+  /* Set text color to white for better contrast */
+  padding: 10px 15px; /* Add padding for better button appearance */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
+  margin: 1rem auto;
+  width: 14.6875rem;
+  height: 3.5rem;
+  padding: 1rem 5.0625rem 1rem 5rem;
+  border-radius: 2.5rem;
+  background: #001b66;
+  color: white;
+  border: 1px solid #001b66;
+  transition: background-color 0.3s ease;
+
+  font-family: Inter;
+  font-size: 0.97656rem;
+  font-style: normal;
+  font-weight: 600;
+}
+.calendarButtons h2 {
+  margin-top: 5rem;
+  color: #011c67;
+  font-family: Poppins;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.calendarButton:hover {
+  background-color: white;
+  color: #001b66;
+}
+
+.calendarContainer {
+  background-color: #f7f5f2;
+  padding: 10px;
+}
+.calendarContainer > div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* height: 5rem; */
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(1)
+  > h3 {
+  margin: auto 1rem;
+}
+.calendarContainer > div:nth-child(1) > div > ul {
+  width: 20rem;
+  margin: 0;
+  margin-right: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.calendarContainer > div:nth-child(1) > div > ul > li {
+  width: 100%;
+  cursor: pointer;
+}
+.calendarContainer > div:nth-child(1) > div > ul > li:hover {
+  color: silver;
+}
+.calendarContainer > div:nth-child(2) {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 60vh;
+  column-gap: 1rem;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(2) {
+  width: 100%%;
+}
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 90%;
+}
+.calendarDay {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.calendarDay input[type="checkbox"] {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+.sunday {
+  color: white;
+  background: linear-gradient(to right, #007bff, #0056b3);
+}
+.sundayName {
+  border: 1px solid blue;
+}
+.daysOfWeek {
+  display: flex;
+  justify-content: space-between;
+}
+.daysOfWeek div {
+  width: 100%;
+  text-align: center;
+  height: auto;
+  height: 1.5rem;
+}
+
+.notes {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #2b47ff;
+  outline: none;
+  color: #2b47ff;
+  font-family: Inter;
+  font-size: 0.72556rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 90%;
+  font-size: 1rem;
+  margin-left: 1rem;
+  background-color: #f7f5f2;
+}
+.notesContainer {
+  padding: 0 10px;
+}
+.notesContainer label {
+  color: #2b47ff;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(1)
+  > div:nth-child(1)
+  > h3 {
+  color: #050504;
+  font-family: Inter;
+  font-size: 1.10231rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(1)
+  > div:nth-child(1)
+  > h3
+  > span
+  > select {
+  border: none;
+  background-color: #f7f5f2;
+  color: #050504;
+  font-family: Inter;
+  font-size: 1.10231rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  outline: none;
+}
+
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > h1:nth-child(2) {
+  color: #0056b3;
+  margin-top: 0;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > h1 {
+  color: #050504;
+  font-family: Inter;
+  font-size: 3.04244rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0;
+}
+
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > div.goalContainer
+  > input {
+  height: 8vh;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-y: auto;
+  overflow-x: hidden;
+  stroke-width: 0.5px;
+  stroke: #2b47ff;
+  width: 95%;
+  margin-left: 1.5%;
+  height: 6rem;
+}
+
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > div.goalContainer
+  > h3 {
+  color: #2b47ff;
+  font-family: Inter;
+  font-size: 0.72556rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.toDoList {
+  height: 6rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > h4 {
+  color: #2b47ff;
+  font-family: Inter;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.calendarContainer
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > div.toDoList
+  > div
+  > input {
+    margin: 0;
+    height: 1rem;
+  width: 70%;
+}
