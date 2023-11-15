@@ -18,7 +18,10 @@ import Otp from "./authentication/forgot/otpVerification";
 import Error from "./utils/error";
 import Pricing from "./pricingPlan/price";
 import Profile from "./profile/profile";
-import DashBoard from "./dashBoard/workspace";
+import DashBoard from "./dashBoard/dash";
+import WorkSpace from "./dashBoard/workspace";
+import Member from "./dashBoard/addMembers";
+import Calender from "./dashBoard/calender";
 // import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -38,6 +41,9 @@ function App() {
             <Route path="/error" element={<Error />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/workspace" element={<WorkSpace />} />
+            <Route path="/member" element={<Member />} />
+            <Route path="/calender" element={<Calender />} />
 
             <Route path="/" element={<Homepage />} />
             <Route path="*" element={<Error />} />

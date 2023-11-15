@@ -107,7 +107,7 @@ export default function Navbar(props) {
               <button className="profileNavButton" onClick={profilePage}>
                 Hello User!
               </button>
-              {props.showProfilePhoto && (
+              {props.showProfilePhoto  && (
                 <ProfileImg
                   onPhotoChange={handlePhotoChange}
                   isNavbar="true"

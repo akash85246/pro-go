@@ -8,6 +8,7 @@ import Input from "./input";
 import profilephoto from "../../assets/profilePhoto.jpg";
 import ProfileImg from "../utils/profileImg";
 import { useEffect, useState } from "react";
+
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const { authToken, updateAuthToken } = useAuth();
@@ -21,7 +22,7 @@ export default function Profile() {
 
   const [profileData, setProfileData] = useState({
     fullName: "",
-    publicName: "",
+    // publicName: "",
     jobTitle: "",
     department: "",
     organisation: "",
@@ -45,14 +46,16 @@ export default function Profile() {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data.user);
           setProfileData({
             fullName: data.user.username,
-            publicName: "",
+            // publicName: "",
             jobTitle: data.user.jobTitle,
             department: data.user.department,
             organisation: data.user.organisation,
             emailAddress: data.user.email,
             basedIn: data.user.basedIn,
+            region: data.user.region,
           });
         } else {
           console.error("Error fetching user details");
@@ -100,8 +103,11 @@ export default function Profile() {
 
       if (response.ok) {
         const data = await response.json();
+        // console.log(profileData);
         if (data.success) {
           console.log("User details saved successfully");
+          console.log(profileData);
+          console.log(authToken);
         } else {
           console.error("Error saving user details:", data.message);
         }

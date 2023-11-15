@@ -1,0 +1,187 @@
+.dashMain {
+}
+
+.profileContainerWorkspace {
+  margin-top: 8rem;
+  display: flex;
+  color: black;
+  justify-content: space-evenly;
+
+}
+.profileContainerWorkspace div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.profileContainerWorkspace > div:nth-child(1) {
+  gap: 2rem;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.profileContainerWorkspace
+  > div:nth-child(1)
+  > div:nth-child(1)
+  > div
+  > div
+  > img {
+  border-radius: 0;
+  height: 8.5rem;
+  width: 8.5rem;
+  margin-top: -1rem;
+}
+
+.blue-button-container {
+  display: flex;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  width: 100%;
+  padding: 1rem 2rem;
+  height: 50%;
+  border: 2px solid blue;
+  cursor: pointer;
+}
+.blue-button-container:hover {
+  background-color: silver;
+  color: white;
+  border: 2px solid blue;
+}
+.blue-button-container img {
+  display: block;
+  width: 2rem;
+}
+
+.blue-button-container span {
+  display: flex;
+  align-items: center;
+
+  width: 15rem;
+}
+.memberContainer {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 2.5rem 3rem;
+  column-gap: 1rem;
+}
+.memberContainer > div {
+  display: flex;
+  flex-direction: column;
+  color: #011c67;
+
+  font-family: Inter;
+  font-style: normal;
+  line-height: normal;
+}
+
+.memberContainer > div a {
+  height: 3rem;
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
+  margin: 0.5rem 0;
+  color: #407bff;
+  font-family: Poppins;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.memberContainer > div a:hover {
+  background: #0a246c;
+  color: white;
+}
+
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.memberContainer
+  > div:nth-child(1)
+  > h3 {
+  margin-top: 0;
+  color: #011c67;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.memberContainer
+  > div:nth-child(1)
+  > h2 {
+  font-family: Inter;
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  /* margin-top: 0; */
+}
+#root > div > div.dashMainContainer > div > div.memberContainer > div:nth-child(2) > div > p{
+    margin-top: 5px;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.memberContainer
+  > div:nth-child(2)
+  > div
+  > h3 {
+  color: #011c67;
+  font-family: Inter;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+ margin: 1rem 0;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.memberContainer
+  > div:nth-child(2)
+  > div {
+  border-bottom: 3px solid #011c67;
+}
+.filterButton {
+  border-radius: 0.375rem;
+  background: #263238;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 1rem 0.5rem;
+  border: 1px solid #263238;
+  cursor: pointer;
+}
+.filterButton:hover {
+  color: #263238;
+  background-color: white;
+  border: 1px solid #263238;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.memberContainer
+  > div:nth-child(2)
+  > div:nth-child(4) {
+  overflow-y: scroll;
+  height: 15vh;
+}

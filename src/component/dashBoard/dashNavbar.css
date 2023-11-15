@@ -1,0 +1,92 @@
+.navbarDash {
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+
+  margin: 0;
+  padding: 0;
+
+  width: 85%;
+  justify-content: space-evenly;
+}
+
+.navLinks li {
+  margin-right: 1rem;
+  height: auto;
+}
+
+.blueButton {
+  font-family: Poppins;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+
+  color: #fff;
+  border: none;
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: 1.25rem;
+  background: #1d62fe;
+  cursor: pointer;
+  margin: auto;
+}
+
+.blueButton:hover {
+  background-color: blue;
+  color: silver;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  border-radius: 1.25rem;
+  background: #1d62fe;
+  border-radius: 20px;
+}
+
+.searchBar input {
+  font-family: Poppins;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  background-color: #1d62fe;
+  text-align: center;
+  color: #fff;
+  border: none;
+  width: 6rem;
+  border: none;
+  outline: none;
+}
+
+.searchIcon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
+  margin-left: -1rem;
+  background: url("../../assets/Search.svg") center/cover;
+}
+.searchBar input::placeholder {
+  color: #fff; /* Set the color of the placeholder text */
+}
+#root > div > div.dashMainContainer > nav > ul > li > div > div > img {
+  width: 4rem;
+  height: 4rem;
+  margin: auto;
+  margin-top: 1.2rem;
+}
+#root > div > div.dashMainContainer > nav > ul > li > div > div {
+  margin: 0;
+}
+#root > div > div.dashMainContainer > nav > ul > li.searchBar {
+  height: 2.5rem;
+  margin: auto 1rem;
+}
