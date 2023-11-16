@@ -12,7 +12,7 @@ export default function Pricing(props) {
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
-    setSelectedCard(null); // Deselect the card when changing options.
+    setSelectedCard(null);
   };
   const handleCardSelect = (cardTitle) => {
     setSelectedCard(cardTitle);

@@ -1,10 +1,8 @@
+import React from "@vitejs/plugin-react";
+import ChakraUiResolver from "@chakra-ui/vite-plugin";
 
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
-
-export default defineConfig({
-  base: "/",
-  plugins: [react()],
+export default {
+  plugins: [React(), ChakraUiResolver()],
   build: {
     rollupOptions: {
       external: ["react-toastify"],
@@ -13,4 +11,4 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
   },
-});
+};

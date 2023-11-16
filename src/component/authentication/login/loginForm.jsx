@@ -12,10 +12,11 @@ import logo from "../../../assets/logo.svg";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css";
-
+import { useToast } from "@chakra-ui/toast";
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
 import { useAuth } from "../../utils/authContext";
 function LoginForm() {
+  const toast = useToast();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
@@ -118,9 +119,11 @@ function LoginForm() {
 
       if (response.data.success) {
         console.log("verified");
+        toast({ title: "Success Notification !", status: "success" });
         navigate("/home");
       }
     } catch (error) {
+      toast(error.response.data.message);
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
         console.log(error.response.data);

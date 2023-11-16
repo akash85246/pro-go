@@ -23,34 +23,36 @@ import WorkSpace from "./dashBoard/workspace";
 import Member from "./dashBoard/addMembers";
 import Calender from "./dashBoard/calender";
 // import "react-toastify/dist/ReactToastify.css";
-
+import { ChakraProvider } from "@chakra-ui/react";
 function App() {
   return (
     <>
       <AuthProvider>
-        <Router>
-          <Routes>
-            <Route path="/verify" element={<Verification />} />
-            <Route path="/forgot" element={<Forgotten />} />
-            <Route path="/signUp" element={<SignUpForm />} />
-            <Route path="/logIn" element={<LoginForm />} />
-            <Route path="/home" element={<Homepage />} />
-            <Route path="/otp" element={<Otp />} />
-            <Route path="/reset" element={<Reset />} />
-            <Route path="/price" element={<Pricing />} />
-            <Route path="/error" element={<Error />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/workspace" element={<WorkSpace />} />
-            <Route path="/member" element={<Member />} />
-            <Route path="/calender" element={<Calender />} />
+        <ChakraProvider>
+          <Router>
+            <Routes>
+              <Route path="/verify" element={<Verification />} />
+              <Route path="/forgot" element={<Forgotten />} />
+              <Route path="/signUp" element={<SignUpForm />} />
+              <Route path="/logIn" element={<LoginForm />} />
+              <Route path="/home" element={<Homepage />} />
+              <Route path="/otp" element={<Otp />} />
+              <Route path="/reset" element={<Reset />} />
+              <Route path="/price" element={<Pricing />} />
+              <Route path="/error" element={<Error />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/workspace" element={<WorkSpace />} />
+              <Route path="/member" element={<Member />} />
+              <Route path="/calender" element={<Calender />} />
 
-            <Route path="/" element={<Homepage />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </Router>
-        {/* <ToastContainer
+              <Route path="/" element={<Homepage />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </Router>
+          {/* <ToastContainer
          /> */}
+        </ChakraProvider>
       </AuthProvider>
     </>
   );

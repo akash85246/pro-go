@@ -45,10 +45,8 @@ export default function Calendar() {
     );
 
     const enteredDate = parseInt(dateInput.value);
-    const enteredMonth = parseInt(monthInput.value) - 1; // Months are zero-indexed
+    const enteredMonth = parseInt(monthInput.value); 
     const enteredYear = parseInt(yearInput.value);
-
-    // Validate the entered date, month, and year
     if (
       enteredDate >= 1 &&
       enteredDate <= daysInMonth &&
@@ -65,7 +63,6 @@ export default function Calendar() {
         `Selected Date: ${enteredYear}-${enteredMonth + 1}-${enteredDate}`
       );
 
-      // Additional logic can be added here to update the calendar
     } else {
       console.log("Invalid date, month, or year entered");
     }
