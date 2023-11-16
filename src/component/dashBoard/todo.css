@@ -2,7 +2,6 @@
   position: sticky;
   top: 0;
   background-color: #f1f1f1;
-  padding: 15px;
   overflow: hidden;
 }
 .editTaskBar input {
@@ -37,8 +36,7 @@
   > div.toDoList
   > ul
   > li
-  > p{
-
+  > p {
   border-bottom: 1px solid #2b47ff;
   margin: 0;
   height: 0.8rem;
@@ -50,11 +48,8 @@
   word-wrap: break-word;
   width: 60%;
 }
-.toDoList
-  > ul
-  > li
-  > button{
-    border: none;
+.toDoList > ul > li > button {
+  border: none;
   background: #001b66;
   color: white;
   border: 1px solid #001b66;
@@ -63,4 +58,4 @@
   border-radius: 25px;
   cursor: pointer;
   font-size: 0.7rem;
-  }
+}

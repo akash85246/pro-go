@@ -12,6 +12,7 @@ export default function Calendar() {
   const endYear = 2300;
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
   const firstDay = new Date(selectedYear, selectedMonth, 1).getDay();
@@ -19,10 +20,55 @@ export default function Calendar() {
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   const handleMonthChange = (newMonth) => {
     setSelectedMonth(newMonth);
+    setSelectedDate(null);
   };
 
   const handleYearChange = (event) => {
     setSelectedYear(parseInt(event.target.value));
+    setSelectedDate(null);
+  };
+  const handleDateChange = (selectedDate) => {
+    setSelectedDate(selectedDate);
+    console.log(
+      `Selected Date: ${selectedYear}-${selectedMonth + 1}-${selectedDate}`
+    );
+  };
+  const handleNotifyMe = () => {
+    const dateInput = document.querySelector(
+      ".calendarButton[placeholder='Date']"
+    );
+    const monthInput = document.querySelector(
+      ".calendarButton[placeholder='Month']"
+    );
+    const yearInput = document.querySelector(
+      ".calendarButton[placeholder='Year']"
+    );
+
+    const enteredDate = parseInt(dateInput.value);
+    const enteredMonth = parseInt(monthInput.value) - 1; // Months are zero-indexed
+    const enteredYear = parseInt(yearInput.value);
+
+    // Validate the entered date, month, and year
+    if (
+      enteredDate >= 1 &&
+      enteredDate <= daysInMonth &&
+      enteredMonth >= 0 &&
+      enteredMonth <= 11 &&
+      enteredYear >= 1960 &&
+      enteredYear <= 2600
+    ) {
+      setSelectedDate(enteredDate);
+      setSelectedMonth(enteredMonth);
+      setSelectedYear(enteredYear);
+
+      console.log(
+        `Selected Date: ${enteredYear}-${enteredMonth + 1}-${enteredDate}`
+      );
+
+      // Additional logic can be added here to update the calendar
+    } else {
+      console.log("Invalid date, month, or year entered");
+    }
   };
 
   return (
@@ -33,10 +79,30 @@ export default function Calendar() {
         <div className="calMain">
           <div className="calendarButtons">
             <h2>Calender</h2>
-            <button className="calendarButton">Date</button>
-            <button className="calendarButton">Month</button>
-            <button className="calendarButton">Year</button>
-            <button className="calendarButton">Notify Me</button>
+            <input
+              type="number"
+              className="calendarButton"
+              placeholder="Date"
+            ></input>
+            <input
+              className="calendarButton"
+              placeholder="Month"
+              type="number"
+              max={12}
+              min={1}
+            ></input>
+            <input
+              className="calendarButton"
+              placeholder="Year"
+              type="number"
+              min={1960}
+              max={2600}
+              pattern="\d{4}"
+            ></input>
+
+            <button className="calendarButton" onClick={handleNotifyMe}>
+              Notify Me
+            </button>
           </div>
           <div className="calendarContainer">
             <div>
@@ -114,7 +180,8 @@ export default function Calendar() {
                       key={day}
                       className={`calendarDay ${
                         (day + firstDay) % 7 === 0 ? "sunday" : ""
-                      }`}
+                      } ${day === selectedDate ? "selectedDate" : ""}`}
+                      onClick={() => handleDateChange(day)}
                     >
                       {day}
                       <input type="checkbox"></input>

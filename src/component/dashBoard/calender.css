@@ -249,7 +249,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 0;
+  margin: 0;
+  margin-top: -3rem;
 }
 
 #root
@@ -290,7 +291,8 @@
   line-height: normal;
 }
 .toDoList {
-  height: 6rem;
+  height: 11rem;
+  width: 20rem;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -321,7 +323,14 @@
   > div.toDoList
   > div
   > input {
-    margin: 0;
-    height: 1rem;
+  margin: 0;
+  height: 1rem;
   width: 70%;
+}
+#root > div > div.dashMainContainer > div > div.calendarButtons > input {
+  height: 1.5rem;
+  width: 4rem;
+}
+.selectedDate {
+  background-color: lightblue;
 }
