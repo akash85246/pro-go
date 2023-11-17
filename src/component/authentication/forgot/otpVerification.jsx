@@ -8,12 +8,12 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import otpImg from "../../../assets/verification.svg";
 import logo from "../../../assets/logo.svg";
-import ham from "../../../assets/hamburger.svg";
-// import { toast } from "../../../../node_modules/react-toastify";
-// import "../../../../public/react-toastify/dist/ReactToastify.css";
-// import "react-toastify/dist/ReactToastify.css";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 
 export default function Otp() {
+   const toast = useToast();
   const [otp, setOtp] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,9 +58,20 @@ export default function Otp() {
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast({
+          title: "Error Notification!",
+          description: error.response?.data?.message || "An error occurred",
+          status: "error",
+          position: "top-centre",
+          duration: 3000,
+          isClosable: true,
+          render: () => (
+            <Box p={3} color="white" bg="red.500" borderRadius="md">
+              <WarningIcon mr={3} />
+              {error.response?.data?.message || "An error occurred"}
+            </Box>
+          ),
+        });
         alert(error.response.data.message);
         console.error("Server responded with an error:", error.response.data);
         if (error.response.data.message === "No user exists with this email") {

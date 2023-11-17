@@ -1,6 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2 2L22 22" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 4.93333C20.1682 4.93333 24.7773 8.05733 27.0273 13C24.7773 17.9427 20.1818 21.0667 15 21.0667C9.81818 21.0667 5.22273 17.9427 2.97273 13C5.22273 8.05733 9.83182 4.93333 15 4.93333ZM15 2C8.18182 2 2.35909 6.56133 0 13C2.35909 19.4387 8.18182 24 15 24C21.8182 24 27.6409 19.4387 30 13C27.6409 6.56133 21.8182 2 15 2ZM15 9.33333C16.8818 9.33333 18.4091 10.976 18.4091 13C18.4091 15.024 16.8818 16.6667 15 16.6667C13.1182 16.6667 11.5909 15.024 11.5909 13C11.5909 10.976 13.1182 9.33333 15 9.33333ZM15 6.4C11.6182 6.4 8.86364 9.36267 8.86364 13C8.86364 16.6373 11.6182 19.6 15 19.6C18.3818 19.6 21.1364 16.6373 21.1364 13C21.1364 9.36267 18.3818 6.4 15 6.4Z" fill="#6B6D7C"/>
+<g filter="url(#filter0_d_733_28167)">
+<path d="M5.86768 1.51532L25.2873 22.8769" stroke="#6B6D7C" stroke-width="2"/>
+</g>
+<defs>
+<filter id="filter0_d_733_28167" x="4.12793" y="0.842651" width="21.8994" height="23.707" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-1" dy="1"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_733_28167"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_733_28167" result="shape"/>
+</filter>
+</defs>
 </svg>

@@ -13,6 +13,8 @@ import logo from "../../../assets/logo.svg";
 // import "react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css";
 import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
 import { useAuth } from "../../utils/authContext";
 function LoginForm() {
@@ -119,11 +121,28 @@ function LoginForm() {
 
       if (response.data.success) {
         console.log("verified");
-        toast({ title: "Success Notification !", status: "success" });
+        toast({
+          title: "Successfully logged in!",
+          position: "top-centre",
+          status: "success",
+        });
         navigate("/home");
       }
     } catch (error) {
-      toast(error.response.data.message);
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
         console.log(error.response.data);

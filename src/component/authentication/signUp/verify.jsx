@@ -4,18 +4,17 @@ import { useLocation } from "react-router-dom";
 import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Vortex } from "react-loader-spinner";
 import verifyImg from "../../../assets/verification.svg";
-import eyeImg from "../../../assets/eye.svg";
-import eyeHidImg from "../../../assets/eye-hide.svg";
 import logo from "../../../assets/logo.svg";
-import ham from "../../../assets/hamburger.svg";
-// import { toast } from "react-toastify";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 
 // import "../../../../public/react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css";
 
 export default function Verification() {
+  const toast = useToast();
   const [verificationCode, setVerificationCode] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -66,9 +65,20 @@ export default function Verification() {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
 
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast({
+          title: "Error Notification!",
+          description: error.response?.data?.message || "An error occurred",
+          status: "error",
+          position: "top-centre",
+          duration: 3000,
+          isClosable: true,
+          render: () => (
+            <Box p={3} color="white" bg="red.500" borderRadius="md">
+              <WarningIcon mr={3} />
+              {error.response?.data?.message || "An error occurred"}
+            </Box>
+          ),
+        });
 
         if (error.response.data.message === "No user exist with this email") {
           setEmailError("No user exists with this email");

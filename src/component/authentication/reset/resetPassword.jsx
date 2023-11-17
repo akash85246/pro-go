@@ -7,10 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import resetImg from "../../../assets/reset.svg";
 import logo from "../../../assets/logo.svg";
-import ham from "../../../assets/hamburger.svg";
-// import { toast } from "react-toastify";
-
-// import "../../../../public/react-toastify/dist/ReactToastify.css";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 import eyeImg from "../../../assets/eye.svg";
 import eyeHidImg from "../../../assets/eye-hide.svg";
   // import "react-toastify/dist/ReactToastify.css";
@@ -20,7 +19,7 @@ const resetEndpoint = "https://pro-go.onrender.com/api/auth/change-password/";
 export default function Reset() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-
+ const toast = useToast();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -125,9 +124,20 @@ export default function Reset() {
     } catch (error) {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
-        // toast.error(error.response.data.message, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast({
+          title: "Error Notification!",
+          description: error.response?.data?.message || "An error occurred",
+          status: "error",
+          position: "top-centre",
+          duration: 3000,
+          isClosable: true,
+          render: () => (
+            <Box p={3} color="white" bg="red.500" borderRadius="md">
+              <WarningIcon mr={3} />
+              {error.response?.data?.message || "An error occurred"}
+            </Box>
+          ),
+        });
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");
         }
