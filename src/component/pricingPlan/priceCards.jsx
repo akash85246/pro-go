@@ -120,12 +120,12 @@ export default function PCard(props) {
       // alert(response.error.reason);
       // alert(response.error.metadata.order_id);
       // alert(response.error.metadata.payment_id);
-      setIsButtonClicked(!isButtonClicked);
+      setIsButtonClicked(false);
       console.log(response.error);
     });
 
     rzp1.open();
-    setIsButtonClicked(!isButtonClicked);
+    setIsButtonClicked(false);
     setLoading(false);
   };
   const buttonClassName = `trialButton ${isButtonClicked ? "clickedB" : ""}`;
