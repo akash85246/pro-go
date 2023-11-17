@@ -26,7 +26,7 @@ export default function Pricing(props) {
     <>
       <Navbar showProfilePhoto={true} />
 
-      <div className="priceplanHeader" showProfilePhoto={true}>
+      <div className="priceplanHeader">
         <h1>
           <span className="darkBlue">Pro-Go </span>
           your way.
@@ -55,7 +55,7 @@ export default function Pricing(props) {
           <div className="monthlySet">
             <PCard
               title="Professional"
-              cost="$99"
+              cost="99"
               selected={selectedCard === "Professional"}
               onSelect={handleCardSelect}
               item1="Limited cards"
@@ -70,7 +70,7 @@ export default function Pricing(props) {
             />
             <PCard
               title="Standard"
-              cost="$213"
+              cost="213"
               selected={selectedCard === "Standard"}
               onSelect={handleCardSelect}
               item1="UpLimited cards "
@@ -85,7 +85,7 @@ export default function Pricing(props) {
             />
             <PCard
               title="Professional"
-              cost="$399"
+              cost="399"
               selected={selectedCard === "Premium"}
               onSelect={handleCardSelect}
               item1="Views: Calendar, Timeline and Map"
@@ -104,7 +104,7 @@ export default function Pricing(props) {
           <div className="annuallySet">
             <PCard
               title="Professional"
-              cost="$89"
+              cost="89"
               selected={selectedCard === "Professional"}
               onSelect={handleCardSelect}
               oldCost="$99/Month"
@@ -120,7 +120,7 @@ export default function Pricing(props) {
             />
             <PCard
               title="Standard"
-              cost="$199"
+              cost="199"
               selected={selectedCard === "Standard"}
               onSelect={handleCardSelect}
               oldCost="$213/Month"
@@ -136,7 +136,7 @@ export default function Pricing(props) {
             />
             <PCard
               title="Premium"
-              cost="$360"
+              cost="360"
               oldCost="$399/Month"
               selected={selectedCard === "Premium"}
               onSelect={handleCardSelect}

@@ -1,33 +1,178 @@
 import checkImg from "../../assets/Check_ring.svg";
 import wCheckImg from "../../assets/whiteCheck_ring.svg";
-import { useState } from "react";
-export default function PCard(props) {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+import { useAuth } from "../utils/authContext";
+import { useState, useEffect } from "react";
+import logo from "../../assets/logo.svg";
+import useRazorpay from "react-razorpay";
+import axios from "axios";
+import Button from "../utils/button";
 
+export default function PCard(props) {
+  const [loading, setLoading] = useState(false);
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const { authToken, setAuthToken } = useAuth();
+
+  const [profileData, setProfileData] = useState({
+    fullName: "",
+    emailAddress: "",
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(
+          "https://pro-go.onrender.com/api/get-user-details",
+          {
+            method: "GET",
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.user);
+          setProfileData({
+            fullName: data.user.username,
+            emailAddress: data.user.email,
+          });
+        } else {
+          console.error("Error fetching user details");
+        }
+      } catch (error) {
+        console.error("Error fetching user details", error);
+      }
+    };
+    fetchUserData();
+  }, [authToken]);
+
+  const createOrder = async (amount) => {
+    try {
+      amount = props.cost;
+      console.log("Request Payload:", { amount: amount.toString() });
+
+      const response = await axios.post(
+        "https://pro-go.onrender.com/payment/createOrder",
+        { amount: amount.toString() },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error("Error creating order:", error.response.data);
+      return null;
+    }
+  };
+
+  const [Razorpay] = useRazorpay();
+  const getRazorpayOptions = async () => {
+    const order = await createOrder(props.cost * 100);
+
+    return {
+      key: "rzp_test_AHWkh8XndzyXLR",
+      amount: props.cost * 100,
+      currency: "INR",
+      name: "Pro-go",
+      description: "payment for user subscription",
+      image: logo,
+      order_id: order,
+      handler: function (response) {
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+        console.log(response);
+      },
+      prefill: {
+        name: profileData.fullName,
+        email: profileData.emailAddress,
+      },
+      notes: {
+        address: "Po-Go Office",
+      },
+      theme: {
+        color: "#011C67",
+      },
+    };
+  };
   const cardClassName = `pCard ${isButtonClicked ? "clicked" : ""}`;
-  const handleCardClick = () => {
+
+  const handleCardClick = async () => {
+    setLoading(true);
     setIsButtonClicked(!isButtonClicked);
     props.onSelect(props.title);
+
+    const options = await getRazorpayOptions();
+
+    const rzp1 = new Razorpay(options);
+
+    rzp1.on("payment.failed", function (response) {
+      // alert(response.error.code);
+      // alert(response.error.description);
+      // alert(response.error.source);
+      // alert(response.error.step);
+      // alert(response.error.reason);
+      // alert(response.error.metadata.order_id);
+      // alert(response.error.metadata.payment_id);
+      setIsButtonClicked(!isButtonClicked);
+      console.log(response.error);
+    });
+
+    rzp1.open();
+    setIsButtonClicked(!isButtonClicked);
+    setLoading(false);
   };
   const buttonClassName = `trialButton ${isButtonClicked ? "clickedB" : ""}`;
   const liClassName = `list ${isButtonClicked ? "clicked" : ""}`;
+
+  const checkPaymentStatus = async (order_id, payment_id, signature) => {
+    try {
+      const response = await axios.post(
+        "https://pro-go.onrender.com/payment/checkPayment",
+        { order_id, payment_id, signature },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error("Error checking payment status:", error);
+    }
+  };
 
   return (
     <>
       <div className={cardClassName} onClick={handleCardClick}>
         <h1 className="pTitle">{props.title}</h1>
         <h2 className="cost">
-          {props.cost}
+          &#8377;{props.cost}
           <sup>{props.oldCost}</sup>
         </h2>
 
         <p>Get key community building features, all in one place </p>
-        <button
+        {/* <button
           className={buttonClassName}
           onClick={() => setIsButtonClicked(!isButtonClicked)}
         >
           Start your 14 Day’s Trails
-        </button>
+        </button> */}
+        <Button
+          type="submit"
+          class={buttonClassName}
+          label="Start your 14 Day’s Trails"
+          loading={loading}
+        />
+
         <h3>Core features:-</h3>
         <ul>
           <li className={liClassName}>

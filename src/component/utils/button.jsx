@@ -3,8 +3,8 @@ import { Vortex } from "react-loader-spinner";
 
 const Button = (props) => {
   const buttonStyle = {
-    backgroundColor: props.loading ? "#ccc" : "", // Change the color when loading
-    cursor: props.loading ? "not-allowed" : "pointer", // Change cursor when loading
+    backgroundColor: props.loading ? "#ccc" : "", 
+    cursor: props.loading ? "not-allowed" : "pointer",
   };
 
   return (
@@ -24,8 +24,8 @@ const Button = (props) => {
             ariaLabel="vortex-loading"
             style={{
               display: "inline-block",
-              marginLeft: "10px", // Adjust the margin to position the spinner as desired
-              verticalAlign: "middle", // Adjust the vertical alignment as needed
+              marginLeft: "10px", 
+              verticalAlign: "middle", 
             }}
             wrapperClass="vortex-wrapper"
             colors={["red", "green", "blue", "yellow", "orange", "purple"]}
