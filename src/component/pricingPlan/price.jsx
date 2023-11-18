@@ -19,7 +19,7 @@ export default function Pricing(props) {
   };
 
   const getButtonClassName = (option) => {
-    return option === selectedOption ? "selected" : "";
+    return option === selectedOption ? "selected1" : "";
   };
 
   return (

@@ -4,7 +4,6 @@
   color: black;
   align-items: center;
   width: 86vw;
- 
 }
 
 .navContainer {
@@ -19,7 +18,6 @@
   margin: auto;
   font-family: "Poppins", sans-serif;
   z-index: 100;
-  
 }
 .homePageIcon {
   width: 15vw;
@@ -210,7 +208,7 @@ a {
   border-radius: 5px;
   cursor: pointer;
   margin: 2.5rem 0;
-color: #001b66;
+  color: #001b66;
   font-weight: 600;
 
   text-align: center;
@@ -436,6 +434,15 @@ color: #001b66;
 
 .member3 {
   display: flex;
+  justify-content: center;
+
+  align-items: center;
+}
+.member3 ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 }
 .member3 li {
   padding: 1rem;
@@ -459,7 +466,7 @@ color: #001b66;
   > li
   > span:nth-child(2) {
   color: black;
-  width: 12vw;
+  width: 12rem;
   text-align: left;
   font-size: 1.1rem;
   padding: 0.625rem;
@@ -589,6 +596,7 @@ color: #001b66;
   font-size: 1.875rem;
   font-style: normal;
   font-weight: 600;
+  margin: auto;
 }
 .part6 p {
   color: #407bff;
@@ -597,6 +605,7 @@ color: #001b66;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 500;
+  margin: 2rem auto;
 }
 .part6 button {
   color: white;

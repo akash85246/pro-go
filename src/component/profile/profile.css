@@ -48,8 +48,6 @@
   line-height: normal;
 }
 .profileButton {
-
-
   padding: 5px;
   margin-bottom: 1rem;
   width: 50%;
@@ -148,4 +146,16 @@
 
 #root > div.mainContainerProfile > div:nth-child(1) > div.profileImgContainer {
   margin-top: 5rem;
+}
+
+.errorContainerProfile {
+  height: 1rem;
+  margin-top: 0;
+}
+.errorProfile {
+  margin-top: -1rem;
+  font-size: 0.8rem;
+  width: 90%;
+  text-align: left;
+  color: brown;
 }

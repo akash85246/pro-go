@@ -59,7 +59,7 @@ sup {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  width: 15vw;
+  width: 12rem;
   height: 5rem;
   border: 1px solid #696f79;
   font-family: Inter;
@@ -75,7 +75,7 @@ sup {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  width: 15vw;
+  width: 12rem;
   border: 1px solid #696f79;
   font-family: Inter;
   font-size: 1.5rem;
@@ -114,7 +114,7 @@ sup {
   font-size: 4.5rem;
   font-weight: 700;
   line-height: 2.625rem;
-  margin-bottom: 5rem;
+  margin: 2rem auto;
 }
 
 ul {
@@ -143,12 +143,22 @@ ul {
   width: 50%;
 }
 
-.selected {
+.selected1 {
   background: #011c67;
   color: white;
 }
 .trialButton:hover {
   background-color: #696f79;
+}
+.pCard h1 {
+  color: #263238;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.625rem;
+  margin: 3rem auto;
+  margin-top: 0;
 }
 .pCard h3 {
   text-align: left;
@@ -181,11 +191,7 @@ li p {
   white-space: wrap;
   font-weight: 900;
 }
-.clicked {
-  background-color: lightblue;
-  color: white;
-  background: #0e286f;
-}
+
 .clickedB {
   color: #0e286f;
   background: white;
@@ -259,8 +265,15 @@ li p {
   grid-template-columns: 1.5fr 1fr;
   padding: 0 10vw;
 }
-.switch{
+.switch {
   padding: 5rem;
+}
+.clicked {
+  color: white;
+  background: #0e286f;
+}
+.pTitle.clicked {
+  color: white;
 }
 @media only screen and (max-width: 1000px) {
   #root > div.priceplanHeader > div > button {
@@ -278,13 +291,13 @@ li p {
     font-weight: 100;
     width: 70%;
   }
-  .priceplanHeader{
+  .priceplanHeader {
     padding: 5rem;
     padding-bottom: 2rem;
     background-color: #001b66;
     color: white;
   }
-   .priceplanHeader h1>span{
+  .priceplanHeader h1 > span {
     color: white;
   }
   sup {
@@ -315,20 +328,37 @@ li p {
   }
 }
 @media only screen and (max-width: 700px) {
-  .costChoice div{
-    display: grid;
+  .costChoice div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
   }
-  .switch{
+  .switch {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  #root > div.switch > button{
+  #root > div.switch > button {
     width: 20rem;
-
   }
-  .pCard{
+  .pCard {
+    width: 100%;
+  }
+  .list{
+    width: 80vw;
+  }
+  .pTitle{
+    margin: 0;
+  }
+  .cost{
+    margin: 0;
+  }
+  .pCard h3{
     width: 80%;
+    margin: 1rem ;
   }
 }

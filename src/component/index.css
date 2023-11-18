@@ -238,6 +238,16 @@ h1 {
 .error {
   margin-top: 0rem;
 }
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+.button-container>button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 @media only screen and (max-width: 1400px) {
   .error {
     margin-top: 1.5rem;

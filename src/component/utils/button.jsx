@@ -20,11 +20,11 @@ const Button = (props) => {
           <Vortex
             visible={true}
             height="20"
-            width="20"
+            width="50"
             ariaLabel="vortex-loading"
             style={{
               display: "inline-block",
-              marginLeft: "10px", 
+              margint: "auto", 
               verticalAlign: "middle", 
             }}
             wrapperClass="vortex-wrapper"

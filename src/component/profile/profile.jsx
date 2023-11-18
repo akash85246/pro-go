@@ -8,8 +8,14 @@ import Input from "./input";
 import profilephoto from "../../assets/profilePhoto.jpg";
 import ProfileImg from "../utils/profileImg";
 import { useEffect, useState } from "react";
-
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function Profile() {
+  const toast = useToast();
+  const [loading, setLoading] = useState(false);
+
   const [isEditing, setIsEditing] = useState(false);
   const { authToken, updateAuthToken } = useAuth();
   const navigate = useNavigate();
@@ -61,6 +67,20 @@ export default function Profile() {
           console.error("Error fetching user details");
         }
       } catch (error) {
+        toast({
+          title: "Error Notification!",
+          description: error.response?.data?.message || "An error occurred",
+          status: "error",
+          position: "top-centre",
+          duration: 3000,
+          isClosable: true,
+          render: () => (
+            <Box p={3} color="white" bg="red.500" borderRadius="md">
+              <WarningIcon mr={3} />
+              {error.response?.data?.message || "An error occurred"}
+            </Box>
+          ),
+        });
         console.error("Error fetching user details", error);
       }
     };
@@ -81,6 +101,7 @@ export default function Profile() {
   };
 
   const handleSaveClick = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         "https://pro-go.onrender.com/api/add-user-details",
@@ -115,7 +136,23 @@ export default function Profile() {
         console.error("Error saving user details");
       }
     } catch (error) {
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
       console.error("Error saving user details", error);
+    } finally {
+      setLoading(false);
     }
     setIsEditing(false);
   };
@@ -143,7 +180,7 @@ export default function Profile() {
           {/* </div> */}
           <div className="infoContainer">
             <h1>{profileData.fullName}</h1>
-            <button className="profileButton">Profile</button>
+            {/* <button className="profileButton">Profile</button>
             <h2>Switch accounts</h2>
             <h2>Manage account</h2>
             <h2>Activity</h2>
@@ -151,7 +188,7 @@ export default function Profile() {
             <h2>Theme</h2>
             <h2>Settings</h2>
             <h2>Help</h2>
-            <h2>Shortcuts</h2>
+            <h2>Shortcuts</h2> */}
             <h2 onClick={logOut}>Log out</h2>
           </div>
         </div>
@@ -221,7 +258,13 @@ export default function Profile() {
           </div>
           <div className="changeEdit">
             {isEditing ? (
-              <button onClick={handleSaveClick}>Save</button>
+              <Button
+                type="submit"
+                class="Edit"
+                label="Save"
+                loading={loading}
+                onClick={handleSaveClick}
+              />
             ) : (
               <button onClick={handleEditClick}>Edit</button>
             )}

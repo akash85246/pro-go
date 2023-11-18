@@ -4,12 +4,19 @@ import "./input.css";
 export default function Input(props) {
   const validateInput = (value) => {
     const nameRegex = /^(?! )[A-Za-z]+(?: [A-Za-z]+)?$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const jobTitleRegex = /^[A-Za-z\s]{3,}$/;
-    const departmentRegex = /^[A-Za-z\s]{3,}$/;
-    const organisationRegex = /^[A-Za-z\s]{3,}$/;
-    const basedInRegex = /^[A-Za-z\s]{3,}$/;
-    const regionRegex = /^[A-Za-z\s]{3,}$/;
+
+    const jobTitleRegex =
+      /^(?! )[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]](?:[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]]| [A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]])*[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]]$/;
+
+    const departmentRegex =
+      /^(?! )[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]](?:[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]]| [A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]])*[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]]$/;
+
+    const organisationRegex =
+      /^(?! )[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]](?:[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]]| [A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]])*[A-Za-z0-9&$@#!%^*()_+-=;:{}'"><>?~\\/[\]]$/;
+
+    const basedInRegex = /^[^0-9\s][A-Za-z](?:[^\s]| [A-Za-z]){3,}$/;
+
+    const regionRegex = /^[^0-9\s][A-Za-z](?:[^\s]| [A-Za-z]){4,}$/;
 
     switch (props.label) {
       case "Full Name":
@@ -30,9 +37,6 @@ export default function Input(props) {
       case "Region":
         return regionRegex.test(value) ? "" : "Invalid region";
 
-      case "Email address":
-        return emailRegex.test(value) ? "" : "Invalid email address";
-
       default:
         return "";
     }
@@ -48,6 +52,7 @@ export default function Input(props) {
           value={props.value || ""}
           onChange={props.onChange}
           disabled={props.disabled}
+          maxLength={30}
         />
       </div>
       <div className="errorContainerProfile">

@@ -9,14 +9,8 @@ import Button from "../utils/button";
 
 export default function PCard(props) {
   const [loading, setLoading] = useState(false);
-
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const { authToken, setAuthToken } = useAuth();
-  //  const pay= {
-  //    order_id,
-  //    razorpay_payment_id,
-  //    razorpay_signature,
-  //  };
   const [profileData, setProfileData] = useState({
     fullName: "",
     emailAddress: "",
@@ -37,7 +31,7 @@ export default function PCard(props) {
 
         if (response.ok) {
           const data = await response.json();
-          // console.log(data.user);
+
           setProfileData({
             fullName: data.user.username,
             emailAddress: data.user.email,
@@ -77,12 +71,12 @@ export default function PCard(props) {
 
   const [Razorpay] = useRazorpay();
   const getRazorpayOptions = async () => {
+    const subscriptionType = props.title;
     const order = await createOrder(props.cost * 100);
     const orderId = order.order_id;
-    console.log(orderId);
     return {
-      key: "rzp_test_AHWkh8XndzyXLR",
-      amount: 1 * 100,
+      key: "rzp_test_6hSqwhZWNQ9ei8",
+      amount: props.cost * 100,
       currency: "INR",
       name: "Pro-go",
       description: "payment for user subscription",
@@ -90,15 +84,14 @@ export default function PCard(props) {
       order_id: orderId,
 
       handler: function (response) {
-        // alert(response.razorpay_payment_id);
-        // alert(response.razorpay_order_id);
-        // alert(response.razorpay_signature);
         console.log(order);
         console.log("response", response);
+        console.log(subscriptionType);
         checkPaymentStatus(
           response.razorpay_order_id,
           response.razorpay_payment_id,
-          response.razorpay_signature
+          response.razorpay_signature,
+          subscriptionType
         )
           .then((result) => {
             console.log("Payment Status:", result);
@@ -131,13 +124,6 @@ export default function PCard(props) {
     const rzp1 = new Razorpay(options);
     console.log(rzp1);
     rzp1.on("payment.failed", function (response) {
-      // alert(response.error.code);
-      // alert(response.error.description);
-      // alert(response.error.source);
-      // alert(response.error.step);
-      // alert(response.error.reason);
-      // alert(response.error.metadata.order_id);
-      // alert(response.error.metadata.payment_id);
       setIsButtonClicked(false);
       console.log(response.error);
     });
@@ -147,34 +133,21 @@ export default function PCard(props) {
     setLoading(false);
   };
 
-  async function fetchAdditionalPaymentDetails(paymentId) {
-    try {
-      // Make a request to your server or Razorpay API to get order details
-      const orderDetailsResponse = await axios.get(
-        `https://api.razorpay.com/v1/payments/${paymentId}`
-      );
-
-      const { order_id, signature } = orderDetailsResponse.data;
-
-      // Log the additional details
-      console.log("Order ID:", order_id);
-      console.log("Signature:", signature);
-
-      checkPaymentStatus(order_id, paymentId, signature);
-    } catch (error) {
-      console.error("Error fetching additional payment details:", error);
-    }
-  }
-
   const buttonClassName = `trialButton ${isButtonClicked ? "clickedB" : ""}`;
   const liClassName = `list ${isButtonClicked ? "clicked" : ""}`;
+  const h1ClassName = `pTitle ${isButtonClicked ? "clicked" : ""}`;
 
-  const checkPaymentStatus = async (order_id, payment_id, signature) => {
-    console.log(order_id, payment_id, signature);
+  const checkPaymentStatus = async (
+    order_id,
+    payment_id,
+    signature,
+    subscriptionType
+  ) => {
+    console.log(order_id, payment_id, signature, subscriptionType);
     try {
       const response = await axios.post(
         "https://pro-go.onrender.com/payment/checkPayment",
-        { order_id, payment_id, signature },
+        { order_id, payment_id, signature, subscriptionType },
         {
           headers: {
             "Content-Type": "application/json",
@@ -192,7 +165,7 @@ export default function PCard(props) {
   return (
     <>
       <div className={cardClassName} onClick={handleCardClick}>
-        <h1 className="pTitle">{props.title}</h1>
+        <h1 className={h1ClassName}>{props.title}</h1>
         <h2 className="cost">
           &#8377;{props.cost}
           <sup>{props.oldCost}</sup>
@@ -205,12 +178,14 @@ export default function PCard(props) {
         >
           Start your 14 Day’s Trails
         </button> */}
-        <Button
-          type="submit"
-          class={buttonClassName}
-          label="Start your 14 Day’s Trails"
-          loading={loading}
-        />
+        {authToken && (
+          <Button
+            type="submit"
+            class={buttonClassName}
+            label="Start your 14 Day’s Trails"
+            loading={loading}
+          />
+        )}
 
         <h3>Core features:-</h3>
         <ul>
