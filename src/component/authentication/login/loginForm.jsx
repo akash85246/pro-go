@@ -146,7 +146,6 @@ function LoginForm() {
       if (error.response && error.response.data) {
         console.error("Server responded with an error:", error.response.data);
         console.log(error.response.data);
-        // toast.error(error.response.data.message);
 
         if (error.response.data.message === "No user exists with this email") {
           setEmailError("No user exists with this email");

@@ -20,13 +20,25 @@ export default function Sidebar(props) {
     setSidebarOpen(!sidebarOpen);
   };
   const navigate = useNavigate();
-  function toWorkSpace() {
-    navigate("/workspace");
+  function toSetting() {
+    navigate("/setting");
+  }
+  function toMembers() {
+    navigate("/member");
+  }
+  function toCalendar() {
+    navigate("/calender");
+  }
+  function toTable() {
+    navigate("/table");
+  }
+  function toHome() {
+    navigate("/home");
   }
   return (
     <>
       <div className={`sidebarContain ${sidebarOpen ? "open" : ""}`}>
-        <h3 onClick={toggleSidebar}>Home</h3>
+        <h3 onClick={toHome}>Home</h3>
         <ul>
           <li>
             <img src={boardImg} alt="Board Icon" />
@@ -35,32 +47,26 @@ export default function Sidebar(props) {
           <li>
             <div>
               <img src={member} alt="Member Icon" />
-              <h4 onClick={toWorkSpace}>Members</h4>
+              <h4 onClick={toMembers}>Members</h4>
             </div>
-            <span onClick={toWorkSpace}>+</span>
+            <span onClick={toMembers}>+</span>
           </li>
           <li>
             <span>
               <img src={setting} alt="Setting Icon" />
             </span>
-            <Slider title="Workspace setting">
-              <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-              </ul>
-            </Slider>
+            <h4 onClick={toSetting}>Workspace setting</h4>
           </li>
         </ul>
         <h3>Workspace Views</h3>
         <ul>
           <li>
             <img src={table} alt="Table Icon" />
-            <h4>Table</h4>
+            <h4 onClick={toTable}>Table</h4>
           </li>
           <li>
             <img src={calender} alt="Calendar Icon" />
-            <h4>Calendar</h4>
+            <h4 onClick={toCalendar}>Calendar</h4>
           </li>
         </ul>
         <h3>

@@ -26,12 +26,12 @@ export default function Sidebar2(props) {
     <>
       <div className="sidebar2Container">
         <ul>
-          <li>
+          <li onClick={() => handleItemClick("home")}>
             <img src={logo} alt="Logo Icon" />
           </li>
           <li
             className={isItemSelected("home") ? "selected" : ""}
-            onClick={() => handleItemClick("home")}
+            onClick={() => handleItemClick("dashboard")}
           >
             <img src={home} alt="Home Icon" />
           </li>

@@ -1,10 +1,10 @@
 import Sidebar2 from "./sidebar2";
-import "./workSpace.css";
+import "./setting.css";
 import DashNav from "./dashNavbar";
-export default function workSpace() {
+export default function Setting() {
   return (
     <div className="workspaceContainer">
-      <Sidebar2 selected="home" />
+      <Sidebar2 selected="setting" />
       <div className="dashMainContainer">
         <DashNav />
         <div className="dashMain"></div>

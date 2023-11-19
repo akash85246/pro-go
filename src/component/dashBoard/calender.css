@@ -327,10 +327,6 @@
   height: 1rem;
   width: 70%;
 }
-#root > div > div.dashMainContainer > div > div.calendarButtons > input {
-  height: 1.5rem;
-  width: 4rem;
-}
 .selectedDate {
   background-color: lightblue;
 }

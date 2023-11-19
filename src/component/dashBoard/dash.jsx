@@ -1,15 +1,19 @@
-
 import logo from "../../assets/footer_logo.svg";
-
+import defaultImg from "../../assets/dashboard.svg";
 import userImg from "../../assets/profilePhoto.png";
 import { useState } from "react";
 import "./dash.css";
 import ProfileImg from "../utils/profileImg";
 import Sidebar from "./sidebar";
 import Slider from "../utils/slider";
-
+import Button from "../utils/button";
+import { Link, useNavigate } from "react-router-dom";
 export default function DashBoard() {
- 
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  function toWorkSpace() {
+    navigate("/workspace");
+  }
   return (
     <>
       <div className="workSpaceContainer">
@@ -61,7 +65,32 @@ export default function DashBoard() {
             <button className="createButton">create</button>
             <ProfileImg img={userImg} isNavbar="true" />
           </div>
-          <div className="dashMain"></div>
+          <div className="dashMain">
+            <div className="dashCard">
+              <div className="default">
+                <h1>Create a Project and get organized</h1>
+                <img src={defaultImg}></img>
+                <div className="dashButtons">
+                  <div>
+                    <Button
+                      type="submit"
+                      class="dashButton1"
+                      label="+"
+                      loading={loading}
+                      onClick={toWorkSpace}
+                    />
+                    <Button
+                      type="submit"
+                      class="dashButton2"
+                      label="Okay Got it !"
+                      loading={loading}
+                      onClick={toWorkSpace}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

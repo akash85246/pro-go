@@ -20,6 +20,7 @@ import Pricing from "./pricingPlan/price";
 import Profile from "./profile/profile";
 import DashBoard from "./dashBoard/dash";
 import WorkSpace from "./dashBoard/workspace";
+import Setting from "./dashBoard/setting";
 import Member from "./dashBoard/addMembers";
 import Calender from "./dashBoard/calender";
 // import "react-toastify/dist/ReactToastify.css";
@@ -45,6 +46,7 @@ function App() {
               <Route path="/workspace" element={<WorkSpace />} />
               <Route path="/member" element={<Member />} />
               <Route path="/calender" element={<Calender />} />
+              <Route path="/setting" element={<Setting />} />
 
               <Route path="/" element={<Homepage />} />
               <Route path="*" element={<Error />} />
