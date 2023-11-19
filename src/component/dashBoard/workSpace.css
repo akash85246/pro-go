@@ -1,6 +1,78 @@
-.workspaceContainer{
- 
+.workspaceContainer {
   display: grid;
   grid-template-columns: 1fr 8fr;
   color: white;
+}
+.addButtons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+  margin: auto;
+  margin-top: 8rem;
+}
+.addButtons .button-container > button {
+  height: 10rem;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  background: #1d62fe;
+  box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.addButtons .button-container > button > h4 {
+  margin: 1rem auto;
+}
+.addButtons .button-container > button > img {
+  border: 1px solid white;
+}
+.addButtons .button-container > button:hover {
+  background-color: blue;
+}
+.search {
+  background-color: white;
+  width: 51%;
+  height: 2.5rem;
+  margin: auto;
+  margin-top: 2rem;
+  border: 1px solid #011c67;
+}
+.SearchContainer1 {
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  flex-direction: row;
+}
+.searchbar {
+  width: 90%;
+  height: 2.4rem;
+  outline: none;
+  border: none;
+  color: #011c67;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.search
+  > div.SearchContainer1
+  > image {
+  background-color: #011c67;
+}
+.lastView {
+  color: #011c67;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  color: #407bff;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }

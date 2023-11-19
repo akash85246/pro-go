@@ -7,7 +7,7 @@ import ProfileImg from "../utils/profileImg";
 import Sidebar from "./sidebar";
 import Slider from "../utils/slider";
 import Button from "../utils/button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function DashBoard() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);

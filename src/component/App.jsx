@@ -19,6 +19,7 @@ import Error from "./utils/error";
 import Pricing from "./pricingPlan/price";
 import Profile from "./profile/profile";
 import DashBoard from "./dashBoard/dash";
+import Board from "./dashBoard/board";
 import WorkSpace from "./dashBoard/workspace";
 import Setting from "./dashBoard/setting";
 import Member from "./dashBoard/addMembers";
@@ -43,6 +44,7 @@ function App() {
               <Route path="/error" element={<Error />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/board" element={<Board />} />
               <Route path="/workspace" element={<WorkSpace />} />
               <Route path="/member" element={<Member />} />
               <Route path="/calender" element={<Calender />} />

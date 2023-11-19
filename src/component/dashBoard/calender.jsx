@@ -27,6 +27,7 @@ export default function Calendar() {
     setSelectedYear(parseInt(event.target.value));
     setSelectedDate(null);
   };
+  
   const handleDateChange = (selectedDate) => {
     setSelectedDate(selectedDate);
     console.log(

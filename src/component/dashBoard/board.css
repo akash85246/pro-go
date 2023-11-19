@@ -1,0 +1,71 @@
+.search2 {
+  background-color: white;
+  width: 51%;
+  height: 2.5rem;
+  margin: auto;
+  margin-top: 7rem;
+  border: 1px solid #011c67;
+  border: 1px solid #011c67;
+}
+
+.SearchContainer2 {
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  flex-direction: row;
+  background: linear-gradient(
+    180deg,
+    rgba(64, 124, 255, 0.941) 10%,
+    rgba(64, 123, 255, 0) 100%
+  );
+}
+.searchbar2 {
+  width: 90%;
+  height: 2.4rem;
+  outline: none;
+  border: none;
+  color: #011c67;
+  background: linear-gradient(
+    180deg,
+    rgba(64, 123, 255, 0.28) 0%,
+    rgba(64, 123, 255, 0) 100%
+  );
+  color: #000;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+}
+.searchbar2::placeholder {
+  color: #000;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.tempContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 80rem;
+  row-gap: 0.5rem;
+  margin: auto;
+  height: 70%;
+  margin-top: 1rem;
+ /* overflow: hidden; */
+}
+#root > div > div.dashMainContainer > div > div.tempContainer > div > h2 {
+  color: #011c67;
+  font-family: Poppins;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  /* position: fixed; */
+}
+#root > div > div.dashMainContainer > div > div.tempContainer > div > div {
+  display: flex;
+  width: 83vw;
+   overflow: hidden;
+  overflow-x: scroll;
+}

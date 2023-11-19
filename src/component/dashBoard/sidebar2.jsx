@@ -7,8 +7,8 @@ import table from "../../assets/table.svg";
 import calender from "../../assets/calender.svg";
 import logo from "../../assets/logo.svg";
 import home from "../../assets/homeIcon.svg";
-import "./sidebar.css"; // Import the new CSS file
-import { Link, useNavigate } from "react-router-dom";
+import "./sidebar.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar2(props) {
   const navigate = useNavigate();
