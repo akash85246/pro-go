@@ -1,6 +1,6 @@
 import logo from "../../assets/footer_logo.svg";
 import defaultImg from "../../assets/dashboard.svg";
-import userImg from "../../assets/profilePhoto.png";
+
 import { useState } from "react";
 import "./dash.css";
 import ProfileImg from "../utils/profileImg";
@@ -63,7 +63,7 @@ export default function DashBoard() {
             </Slider>
             <button className="searchButton">Search</button>
             <button className="createButton">create</button>
-            <ProfileImg img={userImg} isNavbar="true" />
+            <ProfileImg isNavbar="true" />
           </div>
           <div className="dashMain">
             <div className="dashCard">

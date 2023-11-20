@@ -21,6 +21,7 @@ import Profile from "./profile/profile";
 import DashBoard from "./dashBoard/dash";
 import Board from "./dashBoard/board";
 import WorkSpace from "./dashBoard/workspace";
+import MyBoard from "./dashBoard/displayBoard";
 import Setting from "./dashBoard/setting";
 import Member from "./dashBoard/addMembers";
 import Calender from "./dashBoard/calender";
@@ -49,6 +50,7 @@ function App() {
               <Route path="/member" element={<Member />} />
               <Route path="/calender" element={<Calender />} />
               <Route path="/setting" element={<Setting />} />
+              <Route path="/myboard" element={<MyBoard />} />
 
               <Route path="/" element={<Homepage />} />
               <Route path="*" element={<Error />} />

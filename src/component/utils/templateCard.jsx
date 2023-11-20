@@ -1,23 +1,32 @@
+import React from "react";
 import "./templateCard.css";
-export default function TempCard(props) {
+
+export default function TempCard({
+  tempTitle,
+  background,
+  onSelect,
+  selected1,
+}) {
   const cardStyle = {
-    background: props.background || "#CB7A63",
+    background: background || "#CB7A63",
   };
 
-  if (props.background && props.background.startsWith("#")) {
-    cardStyle.backgroundColor = props.background;
+  if (background && background.startsWith("#")) {
+    cardStyle.backgroundColor = background;
     cardStyle.backgroundImage = "none";
-  } else if (props.background) {
-    cardStyle.backgroundImage = `url(${props.background})`;
+  } else if (background) {
+    cardStyle.backgroundImage = `url(${background})`;
     cardStyle.backgroundColor = "transparent";
     cardStyle.backgroundSize = "cover";
   }
 
   return (
-    <>
-      <div className="tempCard" style={cardStyle}>
-        <h2>{props.tempTitle}</h2>
-      </div>
-    </>
+    <div
+      className={`tempCard ${tempTitle==selected1 ? "selected1" : ""}`}
+      onClick={() => onSelect({ tempTitle, background })}
+      style={cardStyle}
+    >
+      <h2>{tempTitle}</h2>
+    </div>
   );
 }

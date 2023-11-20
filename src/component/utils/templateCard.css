@@ -23,3 +23,6 @@
   font-weight: 500;
   line-height: normal;
 }
+.tempCard.selected1 {
+  border-radius: 2px solid black !important;
+}

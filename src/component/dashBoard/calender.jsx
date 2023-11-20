@@ -4,7 +4,11 @@ import Sidebar2 from "./sidebar2";
 import "./addMember.css";
 import ToDoList from "./todo";
 import { useState } from "react";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 export default function Calendar() {
+  const toast = useToast();
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
@@ -27,7 +31,7 @@ export default function Calendar() {
     setSelectedYear(parseInt(event.target.value));
     setSelectedDate(null);
   };
-  
+
   const handleDateChange = (selectedDate) => {
     setSelectedDate(selectedDate);
     console.log(
@@ -46,7 +50,7 @@ export default function Calendar() {
     );
 
     const enteredDate = parseInt(dateInput.value);
-    const enteredMonth = parseInt(monthInput.value); 
+    const enteredMonth = parseInt(monthInput.value);
     const enteredYear = parseInt(yearInput.value);
     if (
       enteredDate >= 1 &&
@@ -63,8 +67,21 @@ export default function Calendar() {
       console.log(
         `Selected Date: ${enteredYear}-${enteredMonth + 1}-${enteredDate}`
       );
-
     } else {
+      toast({
+        title: "Error Notification!",
+        description: "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {"Invalid Date"}
+          </Box>
+        ),
+      });
       console.log("Invalid date, month, or year entered");
     }
   };

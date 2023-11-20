@@ -6,13 +6,25 @@ import searchIcon from "../../assets/searchIcon.svg";
 import DashNav from "./dashNavbar";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import NewBoardPopup from "./createPop";
 export default function workSpace() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showNewBoardPopup, setShowNewBoardPopup] = useState(false);
+  // const openNewBoardPopup = () => {
+  //   setShowNewBoardPopup(true);
+  // };
 
-  function createFile() {}
-  function createNewFolder() {}
+  const closeNewBoardPopup = () => {
+    setShowNewBoardPopup(false);
+  };
+  function searchFile() {}
+
+  function createBoard() {
+    setShowNewBoardPopup(true);
+    alert("Creating board:", boardName);
+  }
+  // function createNewFolder() {}
   return (
     <div className="workspaceContainer">
       <Sidebar2 selected="home" />
@@ -26,13 +38,13 @@ export default function workSpace() {
               label={
                 <>
                   <img src={addIcon}></img>
-                  <h4>New File</h4>
+                  <h4>New Board</h4>
                 </>
               }
               loading={loading}
-              onClick={createFile}
+              onClick={createBoard}
             />
-            <Button
+            {/* <Button
               type="submit"
               class="addFolder"
               label={
@@ -43,8 +55,14 @@ export default function workSpace() {
               }
               loading={loading}
               onClick={createNewFolder}
-            />
+            /> */}
           </div>
+          {showNewBoardPopup && (
+            <NewBoardPopup
+              onClose={closeNewBoardPopup}
+              onSubmit={createBoard}
+            />
+          )}
           <div className="search">
             <div className="SearchContainer1">
               <input
@@ -56,23 +74,21 @@ export default function workSpace() {
               {/* <image src={searchIcon}></image> */}
               <Button
                 type="submit"
-                class="addFile"
+                class="searchFile"
                 label={
                   <>
                     <img src={searchIcon}></img>
                   </>
                 }
                 loading={loading}
-                onClick={createFile}
+                onClick={searchFile}
               />
             </div>
             <div className="lastView">
               <span>Recent Files</span>
               <span>Last viewed</span>
             </div>
-            <div className="result">
-
-            </div>
+            <div className="result"></div>
           </div>
         </div>
       </div>

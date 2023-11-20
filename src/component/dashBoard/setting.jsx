@@ -27,18 +27,20 @@ export default function Setting() {
                     visible to those outside the Workspace.
                   </p>
                 </div>
-                <button className="changeButton"></button>
+                <button className="changeButton">Change</button>
               </div>
               <div>
-                <img src={starImg}></img>
-                <h4>Upgrade to Premium for more settings</h4>
-                <button
-                  className="changeButton"
-                  onClick={() => navigate("/price")}
-                >
-                  Change
-                </button>
-                <ul>
+                <img className="starImg" src={starImg}></img>
+                <div>
+                  <h4>Upgrade to Premium for more settings</h4>
+                  <button
+                    className="changeButton"
+                    onClick={() => navigate("/price")}
+                  >
+                    Change
+                  </button>
+                </div>
+                <ul className="">
                   <li>Upgrade to Premium for more settings</li>
                   <li>Board creation restrictions</li>
                   <li>Board deletion restrictions</li>
