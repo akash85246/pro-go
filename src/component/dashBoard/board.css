@@ -44,16 +44,17 @@
   font-weight: 600;
   line-height: normal;
 }
+
 .tempContainer {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  width: 80rem;
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
   row-gap: 0.5rem;
   margin: auto;
-  height: 70%;
+  height: 75%;
   margin-top: 1rem;
- /* overflow: hidden; */
 }
+
 #root > div > div.dashMainContainer > div > div.tempContainer > div > h2 {
   color: #011c67;
   font-family: Poppins;
@@ -61,11 +62,21 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  /* position: fixed; */
 }
-#root > div > div.dashMainContainer > div > div.tempContainer > div > div {
-  display: flex;
+/*
+#root > div > div.dashMainContainer > div > div.tempContainer > div.popTemp > div {
+  display:grid;
+  grid-template-columns: 25% 25%;
   width: 83vw;
    overflow: hidden;
   overflow-x: scroll;
+} */
+.scrollContainer {
+  /* width: 80vw; */
+  display: flex;
+  gap: 1rem;
+  overflow-x: scroll;
+  /* padding: 1rem; */
+  padding-right: 0;
+  white-space: nowrap;
 }

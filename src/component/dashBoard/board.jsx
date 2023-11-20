@@ -23,12 +23,12 @@ export default function Board() {
     { tempTitle: "Jam", background: jamImg },
     { tempTitle: "Mosaic", background: mosaicImg },
     { tempTitle: "Natural", background: naturalImg },
-    { tempTitle: "Abstract", background: abstractImg },
-    { tempTitle: "Color Splash", background: splashImg },
-    { tempTitle: "Flowform", background: flowformImg },
-    { tempTitle: "Jam", background: jamImg },
-    { tempTitle: "Mosaic", background: mosaicImg },
-    { tempTitle: "Natural", background: naturalImg },
+    { tempTitle: "Violet", background: "#9400D3" },
+    { tempTitle: "Blue", background: "#0000FF" },
+    { tempTitle: "Indigo", background: "#4B0082" },
+    { tempTitle: "Green", background: "#00FF00" },
+    { tempTitle: "Yellow", background: "#FFFF00" },
+    { tempTitle: "Red", background: "#FF0000" },
   ];
   return (
     <div className="workspaceContainer">
@@ -62,7 +62,7 @@ export default function Board() {
           <div className="tempContainer">
             <div className="popTemp">
               <h2>Most popular templates</h2>
-              <div>
+              <div className="scrollContainer">
                 {templates.map((template, index) => (
                   <TempCard key={index} {...template} />
                 ))}
@@ -70,11 +70,19 @@ export default function Board() {
             </div>
             <div className="recentTemp">
               <h2>Recently viewed</h2>
-              <div></div>
+              <div className="scrollContainer">
+                {templates.map((template, index) => (
+                  <TempCard key={index} {...template} />
+                ))}
+              </div>
             </div>
             <div className="reboTemp">
               <h2>Recent Board</h2>
-              <div></div>
+              <div className="scrollContainer">
+                {templates.map((template, index) => (
+                  <TempCard key={index} {...template} />
+                ))}
+              </div>
             </div>
           </div>
         </div>

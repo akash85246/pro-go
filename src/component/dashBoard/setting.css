@@ -1,0 +1,57 @@
+.settingContainer {
+  color: #011c67;
+  font-family: Poppins;
+  margin-top: 5rem;
+  padding: 1rem;
+}
+.settingContainer > h1 {
+  color: #011c67;
+  font-family: Poppins;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.settingMain {
+  border-top: 1px solid #001b66;
+}
+.settingMain > div {
+  margin-left: 2rem;
+  border-bottom: 1px solid #001b66;
+  width: 75%;
+}
+.settingMain > div:nth-child(1) {
+  color: #011c67;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 1rem 0;
+}
+.settingMain > div:nth-child(1) > h3 {
+  font-size: 1.875rem;
+}
+.settingMain > div:nth-child(1) > h4 {
+  font-size: 1.5rem;
+}
+.settingMain > div:nth-child(2) > div {
+  display: flex;
+  gap: 10px;
+  height: 2rem;
+  padding: 0.5rem 0;
+  margin: 1rem 0;
+}
+.settingMain > div:nth-child(2)>div > p {
+  margin: auto;
+  height: 100%;
+  color: #001b66;
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.settingMain > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+}
