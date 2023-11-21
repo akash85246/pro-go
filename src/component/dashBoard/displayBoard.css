@@ -76,11 +76,12 @@
 .listsContainer {
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
   padding: 1rem;
   width: 70vw;
   height: 80vh;
 }
-.addCardButton{
+.addCardButton {
   background-color: silver;
   border: 1px solid grey;
   padding: 0 1rem;
@@ -89,7 +90,7 @@
   justify-content: space-between;
   width: 8rem;
 }
-.addCardButton:hover{
+.addCardButton:hover {
   color: grey;
   background-color: white;
 }

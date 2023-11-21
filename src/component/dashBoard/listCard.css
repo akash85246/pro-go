@@ -12,7 +12,8 @@
   outline: none;
   border-radius: 5px;
   padding: 0 1rem;
+  width: 100%;
 }
-.cardContainer{
-    margin: 1rem 0;
+.cardContainer {
+  margin: 1rem 0;
 }

@@ -1,14 +1,33 @@
 .boardList {
   height: auto;
+  /* width: 100%; */
   /* min-height: 5rem; */
   margin: 0 0 auto 0;
 
   padding: 1rem;
   padding-top: 0.5rem;
   border-radius: 10px;
+
+  /* overflow: hidden; */
+  min-width: 15rem;
+  /* padding:0 1rem; */
+  /*  */
+}
+.boardList > div {
+  max-height: 62vh;
+  overflow-y: scroll;
+  padding: 0 1rem;
+  margin-left: -1rem;
+
+  filter: brightness(110%);
 }
 .inputCardTitle {
   outline: none;
   color: grey;
   padding: 0 1rem;
 }
+/* .boardList > h2 {
+  position: fixed;
+  width: 9rem;
+  background-color: grey;
+} */

@@ -33,7 +33,6 @@ export default function BoardList(props) {
           name: cardTitle,
           boardId: props.boardId,
           listId: props.listId,
-          order: "akash0007",
         },
         {
           headers: {
