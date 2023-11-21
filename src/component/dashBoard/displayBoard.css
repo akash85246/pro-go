@@ -1,0 +1,70 @@
+/* .navbarDash{
+    position: fixed;
+    z-index: 100;
+    background-color: white;
+    margin-top: 20rem;
+} */
+#root > div > div.dashMainContainer > div.dashMain > div.myBoard {
+  height: 100vh;
+  width: 100vw;
+  margin-top: 6rem;
+
+  border-top: 2px solid black;
+}
+.listsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.addListButton {
+  display: flex;
+  width: 9rem;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+}
+#root > div > div.dashMainContainer > div.dashMain > div > div {
+  height: 100vh;
+
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+.addListButton {
+  cursor: pointer;
+}
+.addListButton:hover {
+  background-color: silver !important;
+}
+.listInputContainer > input {
+  border-radius: 5px;
+  color: grey;
+  padding: 0 0.5rem;
+  outline: none;
+}
+.listInputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.saveButtons {
+  display: flex;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
+}
+.saveListButton {
+  background-color: silver;
+  padding: 0 1rem;
+  margin-left: -1rem;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+.saveListButton:hover {
+  color: silver;
+  background-color: white;
+  border: 1px solid grey;
+}
+.close:hover {
+  color: silver;
+}

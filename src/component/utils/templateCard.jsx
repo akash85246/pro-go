@@ -4,6 +4,7 @@ import "./templateCard.css";
 export default function TempCard({
   tempTitle,
   background,
+  color,
   onSelect,
   selected1,
 }) {
@@ -22,8 +23,8 @@ export default function TempCard({
 
   return (
     <div
-      className={`tempCard ${tempTitle==selected1 ? "selected1" : ""}`}
-      onClick={() => onSelect({ tempTitle, background })}
+      className={`tempCard ${tempTitle == selected1 ? "selected1" : ""}`}
+      onClick={() => onSelect({ tempTitle, background, color })}
       style={cardStyle}
     >
       <h2>{tempTitle}</h2>

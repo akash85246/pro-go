@@ -17,12 +17,12 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const navigate = useNavigate();
   const templates = [
-    { tempTitle: "Abstract", background: abstractImg, color: "blue" },
+    { tempTitle: "Abstract", background: abstractImg, color: "#0000FF" },
     { tempTitle: "Color Splash", background: splashImg, color: "#FF0000" },
     { tempTitle: "Flowform", background: flowformImg, color: "blue" },
     { tempTitle: "Jam", background: jamImg, color: "grey" },
     { tempTitle: "Mosaic", background: mosaicImg, color: "black" },
-    { tempTitle: "Natural", background: naturalImg, color: "dark-green" },
+    { tempTitle: "Natural", background: naturalImg, color: "#006400" },
     { tempTitle: "Violet", background: "#9400D3", color: "#9400D3" },
     { tempTitle: "Blue", background: "#0000FF", color: "#0000FF" },
     { tempTitle: "Indigo", background: "#4B0082", color: "#4B0082" },
@@ -33,6 +33,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
   const { authToken, setAuthToken } = useAuth();
 
   const createBoardOnServer = async (boardName, templateColor) => {
+    console.log("mine", templateColor);
     try {
       const apiUrl = "https://pro-go.onrender.com/api/board/add";
       const templateBackground = selectedTemplate
@@ -45,12 +46,16 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
       );
 
       if (response.status === 201 && response.data.success) {
-        console.log("Board created successfully:", response.data.data.respData);
+        console.log(
+          "Board created successfully:",
+          response.data.data.respData._id
+        );
         navigate("/myboard", {
           state: {
+            boardId: response.data.data.respData._id,
             name: boardName,
             background: selectedTemplate.background,
-            color: templateColor,
+            color: selectedTemplate.color,
           },
         });
       } else {
@@ -67,6 +72,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
 
   const handleTemplateSelect = (template) => {
     setSelectedTemplate(template);
+    console.log(template);
   };
 
   const handleSubmit = () => {

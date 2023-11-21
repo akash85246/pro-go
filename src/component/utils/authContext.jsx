@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateAuthToken = (newAuthToken) => {
     setAuthToken(newAuthToken);
-    sessionStorage.setItem("authToken", newAuthToken);
+    localStorage.setItem("authToken", newAuthToken);
   };
 
   return (

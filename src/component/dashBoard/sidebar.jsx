@@ -35,12 +35,15 @@ export default function Sidebar(props) {
   function toHome() {
     navigate("/home");
   }
+  function toBoard() {
+    navigate("/dashboard");
+  }
   return (
     <>
       <div className={`sidebarContain ${sidebarOpen ? "open" : ""}`}>
         <h3 onClick={toHome}>Home</h3>
         <ul>
-          <li>
+          <li onClick={toBoard}>
             <img src={boardImg} alt="Board Icon" />
             <h4>Boards</h4>
           </li>
