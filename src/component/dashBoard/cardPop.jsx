@@ -1,3 +1,4 @@
+import "./cardPop.css";
 export default function CardPop(props) {
   return (
     <>
