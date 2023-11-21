@@ -2,12 +2,12 @@
   height: auto;
   /* min-height: 5rem; */
   margin: 0 0 auto 0;
-  min-width: 7rem;
+
   padding: 1rem;
   padding-top: 0.5rem;
   border-radius: 10px;
 }
-.inputCardTitle{
+.inputCardTitle {
   outline: none;
   color: grey;
   padding: 0 1rem;

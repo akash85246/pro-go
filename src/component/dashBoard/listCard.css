@@ -1,0 +1,18 @@
+#root
+  > div
+  > div.dashMainContainer
+  > div.dashMain
+  > div
+  > div
+  > div
+  > div
+  > div
+  > div
+  > input {
+  outline: none;
+  border-radius: 5px;
+  padding: 0 1rem;
+}
+.cardContainer{
+    margin: 1rem 0;
+}

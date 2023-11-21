@@ -67,6 +67,8 @@ export default function MyBoard() {
       setListTitle("");
     } catch (error) {
       console.error("Error adding list:", error);
+      console.log("Error response from server:", error.response);
+      console.log(authToken);
     } finally {
       setLoading(false);
     }
@@ -132,6 +134,7 @@ export default function MyBoard() {
                     listId={list.id}
                     listTitle={list.name}
                     color={color}
+                    boardId={boardId}
                   />
                 ))}
                 {/* <div key={list.id} className="listItem">
