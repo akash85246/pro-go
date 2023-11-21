@@ -19,9 +19,11 @@
 .addListButton {
   display: flex;
   width: 9rem;
+  min-width: 9rem;
   justify-content: space-between;
   padding: 0 0.5rem;
   border-radius: 5px;
+  height: 1.7rem;
 }
 #root > div > div.dashMainContainer > div.dashMain > div > div {
   height: 100vh;
@@ -47,6 +49,9 @@
   width: 15rem;
   padding: 1rem;
   border-radius: 10px;
+  margin: auto;
+  margin-top: 0;
+  margin-left: 0;
 }
 .saveButtons {
   display: flex;
@@ -67,4 +72,24 @@
 }
 .close:hover {
   color: silver;
+}
+.listsContainer {
+  display: flex;
+  overflow-x: scroll;
+  padding: 1rem;
+  width: 70vw;
+  height: 80vh;
+}
+.addCardButton{
+  background-color: silver;
+  border: 1px solid grey;
+  padding: 0 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 8rem;
+}
+.addCardButton:hover{
+  color: grey;
+  background-color: white;
 }

@@ -9,7 +9,7 @@ import Slider from "../utils/slider";
 import addIcon from "../../assets/add.svg";
 import { background } from "@chakra-ui/react";
 import { useAuth } from "../utils/authContext";
-
+import BoardList from "./boardList";
 export default function MyBoard() {
   const { authToken, setAuthToken } = useAuth();
   const location = useLocation();
@@ -34,6 +34,10 @@ export default function MyBoard() {
   const [listTitle, setListTitle] = useState("");
 
   const handleCloseListClick = () => {
+    setShowInput(false);
+    setListTitle("");
+  };
+  const handleAddListClick = () => {
     setShowInput(true);
   };
 
@@ -124,11 +128,15 @@ export default function MyBoard() {
             <div style={{ backdropFilter: "blur(10px)" }}>
               <div className="listsContainer">
                 {lists.map((list) => (
-                  <div key={list.id} className="listItem">
-                    {list.name}
-                  </div>
+                  <BoardList
+                    listId={list.id}
+                    listTitle={list.name}
+                    color={color}
+                  />
                 ))}
-
+                {/* <div key={list.id} className="listItem">
+                    {list.name}
+                  </div> */}
                 {showInput ? (
                   <div
                     className="listInputContainer"
@@ -148,7 +156,7 @@ export default function MyBoard() {
                       >
                         Add list
                       </button>
-                      <button className="close" onClick={handleSaveListClick}>
+                      <button className="close" onClick={handleCloseListClick}>
                         x
                       </button>
                     </div>
@@ -157,7 +165,7 @@ export default function MyBoard() {
                   <button
                     className="addListButton"
                     style={{ backgroundColor: color }}
-                    onClick={handleCloseListClick}
+                    onClick={handleAddListClick}
                   >
                     <img src={addIcon} alt="Add Icon" />
                     Add list
