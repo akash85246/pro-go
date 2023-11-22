@@ -98,7 +98,24 @@ export default function PopOutCard(props) {
       console.error("Error adding comment:", error.message);
     }
   };
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await axios.delete(
+        `https://pro-go.onrender.com/api/comment/${commentId}/delete`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        }
+      );
 
+      console.log("Comment deleted successfully:", response.data.message);
+      fetchComments(); // Refresh comments after deletion
+    } catch (error) {
+      console.error("Error deleting comment:", error.message);
+    }
+  };
   const handleAddChecklist = async () => {
     // Implement logic to add checklist using Axios
   };
@@ -147,6 +164,11 @@ export default function PopOutCard(props) {
                         onChange={(e) => setCommentText(e.target.value)}
                       />
                       <button
+                        onClick={() => handleDeleteComment(commentItem?._id)}
+                      >
+                        Delete
+                      </button>
+                      <button
                         onClick={() =>
                           handleUpdateComment(commentItem?._id, commentText)
                         }
@@ -166,6 +188,11 @@ export default function PopOutCard(props) {
                         }
                       >
                         Update
+                      </button>
+                      <button
+                        onClick={() => handleDeleteComment(commentItem?._id)}
+                      >
+                        Delete
                       </button>
                     </>
                   )}
