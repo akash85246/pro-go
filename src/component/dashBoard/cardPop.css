@@ -1,6 +1,6 @@
 .cardPopContainer {
   position: fixed;
-  background-color: black;
+  background-color: white;
   height: 60vh;
   width: 40vw;
   color: silver;
@@ -11,7 +11,54 @@
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999;
+  overflow-y: scroll;
+}
+.cardPopContainer > h1 {
+  position: fixed;
+  background-color: white;
+  top: 3.6rem;
+  width: 37vw;
 }
 .cardPopContainer input {
   color: black;
+}
+.popCardList {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.popDescription {
+  width: 100%;
+  resize: none;
+}
+.popupbButtons button {
+  width: 20%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popupbButtons button:hover {
+  background-color: #45a049;
+}
+.popupbButtons {
+  display: flex;
+  width: 100%;
+ 
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.popCardList{
+  display: flex;
+  gap: 1rem;
+}
+.popCard{
+  background-color: #ccc;
+  color: white;
+  cursor: pointer;
+  padding:0.5rem 1rem;
+  border-radius: 10px;
 }
