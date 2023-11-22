@@ -1,0 +1,34 @@
+.cardPopUpContainer {
+  position: fixed;
+  background-color: silver;
+  z-index: 100000;
+  top: 3rem;
+  width: 60%;
+  height: 70%;
+  padding: 1rem;
+}
+.cardPopSidebar {
+  background-color: blueviolet;
+
+  margin: -1rem;
+}
+.cardPopUpMain {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  height: 100%;
+}
+.cardPopSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* height: 300%; */
+}
+.cardPopSidebar p {
+  margin: auto;
+}
+.cardPopContain input {
+  color: grey;
+}
+.cardPopContain {
+  overflow-y: scroll;
+}

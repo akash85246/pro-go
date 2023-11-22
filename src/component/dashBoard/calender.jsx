@@ -9,7 +9,6 @@ import { Box } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
 import { useAuth } from "../utils/authContext";
 import axios from "axios";
-import { json } from "react-router-dom";
 
 export default function Calendar() {
   const { authToken, setAuthToken } = useAuth();

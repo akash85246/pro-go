@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./cardPop.css";
 import { useAuth } from "../utils/authContext";
-
+import PopOutCard from "./cardPopUp";
 export default function CardPop(props) {
   const [cardData, setCardData] = useState(null);
   const [error, setError] = useState(null);
   const { authToken, setAuthToken } = useAuth();
   const [data, setData] = useState([]);
-
+  const [selectedCard, setSelectedCard] = useState(null);
   useEffect(() => {
     const apiUrl = `https://pro-go.onrender.com/api/list/${props.listId}/cards`;
 
@@ -30,8 +30,10 @@ export default function CardPop(props) {
         setError("An error occurred while fetching data.");
         console.error("Error fetching data:", error);
       });
-  }, [authToken, props.listId]); // Added dependencies to useEffect
-
+  }, [authToken, props.listId]);
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  };
   return (
     <>
       <div className="cardPopContainer">
@@ -42,7 +44,11 @@ export default function CardPop(props) {
           cardData && (
             <div className="popCardList">
               {cardData.cards.map((card) => (
-                <div key={card._id} className="popCard">
+                <div
+                  key={card._id}
+                  className="popCard"
+                  onClick={() => handleCardClick(card)}
+                >
                   <p>Card Title: {card.name}</p>
 
                   {card.description && (
@@ -67,6 +73,7 @@ export default function CardPop(props) {
         )}
         <div className="sidebarRight"></div>
       </div>
+      {selectedCard && <PopOutCard card={selectedCard} />}
     </>
   );
 }
