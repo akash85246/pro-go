@@ -34,6 +34,10 @@ export default function CardPop(props) {
   const handleCardClick = (card) => {
     setSelectedCard(card);
   };
+  const handleClose = () => {
+    
+    setSelectedCard(null);
+  };
   return (
     <>
       <div className="cardPopContainer">
@@ -73,7 +77,7 @@ export default function CardPop(props) {
         )}
         <div className="sidebarRight"></div>
       </div>
-      {selectedCard && <PopOutCard card={selectedCard} />}
+      {selectedCard && <PopOutCard card={selectedCard} handleClose={handleClose}/>}
     </>
   );
 }

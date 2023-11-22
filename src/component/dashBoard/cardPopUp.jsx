@@ -121,12 +121,32 @@ export default function PopOutCard(props) {
   };
 
   const handleDeleteCard = async () => {
-    // Implement logic to delete the card using Axios
+    try {
+      const response = await axios.delete(
+        `https://pro-go.onrender.com/api/card/${props.card._id}/delete`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      console.log("Card deleted successfully:", response.data.message);
+      props.handleClose();
+    } catch (error) {
+      console.error("Error deleting card:", error.message);
+    }
   };
+  // const handleClose = () => {
+  //   // Add logic to handle closing the PopOutCard
+  //   // For example, you can set selectedCard to null or use a state variable to control visibility.
+  //   setSelectedCard(null);
+  // };
 
   useEffect(() => {
     fetchComments();
-  }, []); // Fetch comments when the component mounts
+  }, []);
 
   return (
     <div className="cardPopUpContainer">
@@ -214,7 +234,7 @@ export default function PopOutCard(props) {
         <div className="cardPopSidebar">
           <p onClick={handleAddChecklist}>Add Checklist</p>
           <p onClick={handleDeleteCard}>Delete Card</p>
-          <p>Close</p>
+          <p onClick={props.handleClose}>Close</p>
         </div>
       </div>
     </div>
