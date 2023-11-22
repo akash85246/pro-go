@@ -1,13 +1,27 @@
-import "./boardList.css";
-import { useState } from "react";
+// boardList.jsx
+import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../utils/authContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import ListCard from "./listCard";
+import CardPop from "./cardPop";
+import "./boardList.css";
+
 export default function BoardList(props) {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [cardTitle, setCardTitle] = useState("");
-  const [cards, setcards] = useState([]);
+  const [cards, setCards] = useState([]);
+  const { authToken, setAuthToken } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const [cardPopState, setCardPopState] = useState({
+    showCardPop: false,
+    selectedListId: null,
+    heading: null,
+  });
+
   const handleAddCardClick = () => {
     setIsAddingCard(true);
   };
@@ -17,14 +31,24 @@ export default function BoardList(props) {
     setCardTitle("");
   };
 
+  const handleListCardClick = (listId) => {
+    setCardPopState({
+      showCardPop: true,
+      selectedListId: listId,
+      heading: `Card Details for List ${listId}`,
+    });
+  };
+
   const handleCardTitleChange = (event) => {
     setCardTitle(event.target.value);
   };
-  const { authToken, setAuthToken } = useAuth();
-  const location = useLocation();
-
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const handleCloseCardPop = () => {
+    setCardPopState({
+      showCardPop: false,
+      selectedListId: null,
+      heading: null,
+    });
+  };
   const handleAddCardSubmit = async () => {
     try {
       const response = await axios.post(
@@ -42,11 +66,44 @@ export default function BoardList(props) {
       );
       const newCardId = response.data.data.respData._id;
       console.log("API Response:", response.data);
-      setcards([...cards, { id: newCardId, name: cardTitle }]);
+      setCards([...cards, { id: newCardId, name: cardTitle }]);
       setIsAddingCard(false);
       setCardTitle("");
     } catch (error) {
       console.error("Error adding card:", error);
+    }
+  };
+
+  const handleInputClick = (listId) => {
+    setCardPopState({
+      showCardPop: true,
+      selectedListId: listId,
+    });
+  };
+  const handleDeleteList = async () => {
+    try {
+      const apiResponse = await axios.delete(
+        `https://pro-go.onrender.com/api/list/${props.listId}/delete`,
+        {
+          headers: {
+            "auth-token": authToken,
+          },
+        }
+      );
+      // const updatedCards = cards.filter((card) => card.id !== props.listId);
+      // setCards(updatedCards);
+      if (apiResponse.data.success) {
+        const updatedCards = cards.filter((card) => card.id !== props.listId);
+        setCards(updatedCards);
+
+        console.log("List deleted successfully");
+
+        handleCloseCardPop();
+      } else {
+        console.error("Error deleting list:", apiResponse.data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting list:", error);
     }
   };
 
@@ -57,9 +114,11 @@ export default function BoardList(props) {
         <div>
           {cards.map((card) => (
             <ListCard
+              key={card.id}
+              listId={props.listId}
               cardId={card.id}
               name={card.name}
-              //  listId={listId} boardId={boardId}
+              onInputClick={handleInputClick}
             />
           ))}
           {isAddingCard ? (
@@ -89,6 +148,15 @@ export default function BoardList(props) {
           )}
         </div>
       </div>
+
+      {cardPopState.showCardPop && (
+        <CardPop
+          listId={cardPopState.selectedListId}
+          heading={cardTitle}
+          onClose={handleCloseCardPop}
+          onDeleteList={handleDeleteList}
+        />
+      )}
     </>
   );
 }

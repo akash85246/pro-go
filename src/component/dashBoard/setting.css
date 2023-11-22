@@ -59,9 +59,7 @@
 .settingMain > div:nth-child(2) {
   margin: 1rem auto;
 }
-#root > div > div.dashMainContainer > div > div > div > div:nth-child(2) {
-  margin-left: 2rem;
-}
+
 .settingMain > div:nth-child(3) {
   margin: 1rem auto;
   background: #4d78f0;
@@ -86,10 +84,10 @@
   margin-left: -2rem;
 }
 
-.changeButton{
+.changeButton {
   color: white;
   background-color: #001b66;
-margin: auto 0;
+  margin: auto 0;
   height: 2.5rem;
   width: 6rem;
 }

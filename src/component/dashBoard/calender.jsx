@@ -7,7 +7,12 @@ import { useState } from "react";
 import { useToast } from "@chakra-ui/toast";
 import { Box } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
+import { useAuth } from "../utils/authContext";
+import axios from "axios";
+import { json } from "react-router-dom";
+
 export default function Calendar() {
+  const { authToken, setAuthToken } = useAuth();
   const toast = useToast();
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -17,23 +22,30 @@ export default function Calendar() {
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedDate, setSelectedDate] = useState(null);
-
-  const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+  const [taskList, setTaskList] = useState([]);
+  const handleTaskListChange = (newTaskList) => {
+    setTaskList(newTaskList);
+  };
+  const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
   const firstDay = new Date(selectedYear, selectedMonth, 1).getDay();
 
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+  const [goal, setGoal] = useState("");
+  const [note, setNote] = useState("");
   const handleMonthChange = (newMonth) => {
     setSelectedMonth(newMonth);
-    setSelectedDate(null);
+    // setSelectedDate(null);
   };
 
   const handleYearChange = (event) => {
     setSelectedYear(parseInt(event.target.value));
-    setSelectedDate(null);
+    // setSelectedDate(null);
   };
 
   const handleDateChange = (selectedDate) => {
     setSelectedDate(selectedDate);
+    receivePlannerData();
     console.log(
       `Selected Date: ${selectedYear}-${selectedMonth + 1}-${selectedDate}`
     );
@@ -50,7 +62,7 @@ export default function Calendar() {
     );
 
     const enteredDate = parseInt(dateInput.value);
-    const enteredMonth = parseInt(monthInput.value);
+    const enteredMonth = parseInt(monthInput.value) - 1;
     const enteredYear = parseInt(yearInput.value);
     if (
       enteredDate >= 1 &&
@@ -67,6 +79,8 @@ export default function Calendar() {
       console.log(
         `Selected Date: ${enteredYear}-${enteredMonth + 1}-${enteredDate}`
       );
+      receivePlannerData();
+      sendPlannerData();
     } else {
       toast({
         title: "Error Notification!",
@@ -83,6 +97,59 @@ export default function Calendar() {
         ),
       });
       console.log("Invalid date, month, or year entered");
+    }
+  };
+  const handleGoalChange = (event) => {
+    setGoal(event.target.value);
+  };
+
+  const handleNoteChange = (event) => {
+    setNote(event.target.value);
+  };
+  const sendPlannerData = async () => {
+    const apiUrl = "https://pro-go.onrender.com/api/planner/add";
+
+    try {
+      const response = await axios.post(
+        apiUrl,
+        {
+          date: `${selectedDate}-${selectedMonth + 1}-${selectedYear}`,
+          taskList: taskList,
+          goals: goal,
+          note: note,
+        },
+        {
+          headers: {
+            "auth-token": authToken,
+          },
+        }
+      );
+      console.log(selectedDate, selectedMonth + 1, selectedYear);
+      if (response.status === 201) {
+        console.log("Planner data added successfully:", response.data);
+      } else {
+        console.error("Failed to add planner data:", response.data);
+      }
+    } catch (error) {
+      console.error("Error while making API call:", error);
+    }
+  };
+  const receivePlannerData = async () => {
+    // const apiUrl = "https://pro-go.onrender.com/api/planner/";
+    const formattedDate = `${selectedDate}-${
+      selectedMonth + 1
+    }-${selectedYear}`;
+    const apiUrl = `https://pro-go.onrender.com/api/planner/${formattedDate}`;
+    try {
+      const response = await axios.get(apiUrl, {
+        headers: {
+          "auth-token": authToken,
+        },
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -168,11 +235,17 @@ export default function Calendar() {
                 <h1>Planner</h1>
                 <h4>TO DO LIST</h4>
                 <div className="toDoList">
-                  <ToDoList />
+                  <ToDoList onTaskListChange={handleTaskListChange} />
                 </div>
                 <div className="goalContainer">
                   <h3>GOALS</h3>
-                  <input type="textarea" maxLength={15} />
+                  <textarea
+                    type="textarea"
+                    maxLength={200}
+                    style={{ height: "9rem", width: "20vw", resize: "none" }}
+                    value={goal}
+                    onChange={handleGoalChange}
+                  />
                 </div>
               </div>
               <div>
@@ -207,7 +280,13 @@ export default function Calendar() {
             </div>
             <div className="notesContainer">
               <label>Notes</label>
-              <input className="notes" type="text" maxLength={80} />
+              <input
+                className="notes"
+                type="text"
+                maxLength={80}
+                value={note}
+                onChange={handleNoteChange}
+              />
             </div>
           </div>
         </div>

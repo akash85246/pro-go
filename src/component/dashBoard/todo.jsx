@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./todo.css";
-export default function ToDoList() {
+
+export default function ToDoList({ onTaskListChange }) {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
@@ -16,6 +17,8 @@ export default function ToDoList() {
         setTasks([...tasks, newTask]);
       }
       setNewTask("");
+      // Notify the parent component about the updated task list
+      onTaskListChange([...tasks, newTask]);
     }
   };
 
@@ -23,6 +26,8 @@ export default function ToDoList() {
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
     setTasks(updatedTasks);
+    // Notify the parent component about the updated task list
+    onTaskListChange(updatedTasks);
   };
 
   const editTask = (index) => {
@@ -32,7 +37,7 @@ export default function ToDoList() {
 
   return (
     <>
-      <div className="editTaskBar" >
+      <div className="editTaskBar">
         <input
           type="text"
           value={newTask}
@@ -43,12 +48,11 @@ export default function ToDoList() {
           {editingIndex !== null ? "Save" : "Add"}
         </button>
       </div>
-      <ul >
+      <ul>
         {tasks.map((task, index) => (
           <li key={index}>
             <input type="checkbox" onChange={() => deleteTask(index)} />
-
-            <p> {task}</p>
+            <p>{task}</p>
             <button onClick={() => editTask(index)}>Edit</button>
           </li>
         ))}

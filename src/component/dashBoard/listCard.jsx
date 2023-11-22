@@ -1,10 +1,10 @@
 import "./listCard.css";
 import React, { useState } from "react";
-import CardPop from "./cardPop";
 export default function ListCard(props) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const handleInputClick = () => {
     setIsPopupOpen(true);
+    props.onInputClick(props.listId);
   };
   return (
     <>
@@ -17,9 +17,6 @@ export default function ListCard(props) {
           onClick={handleInputClick}
         ></input>
       </div>
-      {isPopupOpen && (
-        <CardPop heading={props.name} onClose={() => setIsPopupOpen(false)} />
-      )}
     </>
   );
 }

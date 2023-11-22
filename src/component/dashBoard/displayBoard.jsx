@@ -49,6 +49,7 @@ export default function MyBoard() {
         {
           name: listTitle,
           boardId: boardId,
+          color: "white",
         },
         {
           headers: {
@@ -68,6 +69,7 @@ export default function MyBoard() {
     } catch (error) {
       console.error("Error adding list:", error);
       console.log("Error response from server:", error.response);
+      console.log(boardId);
       console.log(authToken);
     } finally {
       setLoading(false);
