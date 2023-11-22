@@ -126,6 +126,10 @@ export default function Calendar() {
       );
       console.log(selectedDate, selectedMonth + 1, selectedYear);
       if (response.status === 201) {
+        setSelectedMonth(null);
+        setSelectedYear(null);
+        setSelectedDate(null);
+
         console.log("Planner data added successfully:", response.data);
       } else {
         console.error("Failed to add planner data:", response.data);

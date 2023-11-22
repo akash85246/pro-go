@@ -41,7 +41,11 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
         : null;
       const response = await axios.post(
         apiUrl,
-        { name: boardName, templateLink: templateBackground, templateColor },
+        {
+          name: boardName,
+          templateLink: templateBackground,
+          color: templateColor,
+        },
         { headers: { "auth-token": authToken } }
       );
 

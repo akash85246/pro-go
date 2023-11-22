@@ -71,6 +71,7 @@ export default function MyBoard() {
       console.log("Error response from server:", error.response);
       console.log(boardId);
       console.log(authToken);
+      console.log(listTitle);
     } finally {
       setLoading(false);
     }
