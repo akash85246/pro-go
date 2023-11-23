@@ -44,8 +44,9 @@
 }
 .SearchContainer1 {
   display: flex;
-  height: 2.5rem;
+  height: 2.5rem !important;
   justify-content: center;
+  padding: 0 !important;
   flex-direction: row;
 }
 .searchbar {
@@ -75,4 +76,19 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+.button-container {
+  height: auto !important;
+}
+.activity{
+  overflow-y: scroll;
+  height: 14rem;
+}
+#root > div > div.dashMainContainer > div > div.search > div.activity {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+#root > div > div.dashMainContainer > div > div.search > div.activity > div{
+width: 40%!important;
 }

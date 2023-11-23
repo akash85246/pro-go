@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import Sidebar2 from "./sidebar2";
 import "./workSpace.css";
 import Button from "../utils/button";
@@ -5,26 +6,53 @@ import addIcon from "../../assets/addIcon.svg";
 import searchIcon from "../../assets/searchIcon.svg";
 import DashNav from "./dashNavbar";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useAuth } from "../utils/authContext";
+import TempCard from "../utils/templateCard";
+import axios from "axios";
 import NewBoardPopup from "./createPop";
-export default function workSpace() {
+
+export default function WorkSpace() {
+  const [boardsList, setBoardsList] = useState([]);
   const navigate = useNavigate();
+  const { authToken, setAuthToken } = useAuth();
   const [loading, setLoading] = useState(false);
   const [showNewBoardPopup, setShowNewBoardPopup] = useState(false);
-  // const openNewBoardPopup = () => {
-  //   setShowNewBoardPopup(true);
-  // };
 
   const closeNewBoardPopup = () => {
     setShowNewBoardPopup(false);
   };
+
   function searchFile() {}
 
   function createBoard() {
     setShowNewBoardPopup(true);
-    alert("Creating board:", boardName);
+    console.log("Creating board:", boardName);
   }
-  // function createNewFolder() {}
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch("https://pro-go.onrender.com/api/board/", {
+          method: "GET",
+          headers: {
+            "auth-token": authToken,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setBoardsList(data.data.boardsList);
+        } else {
+          console.error("Error fetching user details");
+        }
+      } catch (error) {
+        console.error("Error fetching user details", error);
+      }
+    };
+
+    fetchUserData();
+  }, [authToken]);
+
   return (
     <div className="workspaceContainer">
       <Sidebar2 selected="home" />
@@ -37,25 +65,13 @@ export default function workSpace() {
               class="addFile"
               label={
                 <>
-                  <img src={addIcon}></img>
+                  <img src={addIcon} alt="Add" />
                   <h4>New Board</h4>
                 </>
               }
               loading={loading}
               onClick={createBoard}
             />
-            {/* <Button
-              type="submit"
-              class="addFolder"
-              label={
-                <>
-                  <img src={addIcon}></img>
-                  <h4>New Project File</h4>
-                </>
-              }
-              loading={loading}
-              onClick={createNewFolder}
-            /> */}
           </div>
           {showNewBoardPopup && (
             <NewBoardPopup
@@ -71,13 +87,12 @@ export default function workSpace() {
                 placeholder="Search all Files"
                 maxLength={50}
               ></input>
-              {/* <image src={searchIcon}></image> */}
               <Button
                 type="submit"
                 class="searchFile"
                 label={
                   <>
-                    <img src={searchIcon}></img>
+                    <img src={searchIcon} alt="Search" />
                   </>
                 }
                 loading={loading}
@@ -87,6 +102,18 @@ export default function workSpace() {
             <div className="lastView">
               <span>Recent Files</span>
               <span>Last viewed</span>
+            </div>
+            <div className="activity">
+              {boardsList.map((board) => (
+                <TempCard
+                  key={board._id}
+                  tempTitle={board.name}
+                  background={board.templateLink}
+                  color={board.color}
+                  // onSelect={() => handleTempCardSelect(board._id)}
+                  // selected1={selectedTempCardId}
+                />
+              ))}
             </div>
             <div className="result"></div>
           </div>
