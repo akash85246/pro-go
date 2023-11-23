@@ -9,6 +9,7 @@ export default function CardPop(props) {
   const { authToken, setAuthToken } = useAuth();
   const [data, setData] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [newListName, setNewListName] = useState("");
   useEffect(() => {
     const apiUrl = `https://pro-go.onrender.com/api/list/${props.listId}/cards`;
 
@@ -20,6 +21,7 @@ export default function CardPop(props) {
     axios
       .get(apiUrl, { headers })
       .then((response) => {
+        fetchListData();
         if (response.data.success) {
           setCardData(response.data.data);
         } else {
@@ -35,8 +37,52 @@ export default function CardPop(props) {
     setSelectedCard(card);
   };
   const handleClose = () => {
-    
     setSelectedCard(null);
+  };
+
+  const fetchListData = async () => {
+    try {
+      const response = await axios.get(
+        `https://pro-go.onrender.com/api/list/${props.listId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      console.log("List data fetched successfully:", response);
+    } catch (error) {
+      console.error("Error fetching list data:", error);
+    }
+  };
+  const handleUpdateListName = async () => {
+    try {
+      const response = await axios.put(
+        `https://pro-go.onrender.com/api/list/${props.listId}/update`,
+        {
+          name: newListName,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      if (response.data.status) {
+        console.log("changed sucess fully");
+        // Update the list name in the UI
+        // fetchListData();
+      } else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      setError("An error occurred while updating the list name.");
+      console.error("Error updating list name:", error);
+    }
   };
   return (
     <>
@@ -68,6 +114,15 @@ export default function CardPop(props) {
                   {/* <p>Card ID: {card._id}</p> */}
                 </div>
               ))}
+              <div>
+                <input
+                  type="text"
+                  placeholder="New List Name"
+                  value={newListName}
+                  onChange={(e) => setNewListName(e.target.value)}
+                />
+                <button onClick={handleUpdateListName}>Update List Name</button>
+              </div>
               <div className="popupbButtons">
                 <button onClick={props.onClose}>Close</button>
                 <button onClick={props.onDeleteList}>Delete list</button>
@@ -75,9 +130,12 @@ export default function CardPop(props) {
             </div>
           )
         )}
+
         <div className="sidebarRight"></div>
       </div>
-      {selectedCard && <PopOutCard card={selectedCard} handleClose={handleClose}/>}
+      {selectedCard && (
+        <PopOutCard card={selectedCard} handleClose={handleClose} />
+      )}
     </>
   );
 }

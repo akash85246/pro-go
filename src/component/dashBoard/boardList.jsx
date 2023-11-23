@@ -6,15 +6,16 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ListCard from "./listCard";
 import CardPop from "./cardPop";
 import "./boardList.css";
-
+import { useEffect } from "react";
 export default function BoardList(props) {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [cardTitle, setCardTitle] = useState("");
-  const [cards, setCards] = useState([]);
+
   const { authToken, setAuthToken } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [cards, setCards] = useState([]);
 
   const [cardPopState, setCardPopState] = useState({
     showCardPop: false,
@@ -66,7 +67,10 @@ export default function BoardList(props) {
       );
       const newCardId = response.data.data.respData._id;
       console.log("API Response:", response.data);
-      setCards([...cards, { id: newCardId, name: cardTitle }]);
+      setCards((prevCards) => [
+        ...(prevCards || []),
+        { id: newCardId, name: cardTitle },
+      ]);
       setIsAddingCard(false);
       setCardTitle("");
     } catch (error) {
@@ -80,6 +84,7 @@ export default function BoardList(props) {
       selectedListId: listId,
     });
   };
+
   const handleDeleteList = async () => {
     try {
       const apiResponse = await axios.delete(
@@ -106,21 +111,42 @@ export default function BoardList(props) {
       console.error("Error deleting list:", error);
     }
   };
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await axios.get(
+          `https://pro-go.onrender.com/api/list/${props.listId}/cards`,
+          {
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+        console.log("my previously added data");
+        setCards(response.data.data.cards);
+        console.log(response.data.data.cards);
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
 
+    fetchCards();
+  }, [props.listId, authToken]);
   return (
     <>
       <div className="boardList" style={{ backgroundColor: props.color }}>
         <h2>{props.listTitle}</h2>
         <div>
-          {cards.map((card) => (
-            <ListCard
-              key={card.id}
-              listId={props.listId}
-              cardId={card.id}
-              name={card.name}
-              onInputClick={handleInputClick}
-            />
-          ))}
+          {cards &&
+            cards.map((card) => (
+              <ListCard
+                key={card.id}
+                listId={props.listId}
+                cardId={card.id}
+                name={card.name}
+                onInputClick={handleInputClick}
+              />
+            ))}
           {isAddingCard ? (
             <div>
               <input
