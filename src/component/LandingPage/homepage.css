@@ -36,23 +36,136 @@
 }
 
 .slider-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(125, 125, 234, 0.9);
+  /* display: none; */
+  position: fixed;
+  left: 0vw;
+  top: 5rem;
+  background-color: white;
   min-width: 200px;
-  color: white;
-  box-shadow: 0 8px 16px 0 blue;
+  color: #2047ce;
+
   z-index: 100000000;
   font-size: 1.2vw;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
+  width: 100%;
+  height: 90vh;
+  border-bottom: 5rem solid grey;
+  padding: 1rem 6rem;
+  justify-content: center;
 }
+.slider-content > h1 {
+  color: #001b66;
+  font-family: Poppins;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  margin: 1rem auto;
+}
+.slider-content > h1 > span {
+  color: #2047ce;
+  font-family: Poppins;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+.solutionContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  margin: 1rem auto;
+  padding: 1rem;
+  gap: 5rem;
+}
+.solutionContainer > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
-.slider:hover .slider-content {
+  margin: auto;
+  width: 30rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.15);
+  width: 22rem;
+  height: 24.375rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+.solutionContainer > div > h3 {
+  color: #2047ce;
+  font-family: Poppins;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 1.125rem */
+  text-align: center;
+  padding: 1rem;
+}
+.solutionContainer > div > p {
+  color: #407bff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  padding: 1rem;
+  height: 20%;
+  padding: 0rem;
+}
+.solutionContainer > div > img {
+  height: 60%;
+  border-bottom: 1px solid black;
+}
+.solutionContainer > div > button {
+  display: inline-flex;
+  padding: 1rem 1.8rem;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #2047ce;
+  color: white;
+  border: 1px solid #2047ce;
+  width: 60%;
+  margin: auto;
+}
+.solutionContainer > div > button:hover {
+  background-color: white;
+  color: #2047ce;
+}
+.resourceContainer {
+  display: flex;
+ 
+  justify-content: space-around;
+}
+.resourceButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 0.75rem;
+background: #FFF;
+box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.15);
+padding:1rem 10rem;
+}
+.resourceButtons > button {
+  background-color: #2047ce;
+  border: 1px solid #2047ce;
+  color: white;
+  width: 18rem;
+  padding: 1rem 1.8rem;
+}
+.resourceButtons > button:hover {
+  color: #2047ce;
+  background-color: white;
+}
+/* .slider:hover .slider-content {
   display: block;
-}
+} */
 
-.slider-content ul {
+/* .slider-content ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -65,7 +178,7 @@
 .slider-content li:hover {
   background-color: white;
   color: #001b66;
-}
+} */
 #root > div.navContainer > nav > div.homePageIcon > h1 {
   min-width: 10vw;
   display: flex;
@@ -197,6 +310,7 @@ a {
 .part1 {
   background-color: #092a84;
   height: 50rem;
+  margin-top: 5rem;
 }
 
 #root > div.containerHome > div > div.part.part1 > div:nth-child(1) > button {

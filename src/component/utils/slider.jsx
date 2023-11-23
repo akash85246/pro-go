@@ -15,9 +15,9 @@ export default function Slider({ title, children }) {
         <span dangerouslySetInnerHTML={{ __html: title }} />
         <span className="arrow-icon">
           {isOpen ? (
-            <img src={downImg} alt="down arrow" style={{ height: "1rem" }} />
+            <img src={upImg} alt="down arrow" style={{ height: "1rem" }} />
           ) : (
-            <img src={upImg} alt="up arrow" style={{ height: "0.5rem" }} />
+            <img src={downImg} alt="up arrow" style={{ height: "0.5rem" }} />
           )}
         </span>
       </button>

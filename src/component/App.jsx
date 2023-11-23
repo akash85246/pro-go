@@ -38,7 +38,7 @@ function App() {
               <Route path="/forgot" element={<Forgotten />} />
               <Route path="/signUp" element={<SignUpForm />} />
               <Route path="/logIn" element={<LoginForm />} />
-              <Route path="/home" element={<Homepage />} />
+              {/* <Route path="/home" element={<Homepage />} /> */}
               <Route path="/otp" element={<Otp />} />
               <Route path="/reset" element={<Reset />} />
               <Route path="/price" element={<Pricing />} />

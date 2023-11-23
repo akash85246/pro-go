@@ -3,13 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import Slider from "./slider";
 import logo from "../../assets/logo.svg";
 import hamImg from "../../assets/hamburgerOpen.svg";
+import solution1Img from "../../assets/solution1.svg";
+import solution2Img from "../../assets/solution2.svg";
+import plan1Img from "../../assets/plan1.svg";
+import plan2Img from "../../assets/plan2.svg";
+import plan3Img from "../../assets/plan3.svg";
+import solution3Img from "../../assets/solution3.svg";
+import resource1Img from "../../assets/resource1.svg";
 import axios from "axios"; // Import Axios
 import { useAuth } from "./authContext";
 import ProfileImg from "./profileImg";
 
 export default function Navbar(props) {
   const { authToken } = useAuth();
-  const [photoUrl, setPhotoUrl] = useState(null); // Add photoUrl state
+  const [photoUrl, setPhotoUrl] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -79,35 +86,86 @@ export default function Navbar(props) {
         </div>
         <div className={`navItems ${isMenuOpen ? "open" : ""}`}>
           <Slider title="Solutions">
-            <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-            </ul>
+            <h1>
+              Take a page out of these pre-built Pro-Go playbooks{" "}
+              <span> designed for all teams</span>
+            </h1>
+            <div className="solutionContainer">
+              <div>
+                <h3>Pro-Go For Marketing Teams</h3>
+                <img src={solution1Img}></img>
+                <p>
+                  Whether launching a new product, campaign, or creating
+                  content, experience how Pro-Go helps marketing teams around
+                  the world organize, plan, and get more done.
+                </p>
+              </div>
+              <div>
+                <h3>Pro-Go For Design Teams</h3>
+                <img src={solution2Img}></img>
+                <p>
+                  From creative brainstorms to the final touches, discover how
+                  Pro-Go helps your design teams deliver with style.
+                </p>
+              </div>
+              <div>
+                <h3>Pro-Go For Remote Teams</h3>
+                <img src={solution3Img}></img>
+                <p>
+                  From team bonding and brainstorming to meetings and project
+                  planning, discover how Pro-Go keeps remote teams connected, no
+                  matter where they’re located around the world.
+                </p>
+              </div>
+            </div>
           </Slider>
           <Slider title="Plans">
-            <ul>
-              <li>Item A</li>
-              <li>Item B</li>
-              <li>Item C</li>
-            </ul>
+            <h1>
+              Whether you’re a team of 2 or 2,000, Pro-Go flexible pricing model
+              means you only <span> pay for what you need.</span>
+            </h1>
+            <div className="solutionContainer">
+              <div>
+                <h3>Professional</h3>
+                <img src={plan1Img}></img>
+                <button>Go to Pricing</button>
+              </div>
+              <div>
+                <h3>Standard</h3>
+                <img src={plan2Img}></img>
+                <button>Go to Pricing</button>
+              </div>
+              <div>
+                <h3>Premium</h3>
+                <img src={plan3Img}></img>
+                <button>Go to Pricing</button>
+              </div>
+            </div>
           </Slider>
           <Link to="/price" onClick={pricePage}>
             Pricing
           </Link>
           <Slider title="Resources">
-            <ul>
-              <li onClick={() => navigate("/dashboard")}>Dash Board</li>
-              <li onClick={() => navigate("/profile")}>Profile</li>
-              <li>Item C</li>
-            </ul>
+            <h1>
+              Whether you’re a team of 2 or 2,000, Pro-Go flexible pricing model
+              means you only <span> pay for what you need.</span>
+            </h1>
+            <div className="resourceContainer">
+              <div className="resourceButtons">
+                <button>Pro-Go Webinars</button>
+                <button> Pro-Go Remote</button>
+                <button>Pro-Go Developer</button>
+                <button>Pro-Go Customer Stories</button>
+              </div>
+              <img src={resource1Img}></img>
+            </div>
           </Slider>
           {authToken !== null ? (
             <>
               <button className="profileNavButton" onClick={profilePage}>
                 Hello User!
               </button>
-              {props.showProfilePhoto  && (
+              {props.showProfilePhoto && (
                 <ProfileImg
                   onPhotoChange={handlePhotoChange}
                   isNavbar="true"
