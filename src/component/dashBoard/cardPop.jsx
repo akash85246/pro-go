@@ -39,7 +39,12 @@ export default function CardPop(props) {
   const handleClose = () => {
     setSelectedCard(null);
   };
-
+  const handleCardDelete = (cardId) => {
+   
+    setSelectedCard(null);
+    const updatedCards = cardData.cards.filter((card) => card._id !== cardId);
+    setCardData((prev) => ({ ...prev, cards: updatedCards }));
+  };
   const fetchListData = async () => {
     try {
       const response = await axios.get(
@@ -74,8 +79,6 @@ export default function CardPop(props) {
 
       if (response.data.status) {
         console.log("changed sucess fully");
-        // Update the list name in the UI
-        // fetchListData();
       } else {
         setError(response.data.message);
       }
@@ -134,7 +137,11 @@ export default function CardPop(props) {
         <div className="sidebarRight"></div>
       </div>
       {selectedCard && (
-        <PopOutCard card={selectedCard} handleClose={handleClose} />
+        <PopOutCard
+          card={selectedCard}
+          handleClose={handleClose}
+          onCardDelete={handleCardDelete}
+        />
       )}
     </>
   );

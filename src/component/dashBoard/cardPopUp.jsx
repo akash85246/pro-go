@@ -111,7 +111,7 @@ export default function PopOutCard(props) {
       );
 
       console.log("Comment deleted successfully:", response.data.message);
-      fetchComments(); // Refresh comments after deletion
+      fetchComments();
     } catch (error) {
       console.error("Error deleting comment:", error.message);
     }
@@ -133,6 +133,7 @@ export default function PopOutCard(props) {
       );
 
       console.log("Card deleted successfully:", response.data.message);
+      props.onCardDelete(props.card._id);
       props.handleClose();
     } catch (error) {
       console.error("Error deleting card:", error.message);

@@ -49,6 +49,7 @@ export default function BoardList(props) {
       selectedListId: null,
       heading: null,
     });
+    fetchCards();
   };
   const handleAddCardSubmit = async () => {
     try {
@@ -95,8 +96,7 @@ export default function BoardList(props) {
           },
         }
       );
-      // const updatedCards = cards.filter((card) => card.id !== props.listId);
-      // setCards(updatedCards);
+     
       if (apiResponse.data.success) {
         const updatedCards = cards.filter((card) => card.id !== props.listId);
         setCards(updatedCards);
@@ -113,24 +113,25 @@ export default function BoardList(props) {
       console.error("Error deleting list:", error);
     }
   };
+   const fetchCards = async () => {
+     try {
+       const response = await axios.get(
+         `https://pro-go.onrender.com/api/list/${props.listId}/cards`,
+         {
+           headers: {
+             "auth-token": authToken,
+           },
+         }
+       );
+       console.log("my previously added data");
+       setCards(response.data.data.cards);
+       console.log(response.data.data.cards);
+     } catch (error) {
+       console.error("Error fetching cards:", error);
+     }
+   };
   useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const response = await axios.get(
-          `https://pro-go.onrender.com/api/list/${props.listId}/cards`,
-          {
-            headers: {
-              "auth-token": authToken,
-            },
-          }
-        );
-        console.log("my previously added data");
-        setCards(response.data.data.cards);
-        console.log(response.data.data.cards);
-      } catch (error) {
-        console.error("Error fetching cards:", error);
-      }
-    };
+   
 
     fetchCards();
   }, [props.listId, authToken]);
