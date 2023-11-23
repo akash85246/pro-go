@@ -32,3 +32,98 @@
 .cardPopContain {
   overflow-y: scroll;
 }
+.cardPopUpContainer {
+  position: fixed;
+  background-color: #3498db; /* Blue background color */
+  z-index: 100000;
+  top: 3rem;
+  width: 60%;
+  height: 70%;
+  padding: 1rem;
+  color: white; /* Text color */
+}
+
+.cardPopSidebar {
+  background-color: #2980b9; /* Darker blue sidebar */
+  margin: -1rem;
+}
+
+.cardPopUpMain {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  height: 100%;
+}
+
+.cardPopSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.cardPopSidebar p {
+  margin: auto;
+  cursor: pointer;
+}
+
+.cardPopContain input {
+  color: #3498db; /* Blue text color */
+  border: 1px solid #3498db; /* Blue border color */
+}
+
+.cardPopContain {
+  overflow-y: scroll;
+}
+
+/* Add styles for the 'Add' buttons */
+.add {
+  background-color: #3498db; /* Blue background color */
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.add:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Add styles for the comment list */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Add styles for update and delete buttons in comments */
+li button {
+  margin-left: 8px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+/* Add styles for the Checklist section */
+.Checklist {
+  margin-top: 16px;
+}
+
+/* Adjust styles for the input in the Checklist section */
+.Checklist input {
+  color: #3498db; /* Blue text color */
+  border: 1px solid #3498db; /* Blue border color */
+}
+
+/* Add styles for the Sidebar options */
+.cardPopSidebar p {
+  padding: 8px;
+  background-color: #2980b9; /* Darker blue background color */
+  color: white;
+  cursor: pointer;
+}
+
+.cardPopSidebar p:hover {
+  background-color: #2575a4; /* Slightly darker blue on hover */
+}

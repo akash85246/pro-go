@@ -42,7 +42,7 @@
   min-width: 200px;
   color: white;
   box-shadow: 0 8px 16px 0 blue;
-  z-index: 1;
+  z-index: 100000000;
   font-size: 1.2vw;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
@@ -704,6 +704,7 @@ a {
   width: 4rem;
   margin-top: -400%;
   margin-left: -3.5rem;
+  border-radius: 50%;
 }
 
 @media only screen and (max-width: 1300px) {

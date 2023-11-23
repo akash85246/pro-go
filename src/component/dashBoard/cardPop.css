@@ -83,12 +83,12 @@
 
 .popCard {
   
-  background-color: #4caf50; 
+ background-color: #3498db; 
   color: #fff; 
 }
 
 .popCard:hover {
-  background-color: #45a049; 
+  background-color: #2980b9; 
 }
 
 .popDescription {
@@ -100,15 +100,14 @@
 
 .popupbButtons button {
  
-  background-color: #e8491d; 
+ background-color: #3498db;
 }
 
 .popupbButtons button:hover {
-  background-color: #d33a1a;
-
-
+ background-color: #2980b9; 
+}
 .updateButton {
-  background-color: #3498db;
+   background-color: #3498db;
   color: white;
   border: none;
   padding: 8px;
@@ -118,4 +117,11 @@
 
 .updateButton:hover {
   background-color: #2980b9; 
+}
+#root > div > div.dashMainContainer > div.dashMain > div > div > div > div.cardPopContainer > div.popCardList > div:nth-child(2) > div{
+  display: flex;
+  flex-direction: column;
+}
+#root > div > div.dashMainContainer > div.dashMain > div > div > div > div.cardPopContainer > div.popCardList > div:nth-child(2){
+  margin: auto;
 }
