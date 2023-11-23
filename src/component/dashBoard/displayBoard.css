@@ -33,6 +33,8 @@
 }
 .addListButton {
   cursor: pointer;
+  height: 2rem;
+  width: 10rem;
 }
 .addListButton:hover {
   background-color: silver !important;
@@ -93,4 +95,12 @@
 .addCardButton:hover {
   color: grey;
   background-color: white;
+}
+#root > div > div.dashMainContainer > div.dashMain > div > div > h1 {
+  color: #011c67;
+  font-family: Poppins;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }

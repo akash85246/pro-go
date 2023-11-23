@@ -1,4 +1,3 @@
-// boardList.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../utils/authContext";
@@ -7,6 +6,8 @@ import ListCard from "./listCard";
 import CardPop from "./cardPop";
 import "./boardList.css";
 import { useEffect } from "react";
+import openArrow from "../../assets/arrowIcon.svg";
+import closeArrow from "../../assets/closearrow.svg";
 export default function BoardList(props) {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [cardTitle, setCardTitle] = useState("");
@@ -96,7 +97,7 @@ export default function BoardList(props) {
           },
         }
       );
-     
+
       if (apiResponse.data.success) {
         const updatedCards = cards.filter((card) => card.id !== props.listId);
         setCards(updatedCards);
@@ -113,31 +114,32 @@ export default function BoardList(props) {
       console.error("Error deleting list:", error);
     }
   };
-   const fetchCards = async () => {
-     try {
-       const response = await axios.get(
-         `https://pro-go.onrender.com/api/list/${props.listId}/cards`,
-         {
-           headers: {
-             "auth-token": authToken,
-           },
-         }
-       );
-       console.log("my previously added data");
-       setCards(response.data.data.cards);
-       console.log(response.data.data.cards);
-     } catch (error) {
-       console.error("Error fetching cards:", error);
-     }
-   };
+  const fetchCards = async () => {
+    try {
+      const response = await axios.get(
+        `https://pro-go.onrender.com/api/list/${props.listId}/cards`,
+        {
+          headers: {
+            "auth-token": authToken,
+          },
+        }
+      );
+      console.log("my previously added data");
+      setCards(response.data.data.cards);
+      console.log(response.data.data.cards);
+    } catch (error) {
+      console.error("Error fetching cards:", error);
+    }
+  };
   useEffect(() => {
-   
-
     fetchCards();
   }, [props.listId, authToken]);
   return (
     <>
-      <div className="boardList" style={{ backgroundColor: props.color }}>
+      <div
+        className="boardList"
+        style={{ borderTop: "20px solid " + props.color }}
+      >
         <h2>{props.listTitle}</h2>
         <div>
           {cards &&
@@ -166,13 +168,17 @@ export default function BoardList(props) {
                 >
                   Add card
                 </button>
-                <button onClick={handleCloseCard}>x</button>
+                <button onClick={handleCloseCard}>
+                  <img src={closeArrow} style={{width:"0.8rem"}}></img>
+                </button>
               </div>
             </div>
           ) : (
-            <button className="addCardButton" onClick={handleAddCardClick}>
-              <span>+</span>
-              <span> Add card</span>
+            <button
+              //  className="addCardButton"
+              onClick={handleAddCardClick}
+            >
+              <img src={openArrow} style={{width:"0.8rem"}}></img>
             </button>
           )}
         </div>

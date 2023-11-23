@@ -14,7 +14,7 @@ export default function Member() {
   const handleInvite = async () => {
     try {
       const response = await axios.post(
-        "https://pro-go.onrender.com/api/board/655bb24cea0b824b7278f5ae/addMember",
+        "https://pro-go.onrender.com/api/add-member",
         {
           email: email,
         },

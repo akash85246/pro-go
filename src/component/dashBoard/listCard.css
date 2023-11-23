@@ -12,7 +12,8 @@
   outline: none;
   border-radius: 5px;
   padding: 0 1rem;
-  width: 100%;
+  width: 105%;
+  z-index: 100000;
 }
 .cardContainer {
   margin: 1rem 0;

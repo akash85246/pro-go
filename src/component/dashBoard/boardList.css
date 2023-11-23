@@ -7,14 +7,14 @@
   padding: 1rem;
   padding-top: 0.5rem;
   border-radius: 10px;
-
+  background-color: black !important;
   /* overflow: hidden; */
   min-width: 15rem;
   /* padding:0 1rem; */
   /*  */
 }
 .boardList > div {
-  max-height: 62vh;
+  max-height: 50vh;
   overflow-y: scroll;
   padding: 0 1rem;
   margin-left: -1rem;
@@ -22,18 +22,15 @@
   flex-direction: column;
   filter: brightness(110%);
 }
+.boardList > div::-webkit-scrollbar {
+  width: 0; /* Set the width to 0 */
+}
 .inputCardTitle {
   outline: none;
   color: grey;
   padding: 0 1rem;
 }
-/* .boardList > h2 {
-  position: fixed;
-  width: 9rem;
-  background-color: grey;
-} */
 
-/* listCard.css */
 
 .cardContainer {
   position: relative;
@@ -41,21 +38,15 @@
 }
 
 .cardTitle {
-  cursor: pointer; /* Add a pointer cursor to indicate the input is clickable */
-}
-
-/* cardPop.css */
-
-/* Additional styling for the close button (optional) */
-/* .closeButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   cursor: pointer;
-  font-size: 16px;
-  color: #888;
 }
 
-.closeButton:hover {
-  color: #555;
-} */
+.boardList h2 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 1rem auto;
+}

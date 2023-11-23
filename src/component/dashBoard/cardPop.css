@@ -47,18 +47,75 @@
 .popupbButtons {
   display: flex;
   width: 100%;
- 
+
   justify-content: space-between;
   margin-top: 1rem;
 }
-.popCardList{
+.popCardList {
   display: flex;
   gap: 1rem;
 }
-.popCard{
+.popCard {
   background-color: #ccc;
   color: white;
   cursor: pointer;
-  padding:0.5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 10px;
+}
+
+.cardPopContainer {
+  
+  background-color: #f8f8f8; 
+}
+
+.cardPopContainer > h1 {
+  /* ... existing styles ... */
+  background-color: #f8f8f8; 
+  padding: 10px;
+  border-bottom: 1px solid #ccc; }
+
+.cardPopContainer input {
+  
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.popCard {
+  
+  background-color: #4caf50; 
+  color: #fff; 
+}
+
+.popCard:hover {
+  background-color: #45a049; 
+}
+
+.popDescription {
+  border: 1px solid #ddd;
+  padding: 8px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.popupbButtons button {
+ 
+  background-color: #e8491d; 
+}
+
+.popupbButtons button:hover {
+  background-color: #d33a1a;
+
+
+.updateButton {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.updateButton:hover {
+  background-color: #2980b9; 
 }

@@ -1,5 +1,3 @@
-// Sidebar.js
-
 import React, { useState } from "react";
 import "./sidebar.css";
 import boardImg from "../../assets/boardImg.svg";
@@ -30,7 +28,7 @@ export default function Sidebar(props) {
     navigate("/calender");
   }
   function toTable() {
-    navigate("/table");
+    navigate("/workspace");
   }
   function toHome() {
     navigate("/home");

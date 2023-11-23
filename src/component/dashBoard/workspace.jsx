@@ -29,7 +29,7 @@ export default function WorkSpace() {
     console.log("Creating board:", boardName);
   }
   const handleTempCardClick = (boardId, name, background, color) => {
-    navigate("/myboard", {
+    navigate("/listandcards", {
       state: { boardId, name, background, color },
     });
   };

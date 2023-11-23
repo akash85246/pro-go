@@ -1,4 +1,5 @@
 import Sidebar from "./sidebar";
+import "./defaultBoard.jsx";
 import logo from "../../assets/footer_logo.svg";
 import "./displayBoard.css";
 import ProfileImg from "../utils/profileImg";
@@ -11,6 +12,8 @@ import { background } from "@chakra-ui/react";
 import { useAuth } from "../utils/authContext";
 import BoardList from "./boardList";
 import { useEffect } from "react";
+import openArrow from "../../assets/arrowIcon.svg";
+import closeArrow from "../../assets/closearrow.svg";
 export default function MyBoard() {
   const { authToken, setAuthToken } = useAuth();
   const location = useLocation();
@@ -163,6 +166,7 @@ export default function MyBoard() {
         <div className="dashMain">
           <div className="myBoard" style={backgroundStyle}>
             <div style={{ backdropFilter: "blur(10px)" }}>
+              <h1 style={{ color: color }}>Tables & More</h1>
               <div className="listsContainer">
                 {lists.map((list) => (
                   <BoardList
@@ -196,17 +200,17 @@ export default function MyBoard() {
                         Add list
                       </button>
                       <button className="close" onClick={handleCloseListClick}>
-                        x
+                        <img src={closeArrow} style={{ width: "0.8rem" }}></img>
                       </button>
                     </div>
                   </div>
                 ) : (
                   <button
                     className="addListButton"
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: color, padding: "0.3rem " }}
                     onClick={handleAddListClick}
                   >
-                    <img src={addIcon} alt="Add Icon" />
+                    <img src={openArrow} style={{ width: "0.8rem" }}></img>
                     Add list
                   </button>
                 )}

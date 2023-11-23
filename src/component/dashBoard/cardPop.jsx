@@ -40,7 +40,6 @@ export default function CardPop(props) {
     setSelectedCard(null);
   };
   const handleCardDelete = (cardId) => {
-   
     setSelectedCard(null);
     const updatedCards = cardData.cards.filter((card) => card._id !== cardId);
     setCardData((prev) => ({ ...prev, cards: updatedCards }));
@@ -118,13 +117,20 @@ export default function CardPop(props) {
                 </div>
               ))}
               <div>
-                <input
-                  type="text"
-                  placeholder="New List Name"
-                  value={newListName}
-                  onChange={(e) => setNewListName(e.target.value)}
-                />
-                <button onClick={handleUpdateListName}>Update List Name</button>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="New List Name"
+                    value={newListName}
+                    onChange={(e) => setNewListName(e.target.value)}
+                  />
+                  <button
+                    className="updateButton"
+                    onClick={handleUpdateListName}
+                  >
+                    Update List Name
+                  </button>
+                </div>
               </div>
               <div className="popupbButtons">
                 <button onClick={props.onClose}>Close</button>

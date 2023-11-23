@@ -55,7 +55,7 @@ export default function Sidebar2(props) {
           </li>
           <li
             className={isItemSelected("table") ? "selected" : ""}
-            onClick={() => handleItemClick("table")}
+            onClick={() => handleItemClick("workspace")}
           >
             <img src={table} alt="Table Icon" />
           </li>

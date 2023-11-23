@@ -76,19 +76,20 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  height: auto !important;
 }
 .button-container {
   height: auto !important;
 }
-.activity{
+.activity {
   overflow-y: scroll;
-  height: 14rem;
+  height: 14rem!important;
 }
 #root > div > div.dashMainContainer > div > div.search > div.activity {
-display: flex;
-flex-direction: column;
-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-#root > div > div.dashMainContainer > div > div.search > div.activity > div{
-width: 40%!important;
+#root > div > div.dashMainContainer > div > div.search > div.activity > div {
+  width: 40% !important;
 }

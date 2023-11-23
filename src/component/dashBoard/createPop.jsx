@@ -17,6 +17,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const navigate = useNavigate();
   const templates = [
+    { tempTitle: "Default", background: "#ffff", color: "blue" },
     { tempTitle: "Abstract", background: abstractImg, color: "#0000FF" },
     { tempTitle: "Color Splash", background: splashImg, color: "#FF0000" },
     { tempTitle: "Flowform", background: flowformImg, color: "blue" },
@@ -54,7 +55,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
           "Board created successfully:",
           response.data.data.respData._id
         );
-        navigate("/myboard", {
+        navigate("/listandcards", {
           state: {
             boardId: response.data.data.respData._id,
             name: boardName,
