@@ -28,7 +28,11 @@ export default function WorkSpace() {
     setShowNewBoardPopup(true);
     console.log("Creating board:", boardName);
   }
-
+  const handleTempCardClick = (boardId, name, background, color) => {
+    navigate("/myboard", {
+      state: { boardId, name, background, color },
+    });
+  };
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -112,6 +116,14 @@ export default function WorkSpace() {
                   color={board.color}
                   // onSelect={() => handleTempCardSelect(board._id)}
                   // selected1={selectedTempCardId}
+                  onSelect={() =>
+                    handleTempCardClick(
+                      board._id,
+                      board.name,
+                      board.templateLink,
+                      board.color
+                    )
+                  }
                 />
               ))}
             </div>

@@ -77,37 +77,37 @@ export default function MyBoard() {
       setLoading(false);
     }
   };
-useEffect(() => {
-  const fetchLists = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://pro-go.onrender.com/api/board/${boardId}/lists`,
-        {
-          headers: {
-            "auth-token": authToken,
-          },
-        }
-      );
+  useEffect(() => {
+    const fetchLists = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `https://pro-go.onrender.com/api/board/${boardId}/lists`,
+          {
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
 
-      console.log("API Response:", response.data);
+        console.log("API Response:", response.data);
 
-      const fetchedLists = response.data.data.lists.map((list) => ({
-        id: list._id,
-        name: list.name,
-      }));
+        const fetchedLists = response.data.data.lists.map((list) => ({
+          id: list._id,
+          name: list.name,
+        }));
 
-      setLists(fetchedLists);
-    } catch (error) {
-      console.error("Error fetching lists:", error);
-      console.log("Error response from server:", error.response);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setLists(fetchedLists);
+      } catch (error) {
+        console.error("Error fetching lists:", error);
+        console.log("Error response from server:", error.response);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchLists();
-}, [boardId, authToken]);
+    fetchLists();
+  }, [boardId, authToken]);
 
   return (
     <div className="workspaceContainer">
@@ -170,6 +170,7 @@ useEffect(() => {
                     listTitle={list.name}
                     color={color}
                     boardId={boardId}
+                    setLists={setLists}
                   />
                 ))}
                 {/* <div key={list.id} className="listItem">

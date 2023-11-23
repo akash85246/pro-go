@@ -102,7 +102,9 @@ export default function BoardList(props) {
         setCards(updatedCards);
 
         console.log("List deleted successfully");
-
+        props.setLists((prevLists) =>
+          prevLists.filter((list) => list.id !== props.listId)
+        );
         handleCloseCardPop();
       } else {
         console.error("Error deleting list:", apiResponse.data.message);
