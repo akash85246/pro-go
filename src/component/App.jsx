@@ -38,7 +38,6 @@ function App() {
               <Route path="/forgot" element={<Forgotten />} />
               <Route path="/signUp" element={<SignUpForm />} />
               <Route path="/logIn" element={<LoginForm />} />
-
               <Route path="/otp" element={<Otp />} />
               <Route path="/reset" element={<Reset />} />
               <Route path="/price" element={<Pricing />} />
@@ -51,12 +50,10 @@ function App() {
               <Route path="/calender" element={<Calender />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/listandcards" element={<ListAndCard />} />
-
-              <Route path="/" element={<Homepage />} />
+              <Route path="/*" element={<Homepage />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </Router>
-         
         </ChakraProvider>
       </AuthProvider>
     </>
