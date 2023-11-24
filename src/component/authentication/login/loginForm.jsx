@@ -126,7 +126,7 @@ function LoginForm() {
           position: "top-centre",
           status: "success",
         });
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
       toast({

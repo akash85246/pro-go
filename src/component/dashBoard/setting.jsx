@@ -4,11 +4,12 @@ import DashNav from "./dashNavbar";
 import protectedImg from "../../assets/protected.svg";
 import starImg from "../../assets/Star.svg";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "./sidebar";
 export default function Setting() {
   const navigate = useNavigate();
   return (
     <div className="workspaceContainer">
-      <Sidebar2 selected="setting" />
+      <Sidebar />
       <div className="dashMainContainer">
         <DashNav />
         <div className="dashMain">

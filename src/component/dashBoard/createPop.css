@@ -6,7 +6,7 @@
   top: 6rem;
   padding: 1rem;
   position: absolute;
-  
+
   border-radius: 10px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -23,10 +23,10 @@
 .popup > h2 {
   font-size: 1.5rem;
 }
-.popup>h3{
+.popup > h3 {
   font-size: 1rem;
 }
-.popup>div{
+.popup > div {
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
@@ -40,38 +40,53 @@
   padding: 1rem 0;
   margin-left: 0rem !important;
 }
-.popup>div>label{
+.popup > div > label {
   font-size: 1rem;
 }
-.popup>div>input{
+.popup > div > input {
   font-size: 1rem;
- border: none;
- outline: none;
- padding: 5px;
- border-radius: 10px;
- color:  rgba(1, 28, 103);
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 10px;
+  color: rgba(1, 28, 103);
 }
-.popup>div>button{
-  background-color:rgba(1, 28, 103);
-  color: #fff; 
-  padding:5px 10px ; 
-  font-size: 1.2rem; 
+.popup > div > button {
+  background-color: rgba(1, 28, 103);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 1.2rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease
+  transition: background-color 0.3s ease;
 }
-.popup>div>button:hover{
-  background-color:white;
-  color: rgba(1, 28, 103); 
-  transition: background-color 0.3s ease
+.create {
+  background-color: rgba(1, 28, 103);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
-.popButton{
+.create:hover {
+  background-color: white;
+  color: rgba(1, 28, 103);
+  transition: background-color 0.3s ease;
+}
+.popup > div > button:hover {
+  background-color: white;
+  color: rgba(1, 28, 103);
+  transition: background-color 0.3s ease;
+}
+.popButton {
   display: flex;
   gap: 0.5rem;
 }
-.popup>div>p{
+.popup > div > p {
   font-size: 1rem;
   padding: 0.5rem;
-
 }

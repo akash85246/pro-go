@@ -9,11 +9,15 @@ import naturalImg from "../../assets/natural.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/authContext";
 import axios from "axios";
-
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 import "./createPop.css";
-
+import Button from "../utils/button";
 export default function NewBoardPopup({ onClose, onSubmit }) {
+  const toast = useToast();
   const [boardName, setBoardName] = useState("");
+   const [loading, setLoading] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const navigate = useNavigate();
   const templates = [
@@ -35,6 +39,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
 
   const createBoardOnServer = async (boardName, templateColor) => {
     console.log("mine", templateColor);
+    setLoading(true);
     try {
       const apiUrl = "https://pro-go.onrender.com/api/board/add";
       const templateBackground = selectedTemplate
@@ -50,15 +55,26 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
         { headers: { "auth-token": authToken } }
       );
 
-      if (response.status === 201 && response.data.success) {
+      if (
+        response.status === 201 &&
+        response.data &&
+        response.data.data &&
+        response.data.data.respData
+      ) {
         console.log(
           "Board created successfully:",
           response.data.data.respData._id
         );
+        console.log({
+          boardId: response.data.data.respData._id,
+          name: boardName,
+          background: selectedTemplate.background,
+          color: selectedTemplate.color,
+        });
         navigate("/listandcards", {
           state: {
             boardId: response.data.data.respData._id,
-            name: boardName,
+            name: boardName || Math.floor(Math.random() * 100) + 1,
             background: selectedTemplate.background,
             color: selectedTemplate.color,
           },
@@ -67,6 +83,21 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
         console.error("Error creating board:", response.data);
       }
     } catch (error) {
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response.data.message || "An error occurred"}
+          </Box>
+        ),
+      });
+      setLoading(false);
       console.error("An error occurred:", error);
     }
   };
@@ -86,6 +117,20 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
       createBoardOnServer(boardName, templateColor);
     } else {
       console.error("Please select a template");
+      toast({
+        title: "Error Notification!",
+        description: "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {"Please select a template"}
+          </Box>
+        ),
+      });
     }
   };
 
@@ -115,7 +160,13 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
           />
         </div>
         <div className="popButton">
-          <button onClick={handleSubmit}>Create</button>
+          <Button
+            type="submit"
+            class="create"
+            label="Create"
+            loading={loading}
+            onClick={handleSubmit}
+          />
           <button onClick={() => navigate("/board")}>
             Start with template
           </button>

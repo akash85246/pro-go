@@ -10,9 +10,9 @@
   margin: 0;
 }
 .workSpaceContainer {
-  display: grid;
-  grid-template-columns: 1.4fr 4fr;
-  color: white;
+  /* display: grid;
+  grid-template-columns: 1.4fr 4fr; */
+display: flex;  color: white;
 }
 .navbarDash {
   display: flex;
@@ -277,6 +277,7 @@
 .dashMain {
   border-radius: 10px;
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
 }
 
@@ -371,4 +372,32 @@
   color: #011c67;
   background-color: white;
   font-weight: 900;
+}
+.sidebarContain.close {
+  margin-left: 50%;
+}
+
+#root > div > div.sidebar.close {
+  width: 150px !important;
+}
+#root > div > div.sidebar.close > div.sidebarLogo > li {
+  /* margin: 0; */
+  margin-left: -8rem;
+}
+/* #root
+  > div
+  > div.sidebar.close
+  > div.sidebarContain
+  > ul
+  > li:nth-child(1)
+  > img {
+  margin-left: 50%;
+} */
+#root > div > div.sidebar.close > div.sidebarContain > ul > li {
+  margin-left: 50%;
+}
+.toggleButton >.open{
+  position: fixed;
+ left: 8rem;
+ top:5rem;
 }

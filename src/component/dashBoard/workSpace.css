@@ -1,6 +1,7 @@
 .workspaceContainer {
-  display: grid;
-  grid-template-columns: 1fr 8fr;
+  /* display: grid;
+  grid-template-columns: 1fr 8fr; */
+  display: flex;
   color: white;
 }
 .addButtons {

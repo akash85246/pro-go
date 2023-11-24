@@ -30,7 +30,7 @@ export default function Sidebar2(props) {
             <img src={logo} alt="Logo Icon" />
           </li>
           <li
-            className={isItemSelected("home") ? "selected" : ""}
+            className={isItemSelected("") ? "selected" : ""}
             onClick={() => handleItemClick("dashboard")}
           >
             <img src={home} alt="Home Icon" />

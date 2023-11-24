@@ -6,6 +6,7 @@ import ProfileImg from "../utils/profileImg";
 import include from "../../assets/User_add_alt.svg";
 import { useState } from "react";
 import { useAuth } from "../utils/authContext";
+import Sidebar from "./sidebar";
 export default function Member() {
   const [inviteStatus, setInviteStatus] = useState(null);
   const [showInput, setShowInput] = useState(false);
@@ -41,7 +42,7 @@ export default function Member() {
   };
   return (
     <div className="workspaceContainer">
-      <Sidebar2 selected="member" />
+      <Sidebar />
       <div className="dashMainContainer">
         <DashNav />
         <div className="dashMain">

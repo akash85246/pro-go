@@ -10,7 +10,7 @@ import { useAuth } from "../utils/authContext";
 import TempCard from "../utils/templateCard";
 import axios from "axios";
 import NewBoardPopup from "./createPop";
-
+import Sidebar from "./sidebar";
 export default function WorkSpace() {
   const [boardsList, setBoardsList] = useState([]);
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ export default function WorkSpace() {
 
   return (
     <div className="workspaceContainer">
-      <Sidebar2 selected="home" />
+      <Sidebar />
       <div className="dashMainContainer">
         <DashNav />
         <div className="dashMain">

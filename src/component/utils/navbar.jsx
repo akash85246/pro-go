@@ -128,17 +128,23 @@ export default function Navbar(props) {
               <div>
                 <h3>Professional</h3>
                 <img src={plan1Img}></img>
-                <button>Go to Pricing</button>
+                <button onClick={() => navigate("/price")}>
+                  Go to Pricing
+                </button>
               </div>
               <div>
                 <h3>Standard</h3>
                 <img src={plan2Img}></img>
-                <button>Go to Pricing</button>
+                <button onClick={() => navigate("/price")}>
+                  Go to Pricing
+                </button>
               </div>
               <div>
                 <h3>Premium</h3>
                 <img src={plan3Img}></img>
-                <button>Go to Pricing</button>
+                <button onClick={() => navigate("/price")}>
+                  Go to Pricing
+                </button>
               </div>
             </div>
           </Slider>
@@ -152,10 +158,19 @@ export default function Navbar(props) {
             </h1>
             <div className="resourceContainer">
               <div className="resourceButtons">
-                <button>Pro-Go Webinars</button>
-                <button> Pro-Go Remote</button>
-                <button>Pro-Go Developer</button>
-                <button>Pro-Go Customer Stories</button>
+                <button onClick={() => navigate("/dashboard")}>
+                  Pro-Go Webinars
+                </button>
+                <button onClick={() => navigate("/dashboard")}>
+                  {" "}
+                  Pro-Go Remote
+                </button>
+                <button onClick={() => navigate("/dashboard")}>
+                  Pro-Go Developer
+                </button>
+                <button onClick={() => navigate("/dashboard")}>
+                  Pro-Go Customer Stories
+                </button>
               </div>
               <img src={resource1Img}></img>
             </div>

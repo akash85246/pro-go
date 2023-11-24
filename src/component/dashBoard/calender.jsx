@@ -9,7 +9,7 @@ import { Box } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
 import { useAuth } from "../utils/authContext";
 import axios from "axios";
-
+import Sidebar from "./sidebar";
 export default function Calendar() {
   const { authToken, setAuthToken } = useAuth();
   const toast = useToast();
@@ -158,7 +158,7 @@ export default function Calendar() {
 
   return (
     <div className="workspaceContainer">
-      <Sidebar2 selected="calender" />
+      <Sidebar />
       <div className="dashMainContainer">
         <DashNav />
         <div className="calMain">
