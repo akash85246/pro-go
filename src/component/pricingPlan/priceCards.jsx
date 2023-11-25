@@ -48,7 +48,6 @@ export default function PCard(props) {
 
   const createOrder = async (amount) => {
     try {
-      amount = props.cost;
       console.log("Request Payload:", { amount: amount.toString() });
 
       const response = await axios.post(
@@ -72,11 +71,17 @@ export default function PCard(props) {
   const [Razorpay] = useRazorpay();
   const getRazorpayOptions = async () => {
     const subscriptionType = props.title;
-    const order = await createOrder(props.cost * 100);
+    console.log(props.title, !props.oldCost);
+    const amountMultiplier = !props.oldCost ? 1 : 12;
+    console.log(amountMultiplier, !props.oldCost ? 1 : 12);
+    const amount = props.cost * amountMultiplier;
+    console.log("i am amount", amount);
+
+    const order = await createOrder(amount);
     const orderId = order.order_id;
     return {
       key: "rzp_test_6hSqwhZWNQ9ei8",
-      amount: props.cost * 100,
+      amount: amount,
       currency: "INR",
       name: "Pro-go",
       description: "payment for user subscription",
@@ -141,7 +146,7 @@ export default function PCard(props) {
     order_id,
     payment_id,
     signature,
-    subscriptionType
+    subscriptionType = props.title
   ) => {
     console.log(order_id, payment_id, signature, subscriptionType);
     try {

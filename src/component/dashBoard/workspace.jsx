@@ -43,8 +43,12 @@ export default function WorkSpace() {
         },
       })
       .then((response) => {
-        console.log("Search results:", response.data.data.boards);
-        setBoardsList(response.data.data.boards);
+        const responseData = response.data.data;
+        if (responseData && responseData.boards) {
+          setBoardsList(responseData.boards);
+        } else {
+          console.error("Invalid response structure:", responseData);
+        }
       })
       .catch((error) => {
         console.error("Error searching files:", error);
@@ -139,22 +143,23 @@ export default function WorkSpace() {
               <span>Last viewed</span>
             </div>
             <div className="activity">
-              {boardsList.map((board) => (
-                <TempCard
-                  key={board._id}
-                  tempTitle={board.name}
-                  background={board.templateLink}
-                  color={board.color}
-                  onSelect={() =>
-                    handleTempCardClick(
-                      board._id,
-                      board.name,
-                      board.templateLink,
-                      board.color
-                    )
-                  }
-                />
-              ))}
+              {boardsList &&
+                boardsList.map((board) => (
+                  <TempCard
+                    key={board._id}
+                    tempTitle={board.name}
+                    background={board.templateLink}
+                    color={board.color}
+                    onSelect={() =>
+                      handleTempCardClick(
+                        board._id,
+                        board.name,
+                        board.templateLink,
+                        board.color
+                      )
+                    }
+                  />
+                ))}
             </div>
           </div>
         </div>

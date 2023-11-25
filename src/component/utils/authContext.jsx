@@ -4,11 +4,14 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(() => {
-    const storedToken = sessionStorage.getItem("authToken");
+    const storedToken = localStorage.getItem("authToken");
     return storedToken || null;
   });
 
-  const [boardId, setBoardId] = useState(null);
+  const [boardId, setBoardId] = useState(() => {
+    const storedBoardId = localStorage.getItem("boardId");
+    return storedBoardId || null;
+  });
 
   const updateAuthToken = (newAuthToken) => {
     setAuthToken(newAuthToken);
@@ -16,7 +19,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateBoardId = (newBoardId) => {
-    
     setBoardId(newBoardId);
     localStorage.setItem("boardId", newBoardId);
   };

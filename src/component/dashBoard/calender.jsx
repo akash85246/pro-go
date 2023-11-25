@@ -3,7 +3,7 @@ import DashNav from "./dashNavbar";
 import Sidebar2 from "./sidebar2";
 import "./addMember.css";
 import ToDoList from "./todo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@chakra-ui/toast";
 import { Box } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
@@ -20,7 +20,8 @@ export default function Calendar() {
   const endYear = 2300;
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(currentDate);
+  const [date, setdate] = useState();
   const [taskList, setTaskList] = useState([]);
   const handleTaskListChange = (newTaskList) => {
     setTaskList(newTaskList);
@@ -31,6 +32,7 @@ export default function Calendar() {
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   const [goal, setGoal] = useState("");
+  const [plannerId, setPlannerId] = useState("");
   const [note, setNote] = useState("");
   const handleMonthChange = (newMonth) => {
     setSelectedMonth(newMonth);
@@ -42,50 +44,35 @@ export default function Calendar() {
     // setSelectedDate(null);
   };
 
-  const handleDateChange = (selectedDate) => {
-    setSelectedDate(selectedDate);
+  const handleDateChange = (event) => {
+    const newDate = parseInt(event.currentTarget.textContent, 10);
+    setSelectedDate(newDate);
+    console.log(newDate);
     receivePlannerData();
-    console.log(
-      `Selected Date: ${selectedYear}-${selectedMonth + 1}-${selectedDate}`
-    );
+    setdate(`${newDate}-${selectedMonth + 1}-${selectedYear}`);
+    console.log("Selected Date:", date);
   };
+
+  useEffect(() => {
+    console.log("Selected Date:", date);
+  }, [date]);
   const handleNotifyMe = () => {
-    const dateInput = document.querySelector(
-      ".calendarButton[placeholder='Date']"
-    );
-    const monthInput = document.querySelector(
-      ".calendarButton[placeholder='Month']"
-    );
-    const yearInput = document.querySelector(
-      ".calendarButton[placeholder='Year']"
-    );
-
-    const enteredDate = parseInt(dateInput.value);
-    const enteredMonth = parseInt(monthInput.value) - 1;
-    const enteredYear = parseInt(yearInput.value);
     if (
-      enteredDate >= 1 &&
-      enteredDate <= daysInMonth &&
-      enteredMonth >= 0 &&
-      enteredMonth <= 11 &&
-      enteredYear >= 1960 &&
-      enteredYear <= 2600
+      selectedDate >= 1 &&
+      selectedDate <= daysInMonth &&
+      selectedMonth >= 0 &&
+      selectedMonth <= 11 &&
+      selectedYear >= 1960 &&
+      selectedYear <= 2600
     ) {
-      setSelectedDate(enteredDate);
-      setSelectedMonth(enteredMonth);
-      setSelectedYear(enteredYear);
-
-      console.log(
-        `Selected Date: ${enteredYear}-${enteredMonth + 1}-${enteredDate}`
-      );
       receivePlannerData();
       sendPlannerData();
     } else {
       toast({
         title: "Error Notification!",
-        description: "An error occurred",
+        description: "Invalid Date",
         status: "error",
-        position: "top-centre",
+        position: "top-center",
         duration: 3000,
         isClosable: true,
         render: () => (
@@ -95,7 +82,6 @@ export default function Calendar() {
           </Box>
         ),
       });
-      console.log("Invalid date, month, or year entered");
     }
   };
   const handleGoalChange = (event) => {
@@ -124,24 +110,23 @@ export default function Calendar() {
         }
       );
       console.log(selectedDate, selectedMonth + 1, selectedYear);
+      console.log(note);
       if (response.status === 201) {
-        setSelectedMonth(null);
-        setSelectedYear(null);
-        setSelectedDate(null);
-
-        console.log("Planner data added successfully:", response.data);
+        console.log("Planner data added successfully:", response.data.data._id);
+        setPlannerId(response.data.data._id);
       } else {
         console.error("Failed to add planner data:", response.data);
       }
     } catch (error) {
+      setGoal("");
+      setNote("");
+      setTaskList([]);
       console.error("Error while making API call:", error);
     }
   };
   const receivePlannerData = async () => {
     // const apiUrl = "https://pro-go.onrender.com/api/planner/";
-    const formattedDate = `${selectedDate}-${
-      selectedMonth + 1
-    }-${selectedYear}`;
+    const formattedDate = date;
     const apiUrl = `https://pro-go.onrender.com/api/planner/${formattedDate}`;
     try {
       const response = await axios.get(apiUrl, {
@@ -150,12 +135,86 @@ export default function Calendar() {
         },
       });
 
-      console.log(response.data);
+      const responseData = response.data.data;
+      console.log(responseData);
+
+      const receivedTaskList = responseData.taskList || [];
+
+      console.log(receivedTaskList);
+      setTaskList(receivedTaskList);
+      setGoal(responseData.goals);
+      setNote(responseData.note);
     } catch (error) {
+      setGoal("");
+      setNote("");
+      setTaskList([]);
       console.error("Error fetching data:", error);
     }
   };
+  useEffect(() => {
+    receivePlannerData();
+  }, [date]);
 
+  const updatePlannerData = async () => {
+    const apiUrl = `https://pro-go.onrender.com/api/planner/${date}/update`;
+
+    try {
+      const response = await axios.patch(
+        apiUrl,
+        {
+          taskList: taskList,
+          goals: goal,
+          note: note,
+        },
+        {
+          headers: {
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      console.log("Planner data updated successfully:", response.data);
+    } catch (error) {
+      console.error("Error while updating planner data:", error);
+    }
+  };
+  useEffect(() => {
+    updatePlannerData();
+  }, [taskList, goal, note]);
+  const handleDelete = async () => {
+    try {
+      const apiUrl = `https://pro-go.onrender.com/api/planner/${date}/delete`;
+
+      const response = await axios.delete(apiUrl, {
+        headers: {
+          "auth-token": authToken,
+        },
+      });
+
+      if (response.status === 200 && response.data.success) {
+        console.log(response);
+        toast({
+          title: "Success",
+          description: "Planner deleted successfully!",
+          status: "success",
+          position: "top-center",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to delete planner",
+          status: "error",
+          position: "top-center",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error while deleting planner:", error);
+    }
+  };
   return (
     <div className="workspaceContainer">
       <Sidebar />
@@ -167,19 +226,24 @@ export default function Calendar() {
             <input
               type="number"
               className="calendarButton"
+              onChange={(e) => setSelectedDate(e.target.value)}
               placeholder="Date"
             ></input>
+
             <input
+              type="number"
               className="calendarButton"
               placeholder="Month"
-              type="number"
+              onChange={(e) => setSelectedMonth(e.target.value - 1)}
               max={12}
               min={1}
             ></input>
+
             <input
+              type="number"
               className="calendarButton"
               placeholder="Year"
-              type="number"
+              onChange={(e) => setSelectedYear(e.target.value)}
               min={1960}
               max={2600}
               pattern="\d{4}"
@@ -187,6 +251,9 @@ export default function Calendar() {
 
             <button className="calendarButton" onClick={handleNotifyMe}>
               Notify Me
+            </button>
+            <button className="calendarButton" onClick={handleDelete}>
+              Delete
             </button>
           </div>
           <div className="calendarContainer">
@@ -238,7 +305,10 @@ export default function Calendar() {
                 <h1>Planner</h1>
                 <h4>TO DO LIST</h4>
                 <div className="toDoList">
-                  <ToDoList onTaskListChange={handleTaskListChange} />
+                  <ToDoList
+                    initialTaskList={taskList}
+                    onTaskListChange={handleTaskListChange}
+                  />
                 </div>
                 <div className="goalContainer">
                   <h3>GOALS</h3>
@@ -272,7 +342,7 @@ export default function Calendar() {
                       className={`calendarDay ${
                         (day + firstDay) % 7 === 0 ? "sunday" : ""
                       } ${day === selectedDate ? "selectedDate" : ""}`}
-                      onClick={() => handleDateChange(day)}
+                      onClick={(event) => handleDateChange(event)}
                     >
                       {day}
                       <input type="checkbox"></input>

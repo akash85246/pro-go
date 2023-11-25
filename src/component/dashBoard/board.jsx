@@ -65,7 +65,7 @@ export default function Board() {
           navigate("/listandcards", {
             state: {
               boardId: boardId,
-              //  name: boardName,
+              name: selectedTemplate.tempTitle,
               background: selectedTemplate.background,
               color: selectedTemplate.color,
             },
@@ -150,6 +150,7 @@ export default function Board() {
         const data = response.data;
 
         if (data.success) {
+          console.log(data.recentlyViewed);
           setRecentlyViewed(data.recentlyViewed);
         } else {
           console.error("API request failed");
@@ -166,15 +167,39 @@ export default function Board() {
     template.tempTitle.toLowerCase().includes(searchQuery.toLowerCase())
   );
   const handleTemplateClick = (template) => {
+    if (
+      template &&
+      template.tempTitle &&
+      template.background &&
+      template.color
+    ) {
+      setSelectedTemplate((prevTemplate) => {
+        console.log(
+          "template details",
+          template.tempTitle,
+          template.background,
+          template.color
+        );
+
+        addRecentlyViewed();
+        updateBoard();
+        return template;
+      });
+    } else {
+      console.error("Invalid template object:", template);
+    }
+  };
+
+  const handleRecentTemplateClick = (template) => {
     setSelectedTemplate(template);
+
     console.log(
       "template details",
       template.tempTitle,
       template.background,
       template.color
     );
-
-    addRecentlyViewed();
+    updateBoard();
   };
 
   return (
@@ -203,7 +228,7 @@ export default function Board() {
                     <img src={searchIcon} alt="Search"></img>
                   </>
                 }
-                loading={loading}
+                // loading={loading}
                 // onClick={createFile}
               />
             </div>
@@ -226,13 +251,13 @@ export default function Board() {
             <div className="recentTemp">
               <h2>Recently viewed</h2>
               <div className="scrollContainer">
-                {recentlyViewed.map((template, index) => (
+                {recentlyViewed.reverse().map((template, index) => (
                   <TempCard
                     key={index}
-                    tempTitle={template.tempTitle}
-                    background={template.background}
+                    tempTitle={template.name}
+                    background={template.link}
                     color={template.color}
-                    onSelect={handleTemplateClick}
+                    onSelect={handleRecentTemplateClick}
                   />
                 ))}
               </div>
@@ -240,13 +265,13 @@ export default function Board() {
             <div className="reboTemp">
               <h2>Recent Board</h2>
               <div className="scrollContainer">
-                {recentlyWorked.map((template, index) => (
+                {recentlyWorked.reverse().map((template, index) => (
                   <TempCard
                     key={index}
-                    tempTitle={template.tempTitle}
-                    background={template.background}
+                    tempTitle={template.name}
+                    background={template.link}
                     color={template.color}
-                    onSelect={handleTemplateClick}
+                    onSelect={handleRecentTemplateClick}
                   />
                 ))}
               </div>

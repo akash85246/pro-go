@@ -23,6 +23,7 @@ export default function MyBoard() {
   const [loading, setLoading] = useState(false);
 
   const { boardId, name, background, color } = location.state;
+  console.log("location", location.state);
   const [lists, setLists] = useState([]);
   const isColor = background.startsWith("#");
   const backgroundStyle = isColor
@@ -46,15 +47,14 @@ export default function MyBoard() {
     setShowInput(true);
   };
 
-  const handleSaveListClick = async () => {
+  const addRecentlyWorked = async () => {
     try {
-      setLoading(true);
       const response = await axios.post(
-        "https://pro-go.onrender.com/api/list/add",
+        "https://pro-go.onrender.com/api/add-recently-worked/",
         {
-          name: listTitle,
-          boardId: boardId,
-          color: "white",
+          name: name,
+          link: background,
+          color: color,
         },
         {
           headers: {
@@ -63,6 +63,30 @@ export default function MyBoard() {
         }
       );
 
+      console.log("add recently worked API Response:", response.data);
+    } catch (error) {
+      console.log("add recently worked API Response:", name, background, color);
+      console.error("Error adding recently worked:", error);
+      console.log("Error response from server:", error.response);
+    }
+  };
+  const handleSaveListClick = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "https://pro-go.onrender.com/api/list/add",
+        {
+          name: listTitle,
+          boardId: boardId,
+          color: color,
+        },
+        {
+          headers: {
+            "auth-token": authToken,
+          },
+        }
+      );
+      addRecentlyWorked();
       console.log("API Response:", response.data);
 
       const newListItemId = response.data.data.respData._id;
@@ -126,9 +150,10 @@ export default function MyBoard() {
               <div className="listsContainer">
                 {lists.map((list) => (
                   <BoardList
+                    key={list.id}
                     listId={list.id}
                     listTitle={list.name}
-                    color={color}
+                    color={list.color}
                     boardId={boardId}
                     setLists={setLists}
                   />

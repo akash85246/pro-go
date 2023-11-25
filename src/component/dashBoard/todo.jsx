@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./todo.css";
 
-export default function ToDoList({ onTaskListChange }) {
-  const [tasks, setTasks] = useState([]);
+export default function ToDoList({ initialTaskList, onTaskListChange }) {
+  const [tasks, setTasks] = useState(initialTaskList || []);
   const [newTask, setNewTask] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
-
+  useEffect(() => {
+    setTasks(initialTaskList || []);
+  }, [initialTaskList]);
   const addTask = () => {
     if (newTask.trim() !== "") {
       if (editingIndex !== null) {
@@ -17,7 +19,7 @@ export default function ToDoList({ onTaskListChange }) {
         setTasks([...tasks, newTask]);
       }
       setNewTask("");
-      // Notify the parent component about the updated task list
+
       onTaskListChange([...tasks, newTask]);
     }
   };
@@ -26,7 +28,7 @@ export default function ToDoList({ onTaskListChange }) {
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
     setTasks(updatedTasks);
-    // Notify the parent component about the updated task list
+
     onTaskListChange(updatedTasks);
   };
 
