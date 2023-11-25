@@ -56,6 +56,7 @@ export default function WorkSpace() {
   }
 
   const handleTempCardClick = (boardId, name, background, color) => {
+    console.log(boardId, name, background, color);
     navigate("/listandcards", {
       state: { boardId, name, background, color },
     });
@@ -146,18 +147,15 @@ export default function WorkSpace() {
                   color={board.color}
                   onSelect={() =>
                     handleTempCardClick(
+                      board._id,
                       board.name,
                       board.templateLink,
-                      board.color,
-                      board._id,
-
-                      
+                      board.color
                     )
                   }
                 />
               ))}
             </div>
-            <div className="result"></div>
           </div>
         </div>
       </div>

@@ -122,7 +122,7 @@ export default function MyBoard() {
         <div className="dashMain">
           <div className="myBoard" style={backgroundStyle}>
             <div style={{ backdropFilter: "blur(10px)" }}>
-              <h1 style={{ color: color }}>Tables & More</h1>
+              <h1 style={{ color: color }}>Tables </h1>
               <div className="listsContainer">
                 {lists.map((list) => (
                   <BoardList

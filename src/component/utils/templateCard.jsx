@@ -9,12 +9,12 @@ export default function TempCard({
   selected1,
 }) {
   const cardStyle = {
-    background: background === "#ffff" ? "blue" : background || "#CB7A63",
+    background: background === "#ffff" ? " #0000FF" : background || "#CB7A63",
   };
 
   if (background && background.startsWith("#")) {
     cardStyle.backgroundColor = background;
-    cardStyle.backgroundImage = "none";
+    // cardStyle.backgroundImage = "none";
   } else if (background) {
     cardStyle.backgroundImage = `url(${background})`;
     cardStyle.backgroundColor = "transparent";

@@ -22,7 +22,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const navigate = useNavigate();
   const templates = [
-    { tempTitle: "Default", background: "#ffff", color: "blue" },
+    { tempTitle: "Default", background: "#FFFFFF", color: "blue" },
     { tempTitle: "Abstract", background: abstractImg, color: "#0000FF" },
     { tempTitle: "Color Splash", background: splashImg, color: "#FF0000" },
     { tempTitle: "Flowform", background: flowformImg, color: "blue" },
@@ -36,17 +36,14 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
     { tempTitle: "Yellow", background: "#FFFF00", color: "#FFFF00" },
     { tempTitle: "Red", background: "#FF0000", color: "#FF0000" },
   ];
-const { authToken, updateAuthToken, boardId, updateBoardId } = useAuth();
-
+  const { authToken, updateAuthToken, boardId, updateBoardId } = useAuth();
 
   const createBoardOnServer = async (boardName, templateColor) => {
     console.log("mine", templateColor);
     setLoading(true);
     try {
       const apiUrl = "https://pro-go.onrender.com/api/board/add";
-      const templateBackground = selectedTemplate
-        ? selectedTemplate.background
-        : null;
+
       const response = await axios.post(
         apiUrl,
         {

@@ -109,6 +109,32 @@ export default function Board() {
 
     fetchRecentlyWorked();
   }, []);
+
+  const addRecentlyViewed = async () => {
+    try {
+      const response = await axios.post(
+        "https://pro-go.onrender.com/api/add-recently-viewed/",
+        {
+          link: selectedTemplate.background,
+          name: selectedTemplate.tempTitle,
+          color: selectedTemplate.color,
+        },
+        {
+          headers: {
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      console.log("API Response:", response.data);
+      console.log("selected", selectedTemplate);
+      updateBoard();
+    } catch (error) {
+      console.log("selected", selectedTemplate);
+      console.error("Error adding recently viewed:", error);
+      console.log("Error response from server:", error.response);
+    }
+  };
   useEffect(() => {
     const fetchRecentlyViewed = async () => {
       try {
@@ -141,8 +167,14 @@ export default function Board() {
   );
   const handleTemplateClick = (template) => {
     setSelectedTemplate(template);
-    console.log(template.tempTitle, template.background, template.color);
-    updateBoard();
+    console.log(
+      "template details",
+      template.tempTitle,
+      template.background,
+      template.color
+    );
+
+    addRecentlyViewed();
   };
 
   return (
