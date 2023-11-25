@@ -1,8 +1,10 @@
+// Import necessary libraries and components
 import React, { useEffect } from "react";
 import { AuthProvider } from "./utils/authContext";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Remove Navigate from here
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import store from "./utils/redirect.jsx";
+import { ChakraProvider } from "@chakra-ui/react";
+import store from "./utils/redirect.jsx"; // I assume redirect.jsx is your store file
 
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
@@ -21,7 +23,6 @@ import ListAndCard from "./dashBoard/displayBoard";
 import Setting from "./dashBoard/setting";
 import Member from "./dashBoard/addMembers";
 import Calender from "./dashBoard/calender";
-import { ChakraProvider } from "@chakra-ui/react";
 
 // Additional imports for redirecting
 // import { Redirect } from "react-router-dom"; // Remove this line
@@ -51,7 +52,7 @@ function App() {
           <Router>
             <Routes>
               {/* Include the ReloadPrevention component at the top of your Routes */}
-              <Route path="/" element={<ReloadPrevention />} />
+              <Route path="/" element={<Homepage />} />
               <Route path="/verify" element={<Verification />} />
               <Route path="/forgot" element={<Forgotten />} />
               <Route path="/signUp" element={<SignUpForm />} />
@@ -68,7 +69,7 @@ function App() {
               <Route path="/calender" element={<Calender />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/listandcards" element={<ListAndCard />} />
-              <Route path="/" element={<Homepage />} />
+              <Route path="/homepage" element={<Homepage />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </Router>
