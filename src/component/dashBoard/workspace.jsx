@@ -25,13 +25,9 @@ export default function WorkSpace() {
   };
 
   const delayedSearch = (query) => {
-    //   if (searchTimeout) {
-    //     clearTimeout(searchTimeout);
-    //   }
-
     const timeout = setTimeout(() => {
       searchFile(query);
-    }, 5000);
+    }, 1000);
 
     setSearchTimeout(timeout);
   };
@@ -40,8 +36,6 @@ export default function WorkSpace() {
     delayedSearch(searchQuery);
   }, [searchQuery]);
   function searchFile(query) {
-    setLoading(true);
-
     axios
       .get(`https://pro-go.onrender.com/api/search?q=${query}`, {
         headers: {
@@ -49,13 +43,10 @@ export default function WorkSpace() {
         },
       })
       .then((response) => {
-        setLoading(false);
-
         console.log("Search results:", response.data.data.boards);
         setBoardsList(response.data.data.boards);
       })
       .catch((error) => {
-        setLoading(false);
         console.error("Error searching files:", error);
       });
   }
@@ -127,7 +118,7 @@ export default function WorkSpace() {
                 className="searchbar"
                 placeholder="Search all Files"
                 maxLength={50}
-                value={searchQuery} 
+                value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               ></input>
               <Button
