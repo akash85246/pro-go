@@ -1,8 +1,9 @@
 .settingContainer {
   color: #011c67;
   font-family: Poppins;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
   padding: 1rem;
+  padding-top: 0;
 }
 .settingContainer > h1 {
   color: #011c67;
@@ -26,7 +27,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
 }
 .settingMain > div:nth-child(1) > h3 {
   font-size: 1.875rem;

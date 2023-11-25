@@ -11,28 +11,65 @@ import TempCard from "../utils/templateCard";
 import axios from "axios";
 import NewBoardPopup from "./createPop";
 import Sidebar from "./sidebar";
+
 export default function WorkSpace() {
   const [boardsList, setBoardsList] = useState([]);
   const navigate = useNavigate();
   const { authToken, setAuthToken } = useAuth();
   const [loading, setLoading] = useState(false);
   const [showNewBoardPopup, setShowNewBoardPopup] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchTimeout, setSearchTimeout] = useState(null);
   const closeNewBoardPopup = () => {
     setShowNewBoardPopup(false);
   };
 
-  function searchFile() {}
+  const delayedSearch = (query) => {
+    //   if (searchTimeout) {
+    //     clearTimeout(searchTimeout);
+    //   }
+
+    const timeout = setTimeout(() => {
+      searchFile(query);
+    }, 5000);
+
+    setSearchTimeout(timeout);
+  };
+
+  useEffect(() => {
+    delayedSearch(searchQuery);
+  }, [searchQuery]);
+  function searchFile(query) {
+    setLoading(true);
+
+    axios
+      .get(`https://pro-go.onrender.com/api/search?q=${query}`, {
+        headers: {
+          "auth-token": authToken,
+        },
+      })
+      .then((response) => {
+        setLoading(false);
+
+        console.log("Search results:", response.data.data.boards);
+        setBoardsList(response.data.data.boards);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error("Error searching files:", error);
+      });
+  }
 
   function createBoard() {
     setShowNewBoardPopup(true);
-    console.log("Creating board:", boardName);
   }
+
   const handleTempCardClick = (boardId, name, background, color) => {
     navigate("/listandcards", {
       state: { boardId, name, background, color },
     });
   };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -90,6 +127,8 @@ export default function WorkSpace() {
                 className="searchbar"
                 placeholder="Search all Files"
                 maxLength={50}
+                value={searchQuery} 
+                onChange={(e) => setSearchQuery(e.target.value)}
               ></input>
               <Button
                 type="submit"
@@ -99,8 +138,8 @@ export default function WorkSpace() {
                     <img src={searchIcon} alt="Search" />
                   </>
                 }
-                loading={loading}
-                onClick={searchFile}
+                // loading={loading}
+                onClick={() => searchFile(searchQuery)}
               />
             </div>
             <div className="lastView">
@@ -114,8 +153,6 @@ export default function WorkSpace() {
                   tempTitle={board.name}
                   background={board.templateLink}
                   color={board.color}
-                  // onSelect={() => handleTempCardSelect(board._id)}
-                  // selected1={selectedTempCardId}
                   onSelect={() =>
                     handleTempCardClick(
                       board._id,

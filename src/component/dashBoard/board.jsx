@@ -1,4 +1,4 @@
-import Sidebar2 from "./sidebar2";
+import Sidebar from "./sidebar";
 import "./board.css";
 import Button from "../utils/button";
 import DashNav from "./dashNavbar";
@@ -32,7 +32,7 @@ export default function Board() {
   ];
   return (
     <div className="workspaceContainer">
-      <Sidebar2 selected="board" />
+      <Sidebar />
       <div className="dashMainContainer">
         <DashNav />
 

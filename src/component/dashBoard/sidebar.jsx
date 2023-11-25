@@ -13,6 +13,7 @@ import wFlag from "../../assets/wFlag.svg";
 import Slider from "../utils/slider";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/footer_logo.svg";
+import dashbpaord from "../../assets/dashBoardIcon.svg";
 
 export default function Sidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -56,16 +57,22 @@ export default function Sidebar(props) {
           )}
         </button>
         <div className="sidebarContain">
-          {!sidebarOpen && (
+          {sidebarOpen ? (
+            <img
+              src={dashbpaord}
+              style={{ width: "1.5rem", marginLeft: "50%" }}
+              onClick={() => navigateTo("/workspace")}
+            ></img>
+          ) : (
             <h3 onClick={() => navigateTo("/workspace")}>DashBoard</h3>
           )}
 
           <ul>
-            <li onClick={() => navigateTo("/dashboard")}>
+            <li onClick={() => navigateTo("/board")}>
               <img
                 src={boardImg}
                 alt="Board Icon"
-                onClick={() => navigateTo("/dashboard")}
+                onClick={() => navigateTo("/board")}
               />
               {!sidebarOpen && <h4>Boards</h4>}
             </li>

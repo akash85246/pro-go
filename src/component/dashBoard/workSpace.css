@@ -2,14 +2,16 @@
   /* display: grid;
   grid-template-columns: 1fr 8fr; */
   display: flex;
+  /* gap: 1rem; */
+  height: 100%;
   color: white;
 }
 .addButtons {
   display: flex;
   justify-content: space-evenly;
   width: 60%;
-  margin: auto;
-  margin-top: 8rem;
+  margin:0 auto;
+  /* margin-top: 8rem; */
 }
 .addButtons .button-container > button {
   height: 10rem;

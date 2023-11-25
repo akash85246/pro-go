@@ -139,7 +139,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
       <div className="popup">
         <h2>Create board</h2>
         <h3>Background</h3>
-        <div className="themeBackground">
+        {/* <div className="themeBackground">
           {templates.map((template, index) => (
             <TempCard
               key={index}
@@ -148,7 +148,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
               selected={selectedTemplate === template}
             />
           ))}
-        </div>
+        </div> */}
         <div>
           <label htmlFor="boardName">Board Title</label>
           <input

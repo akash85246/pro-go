@@ -12,7 +12,8 @@
 .workSpaceContainer {
   /* display: grid;
   grid-template-columns: 1.4fr 4fr; */
-display: flex;  color: white;
+  display: flex;
+  color: white;
 }
 .navbarDash {
   display: flex;
@@ -276,9 +277,12 @@ display: flex;  color: white;
 
 .dashMain {
   border-radius: 10px;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #root
@@ -396,8 +400,8 @@ display: flex;  color: white;
 #root > div > div.sidebar.close > div.sidebarContain > ul > li {
   margin-left: 50%;
 }
-.toggleButton >.open{
+.toggleButton > .open {
   position: fixed;
- left: 8rem;
- top:5rem;
+  left: 8rem;
+  top: 5rem;
 }
