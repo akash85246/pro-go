@@ -68,7 +68,7 @@ function App() {
               <Route path="/calender" element={<Calender />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/listandcards" element={<ListAndCard />} />
-              <Route path="/*" element={<Homepage />} />
+              <Route path="/" element={<Homepage />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </Router>
