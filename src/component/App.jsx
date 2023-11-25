@@ -1,10 +1,15 @@
 // Import necessary libraries and components
 import React, { useEffect } from "react";
 import { AuthProvider } from "./utils/authContext";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom"; // Import HashRouter and Navigate
 import { useDispatch, useSelector } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
-import store from "./utils/redirect.jsx"; // I assume redirect.jsx is your store file
+import store from "./utils/redirect"; // Assuming redirect.jsx is your store file
 
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
@@ -23,7 +28,6 @@ import ListAndCard from "./dashBoard/displayBoard";
 import Setting from "./dashBoard/setting";
 import Member from "./dashBoard/addMembers";
 import Calender from "./dashBoard/calender";
-
 
 function ReloadPrevention() {
   const dispatch = useDispatch();
@@ -48,8 +52,9 @@ function App() {
       <AuthProvider>
         <ChakraProvider>
           <Router>
+            {/* Include the ReloadPrevention component at the top of your Routes */}
+            <ReloadPrevention />
             <Routes>
-              {/* Include the ReloadPrevention component at the top of your Routes */}
               <Route path="/" element={<Homepage />} />
               <Route path="/verify" element={<Verification />} />
               <Route path="/forgot" element={<Forgotten />} />
