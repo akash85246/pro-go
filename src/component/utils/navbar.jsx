@@ -177,7 +177,10 @@ export default function Navbar(props) {
           </Slider>
           {authToken !== null ? (
             <>
-              <button className="profileNavButton" onClick={profilePage}>
+              <button
+                className="profileNavButton"
+                onClick={() => navigate("/dashboard")}
+              >
                 Hello User!
               </button>
               {props.showProfilePhoto && (

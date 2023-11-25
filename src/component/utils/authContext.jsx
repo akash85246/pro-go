@@ -8,13 +8,23 @@ export const AuthProvider = ({ children }) => {
     return storedToken || null;
   });
 
+  const [boardId, setBoardId] = useState(null);
+
   const updateAuthToken = (newAuthToken) => {
     setAuthToken(newAuthToken);
-    sessionStorage.setItem("authToken", newAuthToken);
+    localStorage.setItem("authToken", newAuthToken);
+  };
+
+  const updateBoardId = (newBoardId) => {
+    
+    setBoardId(newBoardId);
+    localStorage.setItem("boardId", newBoardId);
   };
 
   return (
-    <AuthContext.Provider value={{ authToken, updateAuthToken }}>
+    <AuthContext.Provider
+      value={{ authToken, updateAuthToken, boardId, updateBoardId }}
+    >
       {children}
     </AuthContext.Provider>
   );

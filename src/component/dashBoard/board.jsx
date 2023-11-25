@@ -1,9 +1,9 @@
+import React, { useState } from "react";
 import Sidebar from "./sidebar";
 import "./board.css";
 import Button from "../utils/button";
 import DashNav from "./dashNavbar";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import searchIcon from "../../assets/searchIcon.svg";
 import TempCard from "../utils/templateCard";
 import abstractImg from "../../assets/abstract.svg";
@@ -12,24 +12,139 @@ import flowformImg from "../../assets/flowform.svg";
 import jamImg from "../../assets/jam.svg";
 import mosaicImg from "../../assets/mosaic.svg";
 import naturalImg from "../../assets/natural.svg";
-
+import { useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../utils/authContext";
 export default function Board() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [recentlyWorked, setRecentlyWorked] = useState([]);
+  const [recentlyViewed, setRecentlyViewed] = useState([]);
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
   const templates = [
-    { tempTitle: "Abstract", background: abstractImg },
-    { tempTitle: "Color Splash", background: splashImg },
-    { tempTitle: "Flowform", background: flowformImg },
-    { tempTitle: "Jam", background: jamImg },
-    { tempTitle: "Mosaic", background: mosaicImg },
-    { tempTitle: "Natural", background: naturalImg },
-    { tempTitle: "Violet", background: "#9400D3" },
-    { tempTitle: "Blue", background: "#0000FF" },
-    { tempTitle: "Indigo", background: "#4B0082" },
-    { tempTitle: "Green", background: "#00FF00" },
-    { tempTitle: "Yellow", background: "#FFFF00" },
-    { tempTitle: "Red", background: "#FF0000" },
+    { tempTitle: "Default", background: "#ffff", color: "blue" },
+    { tempTitle: "Abstract", background: abstractImg, color: "#0000FF" },
+    { tempTitle: "Color Splash", background: splashImg, color: "#FF0000" },
+    { tempTitle: "Flowform", background: flowformImg, color: "blue" },
+    { tempTitle: "Jam", background: jamImg, color: "grey" },
+    { tempTitle: "Mosaic", background: mosaicImg, color: "black" },
+    { tempTitle: "Natural", background: naturalImg, color: "#006400" },
+    { tempTitle: "Violet", background: "#9400D3", color: "#9400D3" },
+    { tempTitle: "Blue", background: "#0000FF", color: "#0000FF" },
+    { tempTitle: "Indigo", background: "#4B0082", color: "#4B0082" },
+    { tempTitle: "Green", background: "#00FF00", color: "#00FF00" },
+    { tempTitle: "Yellow", background: "#FFFF00", color: "#FFFF00" },
+    { tempTitle: "Red", background: "#FF0000", color: "#FF0000" },
   ];
+  const { authToken, updateAuthToken, boardId, updateBoardId } = useAuth();
+  console.log("current boardId", boardId);
+  const updateBoard = async () => {
+    try {
+      setLoading(true);
+
+      if (selectedTemplate) {
+        const response = await axios.put(
+          `https://pro-go.onrender.com/api/board/${boardId}/update`,
+          {
+            templateLink: selectedTemplate.background,
+            templateName: selectedTemplate.tempTitle,
+            color: selectedTemplate.color,
+          },
+          {
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        const data = response.data;
+
+        if (data.status) {
+          console.log("Board updated successfully");
+          navigate("/listandcards", {
+            state: {
+              boardId: boardId,
+              //  name: boardName,
+              background: selectedTemplate.background,
+              color: selectedTemplate.color,
+            },
+          });
+        } else {
+          console.error("Board update failed");
+        }
+      } else {
+        console.error("selectedTemplate is null");
+      }
+    } catch (error) {
+      console.error("Error updating board", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const fetchRecentlyWorked = async () => {
+      try {
+        const response = await axios.get(
+          "https://pro-go.onrender.com/api/get-recently-worked",
+          {
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        const data = response.data;
+
+        if (data.success) {
+          setRecentlyWorked(data.recentlyWorked);
+        } else {
+          console.error("API request failed");
+        }
+      } catch (error) {
+        console.error("Error fetching data from API", error);
+      }
+    };
+
+    fetchRecentlyWorked();
+  }, []);
+  useEffect(() => {
+    const fetchRecentlyViewed = async () => {
+      try {
+        const response = await axios.get(
+          "https://pro-go.onrender.com/api/get-recently-viewed",
+          {
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        const data = response.data;
+
+        if (data.success) {
+          setRecentlyViewed(data.recentlyViewed);
+        } else {
+          console.error("API request failed");
+        }
+      } catch (error) {
+        console.error("Error fetching data from API", error);
+      }
+    };
+
+    fetchRecentlyViewed();
+  }, []);
+
+  const filteredTemplates = templates.filter((template) =>
+    template.tempTitle.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  const handleTemplateClick = (template) => {
+    setSelectedTemplate(template);
+    console.log(template.tempTitle, template.background, template.color);
+    updateBoard();
+  };
+
   return (
     <div className="workspaceContainer">
       <Sidebar />
@@ -44,6 +159,8 @@ export default function Board() {
                 className="searchbar2"
                 placeholder="Search all Files"
                 maxLength={50}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               ></input>
 
               <Button
@@ -51,11 +168,11 @@ export default function Board() {
                 class="addFile"
                 label={
                   <>
-                    <img src={searchIcon}></img>
+                    <img src={searchIcon} alt="Search"></img>
                   </>
                 }
                 loading={loading}
-                  // onClick={createFile}
+                // onClick={createFile}
               />
             </div>
           </div>
@@ -63,24 +180,42 @@ export default function Board() {
             <div className="popTemp">
               <h2>Most popular templates</h2>
               <div className="scrollContainer">
-                {templates.map((template, index) => (
-                  <TempCard key={index} {...template} />
+                {filteredTemplates.map((template, index) => (
+                  <TempCard
+                    key={index}
+                    tempTitle={template.tempTitle}
+                    background={template.background}
+                    color={template.color}
+                    onSelect={handleTemplateClick}
+                  />
                 ))}
               </div>
             </div>
             <div className="recentTemp">
               <h2>Recently viewed</h2>
               <div className="scrollContainer">
-                {templates.map((template, index) => (
-                  <TempCard key={index} {...template} />
+                {recentlyViewed.map((template, index) => (
+                  <TempCard
+                    key={index}
+                    tempTitle={template.tempTitle}
+                    background={template.background}
+                    color={template.color}
+                    onSelect={handleTemplateClick}
+                  />
                 ))}
               </div>
             </div>
             <div className="reboTemp">
               <h2>Recent Board</h2>
               <div className="scrollContainer">
-                {templates.map((template, index) => (
-                  <TempCard key={index} {...template} />
+                {recentlyWorked.map((template, index) => (
+                  <TempCard
+                    key={index}
+                    tempTitle={template.tempTitle}
+                    background={template.background}
+                    color={template.color}
+                    onSelect={handleTemplateClick}
+                  />
                 ))}
               </div>
             </div>

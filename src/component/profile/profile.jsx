@@ -1,7 +1,6 @@
 import Navbar from "../utils/navbar";
 import { useAuth } from "../utils/authContext";
 import { Link, useNavigate } from "react-router-dom";
-
 import "./profile.css";
 import Footer from "../utils/footer";
 import Input from "./input";
@@ -19,7 +18,7 @@ export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const { authToken, updateAuthToken } = useAuth();
   const navigate = useNavigate();
-
+  console.log(authToken);
   function logOut() {
     console.log("logged Out");
     updateAuthToken(null);
@@ -54,7 +53,7 @@ export default function Profile() {
           const data = await response.json();
           console.log(data.user);
           setProfileData({
-            fullName: data.user.username,
+            fullName: data.user.fullName,
             // publicName: "",
             jobTitle: data.user.jobTitle,
             department: data.user.department,
@@ -260,7 +259,7 @@ export default function Profile() {
             {isEditing ? (
               <Button
                 type="submit"
-                class="Edit"
+                class="edit"
                 label="Save"
                 loading={loading}
                 onClick={handleSaveClick}

@@ -138,7 +138,7 @@
 }
 .resourceContainer {
   display: flex;
- 
+
   justify-content: space-around;
 }
 .resourceButtons {
@@ -146,9 +146,9 @@
   flex-direction: column;
   justify-content: space-evenly;
   border-radius: 0.75rem;
-background: #FFF;
-box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.15);
-padding:1rem 10rem;
+  background: #fff;
+  box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.15);
+  padding: 1rem 10rem;
 }
 .resourceButtons > button {
   background-color: #2047ce;
@@ -771,6 +771,9 @@ a {
 #root > footer > div.container2 > ul > li {
   font-size: 2vw;
 }
+.sidebarContain > ul > li  h4 {
+  cursor: pointer !important;
+}
 #root > footer > div.container2 > ul > li:nth-child(1) {
   font-size: 2.5vw;
 }
@@ -778,6 +781,25 @@ a {
   margin: 0%;
   position: absolute;
   height: 100%;
+  margin-left: 1rem;
+  z-index: 100;
+  width: 5rem;
+  margin-top: -2%;
+}
+#root > div.navContainer > nav > div.navItems > div.profileImgContainer > div {
+  /* margin-top: 5rem; */
+}
+#root > div > div.sidebar > div.sidebarContain > ul:nth-child(2) > li:nth-child(2) > div > h4{
+  margin: auto;
+}
+#root
+  > div.navContainer
+  > nav
+  > div.navItems
+  > div.profileImgContainer
+  > div
+  > img {
+  margin-top: -0.5rem !important;
 }
 /* #root > div.navContainer{
   background: #F9F4F1;

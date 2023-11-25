@@ -1,14 +1,14 @@
 .popupContainer {
-  background: rgba(1, 28, 103, 0.8);
-  left: 40%;
+  border-radius: 2.5625rem;
+  background: #011c67;
+  left: 50%;
   width: 30vw;
-  height: 85vh;
-  top: 6rem;
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(100px);
+
+  top: 25%;
   padding: 1rem;
   position: absolute;
-
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -20,12 +20,30 @@
 .themeBackground > .tempCard > h2 {
   height: 2rem;
 }
-.popup > h2 {
+.popup > img {
+  margin-top: -1rem;
+  margin-left: 90%;
+}
+.popup > div > h2 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+}
+.popup > div > h2 {
   font-size: 1.5rem;
+  margin-top: -2rem;
 }
-.popup > h3 {
+.popup {
+  height: auto !important;
+  padding: 1rem 0 !important;
+}
+/* .popup > h3 {
   font-size: 1rem;
-}
+} */
 .popup > div {
   display: flex;
   flex-direction: column;
@@ -61,9 +79,19 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.create {
-  background-color: rgba(1, 28, 103);
+#boardName {
+  text-align: center;
   color: #fff;
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: #011c67;
+}
+.create {
+  border: 1px solid #f5f5f5;
+  background: #fff;
   padding: 5px 10px;
   font-size: 1.2rem;
   border: none;
@@ -71,11 +99,20 @@
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease;
+  border: 1px solid white;
+  color: #263238;
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 65%;
+  border-radius: 5px;
 }
 .create:hover {
-  background-color: white;
-  color: rgba(1, 28, 103);
-  transition: background-color 0.3s ease;
+  background-color: #032a9484;
+  border: 1px solid white;
+  color: white;
 }
 .popup > div > button:hover {
   background-color: white;
@@ -90,3 +127,53 @@
   font-size: 1rem;
   padding: 0.5rem;
 }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("path/to/your-background-image.jpg") center/cover;
+  filter: blur(100px);
+  z-index: 1;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.popupContainer
+  > div
+  > div.popButton
+  > button {
+  border: 1px solid #f5f5f5;
+  background: #fff;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  border: 1px solid white;
+  color: #263238;
+  font-family: Poppins;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 65%;
+  border-radius: 5px;
+  margin: auto;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div.popupContainer
+  > div
+  > div.popButton
+  > button:hover{
+     background-color: #032a9484;
+  border: 1px solid white;
+  color: white;
+  }

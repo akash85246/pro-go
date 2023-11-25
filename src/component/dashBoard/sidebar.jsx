@@ -61,10 +61,10 @@ export default function Sidebar(props) {
             <img
               src={dashbpaord}
               style={{ width: "1.5rem", marginLeft: "50%" }}
-              onClick={() => navigateTo("/workspace")}
+              onClick={() => navigateTo("/dashboard")}
             ></img>
           ) : (
-            <h3 onClick={() => navigateTo("/workspace")}>DashBoard</h3>
+            <h3 onClick={() => navigateTo("/dashboard")}>DashBoard</h3>
           )}
 
           <ul>
@@ -87,9 +87,9 @@ export default function Sidebar(props) {
                   <h4 onClick={() => navigateTo("/member")}>Members</h4>
                 )}
               </div>
-              {!sidebarOpen && (
-                <span onClick={() => navigateTo("/member")}>+</span>
-              )}
+              {/* {!sidebarOpen && (
+                <h4 onClick={() => navigateTo("/member")}>+</h4>
+              )} */}
             </li>
             <li>
               <img
@@ -127,7 +127,7 @@ export default function Sidebar(props) {
               )}
             </li>
           </ul>
-          {!sidebarOpen && (
+          {/* {!sidebarOpen && (
             <div>
               <h3>
                 <span>Your boards</span>
@@ -149,7 +149,7 @@ export default function Sidebar(props) {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </>

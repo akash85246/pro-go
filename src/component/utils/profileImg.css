@@ -42,9 +42,9 @@
   margin-top: 1rem;
   font-size: 1rem;
   font-family: Poppins;
-  height: 1.8rem;
-  width: 6rem;
-  padding: 0.2rem;
+  /* height: 1.8rem; */
+  /* width: 7rem; */
+  padding: 0.2rem 1rem;
   cursor: pointer;
   background-color: #2047ce;
   color: #fff;

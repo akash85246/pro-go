@@ -9,7 +9,7 @@ export default function TempCard({
   selected1,
 }) {
   const cardStyle = {
-    background: background || "#CB7A63",
+    background: background === "#ffff" ? "blue" : background || "#CB7A63",
   };
 
   if (background && background.startsWith("#")) {

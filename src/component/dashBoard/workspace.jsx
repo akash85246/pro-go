@@ -73,6 +73,7 @@ export default function WorkSpace() {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data.data.boardsList);
           setBoardsList(data.data.boardsList);
         } else {
           console.error("Error fetching user details");
@@ -129,7 +130,6 @@ export default function WorkSpace() {
                     <img src={searchIcon} alt="Search" />
                   </>
                 }
-                // loading={loading}
                 onClick={() => searchFile(searchQuery)}
               />
             </div>
@@ -146,10 +146,12 @@ export default function WorkSpace() {
                   color={board.color}
                   onSelect={() =>
                     handleTempCardClick(
-                      board._id,
                       board.name,
                       board.templateLink,
-                      board.color
+                      board.color,
+                      board._id,
+
+                      
                     )
                   }
                 />

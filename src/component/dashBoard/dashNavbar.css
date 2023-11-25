@@ -103,3 +103,17 @@
   height: 2.5rem;
   margin: auto 1rem;
 }
+.searchResult{
+  position: absolute;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  left:82rem;
+  overflow-y: scroll;
+  height: 12rem;
+}
+.searchResult>.tempCard{
+  width: 6rem!important;
+  height: 3rem!important;
+}

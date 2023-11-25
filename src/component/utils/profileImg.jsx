@@ -3,15 +3,15 @@ import axios from "axios";
 import "./profileImg.css";
 import userImg from "../../assets/profilePhoto.jpg";
 import { useAuth } from "./authContext";
+import { useNavigate } from "react-router-dom";
 
 const photoUploadApi = "https://pro-go.onrender.com/api/upload-photo";
 const getPhotoApi = "https://pro-go.onrender.com/api/get-photo";
 
 export default function ProfileImg(props) {
   const { authToken } = useAuth();
-
+  const navigate = useNavigate();
   const storedPhoto = sessionStorage.getItem("userPhoto");
-
 
   const [newPhoto, setNewPhoto] = useState(
     storedPhoto ? JSON.parse(storedPhoto) : userImg
@@ -36,7 +36,7 @@ export default function ProfileImg(props) {
         formData.append("photo", file);
         formData.append("email", props.email);
 
-        // Upload the photo to the server
+        
         const response = await axios.post(photoUploadApi, formData, {
           headers: {
             "auth-token": authToken,
@@ -90,7 +90,11 @@ export default function ProfileImg(props) {
   return (
     <div className="profileImgContainer">
       <div className="profileImg">
-        <img src={newPhoto} alt="Profile Image" />
+        <img
+          src={newPhoto}
+          alt="Profile Image"
+          onClick={() => navigate("/profile")}
+        />
       </div>
       {props.isEditing && (
         <>

@@ -1,9 +1,54 @@
 // DashNav.js
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./dashNavbar.css"; // Import your CSS file
 import ProfileImg from "../utils/profileImg";
+import { useAuth } from "../utils/authContext";
+import TempCard from "../utils/templateCard";
+import { useNavigate } from "react-router-dom";
 export default function DashNav(props) {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const { authToken, setAuthToken } = useAuth();
+  useEffect(() => {
+    
+    const fetchSearchResults = async () => {
+      try {
+        const response = await fetch(
+          `https://pro-go.onrender.com/api/search?q=${searchQuery}`,
+          {
+            method: "GET",
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        setSearchResults(data.data.boards); // Assuming the boards array is what you want to display
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      }
+    };
+
+   
+    if (searchQuery) {
+      fetchSearchResults();
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+ const handleTempCardClick = (boardId, name, background, color) => {
+   navigate("/listandcards", {
+     state: { boardId, name, background, color },
+   });
+ };
   return (
     <>
       <nav className="navbarDashboard">
@@ -30,7 +75,12 @@ export default function DashNav(props) {
             <button className="blueButton">High lights</button>
           </li>
           <li className="searchBar">
-            <input type="text" placeholder="Search" />
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <i className="searchIcon"></i>
           </li>
 
@@ -38,6 +88,24 @@ export default function DashNav(props) {
             <ProfileImg isNavbar="true" />
           </li>
         </ul>
+        <div className="searchResult">
+          {searchResults.map((board) => (
+            <TempCard
+              key={board._id}
+              tempTitle={board.name}
+              background={board.templateLink}
+              color={board.color}
+              onSelect={() =>
+                handleTempCardClick(
+                  board._id,
+                  board.name,
+                  board.templateLink,
+                  board.color
+                )
+              }
+            />
+          ))}
+        </div>
       </nav>
     </>
   );
