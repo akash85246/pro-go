@@ -22,7 +22,7 @@ export default function Profile() {
   function logOut() {
     console.log("logged Out");
     updateAuthToken(null);
-    navigate("/home");
+    navigate("/");
   }
 
   const [profileData, setProfileData] = useState({

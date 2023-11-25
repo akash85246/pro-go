@@ -1,15 +1,16 @@
-// Import necessary libraries and components
+
 import React, { useEffect } from "react";
-import { AuthProvider } from "./utils/authContext";
+import { AuthProvider, useAuth } from "./utils/authContext";
 import {
   HashRouter as Router,
   Route,
   Routes,
   Navigate,
-} from "react-router-dom"; // Import HashRouter and Navigate
+} from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
-import store from "./utils/redirect"; // Assuming redirect.jsx is your store file
+import store from "./utils/redirect";
 
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
@@ -46,13 +47,19 @@ function ReloadPrevention() {
   return isReloading ? <Navigate to="/" /> : null;
 }
 
+function PrivateRoute({ element, path }) {
+  const { authToken } = useAuth();
+  console.log(authToken);
+
+  return authToken ? element : <Navigate to="/login" replace={true} />;
+}
+
 function App() {
   return (
-    <>
-      <AuthProvider>
-        <ChakraProvider>
-          <Router>
-            {/* Include the ReloadPrevention component at the top of your Routes */}
+    <AuthProvider>
+      <Router>
+        <React.Fragment>
+          <ChakraProvider>
             <ReloadPrevention />
             <Routes>
               <Route path="/" element={<Homepage />} />
@@ -64,21 +71,45 @@ function App() {
               <Route path="/reset" element={<Reset />} />
               <Route path="/price" element={<Pricing />} />
               <Route path="/error" element={<Error />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/dashboard" element={<DashBoard />} />
-              <Route path="/board" element={<Board />} />
-              <Route path="/workspace" element={<WorkSpace />} />
-              <Route path="/member" element={<Member />} />
-              <Route path="/calender" element={<Calender />} />
-              <Route path="/setting" element={<Setting />} />
-              <Route path="/listandcards" element={<ListAndCard />} />
-              <Route path="/homepage" element={<Homepage />} />
+             
+              <Route
+                path="/profile/*"
+                element={<PrivateRoute element={<Profile />} />}
+              />
+              <Route
+                path="/dashboard/*"
+                element={<PrivateRoute element={<DashBoard />} />}
+              />
+              <Route
+                path="/board/*"
+                element={<PrivateRoute element={<Board />} />}
+              />
+              <Route
+                path="/workspace/*"
+                element={<PrivateRoute element={<WorkSpace />} />}
+              />
+              <Route
+                path="/member/*"
+                element={<PrivateRoute element={<Member />} />}
+              />
+              <Route
+                path="/calender/*"
+                element={<PrivateRoute element={<Calender />} />}
+              />
+              <Route
+                path="/setting/*"
+                element={<PrivateRoute element={<Setting />} />}
+              />
+              <Route
+                path="/listandcards/*"
+                element={<PrivateRoute element={<ListAndCard />} />}
+              />
               <Route path="*" element={<Error />} />
             </Routes>
-          </Router>
-        </ChakraProvider>
-      </AuthProvider>
-    </>
+          </ChakraProvider>
+        </React.Fragment>
+      </Router>
+    </AuthProvider>
   );
 }
 
