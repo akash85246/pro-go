@@ -11,11 +11,11 @@ export default function Member() {
   const [inviteStatus, setInviteStatus] = useState(null);
   const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState("");
-  const { authToken, setAuthToken } = useAuth();
+  const { authToken, setAuthToken, boardId } = useAuth();
   const handleInvite = async () => {
     try {
       const response = await axios.post(
-        "https://pro-go.onrender.com/api/add-member",
+          `https://pro-go.onrender.com/api/board/${boardId}/addMember`,
         {
           email: email,
         },
@@ -25,18 +25,18 @@ export default function Member() {
           },
         }
       );
+
       setShowInput(false);
       setEmail("");
       setInviteStatus(response.data.message);
     } catch (error) {
-      console.log(email);
-      console.log(authToken);
       setShowInput(false);
       console.error("Error sending invitation:", error);
       console.log("Response:", error.response);
       setInviteStatus("Failed to send invitation");
     }
   };
+
   const handleButtonClick = () => {
     setShowInput(true);
   };

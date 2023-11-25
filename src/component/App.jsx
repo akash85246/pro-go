@@ -1,14 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AuthProvider } from "./utils/authContext";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Remove Navigate from here
+import { useDispatch, useSelector } from "react-redux";
+import store from "./utils/redirect.jsx";
 
-// import { ToastContainer } from "react-toastify";
-// import "../../public/react-toastify/dist/ReactToastify.css";
 import Verification from "./authentication/signUp/verify";
 import Forgotten from "./authentication/forgot/forgot";
 import SignUpForm from "./authentication/signUp/signUp";
@@ -26,8 +21,28 @@ import ListAndCard from "./dashBoard/displayBoard";
 import Setting from "./dashBoard/setting";
 import Member from "./dashBoard/addMembers";
 import Calender from "./dashBoard/calender";
-// import "react-toastify/dist/ReactToastify.css";
 import { ChakraProvider } from "@chakra-ui/react";
+
+// Additional imports for redirecting
+// import { Redirect } from "react-router-dom"; // Remove this line
+
+function ReloadPrevention() {
+  const dispatch = useDispatch();
+  const isReloading = useSelector((state) => state.isReloading);
+
+  useEffect(() => {
+    window.onbeforeunload = () => {
+      dispatch({ type: "SET_RELOADING", payload: true });
+    };
+
+    return () => {
+      dispatch({ type: "SET_RELOADING", payload: false });
+    };
+  }, [dispatch]);
+
+  return isReloading ? <Navigate to="/" /> : null;
+}
+
 function App() {
   return (
     <>
@@ -35,6 +50,8 @@ function App() {
         <ChakraProvider>
           <Router>
             <Routes>
+              {/* Include the ReloadPrevention component at the top of your Routes */}
+              <Route path="/" element={<ReloadPrevention />} />
               <Route path="/verify" element={<Verification />} />
               <Route path="/forgot" element={<Forgotten />} />
               <Route path="/signUp" element={<SignUpForm />} />
