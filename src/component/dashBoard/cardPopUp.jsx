@@ -9,14 +9,17 @@ export default function PopOutCard(props) {
   const [commentText, setCommentText] = useState("");
   const [updateModes, setUpdateModes] = useState({});
   const [checklist, setChecklist] = useState("");
+  const [selectedCommentId, setselectedCommentId] = useState("");
   const { authToken, setAuthToken } = useAuth();
 
-  const handleUpdateComment = async (commentId, newText) => {
+  const [isupdateComment, setIsUpdatingComment] = useState(false);
+  const handleUpdateComment = async (commentId) => {
     try {
+      console.log("commentId", commentId);
       const response = await axios.put(
         `https://pro-go.onrender.com/api/comment/${commentId}/update`,
         {
-          text: newText,
+          text: commentText,
         },
         {
           headers: {
@@ -28,9 +31,15 @@ export default function PopOutCard(props) {
 
       console.log("Comment updated successfully:", response.data.message);
       fetchComments();
-      setUpdateModes((prevModes) => ({ ...prevModes, [commentId]: false }));
+      setIsUpdatingComment(false);
+      setCommentText("");
+      setUpdateModes((prevModes) => ({
+        ...prevModes,
+        [selectedCommentId]: false,
+      }));
     } catch (error) {
-      console.error("Error updating comment:", error.message);
+      console.error("Error updating comment:", error);
+      setIsUpdatingComment(false);
     }
   };
 
@@ -70,6 +79,7 @@ export default function PopOutCard(props) {
       );
 
       console.log("Description added successfully:", response.data.message);
+      setCommentText("");
     } catch (error) {
       console.error("Error adding description:", error.message);
     }
@@ -93,7 +103,7 @@ export default function PopOutCard(props) {
 
       console.log("Comment added successfully:", response.data.message);
       fetchComments();
-      setComments([...comments, response.data.comment]);
+      setComments(response.data.comments || []);
     } catch (error) {
       console.error("Error adding comment:", error.message);
     }
@@ -148,66 +158,49 @@ export default function PopOutCard(props) {
   useEffect(() => {
     fetchComments();
   }, []);
-
+  function updateing(commentId) {
+    setselectedCommentId(commentId);
+    setIsUpdatingComment(true);
+  }
   return (
     <div className="cardPopUpContainer">
       <div className="cardPopUpMain">
         <div className="cardPopContain">
           <h1>{props.card.name}</h1>
-          <div className="description">
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+
+          <div className="heading">
+            <h2>Description</h2>
             <button className="add" onClick={handleAddDescription}>
               Add
             </button>
           </div>
-          <div className="comment">
-            <input
+          <div className="description">
+            <textarea
               type="text"
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
-            <button className="add" onClick={handleAddComment}>
-              Add
-            </button>
+          </div>
+
+          <div className="comment">
             <ul>
               {comments.map((commentItem, index) => (
                 <li key={index}>
+                  {console.log(commentItem)}
                   {commentItem && commentItem.text}{" "}
-                  {updateModes[commentItem?._id] ? (
-                    <div>
-                      <input
-                        type="text"
-                        value={commentText}
-                        onChange={(e) => setCommentText(e.target.value)}
-                      />
-                      <button
-                        onClick={() => handleDeleteComment(commentItem?._id)}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        onClick={() =>
-                          handleUpdateComment(commentItem?._id, commentText)
-                        }
-                      >
-                        Update
-                      </button>
-                    </div>
+                  {isupdateComment ? (
+                    <>
+                      <div>
+                        <button
+                          onClick={() => handleDeleteComment(commentItem?._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </>
                   ) : (
                     <>
-                      {commentItem && commentItem.text}
-                      <button
-                        onClick={() =>
-                          setUpdateModes((prevModes) => ({
-                            ...prevModes,
-                            [commentItem?._id]: true,
-                          }))
-                        }
-                      >
+                      <button onClick={() => updateing(commentItem._id)}>
                         Update
                       </button>
                       <button
@@ -220,7 +213,21 @@ export default function PopOutCard(props) {
                 </li>
               ))}
             </ul>
+            <input
+              type="text"
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+            />
+
+            {!isupdateComment ? (
+              <button onClick={() => handleAddComment()}>add</button>
+            ) : (
+              <button onClick={() => handleUpdateComment(selectedCommentId)}>
+                save
+              </button>
+            )}
           </div>
+
           <div className="Checklist">
             <input
               type="text"

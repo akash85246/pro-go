@@ -7,9 +7,9 @@
   left: 30%;
   color: silver;
   position: fixed;
- 
+
   z-index: 999;
- 
+
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -17,7 +17,16 @@
   background: #407bff !important;
   backdrop-filter: blur(2px) !important;
 }
-#root > div > div.dashMainContainer > div > div > div > div > div.cardPopContainer > div.popupbButtons > button:nth-child(2){
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopContainer
+  > div.popupbButtons
+  > button:nth-child(2) {
   width: 15rem;
 }
 #root
@@ -215,4 +224,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div.cardPopContain
+  > div.comment
+  > button {
+  color: #2980b9;
 }

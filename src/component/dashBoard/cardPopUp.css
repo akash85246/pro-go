@@ -80,17 +80,16 @@
 }
 
 .cardPopContain input {
-  color: #3498db; /* Blue text color */
-  border: 1px solid #3498db; /* Blue border color */
+  color: #3498db;
+  border: 1px solid #3498db; 
 }
 
 .cardPopContain {
   overflow-y: scroll;
 }
 
-/* Add styles for the 'Add' buttons */
 .add {
-  background-color: #3498db; /* Blue background color */
+  background-color: #3498db; 
   color: white;
   border: none;
   padding: 8px;
@@ -99,10 +98,10 @@
 }
 
 .add:hover {
-  background-color: #2980b9; /* Darker blue on hover */
+  background-color: #2980b9; 
 }
 
-/* Add styles for the comment list */
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -112,32 +111,58 @@ li {
   margin-bottom: 8px;
 }
 
-/* Add styles for update and delete buttons in comments */
 li button {
   margin-left: 8px;
   padding: 4px;
   cursor: pointer;
 }
 
-/* Add styles for the Checklist section */
 .Checklist {
   margin-top: 16px;
 }
 
-/* Adjust styles for the input in the Checklist section */
 .Checklist input {
-  color: #3498db; /* Blue text color */
-  border: 1px solid #3498db; /* Blue border color */
+  color: #3498db; 
+  border: 1px solid #3498db; 
 }
 
-/* Add styles for the Sidebar options */
 .cardPopSidebar p {
   padding: 8px;
-  background-color: #2980b9; /* Darker blue background color */
+  background-color: #2980b9; 
   color: white;
   cursor: pointer;
 }
 
 .cardPopSidebar p:hover {
-  background-color: #2575a4; /* Slightly darker blue on hover */
+  background-color: #2575a4; 
+}
+.comment{
+  height: 10rem;
+  overflow-y: auto;
+  background-color: white;
+  padding: 1rem;
+  width: 95%;
+  border-radius: 10px;
+}
+#root > div > div.dashMainContainer > div > div > div > div > div.cardPopUpContainer > div > div.cardPopContain > div.description > textarea{
+  resize: none;
+  color: white;
+  background-color: #2575a4;
+  width: 95%;
+  border-radius: 10px;
+  max-height: 10rem;
+  min-height: 5rem;
+  margin: 0 0.1rem;
+}
+.cardPopContain>.heading{
+  display: flex;
+  margin-top: 2rem;
+  width: 95%;
+  margin: 0.5rem 0;
+  justify-content: space-between;
+  align-items: end;
+}
+#root > div > div.dashMainContainer > div > div > div > div > div.cardPopUpContainer > div > div.cardPopContain > div > button{
+  width: 8rem;
+  height: auto;
 }
