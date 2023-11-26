@@ -1,8 +1,6 @@
-.dashMain {
-}
 
 .profileContainerWorkspace {
-  /* margin-top: 8rem; */
+  margin-top: 2rem;
   display: flex;
   color: black;
   justify-content: space-evenly;

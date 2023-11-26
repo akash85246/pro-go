@@ -1,5 +1,3 @@
-// DashNav.js
-
 import React, { useState, useEffect } from "react";
 import "./dashNavbar.css"; // Import your CSS file
 import ProfileImg from "../utils/profileImg";
@@ -13,7 +11,6 @@ export default function DashNav(props) {
 
   const { authToken, setAuthToken } = useAuth();
   useEffect(() => {
-    
     const fetchSearchResults = async () => {
       try {
         const response = await fetch(
@@ -37,18 +34,17 @@ export default function DashNav(props) {
       }
     };
 
-   
     if (searchQuery) {
       fetchSearchResults();
     } else {
       setSearchResults([]);
     }
   }, [searchQuery]);
- const handleTempCardClick = (boardId, name, background, color) => {
-   navigate("/listandcards", {
-     state: { boardId, name, background, color },
-   });
- };
+  const handleTempCardClick = (boardId, name, background, color) => {
+    navigate("/listandcards", {
+      state: { boardId, name, background, color },
+    });
+  };
   return (
     <>
       <nav className="navbarDashboard">
@@ -79,6 +75,7 @@ export default function DashNav(props) {
               type="text"
               placeholder="Search"
               value={searchQuery}
+              maxLength={30}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             <i className="searchIcon"></i>
@@ -88,7 +85,7 @@ export default function DashNav(props) {
             <ProfileImg isNavbar="true" />
           </li>
         </ul>
-        <div className="searchResult">
+        <div className={searchQuery ? "searchResult" : "hidden"}>
           {searchResults.map((board) => (
             <TempCard
               key={board._id}

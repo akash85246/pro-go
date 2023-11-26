@@ -2,6 +2,7 @@ import DashNav from "./dashNavbar";
 import Sidebar2 from "./sidebar2";
 import "./addMember.css";
 import axios from "axios";
+import PopUp from "./addMemberPop";
 import ProfileImg from "../utils/profileImg";
 import include from "../../assets/User_add_alt.svg";
 import { useState } from "react";
@@ -12,33 +13,12 @@ export default function Member() {
   const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState("");
   const { authToken, setAuthToken, boardId } = useAuth();
-  const handleInvite = async () => {
-    try {
-      const response = await axios.post(
-          `https://pro-go.onrender.com/api/board/${boardId}/addMember`,
-        {
-          email: email,
-        },
-        {
-          headers: {
-            "auth-token": authToken,
-          },
-        }
-      );
-
-      setShowInput(false);
-      setEmail("");
-      setInviteStatus(response.data.message);
-    } catch (error) {
-      setShowInput(false);
-      console.error("Error sending invitation:", error);
-      console.log("Response:", error.response);
-      setInviteStatus("Failed to send invitation");
-    }
-  };
 
   const handleButtonClick = () => {
     setShowInput(true);
+  };
+  const closePopup = () => {
+    setShowInput(false);
   };
   return (
     <div className="workspaceContainer">
@@ -62,31 +42,14 @@ export default function Member() {
                 <span>Invite Workspace members</span>
               </div> */}
               <div className="inviteButtons">
-                {showInput ? (
-                  <>
-                    <input
-                      type="email"
-                      placeholder="Enter email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <button
-                      className="blue-button-container"
-                      onClick={handleInvite}
-                    >
-                      <img src={include} alt="Add Icon" />
-                      <span>Invite Workspace members</span>
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    className="blue-button-container"
-                    onClick={handleButtonClick}
-                  >
-                    <img src={include} alt="Add Icon" />
-                    <span>Invite Workspace members</span>
-                  </button>
-                )}
+                {showInput && <PopUp closePopup={closePopup} />}
+                <button
+                  className="blue-button-container"
+                  onClick={handleButtonClick}
+                >
+                  <img src={include} alt="Add Icon" />
+                  <span>Invite members</span>
+                </button>
 
                 {inviteStatus && <p>{inviteStatus}</p>}
               </div>

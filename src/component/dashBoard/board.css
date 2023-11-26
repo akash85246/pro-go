@@ -66,15 +66,18 @@
 }
 
 .scrollContainer {
-  width: 70vw;
+  width: 65vw;
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 
   padding-right: 0;
   white-space: nowrap;
   height: 100%;
+  scrollbar-width: thin;
+
+  scrollbar-color: #011c67 white;
 }
 
 .popTemp {
@@ -87,4 +90,18 @@
   padding: 0 1rem !important;
   width: 50% !important;
   margin-bottom: 2rem !important;
+}
+.scrollContainer > .tempCard {
+  height: 12vh;
+  width: 12vw !important;
+}
+.scrollContainer::-webkit-scrollbar {
+  width: 0;
+}
+
+.scrollContainer {
+  scrollbar-width: none;
+}
+* {
+  scrollbar-width: none;
 }

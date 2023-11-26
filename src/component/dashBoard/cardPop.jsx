@@ -3,13 +3,20 @@ import axios from "axios";
 import "./cardPop.css";
 import { useAuth } from "../utils/authContext";
 import PopOutCard from "./cardPopUp";
+import Button from "../utils/button";
+import closeImg from "../../assets/closeCreate.svg";
 export default function CardPop(props) {
   const [cardData, setCardData] = useState(null);
   const [error, setError] = useState(null);
   const { authToken, setAuthToken } = useAuth();
   const [data, setData] = useState([]);
+  const [isEditingListName, setIsEditingListName] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [newListName, setNewListName] = useState("");
+  const handleEditListName = () => {
+    setIsEditingListName(true);
+  };
+
   useEffect(() => {
     const apiUrl = `https://pro-go.onrender.com/api/list/${props.listId}/cards`;
 
@@ -77,7 +84,9 @@ export default function CardPop(props) {
       );
 
       if (response.data.status) {
-        console.log("changed sucess fully");
+        handleClose();
+        props.onClose();
+        console.log(response);
       } else {
         setError(response.data.message);
       }
@@ -89,56 +98,55 @@ export default function CardPop(props) {
   return (
     <>
       <div className="cardPopContainer">
-        <h1>Added Cards</h1>
-        {error ? (
-          <p>Error: {error}</p>
-        ) : (
-          cardData && (
-            <div className="popCardList">
-              {cardData.cards.map((card) => (
-                <div
-                  key={card._id}
-                  className="popCard"
-                  onClick={() => handleCardClick(card)}
-                >
-                  <p>Card Title: {card.name}</p>
+        <div>
+          <h1>Added Cards</h1>
+          <img src={closeImg} onClick={props.onClose} alt="Close Icon"></img>
+        </div>
+        {cardData && (
+          <div className="popCardList">
+            {cardData.cards.map((card) => (
+              <div
+                key={card._id}
+                className="popCard"
+                onClick={() => handleCardClick(card)}
+              >
+                <p>Card Title: {card.name}</p>
 
-                  {card.description && (
-                    <>
-                      <p>Description:</p>
-                      <textarea
-                        className="popDescription"
-                        value={card.description}
-                        readOnly
-                      ></textarea>
-                    </>
-                  )}
-                  {/* <p>Card ID: {card._id}</p> */}
-                </div>
-              ))}
-              <div>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="New List Name"
-                    value={newListName}
-                    onChange={(e) => setNewListName(e.target.value)}
-                  />
-                  <button
-                    className="updateButton"
-                    onClick={handleUpdateListName}
-                  >
-                    Update List Name
-                  </button>
-                </div>
+                {card.description && (
+                  <>
+                    <p>Description:</p>
+                    <textarea
+                      className="popDescription"
+                      value={card.description}
+                      readOnly
+                    ></textarea>
+                  </>
+                )}
+                {/* <p>Card ID: {card._id}</p> */}
               </div>
-              <div className="popupbButtons">
-                <button onClick={props.onClose}>Close</button>
-                <button onClick={props.onDeleteList}>Delete list</button>
-              </div>
-            </div>
-          )
+            ))}{" "}
+          </div>
         )}
+        <div>
+          {isEditingListName && (
+            <div>
+              <input
+                type="text"
+                placeholder="New List Name"
+                value={newListName}
+                maxLength={20}
+                onChange={(e) => setNewListName(e.target.value)}
+              />
+              <button className="updateButton" onClick={handleUpdateListName}>
+                save
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="popupbButtons">
+          <button onClick={props.onDeleteList}>Delete List</button>
+          <button onClick={handleEditListName}>Edit List Name</button>
+        </div>
 
         <div className="sidebarRight"></div>
       </div>

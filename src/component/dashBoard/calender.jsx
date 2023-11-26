@@ -47,10 +47,10 @@ export default function Calendar() {
   const handleDateChange = (event) => {
     const newDate = parseInt(event.currentTarget.textContent, 10);
     setSelectedDate(newDate);
-    console.log(newDate);
+    // console.log(newDate);
     receivePlannerData();
     setdate(`${newDate}-${selectedMonth + 1}-${selectedYear}`);
-    console.log("Selected Date:", date);
+    // console.log("Selected Date:", date);
   };
 
   useEffect(() => {
@@ -65,8 +65,8 @@ export default function Calendar() {
       selectedYear >= 1960 &&
       selectedYear <= 2600
     ) {
-      receivePlannerData();
       sendPlannerData();
+      receivePlannerData();
     } else {
       toast({
         title: "Error Notification!",
@@ -109,8 +109,16 @@ export default function Calendar() {
           },
         }
       );
-      console.log(selectedDate, selectedMonth + 1, selectedYear);
-      console.log(note);
+      // console.log(selectedDate, selectedMonth + 1, selectedYear);
+      // console.log(note);
+      toast({
+        title: "Success",
+        description: "Planner added successfully!",
+        status: "success",
+        position: "top-center",
+        duration: 3000,
+        isClosable: true,
+      });
       if (response.status === 201) {
         console.log("Planner data added successfully:", response.data.data._id);
         setPlannerId(response.data.data._id);
@@ -118,6 +126,14 @@ export default function Calendar() {
         console.error("Failed to add planner data:", response.data);
       }
     } catch (error) {
+      toast({
+        title: "Success",
+        description: "Planner not added!",
+        status: "success",
+        position: "top-center",
+        duration: 3000,
+        isClosable: true,
+      });
       setGoal("");
       setNote("");
       setTaskList([]);
@@ -136,11 +152,10 @@ export default function Calendar() {
       });
 
       const responseData = response.data.data;
-      console.log(responseData);
-
+     
       const receivedTaskList = responseData.taskList || [];
 
-      console.log(receivedTaskList);
+      // console.log(receivedTaskList);
       setTaskList(receivedTaskList);
       setGoal(responseData.goals);
       setNote(responseData.note);
@@ -175,7 +190,7 @@ export default function Calendar() {
 
       console.log("Planner data updated successfully:", response.data);
     } catch (error) {
-      console.error("Error while updating planner data:", error);
+      // console.error("Error while updating planner data:", error);
     }
   };
   useEffect(() => {

@@ -78,8 +78,8 @@ export default function WorkSpace() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data.data.boardsList);
-          setBoardsList(data.data.boardsList);
+          console.log(data.data.BoardsOwned);
+          setBoardsList(data.data.BoardsOwned);
         } else {
           console.error("Error fetching user details");
         }
