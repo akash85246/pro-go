@@ -28,7 +28,7 @@ export default function DashNav(props) {
         }
 
         const data = await response.json();
-        setSearchResults(data.data.boards); // Assuming the boards array is what you want to display
+        setSearchResults(data.data.boards);
       } catch (error) {
         console.error("Error fetching search results:", error);
       }
@@ -50,19 +50,31 @@ export default function DashNav(props) {
       <nav className="navbarDashboard">
         <ul className="navLinks">
           <li>
-            <button className="blueButton">Create team</button>
+            <button className="blueButton" onClick={() => navigate("/member")}>
+              Create team
+            </button>
           </li>
           <li>
             <button className="blueButton">Drafts</button>
           </li>
           <li>
-            <button className="blueButton">Your team</button>
+            <button
+              className="blueButton"
+              onClick={() => navigate("/yourteam")}
+            >
+              Your team
+            </button>
           </li>
           <li>
             <button className="blueButton">Community</button>
           </li>
           <li>
-            <button className="blueButton">Recent</button>
+            <button
+              className="blueButton"
+              onClick={() => navigate("/workspace")}
+            >
+              Recent
+            </button>
           </li>
           <li>
             <button className="blueButton">views</button>

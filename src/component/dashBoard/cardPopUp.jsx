@@ -11,6 +11,8 @@ export default function PopOutCard(props) {
   const [checklist, setChecklist] = useState("");
   const [selectedCommentId, setselectedCommentId] = useState("");
   const { authToken, setAuthToken } = useAuth();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [files, setFiles] = useState([]);
 
   const [isupdateComment, setIsUpdatingComment] = useState(false);
   const handleUpdateComment = async (commentId) => {
@@ -105,7 +107,7 @@ export default function PopOutCard(props) {
       fetchComments();
       setComments(response.data.comments || []);
     } catch (error) {
-      console.error("Error adding comment:", error.message);
+      console.error("Error adding comment:", error);
     }
   };
   const handleDeleteComment = async (commentId) => {
@@ -128,6 +130,46 @@ export default function PopOutCard(props) {
   };
   const handleAddChecklist = async () => {
     // Implement logic to add checklist using Axios
+  };
+  const fetchFiles = async () => {
+    try {
+      const response = await axios.get(
+        `https://pro-go.onrender.com/api/card/${props.card._id}/getFiles`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      console.log("Files fetched successfully:", response.data.message);
+      setFiles(response.data.files || []);
+    } catch (error) {
+      console.error("Error fetching files:", error.message);
+    }
+  };
+
+  const handleAddFile = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+
+      const response = await axios.post(
+        `https://pro-go.onrender.com/api/card/${props.card._id}/addFile`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "auth-token": authToken,
+          },
+        }
+      );
+
+      console.log("File added successfully:", response.data.message);
+    } catch (error) {
+      console.error("Error adding file:", error);
+    }
   };
 
   const handleDeleteCard = async () => {
@@ -157,6 +199,7 @@ export default function PopOutCard(props) {
 
   useEffect(() => {
     fetchComments();
+    fetchFiles();
   }, []);
   function updateing(commentId) {
     setselectedCommentId(commentId);
@@ -186,49 +229,64 @@ export default function PopOutCard(props) {
             <ul>
               {comments.map((commentItem, index) => (
                 <li key={index}>
-                  {console.log(commentItem)}
-                  {commentItem && commentItem.text}{" "}
-                  {isupdateComment ? (
-                    <>
-                      <div>
+                  <img
+                    src={commentItem.userId.photoUrl.replace(
+                      /public/g,
+                      "https://pro-go.onrender.com"
+                    )}
+                    alt="User Avatar"
+                  />
+                  <div className="comment-item">
+                    <div className="user-info">
+                      <span>{commentItem.userId.username}</span>
+                    </div>
+                    <div className="comment-text">{commentItem.text}</div>
+                    {isupdateComment ? (
+                      <div className="commentButtons">
+                        <div>
+                          <button
+                            onClick={() =>
+                              handleDeleteComment(commentItem?._id)
+                            }
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="commentButtons">
+                        <button onClick={() => updateing(commentItem._id)}>
+                          Update
+                        </button>
                         <button
                           onClick={() => handleDeleteComment(commentItem?._id)}
                         >
                           Delete
                         </button>
                       </div>
-                    </>
-                  ) : (
-                    <>
-                      <button onClick={() => updateing(commentItem._id)}>
-                        Update
-                      </button>
-                      <button
-                        onClick={() => handleDeleteComment(commentItem?._id)}
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
+          </div>
+          <div>
             <input
               type="text"
               value={commentText}
+              maxLength={200}
               onChange={(e) => setCommentText(e.target.value)}
             />
 
             {!isupdateComment ? (
-              <button onClick={() => handleAddComment()}>add</button>
+              <button onClick={() => handleAddComment()}>notify</button>
             ) : (
               <button onClick={() => handleUpdateComment(selectedCommentId)}>
                 save
               </button>
             )}
           </div>
-
-          <div className="Checklist">
+          {/* <div className="Checklist">
             <input
               type="text"
               value={checklist}
@@ -237,10 +295,36 @@ export default function PopOutCard(props) {
             <button className="add" onClick={handleAddChecklist}>
               Add
             </button>
+          </div> */}
+          <div className="addFiles">
+            <input
+              type="file"
+              onChange={(e) => setSelectedFile(e.target.files[0])}
+            />
+            <button onClick={handleAddFile}>Add File</button>
+          </div>
+          <div className="files">
+            <h2>Files</h2>
+            <ul>
+              {files.map((file, index) => (
+                <li key={index}>
+                  <a
+                    href={`https://pro-go.onrender.com/${file}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {file}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
         <div className="cardPopSidebar">
-          <p onClick={handleAddChecklist}>Add Checklist</p>
+          {/* <p onClick={handleAddChecklist}>Add Checklist</p> */}
+          <p>Upload File</p>
+
           <p onClick={handleDeleteCard}>Delete Card</p>
           <p onClick={props.handleClose}>Close</p>
         </div>

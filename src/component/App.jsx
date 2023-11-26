@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { AuthProvider, useAuth } from "./utils/authContext";
 import {
@@ -29,7 +28,8 @@ import ListAndCard from "./dashBoard/displayBoard";
 import Setting from "./dashBoard/setting";
 import Member from "./dashBoard/addMembers";
 import Calender from "./dashBoard/calender";
-
+import YourTeam from "./dashBoard/yourTeam";
+import Recent from "./dashBoard/recent";
 function ReloadPrevention() {
   const dispatch = useDispatch();
   const isReloading = useSelector((state) => state.isReloading);
@@ -71,7 +71,6 @@ function App() {
               <Route path="/reset" element={<Reset />} />
               <Route path="/price" element={<Pricing />} />
               <Route path="/error" element={<Error />} />
-             
               <Route
                 path="/profile/*"
                 element={<PrivateRoute element={<Profile />} />}
@@ -85,8 +84,16 @@ function App() {
                 element={<PrivateRoute element={<Board />} />}
               />
               <Route
+                path="/recent/*"
+                element={<PrivateRoute element={<Recent />} />}
+              />
+              <Route
                 path="/workspace/*"
                 element={<PrivateRoute element={<WorkSpace />} />}
+              />
+              <Route
+                path="/yourteam/*"
+                element={<PrivateRoute element={<YourTeam />} />}
               />
               <Route
                 path="/member/*"

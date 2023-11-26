@@ -44,7 +44,7 @@ export default function Board() {
       setLoading(true);
 
       if (selectedTemplate) {
-        const response = await axios.put(
+        const response = await axios.patch(
           `https://pro-go.onrender.com/api/board/${boardId}/update`,
           {
             templateLink: selectedTemplate.background,

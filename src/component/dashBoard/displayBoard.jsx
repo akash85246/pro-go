@@ -16,26 +16,21 @@ import openArrow from "../../assets/arrowIcon.svg";
 import closeArrow from "../../assets/closearrow.svg";
 import DashNav from "./dashNavbar.jsx";
 export default function MyBoard() {
-  const { authToken, setAuthToken } = useAuth();
-  const location = useLocation();
-
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-
-  const { boardId, name, background, color } = location.state;
-  console.log("location", location.state);
+  const { authToken, setAuthToken, boardId } = useAuth();
+  const [boardInfo, setBoardInfo] = useState({});
   const [lists, setLists] = useState([]);
-  const isColor = background.startsWith("#");
+  const [color, setColor] = useState("#000ff");
+  const isColor = typeof background === "string" && background.startsWith("#");
   const backgroundStyle = isColor
     ? { backgroundColor: background }
     : {
         background: `url(${background})`,
-
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
         backgroundSize: "150% 200%",
       };
 
+  // console.log(background);
   const [showInput, setShowInput] = useState(false);
   const [listTitle, setListTitle] = useState("");
 
@@ -54,7 +49,7 @@ export default function MyBoard() {
         {
           name: name,
           link: background,
-          color: color,
+          color: color ? color : "#000ff",
         },
         {
           headers: {
@@ -78,7 +73,7 @@ export default function MyBoard() {
         {
           name: listTitle,
           boardId: boardId,
-          color: color,
+          color: color ? color : "#000ff",
         },
         {
           headers: {
@@ -108,7 +103,7 @@ export default function MyBoard() {
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
         const response = await axios.get(
           `https://pro-go.onrender.com/api/board/${boardId}/lists`,
           {
@@ -136,6 +131,30 @@ export default function MyBoard() {
 
     fetchLists();
   }, [boardId, authToken]);
+  useEffect(() => {
+    const fetchBoardInfo = async () => {
+      try {
+        const response = await axios.get(
+          `https://pro-go.onrender.com/api/board/${boardId}`,
+          {
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        console.log("Board Info API Response:", response.data);
+        const boardColor = response.data.data.board.color;
+        setColor(boardColor || "#000ff");
+        setBoardInfo(response.data.data.board);
+      } catch (error) {
+        console.error("Error fetching board info:", error);
+        console.log("Error response from server:", error.response);
+      }
+    };
+
+    fetchBoardInfo();
+  }, []);
 
   return (
     <div className="workspaceContainer">
@@ -153,14 +172,11 @@ export default function MyBoard() {
                     key={list.id}
                     listId={list.id}
                     listTitle={list.name}
-                    color={list.color}
+                    color={list.color ? list.color : "#000ff"}
                     boardId={boardId}
                     setLists={setLists}
                   />
                 ))}
-                {/* <div key={list.id} className="listItem">
-                    {list.name}
-                  </div> */}
                 {showInput ? (
                   <div
                     className="listInputContainer"
@@ -181,7 +197,11 @@ export default function MyBoard() {
                         Add list
                       </button>
                       <button className="close" onClick={handleCloseListClick}>
-                        <img src={closeArrow} style={{ width: "0.8rem" }}></img>
+                        <img
+                          src={closeArrow}
+                          style={{ width: "0.8rem" }}
+                          alt="Close"
+                        />
                       </button>
                     </div>
                   </div>
@@ -191,7 +211,11 @@ export default function MyBoard() {
                     style={{ backgroundColor: color, padding: "0.3rem " }}
                     onClick={handleAddListClick}
                   >
-                    <img src={openArrow} style={{ width: "0.8rem" }}></img>
+                    <img
+                      src={openArrow}
+                      style={{ width: "0.8rem" }}
+                      alt="Open"
+                    />
                     Add list
                   </button>
                 )}

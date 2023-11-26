@@ -1,0 +1,49 @@
+.yourTeam {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+.yourTeam > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100% !important;
+}
+.yourTeam > div img {
+  width: 10rem;
+  height: 10rem;
+  z-index: 100;
+  border-radius: 50%;
+  background: white;
+}
+.yourTeamContainer {
+  display: grid !important;
+  grid-template-rows: 1fr 1fr !important;
+  grid-template-columns: repeat(6, 1fr);
+  overflow-x: auto;
+}
+.memberImageContainer {
+  background: linear-gradient(225deg, #7fadf4 0.75%, #657dd3 100%);
+  /* opacity: 0.12; */
+  padding: 1rem;
+  border-radius: 50%;
+  height: 12rem;
+  width: 12rem;
+}
+.addName {
+  margin-top: 1rem;
+  color: #415eb6;
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.04688rem;
+  text-align: center;
+}
+.teamMember {
+  width: 14rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
