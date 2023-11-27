@@ -33,20 +33,15 @@ export default function Footer() {
           <ul className="list1">
             <li>Product</li>
             <li>Solutions</li>
-            <li>Overview</li>
-            <li>Faetures</li>
+
+            <li>Features</li>
             <li>Tutorials</li>
             <li>Pricing</li>
-            <li>Releases</li>
           </ul>
           <ul className="list2">
-            <li>Resources</li>
-            <li>Blog</li>
-            <li>Newsletter</li>
-            <li>Events</li>
-            <li>Help centre</li>
+            <li>Rating</li>
+
             <li>Tutorials</li>
-            <li>Support</li>
           </ul>
         </div>
         <div className="container3">
