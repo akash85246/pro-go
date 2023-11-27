@@ -1,5 +1,4 @@
 import Sidebar from "./sidebar";
-import "./defaultBoard.jsx";
 import logo from "../../assets/footer_logo.svg";
 import "./displayBoard.css";
 import ProfileImg from "../utils/profileImg";
@@ -20,6 +19,9 @@ export default function MyBoard() {
   const [boardInfo, setBoardInfo] = useState({});
   const [lists, setLists] = useState([]);
   const [color, setColor] = useState("#000ff");
+  const [name, setName] = useState("");
+  const [background, setBackground] = useState("#ffff");
+
   const isColor = typeof background === "string" && background.startsWith("#");
   const backgroundStyle = isColor
     ? { backgroundColor: background }
@@ -30,7 +32,32 @@ export default function MyBoard() {
         backgroundSize: "150% 200%",
       };
 
-  // console.log(background);
+  useEffect(() => {
+    const fetchBoardInfo = async () => {
+      try {
+        const response = await axios.get(
+          `https://pro-go.onrender.com/api/board/${boardId}`,
+          {
+            headers: {
+              "auth-token": authToken,
+            },
+          }
+        );
+
+        console.log("Board Info API Response:", response.data);
+        const boardColor = response.data.data.board.color;
+        setColor(boardColor);
+        setBackground(response.data.data.board.templateLink);
+        setBoardInfo(response.data.data.board);
+        setName(response.data.data.board.name);
+      } catch (error) {
+        console.error("Error fetching board info:", error);
+        console.log("Error response from server:", error);
+      }
+    };
+
+    fetchBoardInfo();
+  }, []);
   const [showInput, setShowInput] = useState(false);
   const [listTitle, setListTitle] = useState("");
 
@@ -125,36 +152,12 @@ export default function MyBoard() {
         console.error("Error fetching lists:", error);
         console.log("Error response from server:", error.response);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchLists();
   }, [boardId, authToken]);
-  useEffect(() => {
-    const fetchBoardInfo = async () => {
-      try {
-        const response = await axios.get(
-          `https://pro-go.onrender.com/api/board/${boardId}`,
-          {
-            headers: {
-              "auth-token": authToken,
-            },
-          }
-        );
-
-        console.log("Board Info API Response:", response.data);
-        const boardColor = response.data.data.board.color;
-        setColor(boardColor || "#000ff");
-        setBoardInfo(response.data.data.board);
-      } catch (error) {
-        console.error("Error fetching board info:", error);
-        console.log("Error response from server:", error.response);
-      }
-    };
-
-    fetchBoardInfo();
-  }, []);
 
   return (
     <div className="workspaceContainer">
@@ -164,7 +167,7 @@ export default function MyBoard() {
 
         <div className="dashMain">
           <div className="myBoard" style={backgroundStyle}>
-            <div style={{ backdropFilter: "blur(10px)" }}>
+            <div>
               <h1 style={{ color: color }}>Tables </h1>
               <div className="listsContainer">
                 {lists.map((list) => (
