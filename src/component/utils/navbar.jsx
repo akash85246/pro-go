@@ -175,7 +175,8 @@ export default function Navbar(props) {
               <img src={resource1Img}></img>
             </div>
           </Slider>
-          {authToken !== null ? (
+          {console.log("nav", authToken)}
+          {!authToken ? (
             <>
               <button
                 className="profileNavButton"

@@ -20,8 +20,11 @@ export default function Profile() {
   const navigate = useNavigate();
   console.log(authToken);
   function logOut() {
+    localStorage.clear();
+    console.log("Local storage cleared");
     console.log("logged Out");
-    updateAuthToken(null);
+    console.log(authToken);
+    // updateAuthToken(null);
     navigate("/");
   }
 
