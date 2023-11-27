@@ -6,6 +6,7 @@ import { useToast } from "@chakra-ui/toast";
 import { Box } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
 import Button from "../utils/button";
+import closeImg from "../../assets/closeCreate.svg";
 export default function PopOutCard(props) {
   const [description, setDescription] = useState(props.card.description);
   const [comments, setComments] = useState([]);
@@ -75,7 +76,7 @@ export default function PopOutCard(props) {
   const handleAddDescription = async () => {
     setLoading(true);
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         `https://pro-go.onrender.com/api/card/${props.card._id}/update`,
         {
           description: description,
@@ -181,7 +182,7 @@ export default function PopOutCard(props) {
           </Box>
         ),
       });
-      console.error("Error deleting comment:", error.message);
+      console.error("Error deleting comment:", error);
     } finally {
       setLoading(false);
     }
@@ -267,20 +268,23 @@ export default function PopOutCard(props) {
     <div className="cardPopUpContainer">
       <div className="cardPopUpMain">
         <div className="cardPopContain">
-          <h1>{props.card.name}</h1>
-
           <div className="heading">
-            <h2>Description</h2>
-            <button className="add" onClick={handleAddDescription}>
-              Add
-            </button>
+            <h1>{props.card.name}</h1>
+            <img
+              src={closeImg}
+              onClick={props.handleClose}
+              alt="Close Icon"
+            ></img>
           </div>
-          <div className="description">
+          <div className="heading">
             <textarea
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+            <button className="add" onClick={handleAddDescription}>
+              Add
+            </button>
           </div>
 
           <div className="comment">
@@ -354,7 +358,7 @@ export default function PopOutCard(props) {
               Add
             </button>
           </div> */}
-          <div className="addFiles">
+          {/* <div className="addFiles">
             <input
               type="file"
               onChange={(e) => setSelectedFile(e.target.files[0])}
@@ -376,16 +380,16 @@ export default function PopOutCard(props) {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
 
-        <div className="cardPopSidebar">
-          {/* <p onClick={handleAddChecklist}>Add Checklist</p> */}
+        {/* <div className="cardPopSidebar">
+        
           <p>Upload File</p>
 
           <p onClick={handleDeleteCard}>Delete Card</p>
           <p onClick={props.handleClose}>Close</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

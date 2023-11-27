@@ -3,12 +3,12 @@
   background-color: silver;
   z-index: 100000;
   top: 3rem;
-  width: 60%;
+  width: 40%;
   height: 70%;
   padding: 1rem;
   height: 35rem !important;
   width: 40rem;
-  top: 0% !important;
+  top: 15% !important;
   left: 30%;
   padding: 20px;
   border: 1px solid #ccc;
@@ -23,8 +23,8 @@
   margin: -1rem;
 }
 .cardPopUpMain {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
+  /* display: grid;
+  grid-template-columns: 4fr 1fr; */
   height: 100%;
 }
 .cardPopSidebar {
@@ -44,14 +44,20 @@
   color: grey;
 }
 .cardPopContain {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
 }
+
 .cardPopUpContainer {
   position: fixed;
   background-color: #3498db; /* Blue background color */
   z-index: 100000;
   top: 3rem;
-  width: 60%;
+  /* width: 60%; */
   height: 70%;
   padding: 1rem;
   color: white; /* Text color */
@@ -60,12 +66,6 @@
 .cardPopSidebar {
   background-color: #2980b9; /* Darker blue sidebar */
   margin: -1rem;
-}
-
-.cardPopUpMain {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  height: 100%;
 }
 
 .cardPopSidebar {
@@ -140,8 +140,10 @@ li button {
   overflow-y: auto;
   background-color: #2667f4;
   padding: 1rem;
-  width: 95%;
+  width: 100%;
   border-radius: 10px;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
 }
 #root
   > div
@@ -167,7 +169,7 @@ li button {
 .cardPopContain > .heading {
   display: flex;
   margin-top: 2rem;
-  width: 95%;
+  width: 100%;
   margin: 0.5rem 0;
   justify-content: space-between;
   align-items: end;
@@ -186,6 +188,8 @@ li button {
   > button {
   width: 8rem;
   height: auto;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
 }
 #root
   > div
@@ -206,6 +210,7 @@ li button {
 .comment-item {
   width: 100%;
   padding: 1rem;
+  min-height: 8rem;
 }
 #root
   > div
@@ -221,9 +226,9 @@ li button {
   > ul
   > li
   > img {
-  height: 5rem;
+  height: 4rem;
   border-radius: 50%;
-  width: 5rem;
+  width: 4rem;
   border: 2px solid white;
 }
 .user-info {
@@ -239,12 +244,13 @@ li button {
 .commentButtons {
   display: flex;
   justify-content: space-between;
+  width: 30%;
 }
 .commentButtons > button {
   margin: 0;
   border-radius: 1.25rem;
   border: 1px solid #000;
-  background: #fff;
+  background: ;
   color: #263238;
   font-family: Poppins;
   font-size: 0.875rem;
@@ -252,6 +258,16 @@ li button {
   font-weight: 500;
   line-height: normal;
   cursor: pointer;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+  border-radius: 2.0625rem;
+  background: #407bff;
+  backdrop-filter: blur(2px);
+  color: white;
+}
+.commentButtons > button:hover {
+  background-color: white;
+  color: #407bff;
 }
 .comment-text {
   color: #fff;
@@ -320,8 +336,163 @@ li button {
   > div.cardPopUpContainer
   > div
   > div.cardPopContain
-  > div:nth-child(5){
-    display: flex;
-    justify-content: center;
-    margin: 1rem auto;
-  }
+  > div:nth-child(5) {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div
+  > div:nth-child(1)
+  > h1 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div
+  > div:nth-child(2)
+  > textarea {
+  resize: none;
+  display: flex;
+  width: 19.8125rem;
+  padding: 0 0.625rem;
+  justify-content: center;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+  height: 4rem;
+  outline: none;
+  width: 100%;
+  background: #407bff;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div
+  > div:nth-child(2)
+  > button {
+  border-radius: 1.25rem;
+  background: #fff;
+  display: flex;
+  width: 7.5rem;
+  padding: 0.875rem 1.3125rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  color: #455a64;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 4rem;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div
+  > div:nth-child(4)
+  > input[type="text"] {
+  width: 70%;
+  margin: auto 1rem;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+  padding: 0 0.625rem;
+  justify-content: center;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+  height: 4rem;
+  outline: none;
+  width: 70%;
+  margin: 1rem;
+  background: #407bff;
+  color: white;
+}
+
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div
+  > div.addFiles
+  > input[type="file"] {
+  width: 70%;
+  margin: auto 1rem;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+  padding: 0 0.625rem;
+  justify-content: center;
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+
+  outline: none;
+  width: 70%;
+  background: #407bff;
+  color: white;
+  justify-content: center;
+  margin-top: -1rem;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div
+  > div:nth-child(4)
+  > button {
+  height: 4rem;
+}
+#root
+  > div
+  > div.dashMainContainer
+  > div
+  > div
+  > div
+  > div
+  > div.cardPopUpContainer
+  > div
+  > div
+  > div.addFiles
+  > button {
+}

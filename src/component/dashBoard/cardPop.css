@@ -3,7 +3,7 @@
   background-color: white;
   height: 30rem;
   width: 40rem;
-  top: 10%;
+  top: 15%;
   left: 30%;
   color: silver;
   position: fixed;
@@ -39,7 +39,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
- margin: 0 1rem;
+  margin: 0 1rem;
 }
 #root
   > div
@@ -78,6 +78,9 @@
 .popDescription {
   width: 100%;
   resize: none;
+  color: #2980b9;
+  padding: 1rem;
+  border-radius: 10px;
 }
 .popupbButtons button {
   width: 20%;
@@ -102,12 +105,11 @@
   width: 100%;
 }
 
-
 .popupbButtons {
   display: flex;
   width: 100%;
 
-  justify-content:center;
+  justify-content: center;
   margin-top: 1rem;
 }
 .popCardList {
