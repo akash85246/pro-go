@@ -53,3 +53,9 @@
 .sliderContainer.open {
   width: 300px; /* Adjust the width as needed */
 }
+#root > div > div.sidebar.close > div.sidebarContain > img {
+  cursor: pointer;
+}
+.sidebarContain > ul li {
+  cursor: pointer;
+}
