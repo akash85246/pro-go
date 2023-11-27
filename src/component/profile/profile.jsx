@@ -24,7 +24,7 @@ export default function Profile() {
     console.log("Local storage cleared");
     console.log("logged Out");
     console.log(authToken);
-    // updateAuthToken(null);
+    updateAuthToken(null);
     navigate("/");
   }
 
