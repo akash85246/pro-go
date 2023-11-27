@@ -26,8 +26,20 @@
   > div
   > div.cardPopContainer
   > div.popupbButtons
-  > button:nth-child(2) {
+  > button {
   width: 15rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  width: 10rem;
+  padding: 0.875rem 1.3125rem;
+  color: #455a64;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+ margin: 0 1rem;
 }
 #root
   > div
@@ -45,7 +57,6 @@
   position: fixed;
 }
 .cardPopContainer > div > h1 {
-  /* background-color: white; */
   top: 3.6rem;
   color: #fff;
   font-family: Poppins;
@@ -91,14 +102,12 @@
   width: 100%;
 }
 
-.popupbButtons button:hover {
-  background-color: #45a049;
-}
+
 .popupbButtons {
   display: flex;
   width: 100%;
 
-  justify-content: space-between;
+  justify-content:center;
   margin-top: 1rem;
 }
 .popCardList {
@@ -207,8 +216,15 @@
   > div
   > div.cardPopContainer
   > div.popCardList
-  > div:nth-child(2) {
-  margin: auto;
+  > div {
+  border-radius: 1.25rem;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 #root
   > div

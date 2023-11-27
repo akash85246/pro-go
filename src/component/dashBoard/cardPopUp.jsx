@@ -23,7 +23,7 @@ export default function PopOutCard(props) {
     setLoading(true);
     try {
       console.log("commentId", commentId);
-      const response = await axios.put(
+      const response = await axios.patch(
         `https://pro-go.onrender.com/api/comment/${commentId}/update`,
         {
           text: commentText,

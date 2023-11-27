@@ -76,7 +76,7 @@ export default function CardPop(props) {
   const handleUpdateListName = async () => {
     setLoading(true);
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         `https://pro-go.onrender.com/api/list/${props.listId}/update`,
         {
           name: newListName,
