@@ -176,7 +176,7 @@ export default function Navbar(props) {
             </div>
           </Slider>
           {console.log("nav", authToken)}
-          {!authToken ? (
+          {authToken !== null ? (
             <>
               <button
                 className="profileNavButton"
