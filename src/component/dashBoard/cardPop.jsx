@@ -4,8 +4,13 @@ import "./cardPop.css";
 import { useAuth } from "../utils/authContext";
 import PopOutCard from "./cardPopUp";
 import Button from "../utils/button";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 import closeImg from "../../assets/closeCreate.svg";
 export default function CardPop(props) {
+    const toast = useToast();
+    const [loading, setLoading] = useState(false);
   const [cardData, setCardData] = useState(null);
   const [error, setError] = useState(null);
   const { authToken, setAuthToken } = useAuth();
@@ -69,6 +74,7 @@ export default function CardPop(props) {
     }
   };
   const handleUpdateListName = async () => {
+    setLoading(true);
     try {
       const response = await axios.put(
         `https://pro-go.onrender.com/api/list/${props.listId}/update`,
@@ -91,8 +97,24 @@ export default function CardPop(props) {
         setError(response.data.message);
       }
     } catch (error) {
+       toast({
+         title: "Error Notification!",
+         description: error.response?.data?.message || "An error occurred",
+         status: "error",
+         position: "top-centre",
+         duration: 3000,
+         isClosable: true,
+         render: () => (
+           <Box p={3} color="white" bg="red.500" borderRadius="md">
+             <WarningIcon mr={3} />
+             {error.response?.data?.message || "An error occurred"}
+           </Box>
+         ),
+       });
       setError("An error occurred while updating the list name.");
       console.error("Error updating list name:", error);
+    }finally{
+      setLoading(false);
     }
   };
   return (

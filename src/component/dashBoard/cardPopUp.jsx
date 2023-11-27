@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./cardPopUp.css";
 import { useAuth } from "../utils/authContext";
-
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function PopOutCard(props) {
   const [description, setDescription] = useState(props.card.description);
   const [comments, setComments] = useState([]);
@@ -13,9 +16,11 @@ export default function PopOutCard(props) {
   const { authToken, setAuthToken } = useAuth();
   const [selectedFile, setSelectedFile] = useState(null);
   const [files, setFiles] = useState([]);
-
+  const toast = useToast();
+  const [loading, setLoading] = useState(false);
   const [isupdateComment, setIsUpdatingComment] = useState(false);
   const handleUpdateComment = async (commentId) => {
+    setLoading(true);
     try {
       console.log("commentId", commentId);
       const response = await axios.put(
@@ -42,6 +47,8 @@ export default function PopOutCard(props) {
     } catch (error) {
       console.error("Error updating comment:", error);
       setIsUpdatingComment(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,6 +73,7 @@ export default function PopOutCard(props) {
   };
 
   const handleAddDescription = async () => {
+    setLoading(true);
     try {
       const response = await axios.put(
         `https://pro-go.onrender.com/api/card/${props.card._id}/update`,
@@ -83,11 +91,28 @@ export default function PopOutCard(props) {
       console.log("Description added successfully:", response.data.message);
       setCommentText("");
     } catch (error) {
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
       console.error("Error adding description:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleAddComment = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://pro-go.onrender.com/api/comment/add",
@@ -107,10 +132,27 @@ export default function PopOutCard(props) {
       fetchComments();
       setComments(response.data.comments || []);
     } catch (error) {
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
       console.error("Error adding comment:", error);
+    } finally {
+      setLoading(false);
     }
   };
   const handleDeleteComment = async (commentId) => {
+    setLoading(true);
     try {
       const response = await axios.delete(
         `https://pro-go.onrender.com/api/comment/${commentId}/delete`,
@@ -125,7 +167,23 @@ export default function PopOutCard(props) {
       console.log("Comment deleted successfully:", response.data.message);
       fetchComments();
     } catch (error) {
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
       console.error("Error deleting comment:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
   const handleAddChecklist = async () => {

@@ -97,7 +97,7 @@
   background-color: white;
 }
 #root > div > div.dashMainContainer > div.dashMain > div > div > h1 {
-  color: #011c67;
+  text-shadow: 0 0 2px grey, 0 0 10px white;
   font-family: Poppins;
   font-size: 2.25rem;
   font-style: normal;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Sidebar2 from "./sidebar2";
 import "./workSpace.css";
 import Button from "../utils/button";
 import addIcon from "../../assets/addIcon.svg";
@@ -11,11 +10,14 @@ import TempCard from "../utils/templateCard";
 import axios from "axios";
 import NewBoardPopup from "./createPop";
 import Sidebar from "./sidebar";
-
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 export default function WorkSpace() {
+  const toast = useToast();
   const [boardsList, setBoardsList] = useState([]);
   const navigate = useNavigate();
-  const { authToken, setAuthToken } = useAuth();
+  const { authToken, updateAuthToken, boardId, updateBoardId } = useAuth();
   const [loading, setLoading] = useState(false);
   const [showNewBoardPopup, setShowNewBoardPopup] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,6 +63,7 @@ export default function WorkSpace() {
 
   const handleTempCardClick = (boardId, name, background, color) => {
     console.log(boardId, name, background, color);
+    updateBoardId(boardId);
     navigate("/listandcards", {
       state: { boardId, name, background, color },
     });

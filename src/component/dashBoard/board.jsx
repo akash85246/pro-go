@@ -15,8 +15,12 @@ import naturalImg from "../../assets/natural.jpg";
 import { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../utils/authContext";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 export default function Board() {
   const navigate = useNavigate();
+  const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [recentlyWorked, setRecentlyWorked] = useState([]);

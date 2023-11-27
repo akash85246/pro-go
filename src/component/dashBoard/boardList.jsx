@@ -8,14 +8,17 @@ import "./boardList.css";
 import { useEffect } from "react";
 import openArrow from "../../assets/arrowIcon.svg";
 import closeArrow from "../../assets/closearrow.svg";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function BoardList(props) {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [cardTitle, setCardTitle] = useState("");
 
   const { authToken, setAuthToken } = useAuth();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+    const toast = useToast();
+    const [loading, setLoading] = useState(false);
   const [cards, setCards] = useState([]);
 
   const [cardPopState, setCardPopState] = useState({
@@ -53,6 +56,7 @@ export default function BoardList(props) {
     fetchCards();
   };
   const handleAddCardSubmit = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://pro-go.onrender.com/api/card/add",
@@ -75,8 +79,23 @@ export default function BoardList(props) {
       ]);
       setIsAddingCard(false);
       setCardTitle("");
-    } catch (error) {
+    } catch (error) {toast({
+      title: "Error Notification!",
+      description: error.response?.data?.message || "An error occurred",
+      status: "error",
+      position: "top-centre",
+      duration: 3000,
+      isClosable: true,
+      render: () => (
+        <Box p={3} color="white" bg="red.500" borderRadius="md">
+          <WarningIcon mr={3} />
+          {error.response?.data?.message || "An error occurred"}
+        </Box>
+      ),
+    });
       console.error("Error adding card:", error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -107,7 +126,20 @@ export default function BoardList(props) {
           prevLists.filter((list) => list.id !== props.listId)
         );
         handleCloseCardPop();
-      } else {
+      } else {toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
         console.error("Error deleting list:", apiResponse.data.message);
       }
     } catch (error) {

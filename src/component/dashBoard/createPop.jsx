@@ -15,8 +15,10 @@ import { Box } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
 import "./createPop.css";
 import Button from "../utils/button";
+
 export default function NewBoardPopup({ onClose, onSubmit }) {
-  const toast = useToast();
+    const toast = useToast();
+   
   const [boardName, setBoardName] = useState("untitled");
   const [loading, setLoading] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -39,6 +41,7 @@ export default function NewBoardPopup({ onClose, onSubmit }) {
   const { authToken, updateAuthToken, boardId, updateBoardId } = useAuth();
 
   const createBoardOnServer = async (boardName, templateColor) => {
+    
     console.log("mine", templateColor);
     setLoading(true);
     try {

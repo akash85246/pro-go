@@ -14,7 +14,13 @@ import { useEffect } from "react";
 import openArrow from "../../assets/arrowIcon.svg";
 import closeArrow from "../../assets/closearrow.svg";
 import DashNav from "./dashNavbar.jsx";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function MyBoard() {
+    const toast = useToast();
+    const [loading, setLoading] = useState(false);
   const { authToken, setAuthToken, boardId } = useAuth();
   const [boardInfo, setBoardInfo] = useState({});
   const [lists, setLists] = useState([]);
@@ -70,6 +76,7 @@ export default function MyBoard() {
   };
 
   const addRecentlyWorked = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://pro-go.onrender.com/api/add-recently-worked/",
@@ -90,6 +97,8 @@ export default function MyBoard() {
       console.log("add recently worked API Response:", name, background, color);
       console.error("Error adding recently worked:", error);
       console.log("Error response from server:", error.response);
+    } finally {
+      setLoading(false);
     }
   };
   const handleSaveListClick = async () => {
@@ -118,6 +127,20 @@ export default function MyBoard() {
       setShowInput(false);
       setListTitle("");
     } catch (error) {
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
       console.error("Error adding list:", error);
       console.log("Error response from server:", error.response);
       console.log(boardId);

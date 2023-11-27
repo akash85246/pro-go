@@ -1,6 +1,6 @@
 import "./calender.css";
 import DashNav from "./dashNavbar";
-import Sidebar2 from "./sidebar2";
+
 import "./addMember.css";
 import ToDoList from "./todo";
 import { useState, useEffect } from "react";
@@ -10,9 +10,12 @@ import { WarningIcon } from "@chakra-ui/icons";
 import { useAuth } from "../utils/authContext";
 import axios from "axios";
 import Sidebar from "./sidebar";
+
+import Button from "../utils/button";
 export default function Calendar() {
   const { authToken, setAuthToken } = useAuth();
   const toast = useToast();
+  const [loading, setLoading] = useState(false);
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
@@ -93,7 +96,7 @@ export default function Calendar() {
   };
   const sendPlannerData = async () => {
     const apiUrl = "https://pro-go.onrender.com/api/planner/add";
-
+    setLoading(true);
     try {
       const response = await axios.post(
         apiUrl,
@@ -138,6 +141,8 @@ export default function Calendar() {
       setNote("");
       setTaskList([]);
       console.error("Error while making API call:", error);
+    } finally {
+      setLoading(false);
     }
   };
   const receivePlannerData = async () => {
@@ -152,10 +157,9 @@ export default function Calendar() {
       });
 
       const responseData = response.data.data;
-     
+
       const receivedTaskList = responseData.taskList || [];
 
-      // console.log(receivedTaskList);
       setTaskList(receivedTaskList);
       setGoal(responseData.goals);
       setNote(responseData.note);
@@ -163,6 +167,20 @@ export default function Calendar() {
       setGoal("");
       setNote("");
       setTaskList([]);
+      toast({
+        title: "Error Notification!",
+        description: error.response?.data?.message || "An error occurred",
+        status: "error",
+        position: "top-centre",
+        duration: 3000,
+        isClosable: true,
+        render: () => (
+          <Box p={3} color="white" bg="red.500" borderRadius="md">
+            <WarningIcon mr={3} />
+            {error.response?.data?.message || "An error occurred"}
+          </Box>
+        ),
+      });
       console.error("Error fetching data:", error);
     }
   };

@@ -1,10 +1,13 @@
-import Sidebar2 from "./sidebar2";
 import "./setting.css";
 import DashNav from "./dashNavbar";
 import protectedImg from "../../assets/protected.svg";
 import starImg from "../../assets/Star.svg";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./sidebar";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function Setting() {
   const navigate = useNavigate();
   return (

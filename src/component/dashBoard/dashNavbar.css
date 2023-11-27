@@ -112,6 +112,7 @@
   gap: 0.5rem;
   left: 82rem;
   overflow-y: auto;
+  width: 5rem;
   height: 12rem;
 }
 .searchResult > .tempCard {
@@ -129,4 +130,7 @@
 }
 .hidden {
   display: none;
+}
+#root > div > div.dashMainContainer > nav > div > h3 {
+  color: #1d62fe;
 }

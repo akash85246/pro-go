@@ -8,7 +8,13 @@ import Sidebar from "./sidebar";
 import Slider from "../utils/slider";
 import Button from "../utils/button";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+
 export default function DashBoard() {
+  const toast = useToast();
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   function toWorkSpace() {

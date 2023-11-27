@@ -1,5 +1,4 @@
 import DashNav from "./dashNavbar";
-import Sidebar2 from "./sidebar2";
 import "./addMember.css";
 import axios from "axios";
 import PopUp from "./addMemberPop";
@@ -8,6 +7,10 @@ import include from "../../assets/User_add_alt.svg";
 import { useState } from "react";
 import { useAuth } from "../utils/authContext";
 import Sidebar from "./sidebar";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function Member() {
   const [inviteStatus, setInviteStatus] = useState(null);
   const [showInput, setShowInput] = useState(false);

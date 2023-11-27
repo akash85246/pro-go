@@ -4,11 +4,16 @@ import ProfileImg from "../utils/profileImg";
 import { useAuth } from "../utils/authContext";
 import TempCard from "../utils/templateCard";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function DashNav(props) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
+  const toast = useToast();
+  const [loading, setLoading] = useState(false);
   const { authToken, setAuthToken } = useAuth();
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -26,9 +31,9 @@ export default function DashNav(props) {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-
         const data = await response.json();
         setSearchResults(data.data.boards);
+        console.log(data.data.boards);
       } catch (error) {
         console.error("Error fetching search results:", error);
       }
@@ -99,12 +104,8 @@ export default function DashNav(props) {
         </ul>
         <div className={searchQuery ? "searchResult" : "hidden"}>
           {searchResults.map((board) => (
-            <TempCard
-              key={board._id}
-              tempTitle={board.name}
-              background={board.templateLink}
-              color={board.color}
-              onSelect={() =>
+            <h3
+              onClick={() =>
                 handleTempCardClick(
                   board._id,
                   board.name,
@@ -112,7 +113,23 @@ export default function DashNav(props) {
                   board.color
                 )
               }
-            />
+            >
+              {board.name}
+            </h3>
+            // <TempCard
+            //   key={board._id}
+            //   tempTitle={board.name}
+            //   background={board.templateLink}
+            //   color={board.color}
+            //   onSelect={() =>
+            //     handleTempCardClick(
+            //       board._id,
+            //       board.name,
+            //       board.templateLink,
+            //       board.color
+            //     )
+            //   }
+            // />
           ))}
         </div>
       </nav>

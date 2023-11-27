@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProgressBar from "../../utils/progress";
 import RememberMeCheckbox from "../../utils/rememberMe";
-import Button from "../../utils/button";
+
 import LeftContainer from "../../utils/leftContainer";
 import axios from "axios";
 import loginImg from "../../../assets/logIn.svg";
@@ -15,12 +15,14 @@ import logo from "../../../assets/logo.svg";
 import { useToast } from "@chakra-ui/toast";
 import { Box } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../../utils/button";
 const loginEndpoint = "https://pro-go.onrender.com/api/auth/sign-in";
 import { useAuth } from "../../utils/authContext";
 function LoginForm() {
   const toast = useToast();
-  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginWithPhone, setLoginWithPhone] = useState(false);

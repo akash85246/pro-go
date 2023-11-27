@@ -14,7 +14,10 @@ import Slider from "../utils/slider";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/footer_logo.svg";
 import dashbpaord from "../../assets/dashBoardIcon.svg";
-
+import { useToast } from "@chakra-ui/toast";
+import { Box } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
+import Button from "../utils/button";
 export default function Sidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sliderOpen, setSliderOpen] = useState(false);
@@ -110,10 +113,10 @@ export default function Sidebar(props) {
               <img
                 src={table}
                 alt="Table Icon"
-                onClick={() => navigateTo("/workspace")}
+                onClick={() => navigateTo("/listandcards")}
               />
               {!sidebarOpen && (
-                <h4 onClick={() => navigateTo("/workspace")}>Table</h4>
+                <h4 onClick={() => navigateTo("/listandcards")}>Table</h4>
               )}
             </li>
             <li>
