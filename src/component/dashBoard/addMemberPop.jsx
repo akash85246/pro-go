@@ -13,6 +13,9 @@ export default function PopUp(props) {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
+  const [teamDetails, setTeamDetails] = useState([]);
+  const [boardMembers, setBoardMembers] = useState([]);
+  
   const handleAddMemberBoard = async () => {
     try {
       setLoading1(true);

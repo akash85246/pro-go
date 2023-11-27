@@ -4,7 +4,7 @@ import axios from "axios";
 import PopUp from "./addMemberPop";
 import ProfileImg from "../utils/profileImg";
 import include from "../../assets/User_add_alt.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../utils/authContext";
 import Sidebar from "./sidebar";
 import { useToast } from "@chakra-ui/toast";
@@ -16,10 +16,41 @@ export default function Member() {
   const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState("");
   const { authToken, setAuthToken, boardId } = useAuth();
-
+  const [boardMembers, setBoardMembers] = useState([]);
+  const [teamDetails, setTeamDetails] = useState([]);
   const handleButtonClick = () => {
     setShowInput(true);
   };
+  useEffect(() => {
+    axios
+      .get("https://pro-go.onrender.com/api/get-all-member", {
+        headers: {
+          "auth-token": authToken,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        const usersWorkSpaceMember = response.data.usersWorkSpcaeMember || [];
+        setTeamDetails(usersWorkSpaceMember);
+      })
+      .catch((error) => {
+        console.error("Error fetching team details:", error);
+      });
+    axios
+      .get(`https://pro-go.onrender.com/api/board/${boardId}/getMembers/`, {
+        headers: {
+          "auth-token": authToken,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        const boardMembers = response.data.data.members || [];
+        setBoardMembers(boardMembers);
+      })
+      .catch((error) => {
+        console.error("Error fetching board members:", error);
+      });
+  }, [authToken]);
   const closePopup = () => {
     setShowInput(false);
   };
@@ -86,19 +117,42 @@ export default function Member() {
               <div>
                 <button className="filterButton">Filter by Name</button>
               </div>
-              <div>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
-                <h1>I am a list of members</h1>
+              <div className="team">
+                {teamDetails.map((member) => (
+                  <div key={member.email} className="liMember">
+                    <div className="memberImage">
+                      <img
+                        src={
+                          member.photoUrl &&
+                          member.photoUrl.replace(
+                            /public/g,
+                            "https://pro-go.onrender.com"
+                          )
+                        }
+                        alt={member.username}
+                      />
+                    </div>
+                    <p className="addName">{member.username}</p>
+                    {/* <p>{member.email}</p> */}
+                  </div>
+                ))}{" "}
+                {boardMembers.map((member) => (
+                  <div key={member.email} className="liMember">
+                    <div className="memberImage">
+                      <img
+                        src={
+                          member.photoUrl &&
+                          member.photoUrl.replace(
+                            /public/g,
+                            "https://pro-go.onrender.com"
+                          )
+                        }
+                        alt={member.username}
+                      />
+                    </div>
+                    <p className="addName">{member.username}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
