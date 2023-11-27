@@ -16,6 +16,7 @@ import { WarningIcon } from "@chakra-ui/icons";
 export default function WorkSpace() {
   const toast = useToast();
   const [boardsList, setBoardsList] = useState([]);
+  const [shareboardsList, setsharetBoardsList] = useState([]);
   const navigate = useNavigate();
   const { authToken, updateAuthToken, boardId, updateBoardId } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -81,7 +82,8 @@ export default function WorkSpace() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data.data.BoardsOwned);
+          console.log(data.data);
+          setsharetBoardsList(data.data.BoardsCollaborated);
           setBoardsList(data.data.BoardsOwned);
         } else {
           console.error("Error fetching user details");
@@ -148,6 +150,23 @@ export default function WorkSpace() {
             <div className="activity">
               {boardsList &&
                 boardsList.map((board) => (
+                  <TempCard
+                    key={board._id}
+                    tempTitle={board.name}
+                    background={board.templateLink}
+                    color={board.color}
+                    onSelect={() =>
+                      handleTempCardClick(
+                        board._id,
+                        board.name,
+                        board.templateLink,
+                        board.color
+                      )
+                    }
+                  />
+                ))}
+              {shareboardsList &&
+                shareboardsList.map((board) => (
                   <TempCard
                     key={board._id}
                     tempTitle={board.name}

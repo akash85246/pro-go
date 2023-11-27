@@ -112,7 +112,7 @@ export default function Board() {
     };
 
     fetchRecentlyWorked();
-  }, []);
+  }, [authToken, selectedTemplate]);
 
   const addRecentlyViewed = async () => {
     try {
@@ -165,7 +165,7 @@ export default function Board() {
     };
 
     fetchRecentlyViewed();
-  }, []);
+  }, [selectedTemplate, authToken]);
 
   const filteredTemplates = templates.filter((template) =>
     template.tempTitle.toLowerCase().includes(searchQuery.toLowerCase())
@@ -255,7 +255,7 @@ export default function Board() {
             <div className="recentTemp">
               <h2>Recently viewed</h2>
               <div className="scrollContainer">
-                {recentlyViewed.reverse().map((template, index) => (
+                {recentlyViewed.map((template, index) => (
                   <TempCard
                     key={index}
                     tempTitle={template.name}
@@ -269,7 +269,7 @@ export default function Board() {
             <div className="reboTemp">
               <h2>Recent Board</h2>
               <div className="scrollContainer">
-                {recentlyWorked.reverse().map((template, index) => (
+                {recentlyWorked.map((template, index) => (
                   <TempCard
                     key={index}
                     tempTitle={template.name}
